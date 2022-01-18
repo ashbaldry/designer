@@ -3,6 +3,7 @@
 
 <!-- badges: start -->
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+[![Codecov test coverage](https://codecov.io/gh/ashbaldry/designer/branch/main/graph/badge.svg)](https://codecov.io/gh/ashbaldry/designer?branch=main)
 <!-- badges: end -->
 
 The goal of designer is to ...
