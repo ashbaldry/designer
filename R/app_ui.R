@@ -10,7 +10,21 @@ app_ui <- function(request) {
     golem_add_external_resources(),
     # Your application UI logic
     fluidPage(
-      h1("designer")
+      title = "Shiny UI Designer",
+      theme = bslib::bs_theme(bslib::version_default()),
+
+      h1("designer"),
+      fluidRow(
+        column(
+          width = 3,
+          h3("Shiny UI Designer"),
+          mod_sidebar_ui("sidebar")
+        ),
+        column(
+          width = 9,
+          mod_canvas_ui("canvas")
+        )
+      )
     )
   )
 }
@@ -24,16 +38,14 @@ app_ui <- function(request) {
 #' @importFrom golem add_resource_path activate_js favicon bundle_resources
 #' @noRd
 golem_add_external_resources <- function() {
-  add_resource_path("www", app_sys("app/www"))
+  golem::add_resource_path("www", app_sys("app/www"))
 
   tags$head(
     favicon(),
-    bundle_resources(
+    golem::bundle_resources(
       path = app_sys("app/www"),
       app_title = "designer"
     )
-    # Add here other external resources
-    # for example, you can add shinyalert::useShinyalert()
   )
 }
 
