@@ -1,0 +1,16 @@
+Package: designer
+Title: 'Shiny' application UI drag-and-drop helper
+Version: 0.0.0.9000
+Authors@R: person('Ashley', 'Baldry', email = 'arbaldry91@gamil.com', role = c('cre', 'aut'))
+Description: A 'shiny' application that enables the user to create a mock UI, 
+    being able to drag and drop elements before being able to save the code in an R script.
+License: MIT + file LICENSE
+Imports: 
+    config (>= 0.3.1),
+    golem (>= 0.3.1),
+    shiny (>= 1.7.1)
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.1.1
+URL: https://www.github.com/ashbaldry/designer
+BugReports: https://www.github.com/ashbaldry/designer/issues
