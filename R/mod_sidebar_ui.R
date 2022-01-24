@@ -26,7 +26,7 @@ mod_sidebar_ui <- function(id) {
         "Create Item"
       ),
       div(
-        class = "component-container"
+        class = "container component-container"
       ),
       actionButton(
         ns("save"),
