@@ -1,1 +1,20 @@
- 
+.component-container {
+  height: 100px;
+  box-shadow: 0 0 0 1px black;
+  border-radius: 5px;
+}
+
+.page-canvas {
+  margin-top: 2.5vh;
+  height: 95vh;
+  box-shadow: 0 0 0 1px black;
+  border-radius: 5px;
+}
+
+.designer-page-template {
+  height: 100%;
+}
+
+.desinger-element {
+  box-shadow: inset 0 0 0 0 blue;
+}

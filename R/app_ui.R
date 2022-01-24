@@ -11,12 +11,14 @@ app_ui <- function(request) {
     # Your application UI logic
     fluidPage(
       title = "Shiny UI Designer",
-      theme = bslib::bs_theme(bslib::version_default()),
+      theme = bslib::bs_theme(version = 4),
 
-      h1("designer"),
+      warning_modal("warning_modal"),
+
       fluidRow(
         column(
           width = 3,
+          h1("designer"),
           h3("Shiny UI Designer"),
           mod_sidebar_ui("sidebar")
         ),
@@ -48,4 +50,3 @@ golem_add_external_resources <- function() {
     )
   )
 }
-

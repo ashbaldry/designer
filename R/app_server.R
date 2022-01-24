@@ -5,5 +5,4 @@
 #' @noRd
 app_server <- function(input, output, session) {
   mod_sidebar_server("sidebar")
-
 }

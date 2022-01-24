@@ -9,7 +9,7 @@ mod_canvas_ui <- function(id) {
   ns <- NS(id)
 
   div(
-    class = "canvas",
+    class = "page-canvas",
     id = ns("canvas")
   )
 }

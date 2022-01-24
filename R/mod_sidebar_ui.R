@@ -18,8 +18,30 @@ mod_sidebar_ui <- function(id) {
       selectInput(
         ns("component"),
         "Component",
-        c("")
+        COMPONENTS
+      ),
+      actionButton(
+        ns("create"),
+        class = "create-button",
+        "Create Item"
+      ),
+      div(
+        class = "component-container"
+      ),
+      actionButton(
+        ns("save"),
+        "Save Page"
       )
     )
   )
 }
+
+COMPONENTS <- c(
+  "Button",
+  "Column",
+  "Header",
+  "Image",
+  "Input",
+  "Output",
+  "Row"
+)
