@@ -8,7 +8,9 @@ updateDesignerElement = function() {
   $(".component-container").html(component_html);
   $(".component-container .designer-element").draggable({
     helper: "clone",
-    cancel : ".no-drag"
+    cancel : ".no-drag",
+    containment: "document",
+    snap: true
   });
 };
 
