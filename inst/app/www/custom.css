@@ -15,6 +15,11 @@
   height: 100%;
 }
 
-.desinger-element {
-  box-shadow: inset 0 0 0 0 blue;
+.designer-page-template .row {
+  min-height: 200px;
+  background: aliceblue;
+}
+
+.designer-element {
+  box-shadow: inset 0 0 0 1px blue;
 }

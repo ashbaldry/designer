@@ -19,8 +19,8 @@ enableDroppablePage = function() {
       }
       $(".designer-page-template .designer-element").draggable({
         cancel : ".no-drag",
-        snap: "both",
-        containment: "document",
+        snap: true,
+        containment: "document"
       });
     },
     out: function(e, ui) {
