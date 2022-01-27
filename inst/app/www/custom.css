@@ -1,12 +1,22 @@
-.component-container {
+.component-container, .bin-container {
   height: 100px;
   box-shadow: 0 0 0 1px black;
   border-radius: 5px;
+  margin: 2rem 0;
+}
+
+.bin-container .bin-header {
+  position: absolute;
+  margin-top: 0.2rem;
+}
+
+.bin-container .sortable-bin {
+  height: 100px;
 }
 
 .page-canvas {
-  margin-top: 2.5vh;
-  height: 95vh;
+  margin-top: 1.5rem;
+  height: 85vh;
   box-shadow: 0 0 0 1px black;
   border-radius: 5px;
 }
@@ -20,6 +30,14 @@
   background: aliceblue;
 }
 
+.designer-page-template .col-sm {
+  background: bisque;
+}
+
 .designer-element {
   box-shadow: inset 0 0 0 1px blue;
+}
+
+.designer-page-template .designer-element>p {
+  position: absolute;
 }

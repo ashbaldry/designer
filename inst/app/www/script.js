@@ -8,11 +8,26 @@ $(document).ready(function() {
     $(".page-canvas").html(createCanvasPage($("#sidebar-page_type").val()));
     enableSortablePage(document.getElementById("canvas-page"));
   });
+
+  Sortable.create(document.getElementById("sidebar-bin"), {
+    group: {
+      name: "shared",
+      pull: false
+    },
+    onAdd: function (evt) {
+      this.el.removeChild(evt.item);
+    }
+  });
 });
 
 enableSortablePage = function(el) {
   Sortable.create(el, {
-    group: "shared"
+    group: {
+      name: "shared",
+      put: function (to, from, clone) {
+        return !clone.classList.contains("col-sm");
+      }
+    }
   });
 };
 

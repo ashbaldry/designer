@@ -13,7 +13,7 @@ app_ui <- function(request) {
 
       warning_modal("warning_modal"),
 
-      h1("{designer} - Design Your App"),
+      h1("{designer} - Design Your Shiny App"),
 
       fluidRow(
         column(
