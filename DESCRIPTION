@@ -9,7 +9,8 @@ Imports:
     config (>= 0.3.1),
     golem (>= 0.3.1),
     htmltools,
-    shiny (>= 1.7.1)
+    shiny (>= 1.7.1),
+    bslib
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.1.2
