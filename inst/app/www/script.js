@@ -2,30 +2,17 @@ $(document).ready(function() {
   $("#sidebar-page_type").on("change", updateCanvasCheck);
 
   $(".page-canvas").html(createCanvasPage($("#sidebar-page_type").val()));
-  enableDroppablePage();
+  enableSortablePage(document.getElementById("canvas-page"));
 
   $("#confirm_reset").on("click", () => {
     $(".page-canvas").html(createCanvasPage($("#sidebar-page_type").val()));
-    enableDroppablePage();
+    enableSortablePage(document.getElementById("canvas-page"));
   });
 });
 
-enableDroppablePage = function() {
-    $(".designer-page-template").droppable({
-      tolerance: "pointer",
-    drop: function(e, ui) {
-      if (ui.draggable.parent().hasClass("component-container")) {
-        $(ui.draggable).clone().appendTo($(this));
-      }
-      $(".designer-page-template .designer-element").draggable({
-        cancel : ".no-drag",
-        snap: true,
-        containment: "document"
-      });
-    },
-    out: function(e, ui) {
-      $(ui.draggable).remove();
-    }
+enableSortablePage = function(el) {
+  Sortable.create(el, {
+    group: "shared"
   });
 };
 
@@ -35,12 +22,13 @@ updateCanvasCheck = function() {
     $("#warning_modal").modal();
   } else {
     $(".page-canvas").html(createCanvasPage($("#sidebar-page_type").val()));
-    enableDroppablePage();
+    enableSortablePage();
   }
 };
 
 createCanvasPage = function(page) {
   const el = document.createElement("div");
+  $(el).attr("id", "canvas-page");
   $(el).addClass("designer-page-template");
   $(el).attr("data-shinyfunction", page);
 

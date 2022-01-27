@@ -26,6 +26,7 @@ mod_sidebar_ui <- function(id) {
         "Create Item"
       ),
       div(
+        id = ns("container"),
         class = "container component-container"
       ),
       actionButton(
@@ -37,11 +38,11 @@ mod_sidebar_ui <- function(id) {
 }
 
 COMPONENTS <- c(
-  "Button",
+  # "Button",
   "Column",
-  "Header",
-  "Image",
-  "Input",
-  "Output",
+  # "Header",
+  # "Image",
+  # "Input",
+  # "Output",
   "Row"
 )

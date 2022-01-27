@@ -5,13 +5,29 @@ $(document).ready(function() {
 updateDesignerElement = function() {
   var component = $("#sidebar-component").val();
   var component_html = createDesignerElement(component);
+  var container = document.getElementById("sidebar-container");
   $(".component-container").html(component_html);
-  $(".component-container .designer-element").draggable({
-    helper: "clone",
-    cancel : ".no-drag",
-    containment: "document",
-    snap: true
+
+  new Sortable(container, {
+    group: {
+      name: "shared",
+      pull: "clone",
+      put: false
+    },
+    animation: 150
   });
+
+  var new_element = container.children[0];
+  if (component === "Row") {
+    Sortable.create(new_element, {
+      group: {
+        name: "shared",
+        put: function (to, from, clone) {
+          return clone.classList.contains("col-sm");
+        }
+      }
+    });
+  }
 };
 
 createDesignerElement = function(component) {
@@ -72,7 +88,7 @@ designerRow = function() {
 
 designerColumn = function() {
   var el = document.createElement("div");
-  $(el).addClass("designer-element col-sm-3");
+  $(el).addClass("designer-element col-sm col-sm-3");
   $(el).attr("data-shinyfunction", "column");
   $(el).html("Column");
   return el;
