@@ -55,23 +55,3 @@ createCanvasPage = function(page) {
 
   return el;
 };
-
-htmlToJSON = function(el, inner = false) {
-  var children = [];
-  for (var i = 0; i < el.children.length; i++) {
-    children.push(htmlToJSON(el.children[i], true));
-  }
-
-  var el_json = {
-    tagName: el.tagName,
-    RFunction: el.dataset.shinyfunction,
-    htmlclass: el.className,
-    children: children
-  };
-
-  if (inner) {
-    return el_json;
-  } else {
-    return JSON.stringify(el_json);
-  }
-};

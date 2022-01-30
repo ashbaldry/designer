@@ -4,5 +4,7 @@
 #'
 #' @noRd
 app_server <- function(input, output, session) {
-  mod_sidebar_server("sidebar")
+  page_html <- mod_canvas_server("canvas")
+
+  mod_sidebar_server("sidebar", ui_code = page_html)
 }

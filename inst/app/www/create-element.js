@@ -1,6 +1,7 @@
 $(document).ready(function() {
   $("#sidebar-component").on("change", updateDesignerElement);
   $("#sidebar-column_settings").on("change", updateDesignerElement);
+  $("#sidebar-header_settings").on("change", updateDesignerElement);
   updateDesignerElement();
 });
 
@@ -43,10 +44,10 @@ var designerElements = {
   },
 
   Header: function() {
-    var el = document.createElement("h1");
+    var el = document.createElement($("#sidebar-header_tag").val());
     $(el).addClass("designer-element");
-    $(el).attr("data-shinyfunction", "h1");
-    $(el).html("H1 Header");
+    $(el).attr("data-shinyfunction", $("#sidebar-header_tag").val());
+    $(el).html($("#sidebar-header_value").val());
     return el;
   },
 
@@ -54,20 +55,22 @@ var designerElements = {
     var el = document.createElement("div");
     $(el).addClass("designer-element row");
     $(el).attr("data-shinyfunction", "fluidRow");
-    var content = document.createElement("p");
-    $(content).html("Row");
-    $(el).html(content);
+    $(el).html("Row");
     return el;
   },
 
   Column: function() {
     var el = document.createElement("div");
     $(el).addClass("designer-element col-sm");
-    $(el).addClass("col-sm-" + $("#sidebar-column_width").val());
+
+    var width = $("#sidebar-column_width").val();
+    $(el).addClass("col-sm-" + width);
+
     var offset = $("#sidebar-column_offset").val();
     if (offset > 0) {
       $(el).addClass("offset-md-" + offset + " col-sm-offset-" + offset);
     }
+    $(el).attr("data-shinyattributes", "width: " + width + ", offset: " + offset);
     $(el).attr("data-shinyfunction", "column");
     $(el).html("Column");
     return el;

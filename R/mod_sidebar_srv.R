@@ -1,12 +1,14 @@
 #' sidebar Server Functions
 #'
 #' @noRd
-mod_sidebar_server <- function(id) {
+mod_sidebar_server <- function(id, ui_code) {
   moduleServer(id, function(input, output, session) {
     ns <- session$ns
 
-    shiny_code <- eventReactive(input$save, {
-      1
+    observeEvent(input$save, {
+      sink(file = "ui.R")
+      cat(ui_code())
+      sink()
     })
 
   })
