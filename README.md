@@ -7,14 +7,14 @@
 [![R-CMD-check](https://github.com/ashbaldry/designer/workflows/R-CMD-check/badge.svg)](https://github.com/ashbaldry/designer/actions)
 <!-- badges: end -->
 
-The goal of designer is to ...
+The goal of designer is to enable the creation of shiny UIs through the use of drag-and-drop elements into a prototype UI, and then copy the code used to create the same layout.
 
 ## Installation
 
-You can install the released version of designer from [CRAN](https://CRAN.R-project.org) with:
+`{designer}` is not currently available on [CRAN](https://CRAN.R-project.org). However you can install using:
 
 ``` r
-install.packages("designer")
+devtools::install_github("ashbaldry/designer")
 ```
 
 ## Example
@@ -23,6 +23,6 @@ This is a basic example which shows you how to solve a common problem:
 
 ``` r
 library(designer)
-## basic example code
+run_desginer_app()
 ```
 
