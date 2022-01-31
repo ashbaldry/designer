@@ -13,9 +13,20 @@ htmlToRScript <- function(html_list, indent = 0) {
   }
 
   indent_space <- paste0(rep(" ", indent), collapse = "")
+  indent_text_space <- paste0(rep(" ", indent + 2), collapse = "")
+
+  if (!is.null(html_list$r_arguments)) {
+    rfunc_arguments <- paste0(
+      indent_text_space,
+      gsub(", ", paste0(",\n", indent_text_space), html_list$r_arguments),
+      "\n"
+    )
+  } else {
+    rfunc_arguments <- character(0)
+  }
+
 
   if (!is.null(html_list$text) && html_list$text != "") {
-    indent_text_space <- paste0(rep(" ", indent + 2), collapse = "")
     html_text <- paste0(
       indent_text_space,
       "\"", html_list$text, "\"",
@@ -28,6 +39,7 @@ htmlToRScript <- function(html_list, indent = 0) {
 
   paste0(
     indent_space, html_list$r_function, "(\n",
+    rfunc_arguments,
     html_text,
     sub_rfuncs,
     indent_space, ")",

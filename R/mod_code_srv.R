@@ -5,12 +5,16 @@ mod_code_server <- function(id, ui_code) {
   moduleServer(id, function(input, output, session) {
     ns <- session$ns
 
+    r_code <- reactive({
+      jsonToRScript(ui_code())
+    })
+
     observeEvent(input$save, {
       sink(file = "ui.R")
-      cat(ui_code())
+      cat(r_code())
       sink()
     })
 
-    output$code <- renderPrint(cat(ui_code()))
+    output$code <- renderPrint(cat(r_code()))
   })
 }

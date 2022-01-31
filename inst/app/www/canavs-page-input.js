@@ -31,7 +31,9 @@ $.fn.ignore = function(sel) {
 htmlToJSON = function(el, inner = false) {
   var children = [];
   for (var i = 0; i < el.children.length; i++) {
-    children.push(htmlToJSON(el.children[i], true));
+    if (!el.children[i].classList.contains('unmovable-element')) {
+      children.push(htmlToJSON(el.children[i], true));
+    }
   }
 
   var el_json = {

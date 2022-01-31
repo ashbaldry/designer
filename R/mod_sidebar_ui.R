@@ -19,7 +19,7 @@ mod_sidebar_ui <- function(id) {
         ns("component"),
         "Component",
         COMPONENTS,
-        selected = "Row"
+        selected = "Header"
       ),
       conditionalPanel(
         id = ns("column_settings"),

@@ -21,6 +21,7 @@ updateDesignerElement = function() {
       put: false
     },
     animation: 150,
+    draggable: ".designer-element",
     onClone: function(evt) {
       var sortable_settings = designerSortableSettings[$("#sidebar-component").val()];
       if (sortable_settings) {
@@ -55,7 +56,11 @@ var designerElements = {
     var el = document.createElement("div");
     $(el).addClass("designer-element row");
     $(el).attr("data-shinyfunction", "fluidRow");
-    $(el).html("Row");
+
+    var p = document.createElement("p");
+    $(p).addClass("unmovable-element");
+    $(p).html("Row");
+    $(el).html(p);
     return el;
   },
 
@@ -70,9 +75,20 @@ var designerElements = {
     if (offset > 0) {
       $(el).addClass("offset-md-" + offset + " col-sm-offset-" + offset);
     }
-    $(el).attr("data-shinyattributes", "width: " + width + ", offset: " + offset);
+
+    if (offset > 0) {
+      $(el).attr("data-shinyattributes", "width = " + width + ", offset = " + offset);
+    } else {
+      $(el).attr("data-shinyattributes", "width = " + width);
+    }
+
+
     $(el).attr("data-shinyfunction", "column");
-    $(el).html("Column");
+
+    var p = document.createElement("p");
+    $(p).addClass("unmovable-element");
+    $(p).html("Column");
+    $(el).html(p);
     return el;
   }
 };

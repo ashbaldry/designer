@@ -13,10 +13,11 @@ app_ui <- function(request) {
 
       warning_modal("warning_modal"),
 
+      h1("{designer} - Design your UI"),
+
       fluidRow(
         column(
           width = 3,
-          h1("{designer} - Design Your UI"),
           h3("Settings"),
           mod_sidebar_ui("sidebar")
         ),
