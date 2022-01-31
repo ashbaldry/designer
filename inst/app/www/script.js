@@ -14,6 +14,7 @@ $(document).ready(function() {
       name: "shared",
       pull: false
     },
+    handle: ".designer-element",
     draggable: ".designer-element",
     onAdd: function (evt) {
       this.el.removeChild(evt.item);
