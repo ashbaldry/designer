@@ -44,10 +44,6 @@ mod_sidebar_ui <- function(id) {
           class = "sortable-bin",
           id = ns("bin")
         )
-      ),
-      actionButton(
-        ns("save"),
-        "Save Page"
       )
     )
   )

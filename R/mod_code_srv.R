@@ -1,7 +1,7 @@
 #' sidebar Server Functions
 #'
 #' @noRd
-mod_sidebar_server <- function(id, ui_code) {
+mod_code_server <- function(id, ui_code) {
   moduleServer(id, function(input, output, session) {
     ns <- session$ns
 
@@ -11,5 +11,6 @@ mod_sidebar_server <- function(id, ui_code) {
       sink()
     })
 
+    output$code <- renderPrint(cat(ui_code()))
   })
 }

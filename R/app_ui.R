@@ -13,17 +13,26 @@ app_ui <- function(request) {
 
       warning_modal("warning_modal"),
 
-      h1("{designer} - Design Your UI"),
-
       fluidRow(
         column(
           width = 3,
+          h1("{designer} - Design Your UI"),
           h3("Settings"),
           mod_sidebar_ui("sidebar")
         ),
         column(
           width = 9,
-          mod_canvas_ui("canvas")
+          tabsetPanel(
+            tabPanel(
+              "App UI",
+              mod_canvas_ui("canvas")
+            ),
+            tabPanel(
+              "Code",
+              mod_code_ui("code")
+            )
+          )
+
         )
       )
     )

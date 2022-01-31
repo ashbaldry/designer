@@ -6,5 +6,5 @@
 app_server <- function(input, output, session) {
   page_html <- mod_canvas_server("canvas")
 
-  mod_sidebar_server("sidebar", ui_code = page_html)
+  mod_code_server("code", ui_code = page_html)
 }
