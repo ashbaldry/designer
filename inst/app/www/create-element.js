@@ -1,38 +1,31 @@
 $(document).ready(function() {
-  $("#sidebar-component").on("change", updateDesignerElement);
+  $("#sidebar-component").on("change", () => updateDesignerElement(update_sortable = true));
   $("#sidebar-column_settings").on("change", updateDesignerElement);
   $("#sidebar-header_settings").on("change", updateDesignerElement);
-  updateDesignerElement();
+  updateDesignerElement(true);
 });
 
-updateDesignerElement = function() {
+updateDesignerElement = function(update_sortable = false) {
+  $(".component-container").html(null);
   var component = $("#sidebar-component").val();
   var component_html = designerElements[component]();
   var container = document.getElementById("sidebar-container");
   $(".component-container").html(component_html);
 
-  var new_element = container.children[0];
-  var sortable_settings = designerSortableSettings[component];
-
-  new Sortable(container, {
-    group: {
-      name: "shared",
-      pull: "clone",
-      put: false
-    },
-    animation: 150,
-    handle: ".designer-element",
-    draggable: ".designer-element",
-    onClone: function(evt) {
-      var sortable_settings = designerSortableSettings[$("#sidebar-component").val()];
-      if (sortable_settings) {
-        Sortable.create(evt.item, sortable_settings);
+  if (update_sortable) {
+    Sortable.create(container, {
+      group: {
+        name: "shared",
+        pull: "clone",
+        put: false
+      },
+      onClone: function(evt) {
+        var sortable_settings = designerSortableSettings[$("#sidebar-component").val()];
+        if (sortable_settings) {
+          Sortable.create(evt.item, sortable_settings);
+        }
       }
-    }
-  });
-
-  if (sortable_settings) {
-    Sortable.create(new_element, sortable_settings);
+    });
   }
 };
 

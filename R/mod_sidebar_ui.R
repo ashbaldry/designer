@@ -32,12 +32,12 @@ mod_sidebar_ui <- function(id) {
         column_settings(ns),
         ns = ns
       ),
-      # conditionalPanel(
-      #   id = ns("header_settings"),
-      #   "input.component === 'Header'",
-      #   header_settings(ns),
-      #   ns = ns
-      # ),
+      conditionalPanel(
+        id = ns("header_settings"),
+        "input.component === 'Header'",
+        header_settings(ns),
+        ns = ns
+      ),
       div(
         id = ns("container"),
         class = "container component-container"
@@ -57,7 +57,7 @@ mod_sidebar_ui <- function(id) {
 COMPONENTS <- c(
   # "Button",
   "Column",
-  # "Header",
+  "Header",
   # "Image",
   # "Input",
   # "Output",
