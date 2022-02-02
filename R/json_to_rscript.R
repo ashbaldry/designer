@@ -42,7 +42,7 @@ htmlToRScript <- function(html_list, indent = 0) {
     html_text <- paste0(
       indent_text_space,
       "\"", html_list$text, "\"",
-      if (sub_rfuncs == "") "," else "",
+      if (sub_rfuncs == "") "" else ",",
       "\n"
     )
   }
