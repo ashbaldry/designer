@@ -21,6 +21,7 @@ updateDesignerElement = function() {
       put: false
     },
     animation: 150,
+    handle: ".designer-element",
     draggable: ".designer-element",
     onClone: function(evt) {
       var sortable_settings = designerSortableSettings[$("#sidebar-component").val()];
