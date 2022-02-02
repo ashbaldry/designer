@@ -57,11 +57,6 @@ var designerElements = {
     var el = document.createElement("div");
     $(el).addClass("designer-element row");
     $(el).attr("data-shinyfunction", "fluidRow");
-
-    var p = document.createElement("p");
-    $(p).addClass("unmovable-element");
-    $(p).html("Row");
-    $(el).html(p);
     return el;
   },
 
@@ -83,13 +78,7 @@ var designerElements = {
       $(el).attr("data-shinyattributes", "width = " + width);
     }
 
-
     $(el).attr("data-shinyfunction", "column");
-
-    var p = document.createElement("p");
-    $(p).addClass("unmovable-element");
-    $(p).html("Column");
-    $(el).html(p);
     return el;
   }
 };

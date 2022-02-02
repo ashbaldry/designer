@@ -30,13 +30,34 @@
   background: aliceblue;
 }
 
+.component-container .row:after, .designer-page-template .row:after {
+  content: "Row";
+}
+
+.designer-page-template .row:after {
+  position: absolute;
+  z-index: 0;
+}
+
 .designer-page-template .col-sm {
   min-height: 100px;
   background: bisque;
 }
 
+.component-container .col-sm:after, .designer-page-template .col-sm:after {
+  content: "Column";
+}
+
+.designer-page-template .col-sm:after {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+}
+
 .designer-element {
   box-shadow: inset 0 0 0 1px blue;
+  z-index: 1;
 }
 
 .designer-page-template .designer-element>p {
