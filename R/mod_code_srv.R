@@ -1,6 +1,6 @@
-#' sidebar Server Functions
+#' @param ui_code Reactive object containing JSON string of the UI in the "App UI" tab
 #'
-#' @noRd
+#' @rdname code_module
 mod_code_server <- function(id, ui_code) {
   moduleServer(id, function(input, output, session) {
     ns <- session$ns
@@ -9,11 +9,11 @@ mod_code_server <- function(id, ui_code) {
       jsonToRScript(ui_code())
     })
 
-    observeEvent(input$save, {
-      sink(file = "ui.R")
-      cat(r_code())
-      sink()
-    })
+    # observeEvent(input$save, {
+    #   sink(file = "ui.R")
+    #   cat(r_code())
+    #   sink()
+    # })
 
     output$code <- renderPrint(cat(r_code()))
   })

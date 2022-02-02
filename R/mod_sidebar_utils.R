@@ -1,3 +1,13 @@
+#' Bootstrap Component Settings
+#'
+#' @description
+#' A way to be able to adjust components so that can more easily visualise how the shiny application will look.
+#'
+#' @param ns Namespace of the overall module
+#'
+#' @return A \code{shiny.tag.list} of settings specific to the selected component
+#'
+#' @rdname component_settings
 column_settings <- function(ns) {
   tagList(
     h5("Column Settings"),
@@ -18,6 +28,7 @@ column_settings <- function(ns) {
   )
 }
 
+#' @rdname component_settings
 header_settings <- function(ns) {
   tagList(
     h5("Header Settings"),

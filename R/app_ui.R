@@ -42,8 +42,12 @@ app_ui <- function(request) {
 
 #' Add external Resources to the Application
 #'
+#' @description
 #' This function is internally used to add external
 #' resources inside the Shiny application.
+#'
+#' @return
+#' A series of tags that are included in \code{<head></head>}
 #'
 #' @noRd
 golem_add_external_resources <- function() {

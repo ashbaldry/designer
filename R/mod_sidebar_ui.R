@@ -1,10 +1,15 @@
-#' sidebar UI Function
+#' Bootstrap Component Creation Module
 #'
-#' @description A shiny Module.
+#' @description
+#' A shiny module that creates Bootstrap components to drag into the App UI canvas for the wire-framing
+#' of shiny applications.
 #'
-#' @param id,input,output,session Internal parameters for {shiny}.
+#' @param id The character vector to use for the namespace.
 #'
-#' @noRd
+#' @return
+#' UI and server code to display options to create
+#'
+#' @rdname create_bscomp_module
 mod_sidebar_ui <- function(id) {
   ns <- NS(id)
 
@@ -27,12 +32,12 @@ mod_sidebar_ui <- function(id) {
         column_settings(ns),
         ns = ns
       ),
-      conditionalPanel(
-        id = ns("header_settings"),
-        "input.component === 'Header'",
-        header_settings(ns),
-        ns = ns
-      ),
+      # conditionalPanel(
+      #   id = ns("header_settings"),
+      #   "input.component === 'Header'",
+      #   header_settings(ns),
+      #   ns = ns
+      # ),
       div(
         id = ns("container"),
         class = "container component-container"
@@ -52,7 +57,7 @@ mod_sidebar_ui <- function(id) {
 COMPONENTS <- c(
   # "Button",
   "Column",
-  "Header",
+  # "Header",
   # "Image",
   # "Input",
   # "Output",
