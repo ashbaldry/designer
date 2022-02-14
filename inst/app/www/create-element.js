@@ -2,6 +2,7 @@ $(document).ready(function() {
   $("#sidebar-component").on("change", () => updateDesignerElement(update_sortable = true));
   $("#sidebar-column_settings").on("change", updateDesignerElement);
   $("#sidebar-header_settings").on("change", updateDesignerElement);
+  $("#sidebar-button_settings").on("change", updateDesignerElement);
   updateDesignerElement(true);
 });
 
@@ -29,20 +30,39 @@ updateDesignerElement = function(update_sortable = false) {
   }
 };
 
+createRandomID = function(prefix) {
+  return prefix + "_" + Math.random().toString(36).substr(2, 10);
+};
+
 var designerElements = {
   Button: function() {
     var el = document.createElement("button");
-    $(el).addClass("designer-element");
     $(el).attr("data-shinyfunction", "actionButton");
-    $(el).html("Button");
+    $(el).addClass("designer-element btn btn-default");
+
+    var label = $("#sidebar-button-label").val();
+    var button_class = $("#sidebar-button-class").val();
+    var id = $("#sidebar-button-id").val();
+    if (id === "") {
+      id = createRandomID("button");
+    }
+
+    if (button_class === "default") {
+      $(el).attr("data-shinyattributes", `inputId = "${id}"`);
+    } else {
+      $(el).attr("data-shinyattributes", `inputId = "${id}", class = "btn-${button_class}"`);
+      $(el).addClass("btn-" + button_class);
+    }
+
+    $(el).html(label);
     return el;
   },
 
   Header: function() {
-    var el = document.createElement($("#sidebar-header_tag").val());
+    var el = document.createElement($("#sidebar-header-tag").val());
     $(el).addClass("designer-element");
-    $(el).attr("data-shinyfunction", $("#sidebar-header_tag").val());
-    $(el).html($("#sidebar-header_value").val());
+    $(el).attr("data-shinyfunction", $("#sidebar-header-tag").val());
+    $(el).html($("#sidebar-header-value").val());
     return el;
   },
 
@@ -57,10 +77,10 @@ var designerElements = {
     var el = document.createElement("div");
     $(el).addClass("designer-element col-sm");
 
-    var width = $("#sidebar-column_width").val();
+    var width = $("#sidebar-column-width").val();
     $(el).addClass("col-sm-" + width);
 
-    var offset = $("#sidebar-column_offset").val();
+    var offset = $("#sidebar-column-offset").val();
     if (offset > 0) {
       $(el).addClass("offset-md-" + offset + " col-sm-offset-" + offset);
     }

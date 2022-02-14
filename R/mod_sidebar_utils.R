@@ -3,23 +3,25 @@
 #' @description
 #' A way to be able to adjust components so that can more easily visualise how the shiny application will look.
 #'
-#' @param ns Namespace of the overall module
+#' @param id The character vector to use for the namespace.
 #'
 #' @return A \code{shiny.tag.list} of settings specific to the selected component
 #'
 #' @rdname component_settings
-column_settings <- function(ns) {
+column_settings <- function(id) {
+  ns <- NS(id)
+
   tagList(
     h5("Column Settings"),
     numericInput(
-      ns("column_width"),
+      ns("width"),
       "Width",
       value = 3,
       min = 1,
       max = 12
     ),
     numericInput(
-      ns("column_offset"),
+      ns("offset"),
       "Offset",
       value = 0,
       min = 0,
@@ -29,19 +31,46 @@ column_settings <- function(ns) {
 }
 
 #' @rdname component_settings
-header_settings <- function(ns) {
+header_settings <- function(id) {
+  ns <- NS(id)
+
   tagList(
     h5("Header Settings"),
     selectInput(
-      ns("header_tag"),
+      ns("tag"),
       "HTML Tag",
       c(paste0("h", 1:6), "div")
     ),
     textInput(
-      ns("header_value"),
+      ns("value"),
       "Label",
       "Header"
     )
   )
 }
 
+#' @rdname component_settings
+button_settings <- function(id) {
+  ns <- NS(id)
+
+  tagList(
+    h5("Button Settings"),
+    selectInput(
+      ns("class"),
+      "Button Type",
+      setNames(BUTTON_TYPES, tools::toTitleCase(BUTTON_TYPES))
+    ),
+    textInput(
+      ns("label"),
+      "Label",
+      "Button"
+    ),
+    textInput(
+      ns("id"),
+      "Input ID",
+      ""
+    )
+  )
+}
+
+BUTTON_TYPES <- c("default", "primary", "secondary", "success", "danger", "warning", "info", "light", "dark")
