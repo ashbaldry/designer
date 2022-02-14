@@ -7,13 +7,15 @@ app_ui <- function(request) {
   tagList(
     golem_add_external_resources(),
 
+    tags$header(
+      "{designer} - Design your UI"
+    ),
+
     fluidPage(
       title = "Shiny UI Designer",
       theme = bslib::bs_theme(version = 4),
 
       warning_modal("warning_modal"),
-
-      h1("{designer} - Design your UI"),
 
       fluidRow(
         column(
@@ -31,6 +33,10 @@ app_ui <- function(request) {
             tabPanel(
               "Code",
               mod_code_ui("code")
+            ),
+            tabPanel(
+              "About",
+              mod_about_ui("about")
             )
           )
 
@@ -57,7 +63,8 @@ golem_add_external_resources <- function() {
     golem::favicon(),
     golem::bundle_resources(
       path = app_sys("app/www"),
-      app_title = "designer"
+      app_title = "Shiny UI Designer",
+      name = "designer"
     )
   )
 }
