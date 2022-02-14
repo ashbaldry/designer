@@ -35,6 +35,10 @@ header {
   overflow-y: auto;
 }
 
+.designer-page-template .shiny-input-panel {
+  min-height: 100px;
+}
+
 .designer-page-template .row {
   min-height: 200px;
   background: aliceblue;

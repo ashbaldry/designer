@@ -9,7 +9,6 @@ $(document).ready(function() {
     enableSortablePage(document.getElementById("canvas-page"));
   });
 
-  /*
   Sortable.create(document.getElementById("sidebar-bin"), {
     group: {
       name: "shared",
@@ -21,7 +20,6 @@ $(document).ready(function() {
       this.el.removeChild(evt.item);
     }
   });
-  */
 });
 
 enableSortablePage = function(el) {

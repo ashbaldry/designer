@@ -74,3 +74,22 @@ button_settings <- function(id) {
 }
 
 BUTTON_TYPES <- c("default", "primary", "secondary", "success", "danger", "warning", "info", "light", "dark")
+
+#' @rdname component_settings
+dropdown_settings <- function(id) {
+  ns <- NS(id)
+
+  tagList(
+    h5("Dropdown Settings"),
+    textInput(
+      ns("label"),
+      "Label",
+      "Label"
+    ),
+    textInput(
+      ns("id"),
+      "Input ID",
+      ""
+    )
+  )
+}

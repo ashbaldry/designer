@@ -1,8 +1,6 @@
 $(document).ready(function() {
   $("#sidebar-component").on("change", () => updateDesignerElement(update_sortable = true));
-  $("#sidebar-column_settings").on("change", updateDesignerElement);
-  $("#sidebar-header_settings").on("change", updateDesignerElement);
-  $("#sidebar-button_settings").on("change", updateDesignerElement);
+  $(".component_settings").on("change", updateDesignerElement);
   updateDesignerElement(true);
 });
 
@@ -13,6 +11,14 @@ updateDesignerElement = function(update_sortable = false) {
   var container = document.getElementById("sidebar-container");
   $(".component-container").html(component_html);
 
+  if (component === "dropdown") {
+    $(".component-container").find("select").selectize({
+      labelField: "label",
+      valueField: "value",
+      searchField: ["label"]
+    });
+  }
+
   if (update_sortable) {
     Sortable.create(container, {
       group: {
@@ -21,9 +27,16 @@ updateDesignerElement = function(update_sortable = false) {
         put: false
       },
       onClone: function(evt) {
-        var sortable_settings = designerSortableSettings[$("#sidebar-component").val()];
+        var component = $("#sidebar-component").val();
+        var sortable_settings = designerSortableSettings[component];
         if (sortable_settings) {
           Sortable.create(evt.item, sortable_settings);
+        }
+      },
+      onEnd: function(evt) {
+        var component = $("#sidebar-component").val();
+        if (component == "dropdown") {
+          updateDesignerElement();
         }
       }
     });
@@ -35,7 +48,7 @@ createRandomID = function(prefix) {
 };
 
 var designerElements = {
-  Button: function() {
+  button: function() {
     var el = document.createElement("button");
     $(el).attr("data-shinyfunction", "actionButton");
     $(el).addClass("designer-element btn btn-default");
@@ -58,7 +71,33 @@ var designerElements = {
     return el;
   },
 
-  Header: function() {
+  dropdown: function() {
+    var el = document.createElement("div");
+    $(el).attr("data-shinyfunction", "selectInput");
+    $(el).addClass("designer-element form-group shiny-input-container");
+
+
+    var label = $("#sidebar-dropdown-label").val();
+    var id = $("#sidebar-dropdown-id").val();
+    if (id === "") {
+      id = createRandomID("dropdown");
+    }
+
+    $(el).attr("data-shinyattributes", `inputId = "${id}", label = "${label}", choices = "..."`);
+
+    var el_label = document.createElement("label");
+    $(el_label).addClass("control-label");
+    $(el_label).html(label);
+
+    var el_dropdown = document.createElement("div");
+    $(el_dropdown).html(document.createElement("select"));
+
+    $(el).html(el_label);
+    $(el).append(el_dropdown);
+    return el;
+  },
+
+  header: function() {
     var el = document.createElement($("#sidebar-header-tag").val());
     $(el).addClass("designer-element");
     $(el).attr("data-shinyfunction", $("#sidebar-header-tag").val());
@@ -66,14 +105,14 @@ var designerElements = {
     return el;
   },
 
-  Row: function() {
+  row: function() {
     var el = document.createElement("div");
     $(el).addClass("designer-element row");
     $(el).attr("data-shinyfunction", "fluidRow");
     return el;
   },
 
-  Column: function() {
+  column: function() {
     var el = document.createElement("div");
     $(el).addClass("designer-element col-sm");
 
@@ -93,13 +132,21 @@ var designerElements = {
 
     $(el).attr("data-shinyfunction", "column");
     return el;
+  },
+
+  input_panel: function() {
+    var el = document.createElement("div");
+    $(el).addClass("designer-element shiny-input-panel shiny-flow-layout");
+    $(el).attr("data-shinyfunction", "inputPanel");
+    return el;
   }
 };
 
 var designerSortableSettings = {
-  Button: null,
-  Header: null,
-  Row: {
+  button: null,
+  dropdown: null,
+  header: null,
+  row: {
     group: {
       name: "shared",
       put: function (to, from, clone) {
@@ -107,11 +154,19 @@ var designerSortableSettings = {
       }
     }
   },
-  Column: {
+  column: {
     group: {
       name: "shared",
       put: function (to, from, clone) {
         return !clone.classList.contains("col-sm");
+      }
+    }
+  },
+  input_panel: {
+    group: {
+      name: "shared",
+      put: function (to, from, clone) {
+        return !(clone.classList.contains("col-sm") || clone.classList.contains("row"));
       }
     }
   }

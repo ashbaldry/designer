@@ -24,24 +24,34 @@ mod_sidebar_ui <- function(id) {
         ns("component"),
         "Component",
         COMPONENTS,
-        selected = "Header"
+        selected = "header"
       ),
       conditionalPanel(
         id = ns("button_settings"),
-        "input.component === 'Button'",
+        class = "component_settings",
+        "input.component === 'button'",
         button_settings(ns("button")),
         ns = ns
       ),
       conditionalPanel(
         id = ns("column_settings"),
-        "input.component === 'Column'",
+        class = "component_settings",
+        "input.component === 'column'",
         column_settings(ns("column")),
         ns = ns
       ),
       conditionalPanel(
         id = ns("header_settings"),
-        "input.component === 'Header'",
+        class = "component_settings",
+        "input.component === 'header'",
         header_settings(ns("header")),
+        ns = ns
+      ),
+      conditionalPanel(
+        id = ns("dropdown_settings"),
+        class = "component_settings",
+        "input.component === 'dropdown'",
+        dropdown_settings(ns("dropdown")),
         ns = ns
       ),
       div(
@@ -61,11 +71,13 @@ mod_sidebar_ui <- function(id) {
 }
 
 COMPONENTS <- c(
-  "Button",
-  "Column",
-  "Header",
+  "Button" = "button",
+  "Column" = "column",
+  "Header" = "header",
+  "Input Panel" = "input_panel",
+  "Dropdown (selectInput)" = "dropdown",
   # "Image",
   # "Input",
   # "Output",
-  "Row"
+  "Row" = "row"
 )
