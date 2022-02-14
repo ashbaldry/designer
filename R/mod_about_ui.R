@@ -19,7 +19,8 @@ mod_about_ui <- function(id) {
     h5("Component Rules:"),
     tags$ul(
       tags$li(tags$b("Rows"), "can only be placed inside a container (usually the top tag of a page) or a row"),
-      tags$li(tags$b("Columns"), "are the only component that can allowed directly inside a column")
+      tags$li(tags$b("Columns"), "are the only component that can allowed directly inside a column"),
+      tags$li("To put", tags$b("select inputs"), "next to each other they must be contained in an input panel")
     )
   )
 }
