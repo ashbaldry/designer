@@ -58,6 +58,7 @@ app_ui <- function(request) {
 #' @noRd
 golem_add_external_resources <- function() {
   golem::add_resource_path("www", app_sys("app/www"))
+  golem::add_resource_path("images", app_sys("app/images"))
 
   tags$head(
     golem::favicon(),

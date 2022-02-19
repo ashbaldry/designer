@@ -1,3 +1,14 @@
+COMPONENTS <- c(
+  "Header" = "header",
+  "Row" = "row",
+  "Column" = "column",
+  "Input Panel" = "input_panel",
+  "Dropdown (selectInput)" = "dropdown",
+  "Input" = "input",
+  "Button" = "button",
+  "Output" = "output"
+)
+
 #' Bootstrap Component Creation Module
 #'
 #' @description
@@ -54,6 +65,20 @@ mod_sidebar_ui <- function(id) {
         dropdown_settings(ns("dropdown")),
         ns = ns
       ),
+      conditionalPanel(
+        id = ns("input_settings"),
+        class = "component_settings",
+        "input.component === 'input'",
+        input_settings(ns("input")),
+        ns = ns
+      ),
+      conditionalPanel(
+        id = ns("output_settings"),
+        class = "component_settings",
+        "input.component === 'output'",
+        output_settings(ns("output")),
+        ns = ns
+      ),
       div(
         id = ns("container"),
         class = "container component-container"
@@ -69,15 +94,3 @@ mod_sidebar_ui <- function(id) {
     )
   )
 }
-
-COMPONENTS <- c(
-  "Button" = "button",
-  "Column" = "column",
-  "Header" = "header",
-  "Input Panel" = "input_panel",
-  "Dropdown (selectInput)" = "dropdown",
-  # "Image",
-  # "Input",
-  # "Output",
-  "Row" = "row"
-)

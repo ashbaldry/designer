@@ -35,7 +35,7 @@ updateDesignerElement = function(update_sortable = false) {
       },
       onEnd: function(evt) {
         var component = $("#sidebar-component").val();
-        if (component == "dropdown") {
+        if (["dropdown", "input"].includes(component)) {
           updateDesignerElement();
         }
       }
@@ -71,6 +71,47 @@ var designerElements = {
     return el;
   },
 
+  input: function() {
+    var el = document.createElement("div");
+    var type = $("#sidebar-input-type").val();
+    $(el).attr("data-shinyfunction", type + "Input");
+    $(el).addClass("designer-element form-group shiny-input-container");
+
+
+    var label = $("#sidebar-input-label").val();
+    var id = $("#sidebar-input-id").val();
+    if (id === "") {
+      id = createRandomID("input");
+    }
+
+    var input_value = "";
+    if (type === "numeric") {
+      input_value = ", value = 1";
+    }
+
+    $(el).attr("data-shinyattributes", `inputId = "${id}", label = "${label}"${input_value}`);
+
+    var el_label = document.createElement("label");
+    $(el_label).addClass("control-label");
+    $(el_label).html(label);
+
+    var child_input_tag = "input";
+    if (type === "textArea") {
+      child_input_tag = "textarea";
+    }
+    var el_input = document.createElement(child_input_tag);
+    $(el_input).addClass("form-control");
+    if (type !== "textArea") {
+      var input_types = {numeric: "number", text: "text", password: "password"};
+      $(el_input).attr("type", input_types[type]);
+    }
+    $(el_input).attr("placeholder", type);
+
+    $(el).html(el_label);
+    $(el).append(el_input);
+    return el;
+  },
+
   dropdown: function() {
     var el = document.createElement("div");
     $(el).attr("data-shinyfunction", "selectInput");
@@ -94,6 +135,44 @@ var designerElements = {
 
     $(el).html(el_label);
     $(el).append(el_dropdown);
+    return el;
+  },
+
+  output: function() {
+    var el;
+    var type = $("#sidebar-output-type").val();
+    var type2 = type === "table" ? "datatable" : type;
+
+    if (type === "verbatimText") {
+      el = document.createElement("pre");
+    } else {
+      el = document.createElement("div");
+    }
+
+    var id = $("#sidebar-output-id").val();
+    if (id === "") {
+      id = createRandomID(type);
+    }
+
+    if (["plot", "image"].includes(type)) {
+      validateCssUnit = function(x) {
+        const regex = /^(auto|inherit|fit-content|calc\(.*\)|((\.\d+)|(\d+(\.\d+)?))(%|in|cm|mm|ch|em|ex|rem|pt|pc|px|vh|vw|vmin|vmax))$/;
+        if (regex.test(x)) {
+          return x;
+        } else {
+          return "auto";
+        }
+      };
+
+      var width = validateCssUnit($("#sidebar-output-width").val());
+      var height = validateCssUnit($("#sidebar-output-height").val());
+      $(el).attr("style", `height: ${height}; width: ${width}`);
+    }
+
+    $(el).attr("data-shinyfunction", type + "Output");
+    $(el).attr("data-shinyattributes", `outputId = "${id}"`);
+    $(el).addClass(`designer-element output-element ${type}-output-element shiny-${type2}-output`);
+    $(el).html(outputContents[type]);
     return el;
   },
 
@@ -142,10 +221,36 @@ var designerElements = {
   }
 };
 
+var outputContents = {
+  text: function() {
+    return "Placeholder for Text Output";
+  },
+  verbatimText: function() {
+    return "Placeholder for Verbatim Text Output";
+  },
+  plot: function() {
+    var el = document.createElement("img");
+    $(el).attr("src", "images/plot.png");
+    $(el).attr("alt", "Placeholder for a plot output");
+    $(el).attr("title", "Example Plot");
+    return el;
+  },
+  table: function() {
+    return "Example Table Output";
+  },
+  image: function() {
+    var el = document.createElement("img");
+    $(el).attr("src", "images/image.png");
+    $(el).attr("alt", "Placeholder for an image output");
+    $(el).attr("title", "Example Image");
+    return el;
+  },
+  html: function() {
+    return "Placeholder for HTML Output";
+  }
+};
+
 var designerSortableSettings = {
-  button: null,
-  dropdown: null,
-  header: null,
   row: {
     group: {
       name: "shared",
@@ -166,7 +271,7 @@ var designerSortableSettings = {
     group: {
       name: "shared",
       put: function (to, from, clone) {
-        return !(clone.classList.contains("col-sm") || clone.classList.contains("row"));
+        return clone.classList.contains("form-group") || clone.classList.contains("btn");
       }
     }
   }

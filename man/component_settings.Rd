@@ -3,14 +3,26 @@
 \name{column_settings}
 \alias{column_settings}
 \alias{header_settings}
+\alias{button_settings}
+\alias{dropdown_settings}
+\alias{input_settings}
+\alias{output_settings}
 \title{Bootstrap Component Settings}
 \usage{
-column_settings(ns)
+column_settings(id)
 
-header_settings(ns)
+header_settings(id)
+
+button_settings(id)
+
+dropdown_settings(id)
+
+input_settings(id)
+
+output_settings(id)
 }
 \arguments{
-\item{ns}{Namespace of the overall module}
+\item{id}{The character vector to use for the namespace.}
 }
 \value{
 A \code{shiny.tag.list} of settings specific to the selected component

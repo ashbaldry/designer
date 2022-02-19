@@ -1,3 +1,23 @@
+INPUT_TYPES <- c(
+  "Text" = "text",
+  "Text Area" = "textArea",
+  "Numeric" = "numeric",
+  "Password" = "password"
+)
+
+OUTPUT_TYPES <- c(
+  "Text" = "text",
+  "Verbatim Text" = "verbatimText",
+  "Plot" = "plot",
+  "Image" = "image",
+  "Table" = "table",
+  "HTML" = "html"
+)
+
+BUTTON_TYPES <- c(
+  "default", "primary", "secondary", "success", "danger", "warning", "info", "light", "dark"
+)
+
 #' Bootstrap Component Settings
 #'
 #' @description
@@ -73,8 +93,6 @@ button_settings <- function(id) {
   )
 }
 
-BUTTON_TYPES <- c("default", "primary", "secondary", "success", "danger", "warning", "info", "light", "dark")
-
 #' @rdname component_settings
 dropdown_settings <- function(id) {
   ns <- NS(id)
@@ -90,6 +108,63 @@ dropdown_settings <- function(id) {
       ns("id"),
       "Input ID",
       ""
+    )
+  )
+}
+
+#' @rdname component_settings
+input_settings <- function(id) {
+  ns <- NS(id)
+
+  tagList(
+    h5("Dropdown Settings"),
+    selectInput(
+      ns("type"),
+      "Input Type",
+      INPUT_TYPES
+    ),
+    textInput(
+      ns("label"),
+      "Label",
+      "Label"
+    ),
+    textInput(
+      ns("id"),
+      "Input ID",
+      ""
+    )
+  )
+}
+
+#' @rdname component_settings
+output_settings <- function(id) {
+  ns <- NS(id)
+
+  tagList(
+    h5("Output Settings"),
+    selectInput(
+      ns("type"),
+      "Output Type",
+      OUTPUT_TYPES
+    ),
+    textInput(
+      ns("id"),
+      "Output ID",
+      ""
+    ),
+    conditionalPanel(
+      "['plot', 'image'].includes(input.type)",
+      textInput(
+        ns("height"),
+        "Plot Height",
+        "400px"
+      ),
+      textInput(
+        ns("width"),
+        "Plot Width",
+        "100%"
+      ),
+      ns = ns
     )
   )
 }

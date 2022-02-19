@@ -14,6 +14,10 @@ header {
   margin: 2rem 0;
 }
 
+.component-container .output-element {
+  min-height: 50px;
+}
+
 .bin-container .bin-header {
   position: absolute;
   margin-top: 0.2rem;
@@ -51,6 +55,7 @@ header {
 .designer-page-template .row:after {
   position: absolute;
   z-index: 0;
+  left: 20px;
 }
 
 .designer-page-template .col-sm {
@@ -64,9 +69,27 @@ header {
 
 .designer-page-template .col-sm:after {
   position: absolute;
-  z-index: -1;
+  z-index: 0;
   top: 0;
-  left: 0;
+  left: 5px;
+}
+
+.component-container .shiny-input-panel:after, .designer-page-template .shiny-input-panel:after {
+  content: "Input Panel";
+}
+
+.designer-page-template .shiny-input-panel:after {
+  position: absolute;
+  z-index: 0;
+}
+
+.plot-output-element, .image-output-element, .plot-output-element>img, .image-output-element>img {
+  max-height: 100%;
+  max-width: 100%;
+}
+
+.component-container .plot-output-element, .component-container .image-output-element {
+  height: 50px;
 }
 
 .designer-element {

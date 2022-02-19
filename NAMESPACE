@@ -2,3 +2,4 @@
 
 export(run_designer_app)
 import(shiny)
+importFrom(stats,setNames)
