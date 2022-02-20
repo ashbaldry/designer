@@ -19,10 +19,10 @@ devtools::install_github("ashbaldry/designer")
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
+To open the `{designer}` application and create your own UI, run the following code:
 
 ``` r
 library(designer)
-run_desginer_app()
+run_designer_app()
 ```
 
