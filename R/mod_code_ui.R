@@ -14,11 +14,20 @@ mod_code_ui <- function(id) {
 
   tagList(
     tags$form(
-      # actionButton(
-      #   ns("save"),
-      #   "Save Page"
-      # )
+      class = "code-ui-form",
+      tags$button(
+        class = "copy-ui-button btn btn-default",
+        shiny::icon("copy"),
+        "Copy to Clipboard"
+      ),
+      actionButton(
+        ns("save"),
+        "Save Page"
+      )
     ),
-    verbatimTextOutput(ns("code"), placeholder = TRUE)
+    tagAppendAttributes(
+      verbatimTextOutput(ns("code"), placeholder = TRUE),
+      class = "code-output"
+    )
   )
 }

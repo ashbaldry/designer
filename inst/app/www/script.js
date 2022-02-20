@@ -9,6 +9,8 @@ $(document).ready(function() {
     enableSortablePage(document.getElementById("canvas-page"));
   });
 
+  $(".copy-ui-button").on("click", copyUICode);
+
   Sortable.create(document.getElementById("sidebar-bin"), {
     group: {
       name: "shared",
@@ -56,4 +58,14 @@ createCanvasPage = function(page) {
   }
 
   return el;
+};
+
+copyUICode = function() {
+  var copy_text = document.getElementById("code-code");
+  var text_area = document.createElement("textarea");
+  text_area.textContent = copy_text.textContent;
+  document.body.append(text_area);
+  text_area.select();
+  document.execCommand("copy");
+  text_area.remove();
 };
