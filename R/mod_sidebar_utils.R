@@ -147,6 +147,14 @@ output_settings <- function(id) {
       "Output Type",
       OUTPUT_TYPES
     ),
+    conditionalPanel(
+      "input.type !== 'verbatimText'",
+      checkboxInput(
+        ns("inline"),
+        "Inline Output"
+      ),
+      ns = ns
+    ),
     textInput(
       ns("id"),
       "Output ID",

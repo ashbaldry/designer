@@ -9,7 +9,7 @@
 #' @return
 #' UI code to display information about the application
 #'
-#' @rdname create_bscomp_module
+#' @rdname about_module
 mod_about_ui <- function(id) {
   ns <- NS(id)
 

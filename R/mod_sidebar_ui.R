@@ -20,7 +20,7 @@ COMPONENTS <- c(
 #' @return
 #' UI and server code to display options to create
 #'
-#' @rdname create_bscomp_module
+#' @rdname sidebar_module
 mod_sidebar_ui <- function(id) {
   ns <- NS(id)
 

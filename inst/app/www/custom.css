@@ -27,6 +27,15 @@ header {
   height: 100px;
 }
 
+.code-ui-form {
+  margin: 0.5rem 0;
+}
+
+.code-output {
+  overflow-y: auto;
+  height: 80vh;
+}
+
 .page-canvas {
   margin-top: 1.5rem;
   height: 85vh;
@@ -69,7 +78,7 @@ header {
 
 .designer-page-template .col-sm:after {
   position: absolute;
-  z-index: 0;
+  z-index: -1;
   top: 0;
   left: 5px;
 }
@@ -78,9 +87,15 @@ header {
   content: "Input Panel";
 }
 
+.designer-page-template .shiny-input-panel {
+  position: relative;
+}
+
 .designer-page-template .shiny-input-panel:after {
   position: absolute;
-  z-index: 0;
+  top: 5px;
+  left: 5px;
+  z-index: -1;
 }
 
 .plot-output-element, .image-output-element, .plot-output-element>img, .image-output-element>img {
@@ -95,6 +110,10 @@ header {
 .designer-element {
   box-shadow: inset 0 0 0 1px blue;
   z-index: 1;
+}
+
+.designer-element:not(pre, .shiny-input-panel, .row, .col-sm, .btn) {
+  background-color: white;
 }
 
 .designer-page-template .designer-element>p {

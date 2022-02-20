@@ -35,7 +35,7 @@ updateDesignerElement = function(update_sortable = false) {
       },
       onEnd: function(evt) {
         var component = $("#sidebar-component").val();
-        if (["dropdown", "input"].includes(component)) {
+        if (["dropdown", "input", "output"].includes(component)) {
           updateDesignerElement();
         }
       }
@@ -140,11 +140,16 @@ var designerElements = {
 
   output: function() {
     var el;
+    var inline_text = "";
     var type = $("#sidebar-output-type").val();
     var type2 = type === "table" ? "datatable" : type;
+    var inline = document.getElementById("sidebar-output-inline").checked;
 
     if (type === "verbatimText") {
       el = document.createElement("pre");
+    } else if (inline) {
+      el = document.createElement("span");
+      inline_text = ", inline = TRUE";
     } else {
       el = document.createElement("div");
     }
@@ -154,23 +159,31 @@ var designerElements = {
       id = createRandomID(type);
     }
 
+    var height_str, width_str = "";
     if (["plot", "image"].includes(type)) {
-      validateCssUnit = function(x) {
+      validateCssUnit = function(x, fallback) {
         const regex = /^(auto|inherit|fit-content|calc\(.*\)|((\.\d+)|(\d+(\.\d+)?))(%|in|cm|mm|ch|em|ex|rem|pt|pc|px|vh|vw|vmin|vmax))$/;
         if (regex.test(x)) {
           return x;
         } else {
-          return "auto";
+          return fallback;
         }
       };
 
-      var width = validateCssUnit($("#sidebar-output-width").val());
-      var height = validateCssUnit($("#sidebar-output-height").val());
+      var width = validateCssUnit($("#sidebar-output-width").val(), "100%");
+      var height = validateCssUnit($("#sidebar-output-height").val(), "400px");
+      if (width !== "100%") {
+        width_str = `, width = "${width}"`;
+      }
+      if (height !== "400px") {
+        height_str = `, height = "${height}"`;
+      }
+
       $(el).attr("style", `height: ${height}; width: ${width}`);
     }
 
     $(el).attr("data-shinyfunction", type + "Output");
-    $(el).attr("data-shinyattributes", `outputId = "${id}"`);
+    $(el).attr("data-shinyattributes", `outputId = "${id}"${inline_text}${height_str}${width_str}`);
     $(el).addClass(`designer-element output-element ${type}-output-element shiny-${type2}-output`);
     $(el).html(outputContents[type]);
     return el;
