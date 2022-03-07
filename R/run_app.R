@@ -5,11 +5,11 @@
 #' @inheritParams shiny::shinyApp
 #'
 #' @export
-run_designer_app <- function(onStart = NULL, options = list(), enableBookmarking = NULL, uiPattern = "/", ...) {
+runDesignerApp <- function(onStart = NULL, options = list(), enableBookmarking = NULL, uiPattern = "/", ...) {
   golem::with_golem_options(
     app = shinyApp(
-      ui = app_ui,
-      server = app_server,
+      ui = appUI,
+      server = appServer,
       onStart = onStart,
       options = options,
       enableBookmarking = enableBookmarking,

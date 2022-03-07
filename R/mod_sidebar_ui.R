@@ -21,7 +21,7 @@ COMPONENTS <- c(
 #' UI and server code to display options to create
 #'
 #' @rdname sidebar_module
-mod_sidebar_ui <- function(id) {
+SidebarModUI <- function(id) {
   ns <- NS(id)
 
   tagList(
@@ -41,42 +41,42 @@ mod_sidebar_ui <- function(id) {
         id = ns("button_settings"),
         class = "component_settings",
         "input.component === 'button'",
-        button_settings(ns("button")),
+        buttonSettings(ns("button")),
         ns = ns
       ),
       conditionalPanel(
         id = ns("column_settings"),
         class = "component_settings",
         "input.component === 'column'",
-        column_settings(ns("column")),
+        columnSettings(ns("column")),
         ns = ns
       ),
       conditionalPanel(
         id = ns("header_settings"),
         class = "component_settings",
         "input.component === 'header'",
-        header_settings(ns("header")),
+        headerSettings(ns("header")),
         ns = ns
       ),
       conditionalPanel(
         id = ns("dropdown_settings"),
         class = "component_settings",
         "input.component === 'dropdown'",
-        dropdown_settings(ns("dropdown")),
+        dropdownSettings(ns("dropdown")),
         ns = ns
       ),
       conditionalPanel(
         id = ns("input_settings"),
         class = "component_settings",
         "input.component === 'input'",
-        input_settings(ns("input")),
+        inputSettings(ns("input")),
         ns = ns
       ),
       conditionalPanel(
         id = ns("output_settings"),
         class = "component_settings",
         "input.component === 'output'",
-        output_settings(ns("output")),
+        outputSettings(ns("output")),
         ns = ns
       ),
       div(

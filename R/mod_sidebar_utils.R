@@ -28,7 +28,7 @@ BUTTON_TYPES <- c(
 #' @return A \code{shiny.tag.list} of settings specific to the selected component
 #'
 #' @rdname component_settings
-column_settings <- function(id) {
+columnSettings <- function(id) {
   ns <- NS(id)
 
   tagList(
@@ -51,7 +51,7 @@ column_settings <- function(id) {
 }
 
 #' @rdname component_settings
-header_settings <- function(id) {
+headerSettings <- function(id) {
   ns <- NS(id)
 
   tagList(
@@ -70,7 +70,7 @@ header_settings <- function(id) {
 }
 
 #' @rdname component_settings
-button_settings <- function(id) {
+buttonSettings <- function(id) {
   ns <- NS(id)
 
   tagList(
@@ -94,7 +94,7 @@ button_settings <- function(id) {
 }
 
 #' @rdname component_settings
-dropdown_settings <- function(id) {
+dropdownSettings <- function(id) {
   ns <- NS(id)
 
   tagList(
@@ -113,7 +113,7 @@ dropdown_settings <- function(id) {
 }
 
 #' @rdname component_settings
-input_settings <- function(id) {
+inputSettings <- function(id) {
   ns <- NS(id)
 
   tagList(
@@ -137,7 +137,7 @@ input_settings <- function(id) {
 }
 
 #' @rdname component_settings
-output_settings <- function(id) {
+outputSettings <- function(id) {
   ns <- NS(id)
 
   tagList(

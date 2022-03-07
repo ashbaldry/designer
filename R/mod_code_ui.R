@@ -9,7 +9,7 @@
 #' UI and server code to display selected HTML elements
 #'
 #' @rdname code_module
-mod_code_ui <- function(id) {
+CodeModUI <- function(id) {
   ns <- NS(id)
 
   tagList(

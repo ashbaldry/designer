@@ -5,7 +5,7 @@
 #' @param id,input,output,session Internal parameters for {shiny}.
 #'
 #' @noRd
-mod_canvas_ui <- function(id) {
+CanvasModUI <- function(id) {
   ns <- NS(id)
 
   div(

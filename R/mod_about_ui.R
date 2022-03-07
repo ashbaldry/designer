@@ -10,7 +10,7 @@
 #' UI code to display information about the application
 #'
 #' @rdname about_module
-mod_about_ui <- function(id) {
+AboutModUI <- function(id) {
   ns <- NS(id)
 
   tagList(

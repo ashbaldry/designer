@@ -23,6 +23,6 @@ To open the `{designer}` application and create your own UI, run the following c
 
 ``` r
 library(designer)
-run_designer_app()
+runDesignerApp()
 ```
 

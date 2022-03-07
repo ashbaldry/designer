@@ -8,7 +8,7 @@
 #' within your package. The default, none, returns the root of the app.
 #'
 #' @noRd
-app_sys <- function(...) {
+appSys <- function(...) {
   system.file(..., package = "designer")
 }
 
@@ -20,13 +20,13 @@ app_sys <- function(...) {
 #' @param use_parent Logical, scan the parent directory for config file.
 #'
 #' @noRd
-get_golem_config <- function(value,
-                             config = Sys.getenv("GOLEM_CONFIG_ACTIVE", Sys.getenv("R_CONFIG_ACTIVE", "default")),
-                             use_parent = TRUE) {
+getGolemConfig <- function(value,
+                           config = Sys.getenv("GOLEM_CONFIG_ACTIVE", Sys.getenv("R_CONFIG_ACTIVE", "default")),
+                           use_parent = TRUE) {
   config::get(
     value = value,
     config = config,
-    file = app_sys("utils/golem-config.yml"),
+    file = appSys("utils/golem-config.yml"),
     use_parent = use_parent
   )
 }

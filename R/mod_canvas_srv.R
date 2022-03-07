@@ -1,7 +1,7 @@
 #' Canvas Server Functions
 #'
 #' @noRd
-mod_canvas_server <- function(id) {
+CanvasModuleServer <- function(id) {
   moduleServer(id, function(input, output, session) {
     ns <- session$ns
 
