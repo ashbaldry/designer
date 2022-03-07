@@ -22,7 +22,7 @@ warningModal <- function(id) {
         class = "modal-content",
         div(
           class = "modal-header",
-          h3(class = "modal-title", "Warning!")
+          h5(class = "modal-title", "Warning!")
         ),
         div(
           class = "modal-body",
