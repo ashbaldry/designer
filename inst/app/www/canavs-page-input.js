@@ -5,7 +5,7 @@ $.extend(canvasPageBinding, {
   },
   getValue: function(el) {
     var id = $(el).attr("id");
-    return htmlToJSON(document.getElementById(id));
+    return htmlToJSON(document.getElementById(id).children[0]);
   },
   setValue: function(el, value) {
     $(el).text(value);

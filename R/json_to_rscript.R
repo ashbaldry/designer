@@ -8,9 +8,17 @@
 #'
 #' @return A string that can be written to a \code{ui.R} file
 jsonToRScript <- function(json) {
-  html_list <- jsonlite::fromJSON(json, simplifyDataFrame = FALSE)
+  if (is.null(json)) return("")
 
-  htmlToRScript(html_list$children[[1]])
+  valid_json <- jsonlite::validate(json)
+
+  if (valid_json) {
+    html_list <- jsonlite::fromJSON(json, simplifyDataFrame = FALSE)
+    htmlToRScript(html_list)
+  } else {
+    message(attr(valid_json, "err"), "Returning NA")
+    NA_character_
+  }
 }
 
 #' Convert HTML Info to R Calls
