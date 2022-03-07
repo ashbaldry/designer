@@ -15,7 +15,8 @@ updateDesignerElement = function(update_sortable = false) {
     $(".component-container").find("select").selectize({
       labelField: "label",
       valueField: "value",
-      searchField: ["label"]
+      searchField: ["label"],
+      placeholder: "select input"
     });
   }
 
