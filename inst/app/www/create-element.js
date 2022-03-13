@@ -1,12 +1,22 @@
+var selected_component = "header";
+
 $(document).ready(function() {
-  $("#sidebar-component").on("change", () => updateDesignerElement(update_sortable = true));
   $(".component_settings").on("change", updateDesignerElement);
   updateDesignerElement(true);
+
+  $(".component_settings[data-component= '" + selected_component + "']").css("display", "unset");
+
+  $("#settings-component .dropdown-item").on("click", (el) => {
+    selected_component = $(el.target).data("shinyelement");
+    $(".component_settings").css("display", "");
+    $(".component_settings[data-component= '" + selected_component + "']").css("display", "unset");
+    updateDesignerElement(true);
+  });
 });
 
 updateDesignerElement = function(update_sortable = false) {
   $(".component-container").html(null);
-  var component = $("#sidebar-component").val();
+  var component = selected_component;
   var component_html = designerElements[component]();
   var container = document.getElementById("sidebar-container");
   $(".component-container").html(component_html);
@@ -28,14 +38,14 @@ updateDesignerElement = function(update_sortable = false) {
         put: false
       },
       onClone: function(evt) {
-        var component = $("#sidebar-component").val();
+        var component = selected_component;
         var sortable_settings = designerSortableSettings[component];
         if (sortable_settings) {
           Sortable.create(evt.item, sortable_settings);
         }
       },
       onEnd: function(evt) {
-        var component = $("#sidebar-component").val();
+        var component = selected_component;
         if (["dropdown", "input", "output"].includes(component)) {
           updateDesignerElement();
         }

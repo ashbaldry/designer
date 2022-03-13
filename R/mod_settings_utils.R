@@ -1,9 +1,9 @@
 PAGE_TYPES <- c("basicPage", "bootstrapPage", "fillPage", "fluidPage")
 
-pageSettings <- function(ns) {
+pageChoices <- function(ns) {
   div(
     `aria-labelledby` = ns("page_type_button"),
-    class = "dropdown-menu",
+    class = "dropdown-menu dropdown-menu-right dropdown-menu-wide",
     tags$form(
       class = "px-2",
       div(
@@ -29,5 +29,21 @@ pageSettings <- function(ns) {
         })
       )
     )
+  )
+}
+
+componentChoices <- function(ns) {
+  div(
+    id = ns("component"),
+    `aria-labelledby` = ns("component_button"),
+    class = "dropdown-menu dropdown-menu-right dropdown-menu-wide",
+    lapply(names(COMPONENTS), function(component) {
+      tags$a(
+        class = "dropdown-item",
+        `data-shinyelement` = COMPONENTS[[component]],
+        name = COMPONENTS[[component]],
+        component
+      )
+    })
   )
 }

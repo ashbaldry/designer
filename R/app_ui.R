@@ -11,18 +11,17 @@ appUI <- function(request) {
       "{designer} - Design your UI"
     ),
 
-    SettingsModUI("settings"),
-
     fluidPage(
       title = "Shiny UI Designer",
       theme = bslib::bs_theme(version = 4),
-
       warningModal("warning_modal"),
+
+      SettingsModUI("settings"),
 
       fluidRow(
         column(
           width = 3,
-          h3("Settings"),
+          class = "d-flex flex-column justify-content-between",
           SidebarModUI("sidebar")
         ),
         column(

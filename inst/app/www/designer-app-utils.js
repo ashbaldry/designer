@@ -17,6 +17,7 @@ enableSortablePage = function(el) {
 
 updateCanvasCheck = function() {
   if ($("#canvas-page").html() === "") {
+    $("#canvas-page").html("<div></div>");
     updatePage();
   } else {
     $("#warning_modal").modal();
