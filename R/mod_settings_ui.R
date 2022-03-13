@@ -9,7 +9,7 @@ SettingsModUI <- function(id) {
   ns <- NS(id)
 
   div(
-    class = "row settings-row row-cols-6",
+    class = "row settings-row row-cols-4",
     div(
       class = "col",
       div(
