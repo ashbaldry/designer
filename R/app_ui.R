@@ -11,6 +11,8 @@ appUI <- function(request) {
       "{designer} - Design your UI"
     ),
 
+    SettingsModUI("settings"),
+
     fluidPage(
       title = "Shiny UI Designer",
       theme = bslib::bs_theme(version = 4),

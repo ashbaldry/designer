@@ -27,11 +27,6 @@ SidebarModUI <- function(id) {
   tagList(
     tags$form(
       selectInput(
-        ns("page_type"),
-        label = "Page Type",
-        c("basicPage", "bootstrapPage", "fillPage", "fluidPage")
-      ),
-      selectInput(
         ns("component"),
         "Component",
         COMPONENTS,
