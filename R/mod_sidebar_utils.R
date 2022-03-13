@@ -108,6 +108,12 @@ dropdownSettings <- function(id) {
       ns("id"),
       "Input ID",
       ""
+    ),
+    textInput(
+      ns("width"),
+      label = "Width",
+      value = "",
+      placeholder = "Optional"
     )
   )
 }
@@ -120,18 +126,18 @@ inputSettings <- function(id) {
     h5("Dropdown Settings"),
     selectInput(
       ns("type"),
-      "Input Type",
-      INPUT_TYPES
+      label = "Input Type",
+      choices = INPUT_TYPES
     ),
     textInput(
       ns("label"),
-      "Label",
-      "Label"
+      label = "Label",
+      value = "Label"
     ),
     textInput(
       ns("id"),
-      "Input ID",
-      ""
+      label = "Input ID",
+      value = ""
     )
   )
 }

@@ -1,14 +1,8 @@
 $(document).ready(function() {
-  $("#sidebar-page_type").on("change", updateCanvasCheck);
+  $("#settings-page_type").on("change", updateCanvasCheck);
+  updatePage();
 
-  $(".page-canvas").html(createCanvasPage($("#sidebar-page_type").val()));
-  enableSortablePage(document.getElementById("canvas-page"));
-
-  $("#confirm_reset").on("click", () => {
-    $(".page-canvas").html(createCanvasPage($("#sidebar-page_type").val()));
-    enableSortablePage(document.getElementById("canvas-page"));
-  });
-
+  $("#confirm_reset").on("click", updatePage);
   $(".copy-ui-button").on("click", copyUICode);
 
   Sortable.create(document.getElementById("sidebar-bin"), {

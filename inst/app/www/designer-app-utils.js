@@ -1,3 +1,9 @@
+updatePage = function() {
+  var page_type = $('#settings-page_type input:radio:checked').val();
+  $(".page-canvas").html(createCanvasPage(page_type));
+  enableSortablePage(document.getElementById("canvas-page"));
+};
+
 enableSortablePage = function(el) {
   Sortable.create(el, {
     group: {
@@ -10,12 +16,11 @@ enableSortablePage = function(el) {
 };
 
 updateCanvasCheck = function() {
-  console.log("Hi");
-  if ($(".page-canvas").html() !== "") {
-    $("#warning_modal").modal();
+  if ($("#canvas-page").html() === "") {
+    $("#canvas-page").html("<div></div>");
+    updatePage();
   } else {
-    $(".page-canvas").html(createCanvasPage($("#sidebar-page_type").val()));
-    enableSortablePage();
+    $("#warning_modal").modal();
   }
 };
 

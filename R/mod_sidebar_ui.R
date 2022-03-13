@@ -26,70 +26,47 @@ SidebarModUI <- function(id) {
 
   tagList(
     tags$form(
-      selectInput(
-        ns("page_type"),
-        label = "Page Type",
-        c("basicPage", "bootstrapPage", "fillPage", "fluidPage")
-      ),
-      selectInput(
-        ns("component"),
-        "Component",
-        COMPONENTS,
-        selected = "header"
-      ),
-      conditionalPanel(
-        id = ns("button_settings"),
-        class = "component_settings",
-        "input.component === 'button'",
-        buttonSettings(ns("button")),
-        ns = ns
-      ),
-      conditionalPanel(
-        id = ns("column_settings"),
-        class = "component_settings",
-        "input.component === 'column'",
-        columnSettings(ns("column")),
-        ns = ns
-      ),
-      conditionalPanel(
-        id = ns("header_settings"),
-        class = "component_settings",
-        "input.component === 'header'",
-        headerSettings(ns("header")),
-        ns = ns
-      ),
-      conditionalPanel(
-        id = ns("dropdown_settings"),
-        class = "component_settings",
-        "input.component === 'dropdown'",
-        dropdownSettings(ns("dropdown")),
-        ns = ns
-      ),
-      conditionalPanel(
-        id = ns("input_settings"),
-        class = "component_settings",
-        "input.component === 'input'",
-        inputSettings(ns("input")),
-        ns = ns
-      ),
-      conditionalPanel(
-        id = ns("output_settings"),
-        class = "component_settings",
-        "input.component === 'output'",
-        outputSettings(ns("output")),
-        ns = ns
-      ),
       div(
         id = ns("container"),
         class = "container component-container"
       ),
       div(
-        class = "container bin-container",
-        h6(class = "bin-header", icon("trash"), "Drag Here to Delete Item"),
-        div(
-          class = "sortable-bin",
-          id = ns("bin")
-        )
+        class = "component_settings",
+        `data-component` = "button",
+        buttonSettings(ns("button"))
+      ),
+      div(
+        class = "component_settings",
+        `data-component` = "column",
+        columnSettings(ns("column"))
+      ),
+      div(
+        class = "component_settings",
+        `data-component` = "header",
+        headerSettings(ns("header"))
+      ),
+      div(
+        class = "component_settings",
+        `data-component` = "dropdown",
+        dropdownSettings(ns("dropdown"))
+      ),
+      div(
+        class = "component_settings",
+        `data-component` = "input",
+        inputSettings(ns("input"))
+      ),
+      div(
+        class = "component_settings",
+        `data-component` = "output",
+        outputSettings(ns("output"))
+      )
+    ),
+    div(
+      class = "container bin-container",
+      h6(class = "bin-header", icon("trash"), "Drag Here to Delete Item"),
+      div(
+        class = "sortable-bin",
+        id = ns("bin")
       )
     )
   )
