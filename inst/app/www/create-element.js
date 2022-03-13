@@ -58,6 +58,15 @@ createRandomID = function(prefix) {
   return prefix + "_" + Math.random().toString(36).substr(2, 10);
 };
 
+validateCssUnit = function(x, fallback) {
+  const regex = /^(auto|inherit|fit-content|calc\(.*\)|((\.\d+)|(\d+(\.\d+)?))(%|in|cm|mm|ch|em|ex|rem|pt|pc|px|vh|vw|vmin|vmax))$/;
+  if (regex.test(x)) {
+    return x;
+  } else {
+    return fallback;
+  }
+};
+
 var designerElements = {
   button: function() {
     var el = document.createElement("button");
@@ -135,7 +144,16 @@ var designerElements = {
       id = createRandomID("dropdown");
     }
 
-    $(el).attr("data-shinyattributes", `inputId = "${id}", label = "${label}", choices = "..."`);
+    var width_str;
+    var width = validateCssUnit($("#sidebar-dropdown-width").val(), "");
+    if (width === "") {
+      width_str = "";
+    } else {
+      $(el).css("width", width);
+      width_str = `, width = "${width}"`;
+    }
+
+    $(el).attr("data-shinyattributes", `inputId = "${id}", label = "${label}", choices = "..."${width_str}`);
 
     var el_label = document.createElement("label");
     $(el_label).addClass("control-label");
@@ -172,14 +190,6 @@ var designerElements = {
 
     var height_str, width_str = "";
     if (["plot", "image"].includes(type)) {
-      validateCssUnit = function(x, fallback) {
-        const regex = /^(auto|inherit|fit-content|calc\(.*\)|((\.\d+)|(\d+(\.\d+)?))(%|in|cm|mm|ch|em|ex|rem|pt|pc|px|vh|vw|vmin|vmax))$/;
-        if (regex.test(x)) {
-          return x;
-        } else {
-          return fallback;
-        }
-      };
 
       var width = validateCssUnit($("#sidebar-output-width").val(), "100%");
       var height = validateCssUnit($("#sidebar-output-height").val(), "400px");
@@ -190,7 +200,8 @@ var designerElements = {
         height_str = `, height = "${height}"`;
       }
 
-      $(el).attr("style", `height: ${height}; width: ${width}`);
+      $(el).attr("width", width);
+      $(el).attr("height", height);
     }
 
     $(el).attr("data-shinyfunction", type + "Output");
