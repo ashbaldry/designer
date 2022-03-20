@@ -38,6 +38,39 @@ SettingsModUI <- function(id) {
         ),
         componentChoices(ns)
       )
+    ),
+
+    div(
+      class = "col",
+      div(
+        tags$button(
+          id = ns("code_button"),
+          type = "button",
+          class = "btn btn-block btn-secondary dropdown-toggle",
+          `data-toggle` = "dropdown",
+          `aria-expanded` = "false",
+          "Code"
+        ),
+        div(
+          id = ns("code_dropdown"),
+          `aria-labelledby` = ns("code_button"),
+          class = "dropdown-menu dropdown-menu-wide",
+          CodeModUI(ns("code"))
+        )
+      )
+    ),
+
+    div(
+      class = "col",
+      div(
+        tags$button(
+          id = ns("about_button"),
+          type = "button",
+          class = "btn btn-block btn-secondary",
+          `aria-expanded` = "false",
+          "About"
+        )
+      )
     )
   )
 }

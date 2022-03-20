@@ -6,5 +6,5 @@
 appServer <- function(input, output, session) {
   page_html <- CanvasModuleServer("canvas")
 
-  CodeModuleServer("code", ui_code = page_html)
+  CodeModuleServer("settings-code", ui_code = page_html)
 }

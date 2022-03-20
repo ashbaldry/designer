@@ -26,21 +26,7 @@ appUI <- function(request) {
         ),
         column(
           width = 9,
-          tabsetPanel(
-            tabPanel(
-              "App UI",
-              CanvasModUI("canvas")
-            ),
-            tabPanel(
-              "Code",
-              CodeModUI("code")
-            ),
-            tabPanel(
-              "About",
-              AboutModUI("about")
-            )
-          )
-
+          CanvasModUI("canvas")
         )
       )
     )

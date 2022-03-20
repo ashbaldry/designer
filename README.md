@@ -11,7 +11,7 @@ The goal of designer is to enable the creation of shiny UIs through the use of d
 
 ## Installation
 
-`{designer}` is not currently available on [CRAN](https://CRAN.R-project.org). However you can install using:
+`{designer}` is not currently available on [CRAN](https://CRAN.R-project.org). However you can install the latest version from GitHub using:
 
 ``` r
 devtools::install_github("ashbaldry/designer")
@@ -26,3 +26,14 @@ library(designer)
 designApp()
 ```
 
+![](man/figures/example_app.jpeg)
+
+### Notes
+
+This package is **not** intended to fully create the application UI. For example you cannot include the options for a `selectInput`, and it only includes standard {shiny} components. However it is a useful tool when coming with with a mock layout of the application UI.
+
+### What Next
+
+- Enable it to work with `navbarPage`
+- Enable it to work with `shinydashboardPage`
+- Create module UI from the page
