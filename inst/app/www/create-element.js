@@ -188,7 +188,8 @@ var designerElements = {
       id = createRandomID(type);
     }
 
-    var height_str, width_str = "";
+    var height_str = "";
+    var width_str = "";
     if (["plot", "image"].includes(type)) {
 
       var width = validateCssUnit($("#sidebar-output-width").val(), "100%");
