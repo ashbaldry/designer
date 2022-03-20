@@ -80,10 +80,17 @@ var designerElements = {
       id = createRandomID("button");
     }
 
+    var width_str = "";
+    var width = validateCssUnit($("#sidebar-button-width").val(), "");
+    if (width !== "") {
+      width_str = `, width = "${width}"`;
+      $(el).css("width", width);
+    }
+
     if (button_class === "default") {
-      $(el).attr("data-shinyattributes", `inputId = "${id}"`);
+      $(el).attr("data-shinyattributes", `inputId = "${id}"${width_str}`);
     } else {
-      $(el).attr("data-shinyattributes", `inputId = "${id}", class = "btn-${button_class}"`);
+      $(el).attr("data-shinyattributes", `inputId = "${id}"${width_str}, class = "btn-${button_class}"`);
       $(el).addClass("btn-" + button_class);
     }
 
