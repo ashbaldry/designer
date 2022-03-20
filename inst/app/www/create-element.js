@@ -46,7 +46,7 @@ updateDesignerElement = function(update_sortable = false) {
       },
       onEnd: function(evt) {
         var component = selected_component;
-        if (["dropdown", "input", "output"].includes(component)) {
+        if (["dropdown", "input", "output", "button"].includes(component)) {
           updateDesignerElement();
         }
       }

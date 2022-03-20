@@ -28,7 +28,11 @@ h5.modal-title {
   height: 100px;
   box-shadow: 0 0 0 1px black;
   border-radius: 5px;
-  margin-top: 2rem;
+  margin-top: 1rem;
+}
+
+.component-container > * {
+    margin-top: 0;
 }
 
 .component-container .output-element {
@@ -53,15 +57,30 @@ h5.modal-title {
   height: 75vh;
 }
 
-.page-canvas {
-  margin-top: 1.5rem;
-  height: 80vh;
+.page-canvas-shell {
+  margin-top: 1rem;
+  height: 85vh;
   box-shadow: 0 0 0 1px black;
   border-radius: 5px;
 }
 
+.page-canvas-header {
+  background-color: #666666;
+}
+
+.page-canvas-title {
+  position: absolute;
+  right: calc(50% - 64px);
+  color: white;
+  top: 1rem;
+}
+
+.page-canvas {
+  height: calc(85vh - 14px);
+}
+
 .designer-page-template {
-  height: 100%;
+  height: calc(100% - 14px);
   overflow-y: auto;
 }
 
@@ -132,6 +151,10 @@ h5.modal-title {
 
 .designer-element:not(pre, .shiny-input-panel, .row, .col-sm, .btn) {
   background-color: white;
+}
+
+.designer-element.shiny-input-panel .designer-element.form-group {
+  background-color: #f6f6f6;
 }
 
 .designer-page-template .designer-element>p {

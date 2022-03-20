@@ -46,6 +46,24 @@ columnSettings <- function(id) {
       value = 0,
       min = 0,
       max = 11
+    ),
+
+    tags$br(),
+    h6("Notes"),
+    tags$ul(
+      tags$li("Columns can only be included in rows")
+    )
+  )
+}
+
+#' @rdname component_settings
+rowSettings <- function(id) {
+  ns <- NS(id)
+
+  tagList(
+    h6("Notes:"),
+    tags$ul(
+      tags$li("The only component that can be a direct child of a row are columns")
     )
   )
 }
@@ -82,13 +100,19 @@ buttonSettings <- function(id) {
     ),
     textInput(
       ns("label"),
-      "Label",
-      "Button"
+      label = "Label",
+      value = "Button"
     ),
     textInput(
       ns("id"),
-      "Input ID",
-      ""
+      label = "Input ID",
+      value = ""
+    ),
+    textInput(
+      ns("width"),
+      label = "Width",
+      value = "",
+      placeholder = "Optional"
     )
   )
 }
@@ -114,6 +138,12 @@ dropdownSettings <- function(id) {
       label = "Width",
       value = "",
       placeholder = "Optional"
+    ),
+
+    tags$br(),
+    h6("Notes:"),
+    tags$ul(
+      tags$li("To position several inputs horizontally, they must be put within an input panel")
     )
   )
 }
@@ -138,6 +168,12 @@ inputSettings <- function(id) {
       ns("id"),
       label = "Input ID",
       value = ""
+    ),
+
+    tags$br(),
+    h6("Notes:"),
+    tags$ul(
+      tags$li("To position several inputs horizontally, they must be put within an input panel")
     )
   )
 }
