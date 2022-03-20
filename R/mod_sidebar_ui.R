@@ -2,6 +2,7 @@ COMPONENTS <- c(
   "Header" = "header",
   "Row" = "row",
   "Column" = "column",
+  "Text" = "text",
   "Input Panel" = "input_panel",
   "Dropdown (selectInput)" = "dropdown",
   "Input" = "input",
@@ -32,8 +33,8 @@ SidebarModUI <- function(id) {
       ),
       div(
         class = "component_settings",
-        `data-component` = "button",
-        buttonSettings(ns("button"))
+        `data-component` = "header",
+        headerSettings(ns("header"))
       ),
       div(
         class = "component_settings",
@@ -47,8 +48,8 @@ SidebarModUI <- function(id) {
       ),
       div(
         class = "component_settings",
-        `data-component` = "header",
-        headerSettings(ns("header"))
+        `data-component` = "text",
+        textSettings(ns("text"))
       ),
       div(
         class = "component_settings",
@@ -59,6 +60,11 @@ SidebarModUI <- function(id) {
         class = "component_settings",
         `data-component` = "input",
         inputSettings(ns("input"))
+      ),
+      div(
+        class = "component_settings",
+        `data-component` = "button",
+        buttonSettings(ns("button"))
       ),
       div(
         class = "component_settings",

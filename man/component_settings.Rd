@@ -2,22 +2,28 @@
 % Please edit documentation in R/mod_sidebar_utils.R
 \name{columnSettings}
 \alias{columnSettings}
+\alias{rowSettings}
 \alias{headerSettings}
-\alias{buttonSettings}
-\alias{dropdownSettings}
+\alias{textSettings}
 \alias{inputSettings}
+\alias{dropdownSettings}
+\alias{buttonSettings}
 \alias{outputSettings}
 \title{Bootstrap Component Settings}
 \usage{
 columnSettings(id)
 
+rowSettings(id)
+
 headerSettings(id)
 
-buttonSettings(id)
+textSettings(id)
+
+inputSettings(id)
 
 dropdownSettings(id)
 
-inputSettings(id)
+buttonSettings(id)
 
 outputSettings(id)
 }

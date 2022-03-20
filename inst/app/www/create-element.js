@@ -67,34 +67,71 @@ validateCssUnit = function(x, fallback) {
   }
 };
 
+createListItem = function(x) {
+    var el = document.createElement("li");
+    $(el).html(x);
+    $(el).attr("data-shinyfunction", "tags$li");
+    return el;
+};
+
 var designerElements = {
-  button: function() {
-    var el = document.createElement("button");
-    $(el).attr("data-shinyfunction", "actionButton");
-    $(el).addClass("designer-element btn btn-default");
+  header: function() {
+    var el = document.createElement($("#sidebar-header-tag").val());
+    $(el).addClass("designer-element");
+    $(el).attr("data-shinyfunction", $("#sidebar-header-tag").val());
+    $(el).html($("#sidebar-header-value").val());
+    return el;
+  },
 
-    var label = $("#sidebar-button-label").val();
-    var button_class = $("#sidebar-button-class").val();
-    var id = $("#sidebar-button-id").val();
-    if (id === "") {
-      id = createRandomID("button");
+  row: function() {
+    var el = document.createElement("div");
+    $(el).addClass("designer-element row");
+    $(el).attr("data-shinyfunction", "fluidRow");
+    return el;
+  },
+
+  column: function() {
+    var el = document.createElement("div");
+    $(el).addClass("designer-element col-sm");
+
+    var width = $("#sidebar-column-width").val();
+    $(el).addClass("col-sm-" + width);
+
+    var offset = $("#sidebar-column-offset").val();
+    if (offset > 0) {
+      $(el).addClass("offset-md-" + offset + " col-sm-offset-" + offset);
     }
 
-    var width_str = "";
-    var width = validateCssUnit($("#sidebar-button-width").val(), "");
-    if (width !== "") {
-      width_str = `, width = "${width}"`;
-      $(el).css("width", width);
-    }
-
-    if (button_class === "default") {
-      $(el).attr("data-shinyattributes", `inputId = "${id}"${width_str}`);
+    if (offset > 0) {
+      $(el).attr("data-shinyattributes", "width = " + width + ", offset = " + offset);
     } else {
-      $(el).attr("data-shinyattributes", `inputId = "${id}"${width_str}, class = "btn-${button_class}"`);
-      $(el).addClass("btn-" + button_class);
+      $(el).attr("data-shinyattributes", "width = " + width);
     }
 
-    $(el).html(label);
+    $(el).attr("data-shinyfunction", "column");
+    return el;
+  },
+
+  text: function() {
+    var type = $("#sidebar-text-type").val();
+    var el = document.createElement(type);
+    $(el).addClass("designer-element");
+
+    if (type === "p") {
+      $(el).html($("#sidebar-text-contents").val());
+    } else {
+      var list_items = $("#sidebar-text-contents").val().split("\n");
+      $(el).html(list_items.map(createListItem));
+    }
+
+    $(el).attr("data-shinyfunction", "tags$" + type);
+    return el;
+  },
+
+  input_panel: function() {
+    var el = document.createElement("div");
+    $(el).addClass("designer-element shiny-input-panel shiny-flow-layout");
+    $(el).attr("data-shinyfunction", "inputPanel");
     return el;
   },
 
@@ -174,6 +211,36 @@ var designerElements = {
     return el;
   },
 
+  button: function() {
+    var el = document.createElement("button");
+    $(el).attr("data-shinyfunction", "actionButton");
+    $(el).addClass("designer-element btn btn-default");
+
+    var label = $("#sidebar-button-label").val();
+    var button_class = $("#sidebar-button-class").val();
+    var id = $("#sidebar-button-id").val();
+    if (id === "") {
+      id = createRandomID("button");
+    }
+
+    var width_str = "";
+    var width = validateCssUnit($("#sidebar-button-width").val(), "");
+    if (width !== "") {
+      width_str = `, width = "${width}"`;
+      $(el).css("width", width);
+    }
+
+    if (button_class === "default") {
+      $(el).attr("data-shinyattributes", `inputId = "${id}"${width_str}`);
+    } else {
+      $(el).attr("data-shinyattributes", `inputId = "${id}"${width_str}, class = "btn-${button_class}"`);
+      $(el).addClass("btn-" + button_class);
+    }
+
+    $(el).html(label);
+    return el;
+  },
+
   output: function() {
     var el;
     var inline_text = "";
@@ -216,50 +283,6 @@ var designerElements = {
     $(el).attr("data-shinyattributes", `outputId = "${id}"${inline_text}${height_str}${width_str}`);
     $(el).addClass(`designer-element output-element ${type}-output-element shiny-${type2}-output`);
     $(el).html(outputContents[type]);
-    return el;
-  },
-
-  header: function() {
-    var el = document.createElement($("#sidebar-header-tag").val());
-    $(el).addClass("designer-element");
-    $(el).attr("data-shinyfunction", $("#sidebar-header-tag").val());
-    $(el).html($("#sidebar-header-value").val());
-    return el;
-  },
-
-  row: function() {
-    var el = document.createElement("div");
-    $(el).addClass("designer-element row");
-    $(el).attr("data-shinyfunction", "fluidRow");
-    return el;
-  },
-
-  column: function() {
-    var el = document.createElement("div");
-    $(el).addClass("designer-element col-sm");
-
-    var width = $("#sidebar-column-width").val();
-    $(el).addClass("col-sm-" + width);
-
-    var offset = $("#sidebar-column-offset").val();
-    if (offset > 0) {
-      $(el).addClass("offset-md-" + offset + " col-sm-offset-" + offset);
-    }
-
-    if (offset > 0) {
-      $(el).attr("data-shinyattributes", "width = " + width + ", offset = " + offset);
-    } else {
-      $(el).attr("data-shinyattributes", "width = " + width);
-    }
-
-    $(el).attr("data-shinyfunction", "column");
-    return el;
-  },
-
-  input_panel: function() {
-    var el = document.createElement("div");
-    $(el).addClass("designer-element shiny-input-panel shiny-flow-layout");
-    $(el).attr("data-shinyfunction", "inputPanel");
     return el;
   }
 };

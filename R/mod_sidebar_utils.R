@@ -1,3 +1,9 @@
+TEXT_TAGS <- c(
+  "Paragraph <p>" = "p",
+  "Ordered List <ol>" = "ol",
+  "Unordered List <ul>" = "ul"
+)
+
 INPUT_TYPES <- c(
   "Text" = "text",
   "Text Area" = "textArea",
@@ -88,62 +94,22 @@ headerSettings <- function(id) {
 }
 
 #' @rdname component_settings
-buttonSettings <- function(id) {
+textSettings <- function(id) {
   ns <- NS(id)
 
   tagList(
-    h5("Button Settings"),
+    h5("Text Settings"),
     selectInput(
-      ns("class"),
-      "Button Type",
-      setNames(BUTTON_TYPES, tools::toTitleCase(BUTTON_TYPES))
+      ns("type"),
+      label = "HTML Tag",
+      choices = TEXT_TAGS
     ),
-    textInput(
-      ns("label"),
-      label = "Label",
-      value = "Button"
-    ),
-    textInput(
-      ns("id"),
-      label = "Input ID",
-      value = ""
-    ),
-    textInput(
-      ns("width"),
-      label = "Width",
+    textAreaInput(
+      ns("contents"),
+      label = "Contents",
       value = "",
-      placeholder = "Optional"
-    )
-  )
-}
-
-#' @rdname component_settings
-dropdownSettings <- function(id) {
-  ns <- NS(id)
-
-  tagList(
-    h5("Dropdown Settings"),
-    textInput(
-      ns("label"),
-      "Label",
-      "Label"
-    ),
-    textInput(
-      ns("id"),
-      "Input ID",
-      ""
-    ),
-    textInput(
-      ns("width"),
-      label = "Width",
-      value = "",
-      placeholder = "Optional"
-    ),
-
-    tags$br(),
-    h6("Notes:"),
-    tags$ul(
-      tags$li("To position several inputs horizontally, they must be put within an input panel")
+      width = "100%",
+      height = "5rem"
     )
   )
 }
@@ -179,6 +145,67 @@ inputSettings <- function(id) {
 }
 
 #' @rdname component_settings
+dropdownSettings <- function(id) {
+  ns <- NS(id)
+
+  tagList(
+    h5("Dropdown Settings"),
+    textInput(
+      ns("label"),
+      label = "Label",
+      value = "Label"
+    ),
+    textInput(
+      ns("id"),
+      label = "Input ID",
+      value = ""
+    ),
+    textInput(
+      ns("width"),
+      label = "Width",
+      value = "",
+      placeholder = "Optional"
+    ),
+
+    tags$br(),
+    h6("Notes:"),
+    tags$ul(
+      tags$li("To position several inputs horizontally, they must be put within an input panel")
+    )
+  )
+}
+
+#' @rdname component_settings
+buttonSettings <- function(id) {
+  ns <- NS(id)
+
+  tagList(
+    h5("Button Settings"),
+    selectInput(
+      ns("class"),
+      "Button Type",
+      setNames(BUTTON_TYPES, tools::toTitleCase(BUTTON_TYPES))
+    ),
+    textInput(
+      ns("label"),
+      label = "Label",
+      value = "Button"
+    ),
+    textInput(
+      ns("id"),
+      label = "Input ID",
+      value = ""
+    ),
+    textInput(
+      ns("width"),
+      label = "Width",
+      value = "",
+      placeholder = "Optional"
+    )
+  )
+}
+
+#' @rdname component_settings
 outputSettings <- function(id) {
   ns <- NS(id)
 
@@ -191,11 +218,11 @@ outputSettings <- function(id) {
     ),
     conditionalPanel(
       "input.type !== 'verbatimText'",
+      ns = ns,
       checkboxInput(
         ns("inline"),
         "Inline Output"
-      ),
-      ns = ns
+      )
     ),
     textInput(
       ns("id"),
@@ -204,6 +231,7 @@ outputSettings <- function(id) {
     ),
     conditionalPanel(
       "['plot', 'image'].includes(input.type)",
+      ns = ns,
       textInput(
         ns("height"),
         "Plot Height",
@@ -213,8 +241,7 @@ outputSettings <- function(id) {
         ns("width"),
         "Plot Width",
         "100%"
-      ),
-      ns = ns
+      )
     )
   )
 }

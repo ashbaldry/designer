@@ -29,6 +29,7 @@ h5.modal-title {
   box-shadow: 0 0 0 1px black;
   border-radius: 5px;
   margin-top: 1rem;
+  overflow-y: auto;
 }
 
 .component-container > * {
