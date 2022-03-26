@@ -27,6 +27,7 @@ SidebarModUI <- function(id) {
 
   tagList(
     tags$form(
+      h5("Add Component"),
       div(
         id = ns("container"),
         class = "container component-container"

@@ -153,7 +153,16 @@ var designerElements = {
       input_value = ", value = 1";
     }
 
-    $(el).attr("data-shinyattributes", `inputId = "${id}", label = "${label}"${input_value}`);
+    var width_str;
+    var width = validateCssUnit($("#sidebar-input-width").val(), "");
+    if (width === "") {
+      width_str = "";
+    } else {
+      $(el).css("width", width);
+      width_str = `, width = "${width}"`;
+    }
+
+    $(el).attr("data-shinyattributes", `inputId = "${id}", label = "${label}"${input_value}${width_str}`);
 
     var el_label = document.createElement("label");
     $(el_label).addClass("control-label");
@@ -166,8 +175,8 @@ var designerElements = {
     var el_input = document.createElement(child_input_tag);
     $(el_input).addClass("form-control");
     if (type !== "textArea") {
-      var input_types = {numeric: "number", text: "text", password: "password"};
-      $(el_input).attr("type", input_types[type]);
+      var input_types = {numeric: "Numeric", text: "Text", password: "Password"};
+      $(el_input).attr("type", input_types[type] + " Input");
     }
     $(el_input).attr("placeholder", type);
 

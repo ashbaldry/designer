@@ -3,7 +3,7 @@ PAGE_TYPES <- c("basicPage", "bootstrapPage", "fillPage", "fluidPage")
 pageChoices <- function(ns) {
   div(
     `aria-labelledby` = ns("page_type_button"),
-    class = "dropdown-menu dropdown-menu-right dropdown-menu-wide",
+    class = "dropdown-menu dropdown-menu-right dropdown-menu-wide page-type-dropdown",
     tags$form(
       class = "px-2",
       div(

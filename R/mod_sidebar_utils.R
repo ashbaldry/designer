@@ -69,7 +69,11 @@ rowSettings <- function(id) {
   tagList(
     h6("Notes:"),
     tags$ul(
-      tags$li("The only component that can be a direct child of a row are columns")
+      tags$li("The only component that can be a direct child of a row are columns"),
+      tags$li(
+        "By default, a row will have 0 height and is determined by the contents inside.",
+        "For easy use in this application, it has a minimum height of 200px"
+      )
     )
   )
 }
@@ -110,6 +114,12 @@ textSettings <- function(id) {
       value = "",
       width = "100%",
       height = "5rem"
+    ),
+
+    tags$br(),
+    h6("Notes"),
+    tags$ul(
+      tags$li("Add individual list items on separate lines")
     )
   )
 }
@@ -134,6 +144,12 @@ inputSettings <- function(id) {
       ns("id"),
       label = "Input ID",
       value = ""
+    ),
+    textInput(
+      ns("width"),
+      label = "Width",
+      value = "",
+      placeholder = "Optional"
     ),
 
     tags$br(),

@@ -16,6 +16,14 @@ h5.modal-title {
   min-width: 200px;
 }
 
+.page-type-dropdown .form-check:not(:last-child) {
+  margin-bottom: 0.5rem;
+}
+
+.page-type-dropdown .form-group {
+  margin-bottom: 0.25rem;
+}
+
 .settings-row {
   margin-bottom: 15px;
 }
