@@ -7,6 +7,8 @@
 [![R-CMD-check](https://github.com/ashbaldry/designer/workflows/R-CMD-check/badge.svg)](https://github.com/ashbaldry/designer/actions)
 <!-- badges: end -->
 
+<img src="https://raw.githubusercontent.com/ashbaldry/designer/master/man/figures/hex-designer.png" align="right" width="120"/>
+
 The goal of designer is to enable the creation of shiny UIs through the use of drag-and-drop elements into a prototype UI, and then copy the code used to create the same layout.
 
 ## Installation
