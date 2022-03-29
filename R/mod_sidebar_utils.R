@@ -71,8 +71,8 @@ rowSettings <- function(id) {
     tags$ul(
       tags$li("The only component that can be a direct child of a row are columns"),
       tags$li(
-        "By default, a row will have 0 height and is determined by the contents inside.",
-        "For easy use in this application, it has a minimum height of 200px"
+        "By default, a row will have no height and is determined by the contents inside.",
+        "To easily drop elements into the rows, they have a minimum height of 50px in this app"
       )
     )
   )
@@ -246,6 +246,17 @@ outputSettings <- function(id) {
       ""
     ),
     conditionalPanel(
+      "['text', 'verbatimText', 'html'].includes(input.type)",
+      ns = ns,
+      textAreaInput(
+        ns("contents"),
+        label = "Contents",
+        value = "",
+        width = "100%",
+        height = "5rem"
+      )
+    ),
+    conditionalPanel(
       "['plot', 'image'].includes(input.type)",
       ns = ns,
       textInput(
@@ -258,6 +269,12 @@ outputSettings <- function(id) {
         "Plot Width",
         "100%"
       )
+    ),
+
+    tags$br(),
+    h6("Notes"),
+    tags$ul(
+      tags$li("Plot and image output will show area of plot, but image will not stretch to fit")
     )
   )
 }

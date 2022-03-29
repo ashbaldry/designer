@@ -3,7 +3,7 @@ header {
   padding: 6px;
   margin-bottom: 10px;
   font-size: 1.2rem;
-  background-color: antiquewhite;
+  background-color: gainsboro;
   font-family: monospace;
 }
 
@@ -94,12 +94,16 @@ h5.modal-title {
   overflow-y: auto;
 }
 
+.designer-element:not(pre, .shiny-input-panel, .row, .col-sm, .btn) {
+  background-color: white;
+}
+
 .designer-page-template .shiny-input-panel {
   min-height: 100px;
 }
 
 .designer-page-template .row {
-  min-height: 200px;
+  min-height: 50px;
   background: aliceblue;
   position: relative;
 }
@@ -115,7 +119,7 @@ h5.modal-title {
 }
 
 .designer-page-template .col-sm {
-  min-height: 100px;
+  min-height: 50px;
   background: bisque;
 }
 
@@ -145,9 +149,23 @@ h5.modal-title {
   z-index: -1;
 }
 
-.plot-output-element, .image-output-element, .plot-output-element>img, .image-output-element>img {
+.designer-element.plot-output-element, .designer-element.image-output-element {
+  text-align: center;
+}
+
+.designer-page-template .designer-element.plot-output-element,
+.designer-page-template .designer-element.image-output-element {
+  background-color: whitesmoke;
+}
+
+.designer-element.plot-output-element, .designer-element.image-output-element,
+.plot-output-element>img, .image-output-element>img {
   max-height: 100%;
   max-width: 100%;
+}
+
+span.plot-output-element, span.image-output-element {
+  display: inline-block;
 }
 
 .component-container .plot-output-element, .component-container .image-output-element {
@@ -157,10 +175,6 @@ h5.modal-title {
 .designer-element {
   border: 1px dashed black;
   z-index: 1;
-}
-
-.designer-element:not(pre, .shiny-input-panel, .row, .col-sm, .btn) {
-  background-color: white;
 }
 
 .designer-element.shiny-input-panel .designer-element.form-group {

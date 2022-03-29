@@ -74,7 +74,7 @@ createListItem = function(x) {
     return el;
 };
 
-var designerElements = {
+const designerElements = {
   header: function() {
     var el = document.createElement($("#sidebar-header-tag").val());
     $(el).addClass("designer-element");
@@ -256,6 +256,7 @@ var designerElements = {
     var type = $("#sidebar-output-type").val();
     var type2 = type === "table" ? "datatable" : type;
     var inline = document.getElementById("sidebar-output-inline").checked;
+    var contents = outputContents[type]();
 
     if (type === "verbatimText") {
       el = document.createElement("pre");
@@ -284,24 +285,27 @@ var designerElements = {
         height_str = `, height = "${height}"`;
       }
 
-      $(el).attr("width", width);
-      $(el).attr("height", height);
+      $(el).css("width", width);
+      $(el).css("height", height);
+
+    } else if (["text", "verbatimText"].includes(type)) {
+      contents = contents + $("#sidebar-output-contents").val();
     }
 
     $(el).attr("data-shinyfunction", type + "Output");
     $(el).attr("data-shinyattributes", `outputId = "${id}"${inline_text}${height_str}${width_str}`);
     $(el).addClass(`designer-element output-element ${type}-output-element shiny-${type2}-output`);
-    $(el).html(outputContents[type]);
+    $(el).html(contents);
     return el;
   }
 };
 
-var outputContents = {
+const outputContents = {
   text: function() {
-    return "Placeholder for Text Output";
+    return "Text Output: ";
   },
   verbatimText: function() {
-    return "Placeholder for Verbatim Text Output";
+    return "Verbatim Text Output: ";
   },
   plot: function() {
     var el = document.createElement("img");
@@ -325,7 +329,7 @@ var outputContents = {
   }
 };
 
-var designerSortableSettings = {
+const designerSortableSettings = {
   row: {
     group: {
       name: "shared",
