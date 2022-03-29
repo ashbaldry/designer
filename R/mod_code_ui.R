@@ -17,12 +17,13 @@ CodeModUI <- function(id) {
       class = "code-ui-form",
       tags$button(
         class = "copy-ui-button btn btn-default",
-        shiny::icon("copy"),
-        "Copy to Clipboard"
+        icon("copy"),
+        "Copy"
       ),
       actionButton(
         ns("save"),
-        "Save Page"
+        "Save To ui.R",
+        icon("save")
       )
     ),
     tagAppendAttributes(
