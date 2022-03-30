@@ -6,6 +6,8 @@ COMPONENTS <- c(
   "Input Panel" = "input_panel",
   "Dropdown (selectInput)" = "dropdown",
   "Input" = "input",
+  "Checkbox" = "checkbox",
+  "Radio Buttons" = "radio",
   "Button" = "button",
   "Output" = "output"
 )
@@ -60,6 +62,16 @@ SidebarModUI <- function(id) {
         class = "component_settings",
         `data-component` = "input",
         inputSettings(ns("input"))
+      ),
+      div(
+        class = "component_settings",
+        `data-component` = "checkbox",
+        checkboxSettings(ns("checkbox"))
+      ),
+      div(
+        class = "component_settings",
+        `data-component` = "radio",
+        radioSettings(ns("radio"))
       ),
       div(
         class = "component_settings",

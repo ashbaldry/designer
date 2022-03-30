@@ -11,6 +11,11 @@ INPUT_TYPES <- c(
   "Password" = "password"
 )
 
+RADIO_BUTTON_TYPES <- c(
+  "Radio" = "radio",
+  "Checkbox" = "checkbox"
+)
+
 OUTPUT_TYPES <- c(
   "Text" = "text",
   "Verbatim Text" = "verbatimText",
@@ -129,7 +134,7 @@ inputSettings <- function(id) {
   ns <- NS(id)
 
   tagList(
-    h5("Dropdown Settings"),
+    h5("Input Settings"),
     selectInput(
       ns("type"),
       label = "Input Type",
@@ -156,6 +161,78 @@ inputSettings <- function(id) {
     h6("Notes:"),
     tags$ul(
       tags$li("To position several inputs horizontally, they must be put within an input panel")
+    )
+  )
+}
+
+#' @rdname component_settings
+checkboxSettings <- function(id) {
+  ns <- NS(id)
+
+  tagList(
+    h5("Checkbox Settings"),
+    textInput(
+      ns("label"),
+      label = "Label",
+      value = "Label"
+    ),
+    textInput(
+      ns("id"),
+      label = "Input ID",
+      value = ""
+    ),
+    checkboxInput(
+      ns("checked"),
+      label = "Checked"
+    ),
+    textInput(
+      ns("width"),
+      label = "Width",
+      value = "",
+      placeholder = "Optional"
+    )
+  )
+}
+
+#' @rdname component_settings
+radioSettings <- function(id) {
+  ns <- NS(id)
+
+  tagList(
+    h5("Radio Button Settings"),
+    radioButtons(
+      ns("type"),
+      label = "Button Type",
+      choices = RADIO_BUTTON_TYPES,
+      selected = "radio",
+      inline = TRUE
+    ),
+    textInput(
+      ns("label"),
+      label = "Label",
+      value = "Label"
+    ),
+    textInput(
+      ns("id"),
+      label = "Input ID",
+      value = ""
+    ),
+    textAreaInput(
+      ns("choices"),
+      label = "Choices (One Per Line)",
+      value = "Choice 1\nChoice 2",
+      width = "100%",
+      height = "5rem"
+    ),
+    checkboxInput(
+      ns("inline"),
+      label = "Inline"
+    ),
+    textInput(
+      ns("width"),
+      label = "Width",
+      value = "",
+      placeholder = "Optional"
     )
   )
 }

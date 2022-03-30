@@ -6,6 +6,8 @@
 \alias{headerSettings}
 \alias{textSettings}
 \alias{inputSettings}
+\alias{checkboxSettings}
+\alias{radioSettings}
 \alias{dropdownSettings}
 \alias{buttonSettings}
 \alias{outputSettings}
@@ -20,6 +22,10 @@ headerSettings(id)
 textSettings(id)
 
 inputSettings(id)
+
+checkboxSettings(id)
+
+radioSettings(id)
 
 dropdownSettings(id)
 

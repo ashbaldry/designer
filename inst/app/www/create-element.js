@@ -1,4 +1,7 @@
 var selected_component = "header";
+const UPDATEABLE_ELEMENT = [
+  "dropdown", "input", "output", "button", "radio", "checkbox"
+];
 
 $(document).ready(function() {
   $(".component_settings").on("change", updateDesignerElement);
@@ -46,7 +49,7 @@ updateDesignerElement = function(update_sortable = false) {
       },
       onEnd: function(evt) {
         var component = selected_component;
-        if (["dropdown", "input", "output", "button"].includes(component)) {
+        if (UPDATEABLE_ELEMENT.includes(component)) {
           updateDesignerElement();
         }
       }
@@ -72,6 +75,24 @@ createListItem = function(x) {
     $(el).html(x);
     $(el).attr("data-shinyfunction", "tags$li");
     return el;
+};
+
+createCheckbox = function(x, id = "", type = "checkbox", inline = false) {
+  var el = document.createElement("label");
+  $(el).addClass(inline ? type + "-inline" : type);
+
+  var el_input = document.createElement("input");
+  $(el_input).attr("type", type);
+  $(el_input).attr("name", id);
+  $(el_input).attr("value", x);
+
+  var el_label = document.createElement("span");
+  $(el_label).html(x);
+
+  $(el).html(el_input);
+  $(el).append(el_label);
+
+  return el;
 };
 
 const designerElements = {
@@ -217,6 +238,108 @@ const designerElements = {
 
     $(el).html(el_label);
     $(el).append(el_dropdown);
+    return el;
+  },
+
+  checkbox: function() {
+    var el = document.createElement("div");
+    $(el).attr("data-shinyfunction", "checkboxInput");
+    $(el).addClass("designer-element form-group shiny-input-container");
+
+    var label = $("#sidebar-checkbox-label").val();
+    var id = $("#sidebar-checkbox-id").val();
+    if (id === "") {
+      id = createRandomID("checkbox");
+    }
+    var attributes_str = `inputId = "${id}", label = "${label}"`;
+
+    var width = validateCssUnit($("#sidebar-checkbox-width").val(), "");
+    if (width !== "") {
+      $(el).css("width", width);
+      attributes_str = `${attributes_str}, width = "${width}"`;
+    }
+
+    var el_label = document.createElement("span");
+    $(el_label).html(label);
+
+    var el_input = document.createElement("input");
+    $(el_input).attr("id", id);
+    $(el_input).attr("type", "checkbox");
+
+    var checked = document.getElementById("sidebar-checkbox-checked").checked;
+    if (checked) {
+      $(el_input).attr("checked", "checked");
+      attributes_str = `${attributes_str}, value = TRUE`;
+    }
+
+    var el_checkbox = document.createElement("div");
+    var el_check_label = document.createElement("label");
+
+    $(el_check_label).html(el_input);
+    $(el_check_label).append(el_label);
+    $(el_checkbox).html(el_check_label);
+
+    $(el).attr("data-shinyattributes", attributes_str);
+    $(el).html(el_checkbox);
+    return el;
+  },
+
+  radio: function() {
+    var el = document.createElement("div");
+    $(el).addClass("designer-element form-group shiny-input-container");
+
+    var label = $("#sidebar-radio-label").val();
+    var id = $("#sidebar-radio-id").val();
+    var type = $('#sidebar-radio-type input:checked').val();
+    var choice_str = $('#sidebar-radio-choices').val().replaceAll("\n", '", "');
+    var inline = document.getElementById("sidebar-radio-inline").checked;
+    if (id === "") {
+      id = createRandomID(type + "group");
+    }
+
+    $(el).addClass("shiny-input-" + type + "group");
+    $(el).attr(
+      "data-shinyfunction",
+      type === "radio" ? "radioButtons" : "checkboxGroupInput"
+    );
+    $(el).attr("role", "group");
+    $(el).attr("aria-labelledby", id + "-label");
+
+    var attributes_str = `inputId = "${id}", label = "${label}", choices = c("${choice_str}")`;
+
+    if (inline) {
+      $(el).addClass("shiny-input-container-inline");
+      attributes_str = `${attributes_str}, inline = TRUE`;
+    }
+
+    var width = validateCssUnit($("#sidebar-radio-width").val(), "");
+    if (width !== "") {
+      $(el).css("width", width);
+      attributes_str = `${attributes_str}, width = "${width}"`;
+    }
+
+    var el_label = document.createElement("label");
+    $(el_label).html(label);
+    $(el_label).attr("id", id + "-label");
+    $(el_label).attr("for", id);
+    $(el_label).addClass("control-label");
+
+    var el_input = document.createElement("div");
+    $(el_input).addClass("shiny-options-group");
+
+    var choices = $("#sidebar-radio-choices").val().split("\n");
+    $(el_input).html(choices.map(function(choice) {
+      return createCheckbox(
+        choice,
+        id = id,
+        type = type,
+        inline = inline
+      );
+    }));
+
+    $(el).attr("data-shinyattributes", attributes_str);
+    $(el).html(el_label);
+    $(el).append(el_input);
     return el;
   },
 
