@@ -54,7 +54,7 @@ SettingsModUI <- function(id) {
         div(
           id = ns("code_dropdown"),
           `aria-labelledby` = ns("code_button"),
-          class = "dropdown-menu dropdown-menu-wide",
+          class = "dropdown-menu dropdown-menu-wide clickable-dropdown",
           CodeModUI(ns("code"))
         )
       )
@@ -74,7 +74,7 @@ SettingsModUI <- function(id) {
         div(
           id = ns("options_dropdown"),
           `aria-labelledby` = ns("options_button"),
-          class = "dropdown-menu dropdown-menu-wide page-type-dropdown",
+          class = "dropdown-menu dropdown-menu-wide page-type-dropdown clickable-dropdown",
           OptionsModUI(NULL)
         )
       )

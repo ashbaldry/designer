@@ -5,6 +5,8 @@ $(document).ready(function() {
   $("#confirm_reset").on("click", updatePage);
   $(".copy-ui-button").on("click", copyUICode);
 
+  $(document).on("click", ".clickable-dropdown", e => { e.stopPropagation(); });
+
   $("#remove_label").change(toggleComponentLabels);
   $("#remove_colour").change(toggleBackgroundColours);
   $("#remove_border").change(toggleBorders);
