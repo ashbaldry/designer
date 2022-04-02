@@ -39,6 +39,32 @@ createCanvasPage = function(page) {
   return el;
 };
 
+toggleComponentLabels = function() {
+  if (this.checked) {
+    $(".designer-page-template .designer-element").addClass("hidden-after-label");
+  } else {
+    $(".designer-page-template .designer-element").removeClass("hidden-after-label");
+  }
+};
+
+toggleBackgroundColours = function() {
+  if (this.checked) {
+    $(".designer-page-template .designer-element.row").addClass("hidden-colour");
+    $(".designer-page-template .designer-element.col-sm").addClass("hidden-colour");
+  } else {
+    $(".designer-page-template .designer-element.row").removeClass("hidden-colour");
+    $(".designer-page-template .designer-element.col-sm").removeClass("hidden-colour");
+  }
+};
+
+toggleBorders = function() {
+  if (this.checked) {
+    $(".designer-page-template .designer-element").addClass("hidden-borders");
+  } else {
+    $(".designer-page-template .designer-element").removeClass("hidden-borders");
+  }
+};
+
 copyUICode = function() {
   var copy_text = document.getElementById("code-code");
   var text_area = document.createElement("textarea");

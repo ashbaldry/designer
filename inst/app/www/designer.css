@@ -94,6 +94,11 @@ h5.modal-title {
   overflow-y: auto;
 }
 
+.designer-element {
+  border: 1px dashed black;
+  z-index: 1;
+}
+
 .designer-element:not(pre, .shiny-input-panel, .row, .col-sm, .btn) {
   background-color: white;
 }
@@ -149,6 +154,18 @@ h5.modal-title {
   z-index: -1;
 }
 
+.designer-page-template .designer-element.hidden-after-label:after {
+  display: none;
+}
+
+.designer-page-template .designer-element.hidden-colour {
+  background-color: inherit;
+}
+
+.designer-page-template .designer-element.hidden-borders {
+  border: 0;
+}
+
 .designer-element.plot-output-element, .designer-element.image-output-element {
   text-align: center;
 }
@@ -170,11 +187,6 @@ span.plot-output-element, span.image-output-element {
 
 .component-container .plot-output-element, .component-container .image-output-element {
   height: 50px;
-}
-
-.designer-element {
-  border: 1px dashed black;
-  z-index: 1;
 }
 
 .designer-element.shiny-input-panel .designer-element.form-group {

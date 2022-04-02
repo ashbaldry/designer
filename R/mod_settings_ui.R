@@ -64,11 +64,18 @@ SettingsModUI <- function(id) {
       class = "col",
       div(
         tags$button(
-          id = ns("about_button"),
+          id = ns("options_button"),
           type = "button",
-          class = "btn btn-block btn-secondary",
+          class = "btn btn-block btn-secondary dropdown-toggle",
+          `data-toggle` = "dropdown",
           `aria-expanded` = "false",
-          "About"
+          "Settings"
+        ),
+        div(
+          id = ns("options_dropdown"),
+          `aria-labelledby` = ns("options_button"),
+          class = "dropdown-menu dropdown-menu-wide page-type-dropdown",
+          OptionsModUI(NULL)
         )
       )
     )
