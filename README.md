@@ -11,7 +11,7 @@ The goal of designer is to enable the creation of shiny UIs through the use of d
 
 ## Installation
 
-`{designer}` is not currently available on [CRAN](https://CRAN.R-project.org). However you can install the latest version from GitHub using:
+Install the latest version from GitHub using:
 
 ``` r
 devtools::install_github("ashbaldry/designer")
