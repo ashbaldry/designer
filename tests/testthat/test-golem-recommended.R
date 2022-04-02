@@ -17,8 +17,3 @@ testthat::test_that("app server", {
     testthat::expect_true(i %in% names(fmls))
   }
 })
-
-# Configure this test to fit your need
-# testthat::test_that("app launches", {
-#   golem::expect_running(sleep = 5)
-# })

@@ -68,9 +68,7 @@ columnSettings <- function(id) {
 }
 
 #' @rdname component_settings
-rowSettings <- function(id) {
-  ns <- NS(id)
-
+rowSettings <- function() {
   tagList(
     h6("Notes:"),
     tags$ul(

@@ -15,7 +15,7 @@
 \usage{
 columnSettings(id)
 
-rowSettings(id)
+rowSettings()
 
 headerSettings(id)
 

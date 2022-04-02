@@ -41,7 +41,7 @@ SidebarModUI <- function(id) {
       div(
         class = "component_settings",
         `data-component` = "row",
-        rowSettings(ns("row"))
+        rowSettings()
       ),
       div(
         class = "component_settings",
