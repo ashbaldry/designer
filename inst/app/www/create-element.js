@@ -377,11 +377,14 @@ const designerElements = {
     var el;
     var inline_text = "";
     var type = $("#sidebar-output-type").val();
-    var type2 = switch(type) {
-      case "table": {"datatable"; break;}
-      case "verbatimText": {"text"; break;}
-      default: {type; break}
-    };
+    var type2;
+    if (type === "table") {
+      type2 = "datatable";
+    } else if (type === "verbatimText") {
+      type2 = "text";
+    } else {
+      type2 = type;
+    }
     var inline = document.getElementById("sidebar-output-inline").checked;
     var contents = outputContents[type]();
 

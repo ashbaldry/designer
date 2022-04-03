@@ -6,15 +6,18 @@ OptionsModUI <- function(id) {
       class = "px-2",
       checkboxInput(
         ns("remove_label"),
-        label = "Remove Component Labels"
+        label = "Show Component Labels",
+        value = TRUE
       ),
       checkboxInput(
         ns("remove_colour"),
-        label = "Remove Colour Background"
+        label = "Show Colour Background",
+        value = TRUE
       ),
       checkboxInput(
         ns("remove_border"),
-        label = "Remove Borders"
+        label = "Show Borders",
+        value = TRUE
       )
     )
   )
