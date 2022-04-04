@@ -1,0 +1,14 @@
+name: designer
+title: designer
+username:
+account: ashbaldry
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 6009870
+bundleId: 5763386
+url: https://ashbaldry.shinyapps.io/designer/
+when: 1649089966.42448
+lastSyncTime: 1649089966.42548
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: dev/01_start.R|dev/02_dev.R|dev/03_deploy.R|dev/run_dev.R
