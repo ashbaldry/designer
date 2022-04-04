@@ -154,15 +154,15 @@ h5.modal-title {
   z-index: -1;
 }
 
-.designer-page-template .designer-element.hidden-after-label:after {
+.designer-page-template.hidden-after-label .designer-element:after {
   display: none;
 }
 
-.designer-page-template .designer-element.hidden-colour {
+.designer-page-template.hidden-colour .designer-element:not(pre, .shiny-input-panel, .btn) {
   background-color: inherit;
 }
 
-.designer-page-template .designer-element.hidden-borders {
+.designer-page-template.hidden-borders .designer-element {
   border: 0;
 }
 

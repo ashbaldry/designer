@@ -41,27 +41,25 @@ createCanvasPage = function(page) {
 
 toggleComponentLabels = function() {
   if (this.checked) {
-    $(".designer-page-template .designer-element").removeClass("hidden-after-label");
+    $(".designer-page-template").removeClass("hidden-after-label");
   } else {
-    $(".designer-page-template .designer-element").addClass("hidden-after-label");
+    $(".designer-page-template").addClass("hidden-after-label");
   }
 };
 
 toggleBackgroundColours = function() {
   if (this.checked) {
-    $(".designer-page-template .designer-element.row").removeClass("hidden-colour");
-    $(".designer-page-template .designer-element.col-sm").removeClass("hidden-colour");
+    $(".designer-page-template").removeClass("hidden-colour");
   } else {
-    $(".designer-page-template .designer-element.row").addClass("hidden-colour");
-    $(".designer-page-template .designer-element.col-sm").addClass("hidden-colour");
+    $(".designer-page-template").addClass("hidden-colour");
   }
 };
 
 toggleBorders = function() {
   if (this.checked) {
-    $(".designer-page-template .designer-element").removeClass("hidden-borders");
+    $(".designer-page-template").removeClass("hidden-borders");
   } else {
-    $(".designer-page-template .designer-element").addClass("hidden-borders");
+    $(".designer-page-template").addClass("hidden-borders");
   }
 };
 
