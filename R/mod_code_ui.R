@@ -20,11 +20,13 @@ CodeModUI <- function(id) {
         icon("copy"),
         "Copy"
       ),
-      actionButton(
-        ns("save"),
-        "Save To ui.R",
-        icon("save")
-      )
+      if (interactive()) {
+        actionButton(
+          ns("save"),
+          "Save To ui.R",
+          icon("save")
+        )
+      }
     ),
     tagAppendAttributes(
       verbatimTextOutput(ns("code"), placeholder = TRUE),
