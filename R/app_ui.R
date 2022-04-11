@@ -53,6 +53,9 @@ addGolemExternalResources <- function() {
       path = appSys("app/www"),
       app_title = "Shiny UI Designer",
       name = "designer"
-    )
+    ),
+    ionRangeSliderDependency()
   )
 }
+
+ionRangeSliderDependency <- getFromNamespace("ionRangeSliderDependency", "shiny")

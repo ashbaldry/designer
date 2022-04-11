@@ -1,6 +1,6 @@
 var selected_component = "header";
 const UPDATEABLE_ELEMENT = [
-  "dropdown", "input", "output", "button", "radio", "checkbox"
+  "dropdown", "input", "output", "button", "radio", "checkbox", "date", "file", "slider"
 ];
 
 $(document).ready(function() {
@@ -31,6 +31,9 @@ updateDesignerElement = function(update_sortable = false) {
       searchField: ["label"],
       placeholder: "select input"
     });
+  } else if (component === "slider") {
+    var slider_type = $(".component-container").find("input").data("data-type");
+    $(".component-container").find("input").ionRangeSlider({ prettify: sliderPrettifier[slider_type]});
   }
 
   if (update_sortable) {
@@ -93,6 +96,21 @@ createCheckbox = function(x, id = "", type = "checkbox", inline = false) {
   $(el).append(el_label);
 
   return el;
+};
+
+const sliderPrettifier = {
+  number: null,
+  date: function (num) {
+    var sel_date = new Date(num);
+    console.log(sel_date);
+    return sel_date.getFullYear() + "-" + (sel_date.getMonth() + 1) + "-" + sel_date.getDate();
+  },
+  datetime: function (num) {
+    var sel_date = new Date(num);
+    console.log(sel_date);
+    return sel_date.getFullYear() + "-" + (sel_date.getMonth() + 1) + "-" + sel_date.getDate() + " " +
+    sel_date.getHours() + ":" + sel_date.getMinutes() + ":" + sel_date.getSeconds();
+  }
 };
 
 const designerElements = {
@@ -238,6 +256,205 @@ const designerElements = {
 
     $(el).html(el_label);
     $(el).append(el_dropdown);
+    return el;
+  },
+
+  slider: function() {
+    var el = document.createElement("div");
+    var type = $("#sidebar-slider-type").val();
+    var range = document.getElementById("sidebar-slider-range").checked;
+    $(el).attr("data-shinyfunction", "sliderInput");
+    $(el).addClass("designer-element form-group shiny-input-container");
+
+    var label = $("#sidebar-slider-label").val();
+    var id = $("#sidebar-slider-id").val();
+    if (id === "") {
+      id = createRandomID("slider");
+    }
+
+    var width_str;
+    var width = validateCssUnit($("#sidebar-slider-width").val(), "");
+    if (width === "") {
+      width_str = "";
+    } else {
+      $(el).css("width", width);
+      width_str = `, width = "${width}"`;
+    }
+
+    var el_label = document.createElement("label");
+    $(el_label).addClass("control-label");
+    $(el_label).html(label);
+
+    var el_input = document.createElement("input");
+    $(el_input).addClass("js-range-slider");
+    $(el_input).attr("id", id);
+    $(el_input).attr("data-data-type", type);
+    $(el_input).attr("data-skin", "shiny");
+    $(el_input).attr("data-grid", true);
+    $(el_input).attr("data-grid-num", 10);
+    $(el_input).attr("data-grid-snap", false);
+    $(el_input).attr("data-prettifyed-enabled", true);
+    $(el_input).attr("data-prettifyed-separator", ",");
+    $(el_input).attr("data-keyboard", true);
+
+    if (range) {
+      $(el_input).attr("data-type", "double");
+      $(el_input).attr("data-drag-interval", true);
+    }
+
+    var input_str;
+    var input_value_str;
+    var curr_date = new Date();
+    var curr_time;
+
+    if (type === "number") {
+      $(el_input).attr("data-step", 1);
+      $(el_input).attr("data-min", 0);
+      $(el_input).attr("data-max", 10);
+      $(el_input).attr("data-from", 5);
+      if (range) {
+        $(el_input).attr("data-to", 7);
+        input_value_str = "c(5, 7)";
+      } else {
+        input_value_str = "5";
+      }
+      input_str = `, min = 0, max = 10, value = ${input_value_str}`;
+    } else if (type === "date") {
+      curr_date.setHours(0, 0, 0, 0);
+      curr_time = curr_date.getTime();
+      $(el_input).attr("data-step", 86400000);
+      $(el_input).attr("data-min", curr_time - 5 * 1000 * 60 * 60 * 24);
+      $(el_input).attr("data-max", curr_time + 5 * 1000 * 60 * 60 * 24);
+      $(el_input).attr("data-from", curr_time);
+      if (range) {
+        $(el_input).attr("data-to", curr_time + 2 * 1000 * 60 * 60 * 24);
+        input_value_str = "c(Sys.Date(), Sys.Date() + 2)";
+      } else {
+        input_value_str = "Sys.Date()";
+      }
+      $(el_input).attr("data-time-format", "%F");
+
+      input_str = `, min = Sys.Date() - 5, max = Sys.Date() + 5, value = ${input_value_str}`;
+    } else {
+      curr_time = curr_date.getTime();
+      $(el_input).attr("data-step", 1);
+      $(el_input).attr("data-min", curr_time - 5);
+      $(el_input).attr("data-max", curr_time + 5);
+      $(el_input).attr("data-from", curr_time);
+      if (range) {
+        $(el_input).attr("data-to", curr_time + 2);
+        input_value_str = "c(Sys.time(), Sys.time() + 2)";
+      } else {
+        input_value_str = "Sys.time()";
+      }
+      $(el_input).attr("data-time-format", "%F %T");
+
+      input_str = `, min = Sys.time() - 5, max = Sys.time() + 5, value = ${input_value_str}`;
+    }
+
+    $(el).attr("data-shinyattributes", `inputId = "${id}", label = "${label}"${input_str}${width_str}`);
+    $(el).html(el_label);
+    $(el).append(el_input);
+    return el;
+  },
+
+  file: function() {
+    var el = document.createElement("div");
+    var type = $("#sidebar-input-type").val();
+    $(el).attr("data-shinyfunction", type + "Input");
+    $(el).addClass("designer-element form-group shiny-input-container");
+
+
+    var label = $("#sidebar-input-label").val();
+    var id = $("#sidebar-input-id").val();
+    if (id === "") {
+      id = createRandomID("input");
+    }
+
+    var input_value = "";
+    if (type === "numeric") {
+      input_value = ", value = 1";
+    }
+
+    var width_str;
+    var width = validateCssUnit($("#sidebar-input-width").val(), "");
+    if (width === "") {
+      width_str = "";
+    } else {
+      $(el).css("width", width);
+      width_str = `, width = "${width}"`;
+    }
+
+    $(el).attr("data-shinyattributes", `inputId = "${id}", label = "${label}"${input_value}${width_str}`);
+
+    var el_label = document.createElement("label");
+    $(el_label).addClass("control-label");
+    $(el_label).html(label);
+
+    var child_input_tag = "input";
+    if (type === "textArea") {
+      child_input_tag = "textarea";
+    }
+    var el_input = document.createElement(child_input_tag);
+    $(el_input).addClass("form-control");
+    if (type !== "textArea") {
+      var input_types = {numeric: "Numeric", text: "Text", password: "Password"};
+      $(el_input).attr("type", input_types[type] + " Input");
+    }
+    $(el_input).attr("placeholder", type);
+
+    $(el).html(el_label);
+    $(el).append(el_input);
+    return el;
+  },
+
+  date: function() {
+    var el = document.createElement("div");
+    var type = $("#sidebar-input-type").val();
+    $(el).attr("data-shinyfunction", type + "Input");
+    $(el).addClass("designer-element form-group shiny-input-container");
+
+
+    var label = $("#sidebar-input-label").val();
+    var id = $("#sidebar-input-id").val();
+    if (id === "") {
+      id = createRandomID("input");
+    }
+
+    var input_value = "";
+    if (type === "numeric") {
+      input_value = ", value = 1";
+    }
+
+    var width_str;
+    var width = validateCssUnit($("#sidebar-input-width").val(), "");
+    if (width === "") {
+      width_str = "";
+    } else {
+      $(el).css("width", width);
+      width_str = `, width = "${width}"`;
+    }
+
+    $(el).attr("data-shinyattributes", `inputId = "${id}", label = "${label}"${input_value}${width_str}`);
+
+    var el_label = document.createElement("label");
+    $(el_label).addClass("control-label");
+    $(el_label).html(label);
+
+    var child_input_tag = "input";
+    if (type === "textArea") {
+      child_input_tag = "textarea";
+    }
+    var el_input = document.createElement(child_input_tag);
+    $(el_input).addClass("form-control");
+    if (type !== "textArea") {
+      var input_types = {numeric: "Numeric", text: "Text", password: "Password"};
+      $(el_input).attr("type", input_types[type] + " Input");
+    }
+    $(el_input).attr("placeholder", type);
+
+    $(el).html(el_label);
+    $(el).append(el_input);
     return el;
   },
 
