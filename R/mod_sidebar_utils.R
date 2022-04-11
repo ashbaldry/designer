@@ -250,7 +250,7 @@ dateSettings <- function(id) {
     textInput(
       ns("label"),
       label = "Label",
-      value = "Label"
+      value = "Date Input"
     ),
     textInput(
       ns("id"),

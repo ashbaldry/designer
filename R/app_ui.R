@@ -54,8 +54,10 @@ addGolemExternalResources <- function() {
       app_title = "Shiny UI Designer",
       name = "designer"
     ),
-    ionRangeSliderDependency()
+    ionRangeSliderDependency(),
+    datePickerDependency()
   )
 }
 
 ionRangeSliderDependency <- getFromNamespace("ionRangeSliderDependency", "shiny")
+datePickerDependency <- getFromNamespace("datePickerDependency", "shiny")

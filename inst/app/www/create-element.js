@@ -34,6 +34,8 @@ updateDesignerElement = function(update_sortable = false) {
   } else if (component === "slider") {
     var slider_type = $(".component-container").find("input").data("data-type");
     $(".component-container").find("input").ionRangeSlider({ prettify: sliderPrettifier[slider_type]});
+  } else if (component === "date") {
+    $(".component-container").find("input").bsDatepicker();
   }
 
   if (update_sortable) {
@@ -286,8 +288,8 @@ const designerElements = {
     $(el_label).html(label);
 
     var el_input = document.createElement("input");
-    $(el_input).addClass("js-range-slider");
     $(el_input).attr("id", id);
+    $(el_input).addClass("js-range-slider");
     $(el_input).attr("data-data-type", type);
     $(el_input).attr("data-skin", "shiny");
     $(el_input).attr("data-grid", true);
@@ -337,19 +339,19 @@ const designerElements = {
       input_str = `, min = Sys.Date() - 5, max = Sys.Date() + 5, value = ${input_value_str}`;
     } else {
       curr_time = curr_date.getTime();
-      $(el_input).attr("data-step", 1);
-      $(el_input).attr("data-min", curr_time - 5);
-      $(el_input).attr("data-max", curr_time + 5);
+      $(el_input).attr("data-step", 1000);
+      $(el_input).attr("data-min", curr_time - 5000);
+      $(el_input).attr("data-max", curr_time + 5000);
       $(el_input).attr("data-from", curr_time);
       if (range) {
-        $(el_input).attr("data-to", curr_time + 2);
-        input_value_str = "c(Sys.time(), Sys.time() + 2)";
+        $(el_input).attr("data-to", curr_time + 2000);
+        input_value_str = "c(Sys.time(), Sys.time() + 2000)";
       } else {
         input_value_str = "Sys.time()";
       }
       $(el_input).attr("data-time-format", "%F %T");
 
-      input_str = `, min = Sys.time() - 5, max = Sys.time() + 5, value = ${input_value_str}`;
+      input_str = `, min = Sys.time() - 5000, max = Sys.time() + 5000, value = ${input_value_str}`;
     }
 
     $(el).attr("data-shinyattributes", `inputId = "${id}", label = "${label}"${input_str}${width_str}`);
@@ -410,24 +412,25 @@ const designerElements = {
 
   date: function() {
     var el = document.createElement("div");
-    var type = $("#sidebar-input-type").val();
-    $(el).attr("data-shinyfunction", type + "Input");
+    var type = $("#sidebar-date-type").val();
+    var range = document.getElementById("sidebar-date-range").checked;
     $(el).addClass("designer-element form-group shiny-input-container");
-
-
-    var label = $("#sidebar-input-label").val();
-    var id = $("#sidebar-input-id").val();
-    if (id === "") {
-      id = createRandomID("input");
+    if (range) {
+      $(el).addClass("shiny-date-range-input");
+      $(el).attr("data-shinyfunction", "dateRangeInput");
+    } else {
+      $(el).addClass("shiny-date-input");
+      $(el).attr("data-shinyfunction", "dateInput");
     }
 
-    var input_value = "";
-    if (type === "numeric") {
-      input_value = ", value = 1";
+    var label = $("#sidebar-date-label").val();
+    var id = $("#sidebar-date-id").val();
+    if (id === "") {
+      id = createRandomID("date");
     }
 
     var width_str;
-    var width = validateCssUnit($("#sidebar-input-width").val(), "");
+    var width = validateCssUnit($("#sidebar-date-width").val(), "");
     if (width === "") {
       width_str = "";
     } else {
@@ -435,23 +438,43 @@ const designerElements = {
       width_str = `, width = "${width}"`;
     }
 
-    $(el).attr("data-shinyattributes", `inputId = "${id}", label = "${label}"${input_value}${width_str}`);
+    $(el).attr("id", id);
+    $(el).attr("data-shinyattributes", `inputId = "${id}", label = "${label}"${width_str}`);
 
     var el_label = document.createElement("label");
     $(el_label).addClass("control-label");
     $(el_label).html(label);
 
-    var child_input_tag = "input";
-    if (type === "textArea") {
-      child_input_tag = "textarea";
+    var el_date_input = document.createElement("input");
+    $(el_date_input).addClass("form-control");
+    $(el_date_input).attr("type", "text");
+    $(el_date_input).attr("title", "Date format: yyyy-mm-dd");
+    $(el_date_input).attr("data-date-language", "en");
+    $(el_date_input).attr("data-date-week-start", 0);
+    $(el_date_input).attr("data-date-format", "yyyy-mm-dd");
+    $(el_date_input).attr("data-date-start-view", "month");
+    $(el_date_input).attr("data-date-autoclose", true);
+
+    if (range) {
+      var el_mid_input = document.createElement("span");
+      $(el_mid_input).addClass("input-group-addon input-group-prepend input-group-append");
+
+      var el_to_label = document.createElement("span");
+      $(el_to_label).html(" to ");
+      $(el_to_label).addClass("input-group-text");
+      $(el_mid_input).html(el_to_label);
+
+      var el_input = document.createElement("div");
+      $(el_input).addClass("input-daterange input-group input-group-sm");
+
+      $(el_input).html(el_date_input.cloneNode());
+      $(el_input).append(el_mid_input);
+      $(el_input).append(el_date_input.cloneNode());
+    } else {
+      var el_input = el_date_input;
+      $(el_input).attr("data-date-dates-disabled", null);
+      $(el_input).attr("data-date-days-of-week-disabled", null);
     }
-    var el_input = document.createElement(child_input_tag);
-    $(el_input).addClass("form-control");
-    if (type !== "textArea") {
-      var input_types = {numeric: "Numeric", text: "Text", password: "Password"};
-      $(el_input).attr("type", input_types[type] + " Input");
-    }
-    $(el_input).attr("placeholder", type);
 
     $(el).html(el_label);
     $(el).append(el_input);
