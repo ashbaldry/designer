@@ -362,24 +362,17 @@ const designerElements = {
 
   file: function() {
     var el = document.createElement("div");
-    var type = $("#sidebar-input-type").val();
-    $(el).attr("data-shinyfunction", type + "Input");
+    $(el).attr("data-shinyfunction", "fileInput");
     $(el).addClass("designer-element form-group shiny-input-container");
 
-
-    var label = $("#sidebar-input-label").val();
-    var id = $("#sidebar-input-id").val();
+    var label = $("#sidebar-file-label").val();
+    var id = $("#sidebar-file-id").val();
     if (id === "") {
-      id = createRandomID("input");
-    }
-
-    var input_value = "";
-    if (type === "numeric") {
-      input_value = ", value = 1";
+      id = createRandomID("file");
     }
 
     var width_str;
-    var width = validateCssUnit($("#sidebar-input-width").val(), "");
+    var width = validateCssUnit($("#sidebar-file-width").val(), "");
     if (width === "") {
       width_str = "";
     } else {
@@ -387,26 +380,41 @@ const designerElements = {
       width_str = `, width = "${width}"`;
     }
 
-    $(el).attr("data-shinyattributes", `inputId = "${id}", label = "${label}"${input_value}${width_str}`);
+    $(el).attr("data-shinyattributes", `inputId = "${id}", label = "${label}"${width_str}`);
+
+    var el_input_group = document.createElement("div");
+    $(el_input_group).addClass("input-group");
 
     var el_label = document.createElement("label");
     $(el_label).addClass("control-label");
     $(el_label).html(label);
 
-    var child_input_tag = "input";
-    if (type === "textArea") {
-      child_input_tag = "textarea";
-    }
-    var el_input = document.createElement(child_input_tag);
-    $(el_input).addClass("form-control");
-    if (type !== "textArea") {
-      var input_types = {numeric: "Numeric", text: "Text", password: "Password"};
-      $(el_input).attr("type", input_types[type] + " Input");
-    }
-    $(el_input).attr("placeholder", type);
+    var el_button_label = document.createElement("label");
+    $(el_button_label).addClass("input-group-btn input-group-prepend");
+
+    var el_button = document.createElement("span");
+    $(el_button).addClass("btn btn-default btn-file");
+    $(el_button).html("Browse...");
+
+    var el_file_input = document.createElement("input");
+    $(el_file_input).attr("id", id);
+    $(el_file_input).attr("type", "file");
+    $(el_file_input).attr("style", "position: absolute !important; top: -99999px !important; left: -99999px !important;");
+
+    $(el_button).append(el_file_input);
+    $(el_button_label).html(el_button);
+
+    var el_text_input = document.createElement("input");
+    $(el_text_input).attr("placeholder", "No file selected");
+    $(el_text_input).attr("type", "text");
+    $(el_text_input).attr("readonly", "readonly");
+    $(el_text_input).addClass("form-control");
+
+    $(el_input_group).html(el_button_label);
+    $(el_input_group).append(el_text_input);
 
     $(el).html(el_label);
-    $(el).append(el_input);
+    $(el).append(el_input_group);
     return el;
   },
 

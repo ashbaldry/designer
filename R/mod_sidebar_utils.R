@@ -178,7 +178,7 @@ fileSettings <- function(id) {
     textInput(
       ns("label"),
       label = "Label",
-      value = "Label"
+      value = "File Input"
     ),
     textInput(
       ns("id"),
