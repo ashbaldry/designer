@@ -6,6 +6,9 @@ COMPONENTS <- c(
   "Input Panel" = "input_panel",
   "Dropdown (selectInput)" = "dropdown",
   "Input" = "input",
+  "Slider" = "slider",
+  "File Input" = "file",
+  "Calendar (dateInput)" = "date",
   "Checkbox" = "checkbox",
   "Radio Buttons" = "radio",
   "Button" = "button",
@@ -62,6 +65,21 @@ SidebarModUI <- function(id) {
         class = "component_settings",
         `data-component` = "input",
         inputSettings(ns("input"))
+      ),
+      div(
+        class = "component_settings",
+        `data-component` = "file",
+        fileSettings(ns("file"))
+      ),
+      div(
+        class = "component_settings",
+        `data-component` = "slider",
+        sliderSettings(ns("slider"))
+      ),
+      div(
+        class = "component_settings",
+        `data-component` = "date",
+        dateSettings(ns("date"))
       ),
       div(
         class = "component_settings",

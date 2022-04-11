@@ -24,6 +24,11 @@ h5.modal-title {
   margin-bottom: 0.25rem;
 }
 
+.component-type-dropdown {
+  max-height: 20rem;
+  overflow-y: auto;
+}
+
 .settings-row {
   margin-bottom: 15px;
 }

@@ -36,7 +36,7 @@ componentChoices <- function(ns) {
   div(
     id = ns("component"),
     `aria-labelledby` = ns("component_button"),
-    class = "dropdown-menu dropdown-menu-right dropdown-menu-wide",
+    class = "dropdown-menu dropdown-menu-right dropdown-menu-wide component-type-dropdown",
     lapply(names(COMPONENTS), function(component) {
       tags$a(
         class = "dropdown-item",

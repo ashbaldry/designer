@@ -11,6 +11,12 @@ INPUT_TYPES <- c(
   "Password" = "password"
 )
 
+SLIDER_TYPES <- c(
+  "Numeric" = "number",
+  "Date" = "date",
+  "Timestamp" = "datetime"
+)
+
 RADIO_BUTTON_TYPES <- c(
   "Radio" = "radio",
   "Checkbox" = "checkbox"
@@ -147,6 +153,113 @@ inputSettings <- function(id) {
       ns("id"),
       label = "Input ID",
       value = ""
+    ),
+    textInput(
+      ns("width"),
+      label = "Width",
+      value = "",
+      placeholder = "Optional"
+    ),
+
+    tags$br(),
+    h6("Notes:"),
+    tags$ul(
+      tags$li("To position several inputs horizontally, they must be put within an input panel")
+    )
+  )
+}
+
+#' @rdname component_settings
+fileSettings <- function(id) {
+  ns <- NS(id)
+
+  tagList(
+    h5("File Input Settings"),
+    textInput(
+      ns("label"),
+      label = "Label",
+      value = "Label"
+    ),
+    textInput(
+      ns("id"),
+      label = "Input ID",
+      value = ""
+    ),
+    textInput(
+      ns("width"),
+      label = "Width",
+      value = "",
+      placeholder = "Optional"
+    ),
+
+    tags$br(),
+    h6("Notes:"),
+    tags$ul(
+      tags$li("To position several inputs horizontally, they must be put within an input panel")
+    )
+  )
+}
+
+#' @rdname component_settings
+sliderSettings <- function(id) {
+  ns <- NS(id)
+
+  tagList(
+    h5("Slider Settings"),
+    textInput(
+      ns("label"),
+      label = "Label",
+      value = "Label"
+    ),
+    textInput(
+      ns("id"),
+      label = "Input ID",
+      value = ""
+    ),
+    selectInput(
+      ns("type"),
+      label = "Input Type",
+      choices = SLIDER_TYPES,
+      selected = "number"
+    ),
+    checkboxInput(
+      ns("range"),
+      "Ranged Slider"
+    ),
+    textInput(
+      ns("width"),
+      label = "Width",
+      value = "",
+      placeholder = "Optional"
+    ),
+
+    tags$br(),
+    h6("Notes:"),
+    tags$ul(
+      tags$li("To position several inputs horizontally, they must be put within an input panel")
+    )
+  )
+}
+
+#' @rdname component_settings
+dateSettings <- function(id) {
+  ns <- NS(id)
+
+  tagList(
+    h5("Date Settings"),
+    textInput(
+      ns("label"),
+      label = "Label",
+      value = "Label"
+    ),
+    textInput(
+      ns("id"),
+      label = "Input ID",
+      value = ""
+    ),
+    checkboxInput(
+      ns("range"),
+      "Date Range"
     ),
     textInput(
       ns("width"),
