@@ -64,7 +64,7 @@ toggleBorders = function() {
 };
 
 copyUICode = function() {
-  var copy_text = document.getElementById("code-code");
+  var copy_text = document.getElementById("settings-code-code");
   var text_area = document.createElement("textarea");
   text_area.textContent = copy_text.textContent;
   document.body.append(text_area);
