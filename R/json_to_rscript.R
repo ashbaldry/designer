@@ -60,7 +60,7 @@ htmlToRScript <- function(html_list, indent = 0) {
   } else {
     rfunc_arguments <- paste0(
       indent_text_space,
-      gsub(", ", paste0(",\n", indent_text_space), html_list$r_arguments),
+      gsub(",(?![^\\(]+\\)) ", paste0(",\n", indent_text_space), html_list$r_arguments, perl = TRUE),
       if (sub_rfuncs == "" && html_text == "") "" else ",",
       "\n"
     )
