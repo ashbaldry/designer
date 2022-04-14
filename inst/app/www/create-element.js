@@ -75,29 +75,9 @@ validateCssUnit = function(x, fallback) {
   }
 };
 
-createListItem = function(x) {
-    var el = document.createElement("li");
-    $(el).html(x);
-    $(el).attr("data-shinyfunction", "tags$li");
-    return el;
-};
-
 createCheckbox = function(x, id = "", type = "checkbox", inline = false) {
-  var el = document.createElement("label");
-  $(el).addClass(inline ? type + "-inline" : type);
-
-  var el_input = document.createElement("input");
-  $(el_input).attr("type", type);
-  $(el_input).attr("name", id);
-  $(el_input).attr("value", x);
-
-  var el_label = document.createElement("span");
-  $(el_label).html(x);
-
-  $(el).html(el_input);
-  $(el).append(el_label);
-
-  return el;
+  var check_class = inline ? type + "-inline" : type;
+  return `<label class="${check_class}"><input type="${type}"><span>${x}</span></label>`;
 };
 
 const sliderPrettifier = {
@@ -117,594 +97,395 @@ const sliderPrettifier = {
 
 const designerElements = {
   header: function() {
-    var el = document.createElement($("#sidebar-header-tag").val());
-    $(el).addClass("designer-element");
-    $(el).attr("data-shinyfunction", $("#sidebar-header-tag").val());
-    $(el).html($("#sidebar-header-value").val());
-    return el;
+    var tag = $("#sidebar-header-tag").val();
+    var value = $("#sidebar-header-value").val();
+
+    return `<${tag} class="designer-element" data-shinyfunction="${tag}">${value}</${tag}>`;
   },
 
   row: function() {
-    var el = document.createElement("div");
-    $(el).addClass("designer-element row");
-    $(el).attr("data-shinyfunction", "fluidRow");
-    return el;
+    return `<div class="designer-element row" data-shinyfunction="fluidRow"></div>`;
   },
 
   column: function() {
-    var el = document.createElement("div");
-    $(el).addClass("designer-element col-sm");
-
     var width = $("#sidebar-column-width").val();
-    $(el).addClass("col-sm-" + width);
-
     var offset = $("#sidebar-column-offset").val();
+
+    var offset_class = "";
+    var offset_r = "";
     if (offset > 0) {
-      $(el).addClass("offset-md-" + offset + " col-sm-offset-" + offset);
+      offset_class = ` offset-md-${offset}`;
+      offset_r = `, offset = ${offset}`;
     }
 
-    if (offset > 0) {
-      $(el).attr("data-shinyattributes", "width = " + width + ", offset = " + offset);
-    } else {
-      $(el).attr("data-shinyattributes", "width = " + width);
-    }
-
-    $(el).attr("data-shinyfunction", "column");
-    return el;
+    return `<div class="designer-element col-sm col-sm-${width}${offset_class}"
+                 data-shinyfunction="column"
+                 data-shinyattributes="width = ${width}${offset_r}"></div>`;
   },
 
   text: function() {
-    var type = $("#sidebar-text-type").val();
-    var el = document.createElement(type);
-    $(el).addClass("designer-element");
+    var tag = $("#sidebar-text-type").val();
 
-    if (type === "p") {
-      $(el).html($("#sidebar-text-contents").val());
+    var contents = "";
+    if (tag === "p") {
+      contents = $("#sidebar-text-contents").val().replaceAll("\n", " ");
     } else {
       var list_items = $("#sidebar-text-contents").val().split("\n");
-      $(el).html(list_items.map(createListItem));
+      contents = list_items.map(x => '<li data-shinyfunction="tags$li">' + x + "</li>").join("");
     }
 
-    $(el).attr("data-shinyfunction", "tags$" + type);
-    return el;
+    return `<${tag} class="designer-element" data-shinyfunction="tags$${tag}">${contents}</${tag}>`;
   },
 
   input_panel: function() {
-    var el = document.createElement("div");
-    $(el).addClass("designer-element shiny-input-panel shiny-flow-layout");
-    $(el).attr("data-shinyfunction", "inputPanel");
-    return el;
+    return `<div class="designer-element shiny-input-panel shiny-flow-layout" data-shinyfunction="inputPanel"></div>`;
   },
 
   input: function() {
-    var el = document.createElement("div");
     var type = $("#sidebar-input-type").val();
-    $(el).attr("data-shinyfunction", type + "Input");
-    $(el).addClass("designer-element form-group shiny-input-container");
-
-
     var label = $("#sidebar-input-label").val();
     var id = $("#sidebar-input-id").val();
+    var width = validateCssUnit($("#sidebar-input-width").val(), "");
+
     if (id === "") {
       id = createRandomID("input");
     }
 
-    var input_value = "";
+    var value_str = "";
     if (type === "numeric") {
-      input_value = ", value = 1";
+      value_str = ", value = 1";
     }
 
-    var width_str;
-    var width = validateCssUnit($("#sidebar-input-width").val(), "");
-    if (width === "") {
-      width_str = "";
-    } else {
-      $(el).css("width", width);
-      width_str = `, width = "${width}"`;
+    var width_str = "", style_str = "";
+    if (width !== "") {
+      style_str = ` style="width: ${width};"`;
+      width_str = `, width = &quot;${width}&quot;`;
     }
 
-    $(el).attr("data-shinyattributes", `inputId = "${id}", label = "${label}"${input_value}${width_str}`);
-
-    var el_label = document.createElement("label");
-    $(el_label).addClass("control-label");
-    $(el_label).html(label);
-
-    var child_input_tag = "input";
+    var input_tag;
     if (type === "textArea") {
-      child_input_tag = "textarea";
+      input_tag = `<textarea class="form-control" placeholder="textArea"></textarea>`;
+    } else {
+      const input_types = {numeric: "Numeric", text: "Text", password: "Password"};
+      input_tag = `<input class="form-control" type="${input_types[type]} Input" placeholder="${type}">`;
     }
-    var el_input = document.createElement(child_input_tag);
-    $(el_input).addClass("form-control");
-    if (type !== "textArea") {
-      var input_types = {numeric: "Numeric", text: "Text", password: "Password"};
-      $(el_input).attr("type", input_types[type] + " Input");
-    }
-    $(el_input).attr("placeholder", type);
 
-    $(el).html(el_label);
-    $(el).append(el_input);
-    return el;
+    var input_str = `inputId = &quot;${id}&quot;, label = &quot;${label}&quot;${value_str}${width_str}`;
+    var label_tag = `<label class="control-label">${label}</label>`;
+
+    return `<div class="designer-element form-group shiny-input-container"${style_str}
+                 data-shinyattributes="${input_str}"
+                 data-shinyfunction="${type}Input">${label_tag}${input_tag}</div>`;
   },
 
   dropdown: function() {
-    var el = document.createElement("div");
-    $(el).attr("data-shinyfunction", "selectInput");
-    $(el).addClass("designer-element form-group shiny-input-container");
-
-
     var label = $("#sidebar-dropdown-label").val();
     var id = $("#sidebar-dropdown-id").val();
+    var width = validateCssUnit($("#sidebar-dropdown-width").val(), "");
+
     if (id === "") {
       id = createRandomID("dropdown");
     }
 
-    var width_str;
-    var width = validateCssUnit($("#sidebar-dropdown-width").val(), "");
-    if (width === "") {
-      width_str = "";
-    } else {
-      $(el).css("width", width);
-      width_str = `, width = "${width}"`;
+    var width_str = "", style_str = "";
+    if (width !== "") {
+      style_str = ` style="width: ${width};"`;
+      width_str = `, width = &quot;${width}&quot;`;
     }
 
-    $(el).attr("data-shinyattributes", `inputId = "${id}", label = "${label}", choices = "..."${width_str}`);
+    var input_str = `inputId = &quot;${id}&quot;, label = &quot;${label}&quot;, choices = &quot;...&quot;${width_str}`;
+    var label_tag = `<label class="control-label">${label}</label>`;
 
-    var el_label = document.createElement("label");
-    $(el_label).addClass("control-label");
-    $(el_label).html(label);
-
-    var el_dropdown = document.createElement("div");
-    $(el_dropdown).html(document.createElement("select"));
-
-    $(el).html(el_label);
-    $(el).append(el_dropdown);
-    return el;
+    return `<div class="designer-element form-group shiny-input-container"
+                 ${style_str}
+                 data-shinyattributes="${input_str}"
+                 data-shinyfunction="selectInput">${label_tag}<div><select></div></div>`;
   },
 
   slider: function() {
-    var el = document.createElement("div");
-    var type = $("#sidebar-slider-type").val();
-    var range = document.getElementById("sidebar-slider-range").checked;
-    $(el).attr("data-shinyfunction", "sliderInput");
-    $(el).addClass("designer-element form-group shiny-input-container");
-
     var label = $("#sidebar-slider-label").val();
     var id = $("#sidebar-slider-id").val();
+    var format = $("#sidebar-slider-type").val();
+    var range = document.getElementById("sidebar-slider-range").checked;
+    var width = validateCssUnit($("#sidebar-slider-width").val(), "");
+
     if (id === "") {
       id = createRandomID("slider");
     }
 
-    var width_str;
-    var width = validateCssUnit($("#sidebar-slider-width").val(), "");
-    if (width === "") {
-      width_str = "";
-    } else {
-      $(el).css("width", width);
-      width_str = `, width = "${width}"`;
+    var width_str = "", style_str = "";
+    if (width !== "") {
+      style_str = ` style="width: ${width};"`;
+      width_str = `, width = &quot;${width}&quot;`;
     }
 
-    var el_label = document.createElement("label");
-    $(el_label).addClass("control-label");
-    $(el_label).html(label);
+    var step = 1, min = 0, max = 10, from = 5, to = 7;
+    var value_str, input_value_str;
+    var curr_time, curr_date = new Date(), time_format = "";
 
-    var el_input = document.createElement("input");
-    $(el_input).attr("id", id);
-    $(el_input).addClass("js-range-slider");
-    $(el_input).attr("data-data-type", type);
-    $(el_input).attr("data-skin", "shiny");
-    $(el_input).attr("data-grid", true);
-    $(el_input).attr("data-grid-num", 10);
-    $(el_input).attr("data-grid-snap", false);
-    $(el_input).attr("data-prettifyed-enabled", true);
-    $(el_input).attr("data-prettifyed-separator", ",");
-    $(el_input).attr("data-keyboard", true);
-
-    if (range) {
-      $(el_input).attr("data-type", "double");
-      $(el_input).attr("data-drag-interval", true);
-    }
-
-    var input_str;
-    var input_value_str;
-    var curr_date = new Date();
-    var curr_time;
-
-    if (type === "number") {
-      $(el_input).attr("data-step", 1);
-      $(el_input).attr("data-min", 0);
-      $(el_input).attr("data-max", 10);
-      $(el_input).attr("data-from", 5);
+    if (format === "number") {
       if (range) {
-        $(el_input).attr("data-to", 7);
         input_value_str = "c(5, 7)";
       } else {
         input_value_str = "5";
       }
-      input_str = `, min = 0, max = 10, value = ${input_value_str}`;
-    } else if (type === "date") {
-      curr_date.setHours(0, 0, 0, 0);
-      curr_time = curr_date.getTime();
-      $(el_input).attr("data-step", 86400000);
-      $(el_input).attr("data-min", curr_time - 5 * 1000 * 60 * 60 * 24);
-      $(el_input).attr("data-max", curr_time + 5 * 1000 * 60 * 60 * 24);
-      $(el_input).attr("data-from", curr_time);
-      if (range) {
-        $(el_input).attr("data-to", curr_time + 2 * 1000 * 60 * 60 * 24);
-        input_value_str = "c(Sys.Date(), Sys.Date() + 2)";
-      } else {
-        input_value_str = "Sys.Date()";
-      }
-      $(el_input).attr("data-time-format", "%F");
-
-      input_str = `, min = Sys.Date() - 5, max = Sys.Date() + 5, value = ${input_value_str}`;
+      value_str = `, min = 0, max = 10, value = ${input_value_str}`;
     } else {
-      curr_time = curr_date.getTime();
-      $(el_input).attr("data-step", 1000);
-      $(el_input).attr("data-min", curr_time - 5000);
-      $(el_input).attr("data-max", curr_time + 5000);
-      $(el_input).attr("data-from", curr_time);
-      if (range) {
-        $(el_input).attr("data-to", curr_time + 2000);
-        input_value_str = "c(Sys.time(), Sys.time() + 2000)";
-      } else {
-        input_value_str = "Sys.time()";
+      if (format === "date") {
+        curr_date.setHours(0, 0, 0, 0);
       }
-      $(el_input).attr("data-time-format", "%F %T");
 
-      input_str = `, min = Sys.time() - 5000, max = Sys.time() + 5000, value = ${input_value_str}`;
+      step = format === "date" ? 1000 * 60 * 60 * 24 : 1000;
+      curr_time = curr_date.getTime();
+      min = curr_time - 5 * step;
+      max = curr_time + 5 * step;
+      from = curr_time;
+      to = curr_time + 2 * step;
+
+      time_format = format === "date" ? "%F" : "%F %T";
+      var r_datefunc = format === "date" ? "Sys.Date()" : "Sys.time()";
+      var r_mult = format === "date" ? "" : "000";
+
+      if (range) {
+        input_value_str = `"c(${r_datefunc}, ${r_datefunc} + 2${r_mult})"`
+      } else {
+        input_value_str = r_datefunc;
+      }
+      value_str = `, min = ${r_datefunc} - 5${r_mult}, max = ${r_datefunc} + 5${r_mult}, value = ${input_value_str}`;
     }
 
-    $(el).attr("data-shinyattributes", `inputId = "${id}", label = "${label}"${input_str}${width_str}`);
-    $(el).html(el_label);
-    $(el).append(el_input);
-    return el;
+    var range_attr = "";
+    if (range) {
+      range_attr = `data-type="double" data-drag-interval="true" data-to="${to}"`
+    }
+
+    var input_str = `inputId = &quot;${id}&quot;, label = &quot;${label}&quot;${value_str}${width_str}`;
+    var label_tag = `<label class="control-label">${label}</label>`;
+    var input_tag = `<input class="js-range-slider"
+                            data-data-type="${format}" data-skin="shiny" data-grid="true" data-grid-num="10"
+                            data-grid-snap="false" data-prettifyed-enabled="true" data-prettifyed-separator=","
+                            data-keyboard="true" ${range_attr} data-time-format="${time_format}"
+                            data-step="${step}" data-min="${min}" data-max="${max}" data-from="${from}">`;
+
+    return `<div class="designer-element form-group shiny-input-container" ${style_str}
+                 data-shinyattributes="${input_str}"
+                 data-shinyfunction="sliderInput">${label_tag}${input_tag}</div>`;
   },
 
   file: function() {
-    var el = document.createElement("div");
-    $(el).attr("data-shinyfunction", "fileInput");
-    $(el).addClass("designer-element form-group shiny-input-container");
-
     var label = $("#sidebar-file-label").val();
     var id = $("#sidebar-file-id").val();
+    var width = validateCssUnit($("#sidebar-file-width").val(), "");
+
     if (id === "") {
       id = createRandomID("file");
     }
 
-    var width_str;
-    var width = validateCssUnit($("#sidebar-file-width").val(), "");
-    if (width === "") {
-      width_str = "";
-    } else {
-      $(el).css("width", width);
-      width_str = `, width = "${width}"`;
+    var width_str = "", style_str = "";
+    if (width !== "") {
+      style_str = ` style="width: ${width};"`;
+      width_str = `, width = &quot;${width}&quot;`;
     }
 
-    $(el).attr("data-shinyattributes", `inputId = "${id}", label = "${label}"${width_str}`);
+    var input_str = `inputId = &quot;${id}&quot;, label = &quot;${label}&quot;${width_str}`;
+    var label_tag = `<label class="control-label">${label}</label>`;
+    var input_tag = `<div class="input-group">
+      <label class="input-group-btn input-group-prepend">
+        <span class="btn btn-default btn-file">
+          Browse...
+          <input type="file"
+                 style="position: absolute !important; top: -99999px !important; left: -99999px !important;"/>
+        </span>
+      </label>
+      <input type="text" class="form-control" placeholder="No file selected" readonly="readonly"/>
+    </div>`;
 
-    var el_input_group = document.createElement("div");
-    $(el_input_group).addClass("input-group");
-
-    var el_label = document.createElement("label");
-    $(el_label).addClass("control-label");
-    $(el_label).html(label);
-
-    var el_button_label = document.createElement("label");
-    $(el_button_label).addClass("input-group-btn input-group-prepend");
-
-    var el_button = document.createElement("span");
-    $(el_button).addClass("btn btn-default btn-file");
-    $(el_button).html("Browse...");
-
-    var el_file_input = document.createElement("input");
-    $(el_file_input).attr("id", id);
-    $(el_file_input).attr("type", "file");
-    $(el_file_input).attr("style", "position: absolute !important; top: -99999px !important; left: -99999px !important;");
-
-    $(el_button).append(el_file_input);
-    $(el_button_label).html(el_button);
-
-    var el_text_input = document.createElement("input");
-    $(el_text_input).attr("placeholder", "No file selected");
-    $(el_text_input).attr("type", "text");
-    $(el_text_input).attr("readonly", "readonly");
-    $(el_text_input).addClass("form-control");
-
-    $(el_input_group).html(el_button_label);
-    $(el_input_group).append(el_text_input);
-
-    $(el).html(el_label);
-    $(el).append(el_input_group);
-    return el;
+    return `<div class="designer-element form-group shiny-input-container"
+                 data-shinyfunction="fileInput" ${style_str}
+                 data-shinyattributes="${input_str}">${label_tag}${input_tag}</div>`;
   },
 
   date: function() {
-    var el = document.createElement("div");
-    var type = $("#sidebar-date-type").val();
-    var range = document.getElementById("sidebar-date-range").checked;
-    $(el).addClass("designer-element form-group shiny-input-container");
-    if (range) {
-      $(el).addClass("shiny-date-range-input");
-      $(el).attr("data-shinyfunction", "dateRangeInput");
-    } else {
-      $(el).addClass("shiny-date-input");
-      $(el).attr("data-shinyfunction", "dateInput");
-    }
-
     var label = $("#sidebar-date-label").val();
     var id = $("#sidebar-date-id").val();
+    var width = validateCssUnit($("#sidebar-date-width").val(), "");
+    var range = document.getElementById("sidebar-date-range").checked;
+
     if (id === "") {
       id = createRandomID("date");
     }
 
-    var width_str;
-    var width = validateCssUnit($("#sidebar-date-width").val(), "");
-    if (width === "") {
-      width_str = "";
-    } else {
-      $(el).css("width", width);
-      width_str = `, width = "${width}"`;
+    var r_func = range ? "dateRangeInput" : "dateInput";
+    var date_class = range ? "shiny-date-range-input" : "shiny-date-input";
+
+    var width_str = "", style_str = "";
+    if (width !== "") {
+      style_str = ` style="width: ${width};"`;
+      width_str = `, width = &quot;${width}&quot;`;
     }
 
-    $(el).attr("id", id);
-    $(el).attr("data-shinyattributes", `inputId = "${id}", label = "${label}"${width_str}`);
+    var input_str = `inputId = &quot;${id}&quot;, label = &quot;${label}&quot;${width_str}`;
+    var label_tag = `<label class="control-label">${label}</label>`;
 
-    var el_label = document.createElement("label");
-    $(el_label).addClass("control-label");
-    $(el_label).html(label);
-
-    var el_date_input = document.createElement("input");
-    $(el_date_input).addClass("form-control");
-    $(el_date_input).attr("type", "text");
-    $(el_date_input).attr("title", "Date format: yyyy-mm-dd");
-    $(el_date_input).attr("data-date-language", "en");
-    $(el_date_input).attr("data-date-week-start", 0);
-    $(el_date_input).attr("data-date-format", "yyyy-mm-dd");
-    $(el_date_input).attr("data-date-start-view", "month");
-    $(el_date_input).attr("data-date-autoclose", true);
-
+    var date_tag = `<input class="form-control" type="text" title="Date format: yyyy-mm-dd"
+                            data-date-language="en" data-date-week-start="0" data-date-format="yyyy-mm-dd"
+                            data-date-start-view="month" data-date-autoclose="true"/>`;
+    var input_tag;
     if (range) {
-      var el_mid_input = document.createElement("span");
-      $(el_mid_input).addClass("input-group-addon input-group-prepend input-group-append");
+      var mid_tag = `<span class="input-group-addon input-group-prepend input-group-append">
+                       <span class ="input-group-text"> to </span>
+                     </span>`;
 
-      var el_to_label = document.createElement("span");
-      $(el_to_label).html(" to ");
-      $(el_to_label).addClass("input-group-text");
-      $(el_mid_input).html(el_to_label);
-
-      var el_input = document.createElement("div");
-      $(el_input).addClass("input-daterange input-group input-group-sm");
-
-      $(el_input).html(el_date_input.cloneNode());
-      $(el_input).append(el_mid_input);
-      $(el_input).append(el_date_input.cloneNode());
+      input_tag = `<div class="input-daterange input-group input-group-sm">${date_tag}${mid_tag}${date_tag}</div>`;
     } else {
-      var el_input = el_date_input;
-      $(el_input).attr("data-date-dates-disabled", null);
-      $(el_input).attr("data-date-days-of-week-disabled", null);
+      input_tag = date_tag;
     }
 
-    $(el).html(el_label);
-    $(el).append(el_input);
-    return el;
+    return `<div class="designer-element form-group shiny-input-container ${date_class}"
+                 data-shinyfunction="${r_func}" ${style_str}
+                 data-shinyattributes="${input_str}">${label_tag}${input_tag}</div>`;
   },
 
   checkbox: function() {
-    var el = document.createElement("div");
-    $(el).attr("data-shinyfunction", "checkboxInput");
-    $(el).addClass("designer-element form-group shiny-input-container");
-
     var label = $("#sidebar-checkbox-label").val();
     var id = $("#sidebar-checkbox-id").val();
+    var width = validateCssUnit($("#sidebar-checkbox-width").val(), "");
+    var checked = document.getElementById("sidebar-checkbox-checked").checked;
+
     if (id === "") {
       id = createRandomID("checkbox");
     }
-    var attributes_str = `inputId = "${id}", label = "${label}"`;
 
-    var width = validateCssUnit($("#sidebar-checkbox-width").val(), "");
+    var width_str = "", style_str = "";
     if (width !== "") {
-      $(el).css("width", width);
-      attributes_str = `${attributes_str}, width = "${width}"`;
+      style_str = ` style="width: ${width};"`;
+      width_str = `, width = &quot;${width}&quot;`;
     }
 
-    var el_label = document.createElement("span");
-    $(el_label).html(label);
+    var checked_str = checked ? ", value = TRUE" : "";
+    var checked_attr = checked ? `checked="checked"` : "";
 
-    var el_input = document.createElement("input");
-    $(el_input).attr("id", id);
-    $(el_input).attr("type", "checkbox");
+    var input_str = `inputId = &quot;${id}&quot;, label = &quot;${label}&quot;${checked_str}${width_str}`;
+    var input_tag = `<label><input type="checkbox" ${checked_attr}><span>${label}</span></label>`;
 
-    var checked = document.getElementById("sidebar-checkbox-checked").checked;
-    if (checked) {
-      $(el_input).attr("checked", "checked");
-      attributes_str = `${attributes_str}, value = TRUE`;
-    }
-
-    var el_checkbox = document.createElement("div");
-    var el_check_label = document.createElement("label");
-
-    $(el_check_label).html(el_input);
-    $(el_check_label).append(el_label);
-    $(el_checkbox).html(el_check_label);
-
-    $(el).attr("data-shinyattributes", attributes_str);
-    $(el).html(el_checkbox);
-    return el;
+    return `<div class="designer-element form-group shiny-input-container" ${style_str}
+                 data-shinyfunction="checkboxInput"
+                 data-shinyattributes="${input_str}"><div class="checkbox">${input_tag}</div>`;
   },
 
   radio: function() {
-    var el = document.createElement("div");
-    $(el).addClass("designer-element form-group shiny-input-container");
-
     var label = $("#sidebar-radio-label").val();
     var id = $("#sidebar-radio-id").val();
+    var width = validateCssUnit($("#sidebar-radio-width").val(), "");
     var type = $('#sidebar-radio-type input:checked').val();
-    var choice_str = $('#sidebar-radio-choices').val().replaceAll("\n", '", "');
+    var choices = $('#sidebar-radio-choices').val();
     var inline = document.getElementById("sidebar-radio-inline").checked;
+
     if (id === "") {
       id = createRandomID(type + "group");
     }
 
-    $(el).addClass("shiny-input-" + type + "group");
-    $(el).attr(
-      "data-shinyfunction",
-      type === "radio" ? "radioButtons" : "checkboxGroupInput"
-    );
-    $(el).attr("role", "group");
-    $(el).attr("aria-labelledby", id + "-label");
-
-    var attributes_str = `inputId = "${id}", label = "${label}", choices = c("${choice_str}")`;
-
-    if (inline) {
-      $(el).addClass("shiny-input-container-inline");
-      attributes_str = `${attributes_str}, inline = TRUE`;
-    }
-
-    var width = validateCssUnit($("#sidebar-radio-width").val(), "");
+    var width_str = "", style_str = "";
     if (width !== "") {
-      $(el).css("width", width);
-      attributes_str = `${attributes_str}, width = "${width}"`;
+      style_str = ` style="width: ${width};"`;
+      width_str = `, width = &quot;${width}&quot;`;
     }
 
-    var el_label = document.createElement("label");
-    $(el_label).html(label);
-    $(el_label).attr("id", id + "-label");
-    $(el_label).attr("for", id);
-    $(el_label).addClass("control-label");
+    var r_func = type === "radio" ? "radioButtons" : "checkboxGroupInput";
+    var role = type === "radio" ? "radiogroup" : "group";
 
-    var el_input = document.createElement("div");
-    $(el_input).addClass("shiny-options-group");
+    var inline_class = inline ? " shiny-input-container-inline" : "";
+    var inline_str = inline ? ", inline = TRUE" : "";
 
-    var choices = $("#sidebar-radio-choices").val().split("\n");
-    $(el_input).html(choices.map(function(choice) {
-      return createCheckbox(
-        choice,
-        id = id,
-        type = type,
-        inline = inline
-      );
-    }));
+    var choices_str = `, choices = c(&quot;${choices.replaceAll("\n", '&quot;, &quot;')}&quot;)`
+    var input_str = `inputId = &quot;${id}&quot;, label = &quot;${label}&quot;${choices_str}${inline_str}${width_str}`;
+    var label_tag = `<label class="control-label">${label}</label>`;
 
-    $(el).attr("data-shinyattributes", attributes_str);
-    $(el).html(el_label);
-    $(el).append(el_input);
-    return el;
+    var choices_tag = choices.split("\n").map(x => createCheckbox(x, id = id, type = type, inline = inline)).join("");
+    var input_tag = `<div class="shiny-options-group">${choices_tag}</div>`;
+
+    return `<div class="designer-element form-group shiny-input-container shiny-input-${type}group ${inline_class}"
+                 data-shinyfunction="${r_func}" data-shinyattributes="${input_str}" ${style_str}
+                 role="${role}">${label_tag}${input_tag}</div>`;
   },
 
   button: function() {
-    var el = document.createElement("button");
-    $(el).attr("data-shinyfunction", "actionButton");
-    $(el).addClass("designer-element btn btn-default");
-
     var label = $("#sidebar-button-label").val();
-    var button_class = $("#sidebar-button-class").val();
     var id = $("#sidebar-button-id").val();
+    var width = validateCssUnit($("#sidebar-button-width").val(), "");
+    var button_class = $("#sidebar-button-class").val();
+
     if (id === "") {
       id = createRandomID("button");
     }
 
-    var width_str = "";
-    var width = validateCssUnit($("#sidebar-button-width").val(), "");
+    var width_str = "", style_str = "";
     if (width !== "") {
-      width_str = `, width = "${width}"`;
-      $(el).css("width", width);
+      style_str = ` style="width: ${width};"`;
+      width_str = `, width = &quot;${width}&quot;`;
     }
 
-    if (button_class === "default") {
-      $(el).attr("data-shinyattributes", `inputId = "${id}"${width_str}`);
-    } else {
-      $(el).attr("data-shinyattributes", `inputId = "${id}"${width_str}, class = "btn-${button_class}"`);
-      $(el).addClass("btn-" + button_class);
-    }
+    var class_str = button_class === "default" ? "" : `, class = &quot;btn-${button_class}&quot;`;
+    var btn_class = button_class === "default" ? "" : "btn-" + button_class;
 
-    $(el).html(label);
-    return el;
+    var input_str = `inputId = &quot;${id}&quot;{class_str}${width_str}`;
+    return `<button class="btn btn-default ${btn_class} action-button designer-element"
+                    type="button" ${style_str}
+                    data-shinyfunction="actionButton"
+                    data-shinyattributes="${input_str}">${label}</button>`;
   },
 
   output: function() {
-    var el;
-    var inline_text = "";
     var type = $("#sidebar-output-type").val();
-    var type2;
-    if (type === "table") {
-      type2 = "datatable";
-    } else if (type === "verbatimText") {
-      type2 = "text";
-    } else {
-      type2 = type;
-    }
-    var inline = document.getElementById("sidebar-output-inline").checked;
-    var contents = outputContents[type]();
-
-    if (type === "verbatimText") {
-      el = document.createElement("pre");
-    } else if (inline) {
-      el = document.createElement("span");
-      inline_text = ", inline = TRUE";
-    } else {
-      el = document.createElement("div");
-    }
-
     var id = $("#sidebar-output-id").val();
+    var width = validateCssUnit($("#sidebar-output-width").val(), "100%");
+    var height = validateCssUnit($("#sidebar-output-height").val(), "400px");
+    var inline = document.getElementById("sidebar-output-inline").checked;
+
+    var html_tag = type === "verbatimText" ? "pre" : (inline ? "span" : "div");
+    var type2 = type === "table" ? "datatable" : (type === "verbatimText" ? "text" : type);
+    var inline_text = inline ? ", inline = TRUE" : "";
+
     if (id === "") {
       id = createRandomID(type);
     }
 
-    var height_str = "";
-    var width_str = "";
+    var height_str = "", width_str = "", style_str = "";
     if (["plot", "image"].includes(type)) {
-
-      var width = validateCssUnit($("#sidebar-output-width").val(), "100%");
-      var height = validateCssUnit($("#sidebar-output-height").val(), "400px");
       if (width !== "100%") {
-        width_str = `, width = "${width}"`;
+        width_str = `, width = &quot;${width}&quot;`;
       }
       if (height !== "400px") {
-        height_str = `, height = "${height}"`;
+        height_str = `, height = &quot;${height}&quot;`;
       }
+      style_str = `width: ${width}; height: ${height}`;
+    } else {
 
-      $(el).css("width", width);
-      $(el).css("height", height);
-
-    } else if (["text", "verbatimText"].includes(type)) {
-      contents = contents + $("#sidebar-output-contents").val();
     }
 
-    $(el).attr("data-shinyfunction", type + "Output");
-    $(el).attr("data-shinyattributes", `outputId = "${id}"${inline_text}${height_str}${width_str}`);
-    $(el).addClass(`designer-element output-element ${type}-output-element shiny-${type2}-output`);
-    $(el).html(contents);
-    return el;
+    var input_str = `outputId = &quot;${id}&quot;${inline_text}${height_str}${width_str}`;
+
+    var output_tag = OUTPUT_CONTENTS[type];
+    if (["text", "verbatimText"].includes(type)) {
+      output_tag = "<span>" + output_tag + $("#sidebar-output-contents").val() + "</span>";
+    } else if (["table", "html"].includes(type)) {
+      output_tag = "<span>" + output_tag + "</span>";
+    }
+
+    return `<${html_tag} class="designer-element output-element ${type}-output-element shiny-${type2}-output"
+                         style="${style_str}"
+                         data-shinyfunction="${type}Output"
+                         data-shinyattributes="${input_str}">${output_tag}</${html_tag}>`
   }
 };
 
-const outputContents = {
-  text: function() {
-    return "Text Output: ";
-  },
-  verbatimText: function() {
-    return "Verbatim Text Output: ";
-  },
-  plot: function() {
-    var el = document.createElement("img");
-    $(el).attr("src", "images/plot.png");
-    $(el).attr("alt", "Placeholder for a plot output");
-    $(el).attr("title", "Example Plot");
-    return el;
-  },
-  table: function() {
-    return "Example Table Output";
-  },
-  image: function() {
-    var el = document.createElement("img");
-    $(el).attr("src", "images/image.png");
-    $(el).attr("alt", "Placeholder for an image output");
-    $(el).attr("title", "Example Image");
-    return el;
-  },
-  html: function() {
-    return "Placeholder for HTML Output";
-  }
+const OUTPUT_CONTENTS = {
+  text: "Text Output: ",
+  verbatimText: "Verbatim Text Output: ",
+  plot: `<img src="images/plot.png" alt="Placeholder for a plot output" title="Example plot">`,
+  table: "Example Table Output",
+  image: `<img src="images/image.png" alt="Placeholder for a image output" title="Example image">`,
+  html: "Placeholder for HTML Output"
 };
 
 const designerSortableSettings = {
