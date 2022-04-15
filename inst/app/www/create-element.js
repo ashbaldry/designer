@@ -17,7 +17,7 @@ $(document).ready(function() {
   });
 
   $("#sidebar-tab_panel-add").on("click", addTab);
-  $("#sidebar-tab_panel-add").on("click", deleteTab);
+  $("#sidebar-tab_panel-delete").on("click", deleteTab);
 });
 
 let navbar_item = 1;
@@ -33,10 +33,18 @@ function addTab () {
     tab_value = createRandomID("tab");
   }
 
+  if ($(`ul.navbar-nav a[data-name='${tab_name}']`).length > 0) {
+    alert(`${tab_name} is the name of an existing tab. Please choose a unique name`);
+    return;
+  } else  if ($(`ul.navbar-nav a[data-value='${tab_value}']`).length > 0) {
+    alert(`${tab_value} is the ID of an existing tab. Please choose a unique ID`);
+    return;
+  }
+
   nav_panel.append(
     `<li class="${active_class}">
        <a href="#tab-${nav_id}-${navbar_item}" data-toggle="tab"
-          data-bs-toggle="tab" data-value="${tab_value}">${tab_name}</a>
+          data-bs-toggle="tab" data-value="${tab_value}" data-name="${tab_name}">${tab_name}</a>
      </li>`
   );
 
@@ -51,7 +59,17 @@ function addTab () {
 }
 
 function deleteTab () {
+  const tab_name = $("#sidebar-tab_panel-name").val();
 
+  const delete_tab = $(`ul.navbar-nav a[data-name='${tab_name}']`);
+  if (delete_tab.length === 0) {
+    alert(`Unable to find a tab with the name "${tab_name}"`);
+    return;
+  }
+
+  const tab_value = $(`ul.navbar-nav a[data-name='${tab_name}']`).data("value");
+  $(delete_tab[0].parentElement).remove();
+  $(`.tab-content .tab-pane[data-value='${tab_value}']`).remove();
 }
 
 function updateDesignerElement (update_sortable = false) {

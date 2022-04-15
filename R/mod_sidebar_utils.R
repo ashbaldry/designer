@@ -96,6 +96,7 @@ tabSettings <- function(id) {
     textInput(
       ns("name"),
       label = "Name",
+      value = "Tab 1"
     ),
     textInput(
       ns("value"),
