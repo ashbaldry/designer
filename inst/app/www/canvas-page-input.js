@@ -5,7 +5,11 @@ $.extend(canvasPageBinding, {
   },
   getValue: function(el) {
     var id = $(el).attr("id");
-    return htmlToJSON(document.getElementById(id).children[0]);
+    if (el.children[0].dataset.shinyfunction === "navbarPage") {
+      return htmlToJSON(document.getElementById(id).querySelector(".tab-content"));
+    } else {
+      return htmlToJSON(document.getElementById(id).children[0]);
+    }
   },
   setValue: function(el, value) {
     $(el).text(value);
@@ -40,7 +44,7 @@ htmlToJSON = function(el, inner = false) {
     tagName: el.tagName.toLowerCase(),
     r_function: el.dataset.shinyfunction,
     r_arguments: el.dataset.shinyattributes,
-    text: $(el).ignore().text(),
+    text: $(el).ignore().text().replaceAll(/\s*\n\s*/g, ""),
     htmlclass: el.className,
     children: children
   };

@@ -15,13 +15,59 @@ $(document).ready(function() {
     $(".component_settings[data-component= '" + selected_component + "']").css("display", "unset");
     updateDesignerElement(true);
   });
+
+  $("#sidebar-tab_panel-add").on("click", addTab);
+  $("#sidebar-tab_panel-add").on("click", deleteTab);
 });
 
-updateDesignerElement = function(update_sortable = false) {
+let navbar_item = 1;
+function addTab () {
+  const nav_panel = $("ul.navbar-nav");
+  const tab_panel = $(".tab-content");
+  const nav_id = nav_panel.data("tabsetid");
+
+  const active_class = tab_panel.html() === "" ? "active" : "";
+  const tab_name = $("#sidebar-tab_panel-name").val();
+  let tab_value = $("#sidebar-tab_panel-value").val();
+  if (tab_value === "") {
+    tab_value = createRandomID("tab");
+  }
+
+  nav_panel.append(
+    `<li class="${active_class}">
+       <a href="#tab-${nav_id}-${navbar_item}" data-toggle="tab"
+          data-bs-toggle="tab" data-value="${tab_value}">${tab_name}</a>
+     </li>`
+  );
+
+  tab_panel.append(
+    `<div class="tab-pane ${active_class}" data-value="${tab_value}" id="tab-${nav_id}-${navbar_item}"
+          data-shinyfunction="tabPanel"
+          data-shinyattributes="title = &quot;${tab_name}&quot;, value = &quot;${tab_value}&quot;"></div>`
+  );
+  enableSortablePage(document.getElementById(`tab-${nav_id}-${navbar_item}`));
+
+  navbar_item = navbar_item + 1;
+}
+
+function deleteTab () {
+
+}
+
+function updateDesignerElement (update_sortable = false) {
   $(".component-container").html(null);
   var component = selected_component;
+
+  // Need to do multiple things when //
+  if (component === "tab_panel") {
+    $(".component-container").css("display", "none");
+    return;
+  }
+
   var component_html = designerElements[component]();
   var container = document.getElementById("sidebar-container");
+
+  $(".component-container").css("display", "");
   $(".component-container").html(component_html);
 
   if (component === "dropdown") {
@@ -60,25 +106,25 @@ updateDesignerElement = function(update_sortable = false) {
       }
     });
   }
-};
+}
 
-createRandomID = function(prefix) {
+function createRandomID (prefix) {
   return prefix + "_" + Math.random().toString(36).substr(2, 10);
-};
+}
 
-validateCssUnit = function(x, fallback) {
+function validateCssUnit (x, fallback) {
   const regex = /^(auto|inherit|fit-content|calc\(.*\)|((\.\d+)|(\d+(\.\d+)?))(%|in|cm|mm|ch|em|ex|rem|pt|pc|px|vh|vw|vmin|vmax))$/;
   if (regex.test(x)) {
     return x;
   } else {
     return fallback;
   }
-};
+}
 
-createCheckbox = function(x, id = "", type = "checkbox", inline = false) {
+function createCheckbox (x, id = "", type = "checkbox", inline = false) {
   var check_class = inline ? type + "-inline" : type;
   return `<label class="${check_class}"><input type="${type}"><span>${x}</span></label>`;
-};
+}
 
 const sliderPrettifier = {
   number: null,

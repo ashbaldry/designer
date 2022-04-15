@@ -38,6 +38,11 @@ SidebarModUI <- function(id) {
       ),
       div(
         class = "component_settings",
+        `data-component` = "tab_panel",
+        tabSettings(ns("tab_panel"))
+      ),
+      div(
+        class = "component_settings",
         `data-component` = "header",
         headerSettings(ns("header"))
       ),
