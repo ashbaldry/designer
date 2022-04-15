@@ -6,6 +6,9 @@
 \alias{headerSettings}
 \alias{textSettings}
 \alias{inputSettings}
+\alias{fileSettings}
+\alias{sliderSettings}
+\alias{dateSettings}
 \alias{checkboxSettings}
 \alias{radioSettings}
 \alias{dropdownSettings}
@@ -22,6 +25,12 @@ headerSettings(id)
 textSettings(id)
 
 inputSettings(id)
+
+fileSettings(id)
+
+sliderSettings(id)
+
+dateSettings(id)
 
 checkboxSettings(id)
 
