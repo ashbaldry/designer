@@ -1,4 +1,4 @@
-PAGE_TYPES <- c("basicPage", "bootstrapPage", "fillPage", "fluidPage")
+PAGE_TYPES <- c("basicPage", "bootstrapPage", "fillPage", "fluidPage", "navbarPage")
 
 pageChoices <- function(ns) {
   div(
@@ -37,9 +37,15 @@ componentChoices <- function(ns) {
     id = ns("component"),
     `aria-labelledby` = ns("component_button"),
     class = "dropdown-menu dropdown-menu-right dropdown-menu-wide component-type-dropdown",
+    tags$a(
+      class = "dropdown-item navbar-tab-item",
+      `data-shinyelement` = "tab_panel",
+      name = "tab_panel",
+      "Tab"
+    ),
     lapply(names(COMPONENTS), function(component) {
       tags$a(
-        class = "dropdown-item",
+        class = "dropdown-item component-item",
         `data-shinyelement` = COMPONENTS[[component]],
         name = COMPONENTS[[component]],
         component

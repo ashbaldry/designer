@@ -99,6 +99,14 @@ h5.modal-title {
   overflow-y: auto;
 }
 
+.navbar-page-tabs {
+  height: calc(100% - 80px);
+}
+
+.navbar-page-tabs .tab-content, .navbar-page-tabs .tab-pane {
+  height: 100%;
+}
+
 .designer-element {
   border: 1px dashed black;
   z-index: 1;

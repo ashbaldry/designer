@@ -36,6 +36,5 @@ This package is **not** intended to fully create the application UI. For example
 
 ### What Next
 
-- Enable it to work with `navbarPage`
 - Enable it to work with `shinydashboardPage`
 - Create module UI from the page

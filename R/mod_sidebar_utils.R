@@ -88,6 +88,35 @@ rowSettings <- function() {
 }
 
 #' @rdname component_settings
+tabSettings <- function(id) {
+  ns <- NS(id)
+
+  tagList(
+    h5("Tab Panel Settings"),
+    textInput(
+      ns("name"),
+      label = "Name",
+      value = "Tab 1"
+    ),
+    textInput(
+      ns("value"),
+      label = "Value",
+      placeholder = "Keep blank to copy name"
+    ),
+    actionButton(
+      ns("add"),
+      label = "Add Tab",
+      class = "btn-success"
+    ),
+    actionButton(
+      ns("delete"),
+      label = "Delete Tab",
+      class = "btn-error"
+    )
+  )
+}
+
+#' @rdname component_settings
 headerSettings <- function(id) {
   ns <- NS(id)
 
