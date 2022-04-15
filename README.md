@@ -17,6 +17,8 @@ Install the latest version from GitHub using:
 devtools::install_github("ashbaldry/designer")
 ```
 
+To try out the app without installing the package, it is available at [shinyapps.io](https://ashbaldry.shinyapps.io/designer).
+
 ## Example
 
 To open the `{designer}` application and create your own UI, run the following code:
