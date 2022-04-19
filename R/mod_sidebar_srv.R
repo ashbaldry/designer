@@ -16,7 +16,10 @@ SidebarModuleServer <- function(id) {
       } else if (input[["output-type"]] == "table") {
         local({
           output_id <- input$outputid
-          output[[output_id]] <- shiny::renderDataTable(shinipsum::random_table(5, 3))
+          output[[output_id]] <- shiny::renderDataTable(
+            shinipsum::random_table(5, 3),
+            options = list(dom = "t")
+          )
         })
       }
     })

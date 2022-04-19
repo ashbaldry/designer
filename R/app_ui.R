@@ -55,9 +55,11 @@ addGolemExternalResources <- function() {
       name = "designer"
     ),
     ionRangeSliderDependency(),
-    datePickerDependency()
+    datePickerDependency(),
+    dataTableDependency
   )
 }
 
 ionRangeSliderDependency <- getFromNamespace("ionRangeSliderDependency", "shiny")
 datePickerDependency <- getFromNamespace("datePickerDependency", "shiny")
+dataTableDependency <- getFromNamespace("dataTableDependency", "shiny")

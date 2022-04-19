@@ -170,7 +170,7 @@ const designerElements = {
   },
 
   row: function() {
-    return `<div class="designer-element row" data-shinyfunction="fluidRow"></div>`;
+    return `<div class="designer-element row row-designer" data-shinyfunction="fluidRow"></div>`;
   },
 
   column: function() {
@@ -508,9 +508,14 @@ const designerElements = {
     var height = validateCssUnit($("#sidebar-output-height").val(), "400px");
     var inline = document.getElementById("sidebar-output-inline").checked;
 
-    var html_tag = type === "verbatimText" ? "pre" : (inline ? "span" : "div");
+    var html_tag = "div";
+    if (type === "verbatimText") {
+      html_tag = "pre";
+    } else if (inline && type != "table") {
+      html_tag = "span";
+    }
     var type2 = type === "table" ? "datatable" : (type === "verbatimText" ? "text" : type);
-    var inline_text = inline ? ", inline = TRUE" : "";
+    var inline_text = inline && !["verbatimText", "table"].includes(type) ? ", inline = TRUE" : "";
 
     if (id === "") {
       id = createRandomID(type);

@@ -465,7 +465,7 @@ outputSettings <- function(id) {
       )
     ),
     conditionalPanel(
-      "input.type !== 'verbatimText'",
+      "!['table', 'verbatimText'].includes(input.type)",
       ns = ns,
       checkboxInput(
         ns("inline"),
