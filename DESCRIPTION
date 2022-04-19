@@ -19,7 +19,6 @@ URL: https://www.github.com/ashbaldry/designer
 BugReports: https://www.github.com/ashbaldry/designer/issues
 Suggests: 
     covr,
-    spelling,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
 Language: en-GB
