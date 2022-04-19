@@ -11,7 +11,8 @@ Imports:
     htmltools,
     shiny (>= 1.7.1),
     bslib,
-    jsonlite
+    jsonlite,
+    shinipsum
 Encoding: UTF-8
 RoxygenNote: 7.1.2
 URL: https://www.github.com/ashbaldry/designer

@@ -100,6 +100,8 @@ function updateDesignerElement (update_sortable = false) {
     $(".component-container").find("input").ionRangeSlider({ prettify: sliderPrettifier[slider_type]});
   } else if (component === "date") {
     $(".component-container").find("input").bsDatepicker();
+  } else if (component === "output") {
+    Shiny.bindAll();
   }
 
   if (update_sortable) {
@@ -168,7 +170,7 @@ const designerElements = {
   },
 
   row: function() {
-    return `<div class="designer-element row" data-shinyfunction="fluidRow"></div>`;
+    return `<div class="designer-element row row-designer" data-shinyfunction="fluidRow"></div>`;
   },
 
   column: function() {
@@ -506,12 +508,24 @@ const designerElements = {
     var height = validateCssUnit($("#sidebar-output-height").val(), "400px");
     var inline = document.getElementById("sidebar-output-inline").checked;
 
-    var html_tag = type === "verbatimText" ? "pre" : (inline ? "span" : "div");
+    var html_tag = "div";
+    if (type === "verbatimText") {
+      html_tag = "pre";
+    } else if (inline && type != "table") {
+      html_tag = "span";
+    }
     var type2 = type === "table" ? "datatable" : (type === "verbatimText" ? "text" : type);
-    var inline_text = inline ? ", inline = TRUE" : "";
+    var inline_text = inline && !["verbatimText", "table"].includes(type) ? ", inline = TRUE" : "";
 
     if (id === "") {
       id = createRandomID(type);
+    }
+
+    var designer_str = "";
+    if (["plot", "image", "table"].includes(type)) {
+      const designer_id = createRandomID("output")
+      Shiny.setInputValue("sidebar-outputid", designer_id);
+      designer_str = `id="sidebar-${designer_id}"`
     }
 
     var height_str = "", width_str = "", style_str = "";
@@ -522,9 +536,7 @@ const designerElements = {
       if (height !== "400px") {
         height_str = `, height = &quot;${height}&quot;`;
       }
-      style_str = `width: ${width}; height: ${height}`;
-    } else {
-
+      style_str = `width: ${width}; height: ${height};`;
     }
 
     var input_str = `outputId = &quot;${id}&quot;${inline_text}${height_str}${width_str}`;
@@ -536,7 +548,8 @@ const designerElements = {
       output_tag = "<span>" + output_tag + "</span>";
     }
 
-    return `<${html_tag} class="designer-element output-element ${type}-output-element shiny-${type2}-output"
+    return `<${html_tag} ${designer_str}
+                         class="designer-element output-element ${type}-output-element shiny-${type2}-output"
                          style="${style_str}"
                          data-shinyfunction="${type}Output"
                          data-shinyattributes="${input_str}">${output_tag}</${html_tag}>`
@@ -546,9 +559,9 @@ const designerElements = {
 const OUTPUT_CONTENTS = {
   text: "Text Output: ",
   verbatimText: "Verbatim Text Output: ",
-  plot: `<img src="images/plot.png" alt="Placeholder for a plot output" title="Example plot">`,
-  table: "Example Table Output",
-  image: `<img src="images/image.png" alt="Placeholder for a image output" title="Example image">`,
+  plot: "",
+  table: "",
+  image: "",
   html: "Placeholder for HTML Output"
 };
 

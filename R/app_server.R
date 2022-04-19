@@ -6,5 +6,7 @@
 appServer <- function(input, output, session) {
   page_html <- CanvasModuleServer("canvas")
 
+  SidebarModuleServer("sidebar")
+
   CodeModuleServer("settings-code", ui_code = page_html)
 }

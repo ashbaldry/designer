@@ -112,7 +112,7 @@ h5.modal-title {
   z-index: 1;
 }
 
-.designer-element:not(pre, .shiny-input-panel, .row, .col-sm, .btn) {
+.designer-element:not(pre, .shiny-input-panel, .row-designer, .col-sm, .btn) {
   background-color: white;
 }
 
@@ -120,17 +120,17 @@ h5.modal-title {
   min-height: 80px;
 }
 
-.designer-page-template .row {
+.designer-page-template .row-designer {
   min-height: 50px;
   background: aliceblue;
   position: relative;
 }
 
-.component-container .row:after, .designer-page-template .row:after {
+.component-container .row-designer:after, .designer-page-template .row-designer:after {
   content: "Row";
 }
 
-.designer-page-template .row:after {
+.designer-page-template .row-designer:after {
   position: absolute;
   z-index: 0;
   left: 5px;

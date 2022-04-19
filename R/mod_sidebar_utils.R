@@ -31,6 +31,12 @@ OUTPUT_TYPES <- c(
   "HTML" = "html"
 )
 
+PLOT_TYPES <- c(
+  "random", "point", "bar", "boxplot", "col", "tile", "line",
+  "bin2d", "contour", "density", "density_2d", "dotplot", "hex", "freqpoly", "histogram",
+  "ribbon", "raster", "tile", "violin"
+)
+
 BUTTON_TYPES <- c(
   "default", "primary", "secondary", "success", "danger", "warning", "info", "light", "dark"
 )
@@ -450,7 +456,16 @@ outputSettings <- function(id) {
       OUTPUT_TYPES
     ),
     conditionalPanel(
-      "input.type !== 'verbatimText'",
+      "input.type === 'plot'",
+      ns = ns,
+      selectInput(
+        ns("plot"),
+        "Plot Type",
+        PLOT_TYPES
+      )
+    ),
+    conditionalPanel(
+      "!['table', 'verbatimText'].includes(input.type)",
       ns = ns,
       checkboxInput(
         ns("inline"),
