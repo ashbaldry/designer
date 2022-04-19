@@ -555,7 +555,6 @@ const OUTPUT_CONTENTS = {
   text: "Text Output: ",
   verbatimText: "Verbatim Text Output: ",
   plot: "",
-  //table: "Example Table Output",
   table: "",
   image: "",
   html: "Placeholder for HTML Output"
