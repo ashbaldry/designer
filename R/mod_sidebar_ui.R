@@ -105,6 +105,15 @@ SidebarModUI <- function(id) {
         class = "component_settings",
         `data-component` = "output",
         outputSettings(ns("output"))
+      ),
+      div(
+        class = "component_comments",
+        textAreaInput(
+          ns("comments"),
+          label = "Add Code Comment",
+          placeholder = "Comment will appear in R script",
+          rows = 2
+        )
       )
     ),
     div(

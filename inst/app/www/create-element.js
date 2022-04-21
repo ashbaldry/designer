@@ -5,6 +5,7 @@ const UPDATEABLE_ELEMENT = [
 
 $(document).ready(function() {
   $(".component_settings").on("change", updateDesignerElement);
+  $(".component_comments").on("change", updateDesignerElement);
   updateDesignerElement(true);
 
   $(".component_settings[data-component= '" + selected_component + "']").css("display", "unset");
@@ -79,6 +80,7 @@ function updateDesignerElement (update_sortable = false) {
   // Need to do multiple things when //
   if (component === "tab_panel") {
     $(".component-container").css("display", "none");
+    $(".component_comments").css("display", "none");
     return;
   }
 
@@ -86,7 +88,11 @@ function updateDesignerElement (update_sortable = false) {
   var container = document.getElementById("sidebar-container");
 
   $(".component-container").css("display", "");
+  $(".component_comments").css("display", "");
   $(".component-container").html(component_html);
+  if ($("#sidebar-comments").val() !== "") {
+    $(".component-container>.designer-element").attr("data-shinycomments", $("#sidebar-comments").val());
+  }
 
   if (component === "dropdown") {
     $(".component-container").find("select").selectize({
@@ -120,6 +126,7 @@ function updateDesignerElement (update_sortable = false) {
       },
       onEnd: function(evt) {
         var component = selected_component;
+        $("#sidebar-comments").val("");
         if (UPDATEABLE_ELEMENT.includes(component)) {
           updateDesignerElement();
         }

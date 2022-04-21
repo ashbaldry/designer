@@ -66,7 +66,14 @@ htmlToRScript <- function(html_list, indent = 0) {
     )
   }
 
+  if (is.null(html_list$r_comments)) {
+    r_comments <- ""
+  } else {
+    r_comments <- paste0(indent_space, "# ", strsplit(html_list$r_comments, "\n")[[1]], "\n", collapse = "")
+  }
+
   paste0(
+    r_comments,
     indent_space, html_list$r_function, "(\n",
     rfunc_arguments,
     html_text,
