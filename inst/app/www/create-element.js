@@ -92,6 +92,8 @@ function updateDesignerElement (update_sortable = false) {
   $(".component-container").html(component_html);
   if ($("#sidebar-comments").val() !== "") {
     $(".component-container>.designer-element").attr("data-shinycomments", $("#sidebar-comments").val());
+    $(".component-container>.designer-element").attr("title", $("#sidebar-comments").val());
+    $(".component-container>.designer-element").attr("data-toggle", "tooltip");
   }
 
   if (component === "dropdown") {
@@ -126,8 +128,9 @@ function updateDesignerElement (update_sortable = false) {
       },
       onEnd: function(evt) {
         var component = selected_component;
-        $("#sidebar-comments").val("");
-        if (UPDATEABLE_ELEMENT.includes(component)) {
+        $('.page-canvas [data-toggle="tooltip"]').tooltip();
+        if (UPDATEABLE_ELEMENT.includes(component) || $("#sidebar-comments").val() !== "") {
+          $("#sidebar-comments").val("");
           updateDesignerElement();
         }
       }
