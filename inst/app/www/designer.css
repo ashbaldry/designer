@@ -33,6 +33,11 @@ h5.modal-title {
   margin-bottom: 15px;
 }
 
+.component-form {
+  max-height: calc(80vh - 200px);
+  overflow-y: auto;
+}
+
 .component_settings{
   display: none;
 }

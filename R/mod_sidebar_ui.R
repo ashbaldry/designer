@@ -31,88 +31,91 @@ SidebarModUI <- function(id) {
   ns <- NS(id)
 
   tagList(
-    tags$form(
+    div(
       div(
         id = ns("container"),
         class = "container component-container"
       ),
-      div(
-        class = "component_settings",
-        `data-component` = "tab_panel",
-        tabSettings(ns("tab_panel"))
-      ),
-      div(
-        class = "component_settings",
-        `data-component` = "header",
-        headerSettings(ns("header"))
-      ),
-      div(
-        class = "component_settings",
-        `data-component` = "row",
-        rowSettings()
-      ),
-      div(
-        class = "component_settings",
-        `data-component` = "column",
-        columnSettings(ns("column"))
-      ),
-      div(
-        class = "component_settings",
-        `data-component` = "text",
-        textSettings(ns("text"))
-      ),
-      div(
-        class = "component_settings",
-        `data-component` = "dropdown",
-        dropdownSettings(ns("dropdown"))
-      ),
-      div(
-        class = "component_settings",
-        `data-component` = "input",
-        inputSettings(ns("input"))
-      ),
-      div(
-        class = "component_settings",
-        `data-component` = "file",
-        fileSettings(ns("file"))
-      ),
-      div(
-        class = "component_settings",
-        `data-component` = "slider",
-        sliderSettings(ns("slider"))
-      ),
-      div(
-        class = "component_settings",
-        `data-component` = "date",
-        dateSettings(ns("date"))
-      ),
-      div(
-        class = "component_settings",
-        `data-component` = "checkbox",
-        checkboxSettings(ns("checkbox"))
-      ),
-      div(
-        class = "component_settings",
-        `data-component` = "radio",
-        radioSettings(ns("radio"))
-      ),
-      div(
-        class = "component_settings",
-        `data-component` = "button",
-        buttonSettings(ns("button"))
-      ),
-      div(
-        class = "component_settings",
-        `data-component` = "output",
-        outputSettings(ns("output"))
-      ),
-      div(
-        class = "component_comments",
-        textAreaInput(
-          ns("comments"),
-          label = "Add Code Comment",
-          placeholder = "Comment will appear in R script",
-          rows = 2
+      tags$form(
+        class = "component-form",
+        div(
+          class = "component_settings",
+          `data-component` = "tab_panel",
+          tabSettings(ns("tab_panel"))
+        ),
+        div(
+          class = "component_settings",
+          `data-component` = "header",
+          headerSettings(ns("header"))
+        ),
+        div(
+          class = "component_settings",
+          `data-component` = "row",
+          rowSettings()
+        ),
+        div(
+          class = "component_settings",
+          `data-component` = "column",
+          columnSettings(ns("column"))
+        ),
+        div(
+          class = "component_settings",
+          `data-component` = "text",
+          textSettings(ns("text"))
+        ),
+        div(
+          class = "component_settings",
+          `data-component` = "dropdown",
+          dropdownSettings(ns("dropdown"))
+        ),
+        div(
+          class = "component_settings",
+          `data-component` = "input",
+          inputSettings(ns("input"))
+        ),
+        div(
+          class = "component_settings",
+          `data-component` = "file",
+          fileSettings(ns("file"))
+        ),
+        div(
+          class = "component_settings",
+          `data-component` = "slider",
+          sliderSettings(ns("slider"))
+        ),
+        div(
+          class = "component_settings",
+          `data-component` = "date",
+          dateSettings(ns("date"))
+        ),
+        div(
+          class = "component_settings",
+          `data-component` = "checkbox",
+          checkboxSettings(ns("checkbox"))
+        ),
+        div(
+          class = "component_settings",
+          `data-component` = "radio",
+          radioSettings(ns("radio"))
+        ),
+        div(
+          class = "component_settings",
+          `data-component` = "button",
+          buttonSettings(ns("button"))
+        ),
+        div(
+          class = "component_settings",
+          `data-component` = "output",
+          outputSettings(ns("output"))
+        ),
+        div(
+          class = "component_comments",
+          textAreaInput(
+            ns("comments"),
+            label = "Add Code Comment",
+            placeholder = "Comment will appear in R script",
+            rows = 2
+          )
         )
       )
     ),
