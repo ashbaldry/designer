@@ -35,3 +35,17 @@ testthat::test_that("JSON -> R: Vector appears on single line", {
   )
   testthat::expect_true(grepl("x = c(1, 2),\n", ui_script, fixed = TRUE))
 })
+
+testthat::test_that("JSON -> R: Comment appears first", {
+  ui_script <- jsonToRScript(
+    '{"r_function": "fluidPage", "r_arguments": "x = c(1, 2), y = c(3, 4)", "r_comments": "Test"}'
+  )
+  testthat::expect_true(grepl("^# Test", ui_script))
+})
+
+testthat::test_that("JSON -> R: Multi-line comment works", {
+  ui_script <- jsonToRScript(
+    '{"r_function": "fluidPage", "r_comments": "Test\\nTest"}'
+  )
+  testthat::expect_true(grepl("^# Test\n# Test", ui_script))
+})
