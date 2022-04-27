@@ -156,7 +156,6 @@ textSettings <- function(id) {
       ns("contents"),
       label = "Contents",
       value = "",
-      width = "100%",
       height = "5rem"
     ),
 
@@ -361,7 +360,6 @@ radioSettings <- function(id) {
       ns("choices"),
       label = "Choices (One Per Line)",
       value = "Choice 1\nChoice 2",
-      width = "100%",
       height = "5rem"
     ),
     checkboxInput(
@@ -475,7 +473,6 @@ outputSettings <- function(id) {
         ns("contents"),
         label = "Contents",
         value = "",
-        width = "100%",
         height = "5rem"
       )
     ),
