@@ -48,7 +48,7 @@ createCanvasPage = function(page) {
                     <div class="container-fluid navbar-page-tabs">
                       <div class="tab-content" data-tabsetid="${page_id}"
                            data-shinyfunction="${page}"
-                           data-shinyattributes="title = &quot;Shiny Application&quot;"></div>
+                           data-shinyattributes="title = &quot;Shiny Application&quot;, theme = bslib::bs_theme(4)"></div>
                     </div>`;
   }
 
@@ -60,7 +60,7 @@ createCanvasPage = function(page) {
   }
 
   return `<div id="canvas-page" class="designer-page-template ${page_class}"
-               data-shinyfunction="${page}">${page_contents}</div>`;
+               data-shinyfunction="${page}" data-shinyattributes="theme = bslib::bs_theme(4)">${page_contents}</div>`;
 };
 
 toggleComponentLabels = function() {
