@@ -50,7 +50,7 @@ BUTTON_TYPES <- c(
 #'
 #' @return A \code{shiny.tag.list} of settings specific to the selected component
 #'
-#' @rdname component_settings
+#' @noRd
 columnSettings <- function(id) {
   ns <- NS(id)
 
@@ -79,7 +79,6 @@ columnSettings <- function(id) {
   )
 }
 
-#' @rdname component_settings
 rowSettings <- function() {
   tagList(
     h6("Notes:"),
@@ -93,7 +92,6 @@ rowSettings <- function() {
   )
 }
 
-#' @rdname component_settings
 tabSettings <- function(id) {
   ns <- NS(id)
 
@@ -122,7 +120,6 @@ tabSettings <- function(id) {
   )
 }
 
-#' @rdname component_settings
 headerSettings <- function(id) {
   ns <- NS(id)
 
@@ -141,7 +138,6 @@ headerSettings <- function(id) {
   )
 }
 
-#' @rdname component_settings
 textSettings <- function(id) {
   ns <- NS(id)
 
@@ -168,7 +164,6 @@ textSettings <- function(id) {
   )
 }
 
-#' @rdname component_settings
 inputSettings <- function(id) {
   ns <- NS(id)
 
@@ -204,7 +199,6 @@ inputSettings <- function(id) {
   )
 }
 
-#' @rdname component_settings
 fileSettings <- function(id) {
   ns <- NS(id)
 
@@ -235,7 +229,6 @@ fileSettings <- function(id) {
   )
 }
 
-#' @rdname component_settings
 sliderSettings <- function(id) {
   ns <- NS(id)
 
@@ -276,7 +269,6 @@ sliderSettings <- function(id) {
   )
 }
 
-#' @rdname component_settings
 dateSettings <- function(id) {
   ns <- NS(id)
 
@@ -311,7 +303,6 @@ dateSettings <- function(id) {
   )
 }
 
-#' @rdname component_settings
 checkboxSettings <- function(id) {
   ns <- NS(id)
 
@@ -340,7 +331,6 @@ checkboxSettings <- function(id) {
   )
 }
 
-#' @rdname component_settings
 radioSettings <- function(id) {
   ns <- NS(id)
 
@@ -383,7 +373,6 @@ radioSettings <- function(id) {
   )
 }
 
-#' @rdname component_settings
 dropdownSettings <- function(id) {
   ns <- NS(id)
 
@@ -414,7 +403,6 @@ dropdownSettings <- function(id) {
   )
 }
 
-#' @rdname component_settings
 buttonSettings <- function(id) {
   ns <- NS(id)
 
@@ -444,7 +432,6 @@ buttonSettings <- function(id) {
   )
 }
 
-#' @rdname component_settings
 outputSettings <- function(id) {
   ns <- NS(id)
 

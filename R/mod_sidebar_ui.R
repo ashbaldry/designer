@@ -26,7 +26,7 @@ COMPONENTS <- c(
 #' @return
 #' UI and server code to display options to create
 #'
-#' @rdname sidebar_module
+#' @noRd
 SidebarModUI <- function(id) {
   ns <- NS(id)
 

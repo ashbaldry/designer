@@ -7,6 +7,8 @@
 #' @param json A string containing JSON code of the "App UI" page
 #'
 #' @return A string that can be written to a \code{ui.R} file
+#'
+#' @noRd
 jsonToRScript <- function(json) {
   if (is.null(json)) return("")
 
@@ -31,6 +33,8 @@ jsonToRScript <- function(json) {
 #' @param indent The number of spaces to indent each subsequent call
 #'
 #' @return A string that can be written to a \code{ui.R} file
+#'
+#' @noRd
 htmlToRScript <- function(html_list, indent = 0) {
   if (is.null(html_list$r_function)) return("")
 

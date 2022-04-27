@@ -7,6 +7,8 @@
 #' @param id ID to give to the modal
 #'
 #' @return HTML for a modal
+#'
+#' @noRd
 warningModal <- function(id) {
   div(
     class = "modal fade",

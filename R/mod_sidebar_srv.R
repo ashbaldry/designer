@@ -1,4 +1,4 @@
-#' @rdname sidebar_module
+#' @noRd
 SidebarModuleServer <- function(id) {
   moduleServer(id, function(input, output, session) {
     observeEvent(input$outputid, {

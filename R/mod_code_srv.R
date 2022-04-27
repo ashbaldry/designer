@@ -1,6 +1,6 @@
 #' @param ui_code Reactive object containing JSON string of the UI in the "App UI" tab
 #'
-#' @rdname code_module
+#' @noRd
 CodeModuleServer <- function(id, ui_code) {
   moduleServer(id, function(input, output, session) {
     ns <- session$ns

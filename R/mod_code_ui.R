@@ -8,7 +8,7 @@
 #' @return
 #' UI and server code to display selected HTML elements
 #'
-#' @rdname code_module
+#' @noRd
 CodeModUI <- function(id) {
   ns <- NS(id)
 
