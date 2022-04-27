@@ -46,11 +46,18 @@ CodeModuleServer <- function(id, ui_code) {
     })
 
     output$code <- renderPrint(cat(r_code()))
+
+    output$download <- downloadHandler(
+      filename = "ui.R",
+      content = function(file) {
+        writeLines(r_code(), file)
+      }
+    )
   })
 }
 
-writeToUI <- function(code) {
-  sink(file = "ui.R", append = FALSE)
+writeToUI <- function(code, file = "ui.R") {
+  sink(file = file, append = FALSE)
   cat(code)
   sink()
 }

@@ -26,6 +26,10 @@ CodeModUI <- function(id) {
           "Save To ui.R",
           icon("save")
         )
+      } else {
+        downloadButton(
+          ns("download")
+        )
       }
     ),
     tagAppendAttributes(
