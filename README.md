@@ -7,34 +7,80 @@
 
 # {designer} <img src="https://raw.githubusercontent.com/ashbaldry/designer/master/man/figures/logo.png" align="right" width="120"/>
 
-The goal of designer is to enable the creation of shiny UIs through the use of drag-and-drop elements into a prototype UI, and then copy the code used to create the same layout.
+`{designer}` is intended to make the initial generation of a UI wireframe of a shiny application as quick and simple as possible. 
+
+The package contains a `shiny` application that enables the user to build the UI of a `shiny` application by drag and dropping several `shiny` components - such as inputs, outputs and buttons - into one of the available pages in the `{shiny}` package. Once finalised, the R code used to generate the UI can be copied or downloaded to a `ui.R` file, and then the rest of the application like the server logic and styling can be built by the developer.
+
+The drag-and-drop nature of the application means that it is easy for both R and non-R users to collaborate in designing the UI of their shiny application. Comments can be added to any component so that it is simple to remember what should be included for each input/output.
 
 ## Installation
 
-Install the latest version from GitHub using:
-
 ``` r
+# Install the latest version from GitHub:
 devtools::install_github("ashbaldry/designer")
 ```
 
-To try out the app without installing the package, it is available at [shinyapps.io](https://ashbaldry.shinyapps.io/designer).
+The application is also available on-line through [shinyapps.io](https://ashbaldry.shinyapps.io/designer).
 
-## Example
+## Usage
 
 To open the `{designer}` application and create your own UI, run the following code:
 
 ``` r
-library(designer)
-designApp()
+designer::designApp()
 ```
 
 ![](man/figures/example_app.jpeg)
 
-### Notes
+Once opened, create the application as required until you are happy with the layout of the application, then copy the code to the relevant R file
 
-This package is **not** intended to fully create the application UI. For example you cannot include the options for a `selectInput`, and it only includes standard {shiny} components. However it is a useful tool when coming with with a mock layout of the application UI.
+![](man/figures/example_app_filled.jpeg)
 
-### What Next
+``` r
+# ui.R
 
-- Enable it to work with `shinydashboardPage`
-- Create module UI from the page
+basicPage(
+  h1(
+    "My shiny application"
+  ),
+  inputPanel(
+    selectInput(
+      inputId = "dropdown_2tbkzytoo4",
+      label = "Label",
+      choices = "..."
+    ),
+    selectInput(
+      inputId = "dropdown_98svapo3yc",
+      label = "Label",
+      choices = "..."
+    ),
+    selectInput(
+      inputId = "dropdown_r4c3gddqt5",
+      label = "Label",
+      choices = "..."
+    )
+  ),
+  fluidRow(
+    column(
+      width = 6,
+      # Bar plot
+      plotOutput(
+        outputId = "plot_ck2tg9gny9",
+        height = "300px"
+      )
+    ),
+    column(
+      width = 6,
+      # Line chart
+      plotOutput(
+        outputId = "plot_wxx1w3h0u7",
+        height = "300px"
+      )
+    )
+  )
+)
+```
+
+## Notes
+
+Certain inputs will only include default values and not fully customisable; this is intentional as they are likely to change throughout development and therefore not something that is required at this time of the development process.
