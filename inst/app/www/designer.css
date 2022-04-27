@@ -38,6 +38,10 @@ h5.modal-title {
   overflow-y: auto;
 }
 
+.tab-alert {
+  margin-top: 1rem;
+}
+
 .component_settings{
   display: none;
 }
@@ -51,7 +55,7 @@ h5.modal-title {
 }
 
 .component-container > * {
-    margin-top: 0;
+  margin-top: 0;
 }
 
 .component-container .output-element {

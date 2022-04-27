@@ -116,6 +116,10 @@ tabSettings <- function(id) {
       ns("delete"),
       label = "Delete Tab",
       class = "btn-error"
+    ),
+    div(
+      id = ns("alert"),
+      class = "tab-alert"
     )
   )
 }
