@@ -2,7 +2,7 @@
 % Please edit documentation in R/run_app.R
 \name{designApp}
 \alias{designApp}
-\title{Run the Shiny Application}
+\title{Run Shiny Application}
 \usage{
 designApp(
   onStart = NULL,
@@ -33,9 +33,11 @@ request to determine whether the \code{ui} should be used to handle the
 request. Note that the entire request path must match the regular
 expression in order for the match to be considered successful.}
 
-\item{...}{arguments to pass to golem_opts.
-See `?golem::get_golem_options` for more details.}
+\item{...}{arguments to pass to \code{golem_opts}. See \code{\link[golem]{get_golem_options}} for more details.}
+}
+\value{
+This function does not return a value; interrupt R to stop the application (usually by pressing Ctrl+C or Esc).
 }
 \description{
-Run the Shiny Application
+Runs the designer Shiny application.
 }

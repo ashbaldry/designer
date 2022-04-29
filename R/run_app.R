@@ -1,8 +1,16 @@
 #' Run the Shiny Application
 #'
-#' @param ... arguments to pass to golem_opts.
-#' See `?golem::get_golem_options` for more details.
+#' @description
+#' Runs the designer Shiny application.
+#'
+#' @param ... arguments to pass to \code{golem_opts}. See \code{\link[golem]{get_golem_options}} for more details.
 #' @inheritParams shiny::shinyApp
+#'
+#' @return
+#' This function does not return a value; interrupt R to stop the application (usually by pressing Ctrl+C or Esc).
+#'
+#' @import shiny
+#' @importFrom stats setNames
 #'
 #' @export
 designApp <- function(onStart = NULL, options = list(), enableBookmarking = NULL, uiPattern = "/", ...) {
