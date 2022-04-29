@@ -9,6 +9,9 @@
 #' @return
 #' This function does not return a value; interrupt R to stop the application (usually by pressing Ctrl+C or Esc).
 #'
+#' @examplesIf interactive()
+#' designApp()
+#'
 #' @import shiny
 #' @importFrom stats setNames
 #'

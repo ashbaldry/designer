@@ -2,7 +2,7 @@
 % Please edit documentation in R/run_app.R
 \name{designApp}
 \alias{designApp}
-\title{Run Shiny Application}
+\title{Run the Shiny Application}
 \usage{
 designApp(
   onStart = NULL,
@@ -40,4 +40,9 @@ This function does not return a value; interrupt R to stop the application (usua
 }
 \description{
 Runs the designer Shiny application.
+}
+\examples{
+\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+designApp()
+\dontshow{\}) # examplesIf}
 }

@@ -24,4 +24,18 @@ testthat::test_that("designer app works", {
   app$click(selector = '#settings-page_type .form-check [value="fluidPage"]')
   ui <- app$get_value(input = "canvas-canvas")
   testthat::expect_true(grepl("fluidPage(", jsonToRScript(ui), fixed = TRUE))
+
+  # Choose all different outputs that create IDs
+  app$click(selector = ".component-item[name='output']")
+  original_outputs <- app$get_values()$output
+  app$set_inputs("sidebar-output-type" = "plot")
+  app$set_inputs("sidebar-output-type" = "table")
+  app$set_inputs("sidebar-output-type" = "image")
+
+  new_outputs <- app$get_values()$output
+  testthat::expect_length(new_outputs, 3 + length(original_outputs))
+
+  # Check that UI gets added to code module
+  app$click(selector = "#settings-code_button")
+  testthat::expect_true(grepl("fluidPage", app$get_value(output = "settings-code-code")))
 })

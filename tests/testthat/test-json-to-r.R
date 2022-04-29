@@ -42,13 +42,27 @@ testthat::test_that("JSON -> R: Arguments appear on own line", {
   ui_script <- jsonToRScript(
     '{"tagName":"div",
       "r_function":"sliderInput",
-      "r_arguments":"inputId = \\"slider_twecttskbi\\", label = \\"Label\\", min = 0, max = 10, value = 5","text":"",
+      "r_arguments":"inputId = \\"slider_twecttskbi\\", label = \\"Label\\", min = 0, max = 10, value = 5",
+      "text":"",
       "htmlclass":"designer-element form-group shiny-input-container",
       "children":[]
     }'
   )
   testthat::expect_type(ui_script, "character")
   testthat::expect_true(grepl("inputId = \"slider_twecttskbi\"", ui_script, fixed = TRUE))
+})
+
+testthat::test_that("JSON -> R: Text is included correctly", {
+  ui_script <- jsonToRScript(
+    '{"tagName":"p",
+      "r_function":"p",
+      "text":"Sample text",
+      "htmlclass":"",
+      "children":[]
+    }'
+  )
+  testthat::expect_type(ui_script, "character")
+  testthat::expect_identical(ui_script, "p(\n  \"Sample text\"\n)")
 })
 
 testthat::test_that("JSON -> R: Vector appears on single line", {
