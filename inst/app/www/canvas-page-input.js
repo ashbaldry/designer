@@ -4,12 +4,7 @@ $.extend(canvasPageBinding, {
     return $(scope).find(".page-canvas");
   },
   getValue: function(el) {
-    var id = $(el).attr("id");
-    if (el.children[0].dataset.shinyfunction === "navbarPage") {
-      return htmlToJSON(document.getElementById(id).querySelector(".tab-content"));
-    } else {
-      return htmlToJSON(document.getElementById(id).children[0]);
-    }
+    return htmlToJSON(document.getElementById("canvas-page"));
   },
   setValue: function(el, value) {
     $(el).text(value);
@@ -19,7 +14,7 @@ $.extend(canvasPageBinding, {
       "Callback triggered when observer runs";
       callback();
     });
-    observer.observe(el, {subtree: true, childList: true});
+    observer.observe(el, {subtree: true, childList: true, attributes: true});
   },
   unsubscribe: function(el) {
     $(el).off(".page-canvas");

@@ -27,6 +27,7 @@ CanvasModUI <- function(id) {
         )
       ),
       div(
+        id = ns("title"),
         class = "page-canvas-title",
         "Shiny Application"
       )

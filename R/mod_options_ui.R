@@ -4,6 +4,13 @@ OptionsModUI <- function(id) {
   tagList(
     tags$form(
       class = "px-2",
+      textInput(
+        ns("app_name"),
+        label = "Application Title",
+        value = "Shiny Application",
+        width = "100%"
+      ),
+      br(),
       checkboxInput(
         ns("remove_label"),
         label = "Show Component Labels",

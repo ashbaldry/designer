@@ -34,33 +34,42 @@ updateCanvasCheck = function() {
 };
 
 createCanvasPage = function(page) {
-  let page_contents = "";
+  const title = $("#canvas-title").html();
+
   if (page === "navbarPage") {
     var page_id = Math.round(Math.random() * 8999 + 1000);
-    page_contents =`<nav class="navbar navbar-default navbar-static-top" role="navigation">
-                      <div class="container-fluid">
-                        <div class="navbar-header">
-                          <span class="navbar-brand">Shiny Application</span>
-                        </div>
-                        <ul class="nav navbar-nav" data-tabsetid="${page_id}"></ul>
-                      </div>
-                    </nav>
-                    <div class="container-fluid navbar-page-tabs">
-                      <div class="tab-content" data-tabsetid="${page_id}"
-                           data-shinyfunction="${page}"
-                           data-shinyattributes="title = &quot;Shiny Application&quot;, theme = bslib::bs_theme(4)"></div>
-                    </div>`;
-  }
+    return `<div class="designer-page-template">
+              <nav class="navbar navbar-default navbar-static-top" role="navigation">
+                <div class="container-fluid">
+                  <div class="navbar-header">
+                    <span class="navbar-brand">${title}</span>
+                  </div>
+                  <ul class="nav navbar-nav" data-tabsetid="${page_id}"></ul>
+                </div>
+              </nav>
+              <div class="container-fluid navbar-page-tabs">
+                <div id="canvas-page" class="tab-content"
+                     data-tabsetid="${page_id}" data-shinyfunction="${page}"
+                     data-shinyattributes="title = &quot;${title}&quot;, theme = bslib::bs_theme(4)"></div>
+              </div>
+            </div>`;
+  } else {
+    let page_class = "";
+    if (page === "fixedPage") {
+      page_class = "container";
+    } else if (page !== "fillPage") {
+      page_class = "container-fluid";
+    }
 
-  let page_class = "";
-  if (page === "fixedPage") {
-    page_class = "container";
-  } else if (!["fillPage", "navbarPage"].includes(page)) {
-    page_class = "container-fluid";
-  }
+    let page_attrs = "";
+    if (page !== "basicPage") {
+      page_attrs = `title = &quot;${title}&quot;, theme = bslib::bs_theme(4)`;
+    }
 
-  return `<div id="canvas-page" class="designer-page-template ${page_class}"
-               data-shinyfunction="${page}" data-shinyattributes="theme = bslib::bs_theme(4)">${page_contents}</div>`;
+    return `<div id="canvas-page" class="designer-page-template ${page_class}"
+                 data-shinyfunction="${page}"
+                 data-shinyattributes="${page_attrs}"></div>`;
+  }
 };
 
 toggleComponentLabels = function() {
