@@ -44,8 +44,9 @@ componentChoices <- function(ns) {
       "Tab"
     ),
     lapply(names(COMPONENTS), function(component) {
+      first_item <- COMPONENTS[[component]] == COMPONENTS[[1]]
       tags$a(
-        class = "dropdown-item component-item",
+        class = paste("dropdown-item component-item", if (first_item) "active" else ""),
         `data-shinyelement` = COMPONENTS[[component]],
         name = COMPONENTS[[component]],
         component

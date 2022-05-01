@@ -12,6 +12,8 @@ $(document).ready(function() {
 
   $("#settings-component .dropdown-item").on("click", (el) => {
     selected_component = $(el.target).data("shinyelement");
+    $("#settings-component .dropdown-item").removeClass("active");
+    $(el.target).addClass("active");
     $(".component_settings").css("display", "");
     $(".component_settings[data-component= '" + selected_component + "']").css("display", "unset");
     updateDesignerElement(true);

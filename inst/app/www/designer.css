@@ -29,6 +29,11 @@ h5.modal-title {
   overflow-y: auto;
 }
 
+.dropdown-item.active, .dropdown-item:active {
+  font-weight: 500;
+  background-color: #999999;
+}
+
 .settings-row {
   margin-bottom: 15px;
 }
