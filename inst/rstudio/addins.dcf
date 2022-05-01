@@ -1,0 +1,4 @@
+Name: 'Shiny' UI Builder
+Description: Design your 'shiny' UI.
+Binding: designApp
+Interactive: true
