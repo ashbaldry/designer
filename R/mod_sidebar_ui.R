@@ -131,7 +131,7 @@ SidebarModUI <- function(id) {
     ),
     div(
       class = "container bin-container",
-      h6(class = "bin-header", icon("trash"), "Drag Here to Delete Item"),
+      h6(class = "bin-header", icon("trash", "aria-hidden" = "true"), "Drag Here to Delete Item"),
       div(
         class = "sortable-bin",
         id = ns("bin")

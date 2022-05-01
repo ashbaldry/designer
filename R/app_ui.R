@@ -4,7 +4,7 @@
 #'
 #' @noRd
 appUI <- function(request) {
-  tagList(
+  ui <- tagList(
     addGolemExternalResources(),
 
     tags$header(
@@ -14,6 +14,7 @@ appUI <- function(request) {
     fluidPage(
       title = "Shiny UI Designer",
       theme = bslib::bs_theme(version = 4),
+      lang = "en",
       warningModal("warning_modal"),
 
       SettingsModUI("settings"),
@@ -31,6 +32,9 @@ appUI <- function(request) {
       )
     )
   )
+
+  attr(ui, "lang") <- "en"
+  ui
 }
 
 #' Add external Resources to the Application
