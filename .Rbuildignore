@@ -11,3 +11,4 @@ $run_dev.*
 ^app\.R$
 ^rsconnect$
 _\.new\.png$
+R/_disable_autoload\.R
