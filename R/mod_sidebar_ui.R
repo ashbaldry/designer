@@ -65,6 +65,11 @@ SidebarModUI <- function(id) {
         ),
         div(
           class = "component_settings",
+          `data-component` = "input_panel",
+          inputPanelSettings()
+        ),
+        div(
+          class = "component_settings",
           `data-component` = "dropdown",
           dropdownSettings(ns("dropdown"))
         ),
@@ -108,12 +113,17 @@ SidebarModUI <- function(id) {
           `data-component` = "output",
           outputSettings(ns("output"))
         ),
+        br(),
         div(
           class = "component_comments",
           textAreaInput(
             ns("comments"),
-            label = "Add Code Comment",
-            placeholder = "Comment will appear in R script",
+            label = inputLabel(
+              "Add Code Comment",
+              "In this application, this will be available as a tooltip, however this will also be included in the R",
+              "script as a comment for reference."
+            ),
+            placeholder = "Comment included in R script",
             rows = 2
           )
         )

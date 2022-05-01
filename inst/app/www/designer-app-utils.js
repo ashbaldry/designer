@@ -63,12 +63,11 @@ createCanvasPage = function(page) {
 
     let page_attrs = "";
     if (page !== "basicPage") {
-      page_attrs = `title = &quot;${title}&quot;, theme = bslib::bs_theme(4)`;
+      page_attrs = `data-shinyattributes="title = &quot;${title}&quot;, theme = bslib::bs_theme(4)"`;
     }
 
     return `<div id="canvas-page" class="designer-page-template ${page_class}"
-                 data-shinyfunction="${page}"
-                 data-shinyattributes="${page_attrs}"></div>`;
+                 data-shinyfunction="${page}" ${page_attrs}></div>`;
   }
 };
 

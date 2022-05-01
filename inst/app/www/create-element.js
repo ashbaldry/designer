@@ -171,6 +171,8 @@ function validateCssUnit (x, fallback) {
   const regex = /^(auto|inherit|fit-content|calc\(.*\)|((\.\d+)|(\d+(\.\d+)?))(%|in|cm|mm|ch|em|ex|rem|pt|pc|px|vh|vw|vmin|vmax))$/;
   if (regex.test(x)) {
     return x;
+  } else if (/^\d+$/.test(x)) {
+    return x + "px";
   } else {
     return fallback;
   }

@@ -37,12 +37,16 @@ h5.modal-title {
   max-height: calc(100vh - 330px);
   overflow-y: auto;
   margin-top: 1rem;
+  background-color: #EFEFEF;
+  padding: 5px;
+  border-radius: 5px;
+  border: #CDCDCD 1px solid;
 }
 
 .row ::-webkit-scrollbar {
   width: 10px;
   height: 10px;
-  background-color:#CFCFCF;
+  background-color: #CFCFCF;
   border-radius: 10px;
   border: 1px solid #BBB;
 }
@@ -59,6 +63,24 @@ h5.modal-title {
 
 .tab-alert {
   margin-top: 1rem;
+}
+
+.help-icon {
+  background-color: #CCCCCC;
+  margin-left: 5px;
+  padding: 1px 8px;
+  border-radius: 50%;
+  color: #000000;
+  font-weight: 500;
+}
+
+.help-icon:hover {
+  color: #000000;
+  text-decoration: none;
+}
+
+.tooltip .tooltip-inner {
+  max-width: 300px;
 }
 
 .component_settings{

@@ -1,4 +1,9 @@
 $(document).ready(function() {
+  $(".help-icon").tooltip({
+    boundary: "window",
+    placement: "right"
+  });
+
   $("#settings-page_type").on("change", updateCanvasCheck);
   updatePage();
 

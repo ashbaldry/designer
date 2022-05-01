@@ -41,6 +41,49 @@ BUTTON_TYPES <- c(
   "default", "primary", "secondary", "success", "danger", "warning", "info", "light", "dark"
 )
 
+#' Input Label
+#'
+#' @description
+#' Standard label that is used for inputs, but with the added inclusion of a help tooltip icon
+#'
+#' @param label String to see in the UI
+#' @param ... HTML to include in the tooltip
+#'
+#' @return HTML of the label
+#'
+#' @noRd
+inputLabel <- function(label, ...) {
+  tagList(
+    label,
+    a(
+      class = "help-icon",
+      href = "#",
+      "data-toggle" = "tooltip",
+      "data-html" = "true",
+      "?",
+      title = paste(...)
+    )
+  )
+}
+
+LABELS <- list(
+  WIDTH = inputLabel(
+    "Width",
+    "<p>Either use a specific width (e.g. 400px) or a percentage (e.g. 100%).</p>",
+    "<p>If just a number is used, then it will be treated as pixels (px)</p>"
+  ),
+  HEIGHT = inputLabel(
+    "Height",
+    "<p>Either use a specific width (e.g. 400px) or a percentage (e.g. 100%).</p>",
+    "<p>If just a number is used, then it will be treated as pixels (px)</p>"
+  ),
+  INPUT_ID = inputLabel(
+    "Input ID",
+    "<p>ID attribute given to the component, used to get the input value on the server side</p>",
+    "<p>Leave blank for a randomly generated ID</p>"
+  )
+)
+
 #' Bootstrap Component Settings
 #'
 #' @description
@@ -65,7 +108,10 @@ columnSettings <- function(id) {
     ),
     numericInput(
       ns("offset"),
-      "Offset",
+      inputLabel(
+        "Offset",
+        "The gap between the window/previous column and this column"
+      ),
       value = 0,
       min = 0,
       max = 11
@@ -74,7 +120,10 @@ columnSettings <- function(id) {
     tags$br(),
     h6("Notes"),
     tags$ul(
-      tags$li("Columns can only be included in rows")
+      tags$li("Columns can only be included in", tags$b("rows")),
+      tags$li(
+        "Rows are split into 12 column units, if the sum of columns' width exceeds 12, they get wrapped onto a new line"
+      )
     )
   )
 }
@@ -104,7 +153,10 @@ tabSettings <- function(id) {
     ),
     textInput(
       ns("value"),
-      label = "Value",
+      label = inputLabel(
+        "Value",
+        "Used to reference switching the tab, or changing visibility of the tab on the server"
+      ),
       placeholder = "Keep blank to copy name"
     ),
     actionButton(
@@ -131,12 +183,15 @@ headerSettings <- function(id) {
     h5("Header Settings"),
     selectInput(
       ns("tag"),
-      "HTML Tag",
+      inputLabel(
+        "HTML Tag",
+        "The size of the header will reduce as the number increases. Use sequentially for best user experience."
+      ),
       c(paste0("h", 1:6), "div")
     ),
     textInput(
       ns("value"),
-      "Label",
+      "Contents",
       "Header"
     )
   )
@@ -154,15 +209,21 @@ textSettings <- function(id) {
     ),
     textAreaInput(
       ns("contents"),
-      label = "Contents",
+      label = inputLabel(
+        "Contents",
+        "Add individual list items on separate lines"
+      ),
       value = "",
       height = "5rem"
-    ),
+    )
+  )
+}
 
-    tags$br(),
-    h6("Notes"),
+inputPanelSettings <- function() {
+  tagList(
+    h6("Notes:"),
     tags$ul(
-      tags$li("Add individual list items on separate lines")
+      tags$li("By default inputs will be aligned vertically, input panels enable the inputs to be aligned horizontally")
     )
   )
 }
@@ -184,12 +245,13 @@ inputSettings <- function(id) {
     ),
     textInput(
       ns("id"),
-      label = "Input ID",
-      value = ""
+      label = LABELS$INPUT_ID,
+      value = "",
+      placeholder = "Optional"
     ),
     textInput(
       ns("width"),
-      label = "Width",
+      label = LABELS$WIDTH,
       value = "",
       placeholder = "Optional"
     ),
@@ -214,12 +276,12 @@ fileSettings <- function(id) {
     ),
     textInput(
       ns("id"),
-      label = "Input ID",
+      label = LABELS$INPUT_ID,
       value = ""
     ),
     textInput(
       ns("width"),
-      label = "Width",
+      label = LABELS$WIDTH,
       value = "",
       placeholder = "Optional"
     ),
@@ -244,7 +306,7 @@ sliderSettings <- function(id) {
     ),
     textInput(
       ns("id"),
-      label = "Input ID",
+      label = LABELS$INPUT_ID,
       value = ""
     ),
     selectInput(
@@ -259,7 +321,7 @@ sliderSettings <- function(id) {
     ),
     textInput(
       ns("width"),
-      label = "Width",
+      label = LABELS$WIDTH,
       value = "",
       placeholder = "Optional"
     ),
@@ -284,7 +346,7 @@ dateSettings <- function(id) {
     ),
     textInput(
       ns("id"),
-      label = "Input ID",
+      label = LABELS$INPUT_ID,
       value = ""
     ),
     checkboxInput(
@@ -293,7 +355,7 @@ dateSettings <- function(id) {
     ),
     textInput(
       ns("width"),
-      label = "Width",
+      label = LABELS$WIDTH,
       value = "",
       placeholder = "Optional"
     ),
@@ -318,7 +380,7 @@ checkboxSettings <- function(id) {
     ),
     textInput(
       ns("id"),
-      label = "Input ID",
+      label = LABELS$INPUT_ID,
       value = ""
     ),
     checkboxInput(
@@ -327,7 +389,7 @@ checkboxSettings <- function(id) {
     ),
     textInput(
       ns("width"),
-      label = "Width",
+      label = LABELS$WIDTH,
       value = "",
       placeholder = "Optional"
     )
@@ -353,7 +415,7 @@ radioSettings <- function(id) {
     ),
     textInput(
       ns("id"),
-      label = "Input ID",
+      label = LABELS$INPUT_ID,
       value = ""
     ),
     textAreaInput(
@@ -368,7 +430,7 @@ radioSettings <- function(id) {
     ),
     textInput(
       ns("width"),
-      label = "Width",
+      label = LABELS$WIDTH,
       value = "",
       placeholder = "Optional"
     )
@@ -387,12 +449,12 @@ dropdownSettings <- function(id) {
     ),
     textInput(
       ns("id"),
-      label = "Input ID",
+      label = LABELS$INPUT_ID,
       value = ""
     ),
     textInput(
       ns("width"),
-      label = "Width",
+      label = LABELS$WIDTH,
       value = "",
       placeholder = "Optional"
     ),
@@ -417,17 +479,17 @@ buttonSettings <- function(id) {
     ),
     textInput(
       ns("label"),
-      label = "Label",
+      label = "Contents",
       value = "Button"
     ),
     textInput(
       ns("id"),
-      label = "Input ID",
+      label = LABELS$INPUT_ID,
       value = ""
     ),
     textInput(
       ns("width"),
-      label = "Width",
+      label = LABELS$WIDTH,
       value = "",
       placeholder = "Optional"
     )
@@ -481,12 +543,12 @@ outputSettings <- function(id) {
       ns = ns,
       textInput(
         ns("height"),
-        "Plot Height",
+        LABELS$HEIGHT,
         "400px"
       ),
       textInput(
         ns("width"),
-        "Plot Width",
+        LABELS$WIDTH,
         "100%"
       )
     ),
