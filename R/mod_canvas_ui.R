@@ -10,6 +10,15 @@ CanvasModUI <- function(id) {
 
   div(
     class = "page-canvas-shell",
+    span(
+      class = "page-preview-button",
+      tags$button(
+        id = ns("close_preview"),
+        class = "btn btn-info",
+        icon("times", "aria-hidden" = "true"),
+        "Close Preview"
+      )
+    ),
     div(
       class = "page-canvas-header",
       tags$svg(

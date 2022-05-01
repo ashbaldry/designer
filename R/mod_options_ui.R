@@ -25,6 +25,12 @@ OptionsModUI <- function(id) {
         ns("remove_border"),
         label = "Show Borders",
         value = TRUE
+      ),
+      tags$button(
+        id = ns("preview"),
+        type = "button",
+        class = "btn btn-secondary btn-block",
+        "Preview Full Page"
       )
     )
   )

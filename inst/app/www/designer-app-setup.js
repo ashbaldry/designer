@@ -15,6 +15,8 @@ $(document).ready(function() {
   $("#remove_label").change(toggleComponentLabels);
   $("#remove_colour").change(toggleBackgroundColours);
   $("#remove_border").change(toggleBorders);
+  $("#preview").on("click", () => { $(".page-canvas-shell").addClass("preview"); });
+  $("#canvas-close_preview").on("click", () => { $(".page-canvas-shell").removeClass("preview"); });
 
   $("#app_name").on("change", el => {
     const title = $(el.target).val();

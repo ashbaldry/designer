@@ -145,6 +145,17 @@ h5.modal-title {
   border-radius: 1px;
 }
 
+.page-canvas-shell.preview {
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  margin-top: 0;
+  background-color: #FFFFFF;
+  z-index: 1000;
+}
+
 .page-canvas-header {
   background-color: #666666;
 }
@@ -154,6 +165,21 @@ h5.modal-title {
   right: calc(50% - 64px);
   color: white;
   top: 1rem;
+}
+
+.page-canvas-shell.preview .page-canvas-title {
+  top: 0;
+}
+
+.page-preview-button {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.page-canvas-shell.preview .page-preview-button {
+  display: inline;
 }
 
 .page-canvas {
