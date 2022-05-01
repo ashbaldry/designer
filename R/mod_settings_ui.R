@@ -11,7 +11,7 @@ SettingsModUI <- function(id) {
   div(
     class = "row settings-row row-cols-4",
     div(
-      class = "col",
+      class = "col px-2",
       div(
         tags$button(
           id = ns("page_type_button"),
@@ -26,7 +26,7 @@ SettingsModUI <- function(id) {
     ),
 
     div(
-      class = "col",
+      class = "col px-2",
       div(
         tags$button(
           id = ns("component_button"),
@@ -41,7 +41,7 @@ SettingsModUI <- function(id) {
     ),
 
     div(
-      class = "col",
+      class = "col px-2",
       div(
         tags$button(
           id = ns("code_button"),
@@ -61,7 +61,7 @@ SettingsModUI <- function(id) {
     ),
 
     div(
-      class = "col",
+      class = "col px-2",
       div(
         tags$button(
           id = ns("options_button"),

@@ -12,7 +12,7 @@ h5.modal-title {
 }
 
 .dropdown-menu-wide {
-  width: calc(100% - 30px);
+  width: calc(100% - 1rem);
   min-width: 200px;
 }
 
@@ -71,16 +71,16 @@ h5.modal-title {
 }
 
 .help-icon {
-  background-color: #CCCCCC;
+  background-color: #999999;
   margin-left: 5px;
   padding: 1px 8px;
   border-radius: 50%;
-  color: #000000;
+  color: #FFFFFF;
   font-weight: 500;
 }
 
 .help-icon:hover {
-  color: #000000;
+  color: #FFFFFF;
   text-decoration: none;
 }
 

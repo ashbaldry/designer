@@ -22,11 +22,12 @@ appUI <- function(request) {
       fluidRow(
         column(
           width = 3,
-          class = "d-flex flex-column justify-content-between",
+          class = "d-flex flex-column justify-content-between px-2",
           SidebarModUI("sidebar")
         ),
         column(
           width = 9,
+          class = "px-2",
           CanvasModUI("canvas")
         )
       )
