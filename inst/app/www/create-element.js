@@ -233,7 +233,7 @@ const designerElements = {
 
     var contents = "";
     if (tag === "p") {
-      contents = $("#sidebar-text-contents").val().replaceAll("\n", " ");
+      contents = $("#sidebar-text-contents").val().replace(/\n/g, " ");
     } else {
       var list_items = $("#sidebar-text-contents").val().split("\n");
       contents = list_items.map(x => '<li data-shinyfunction="tags$li">' + x + "</li>").join("");
@@ -502,7 +502,7 @@ const designerElements = {
     var inline_class = inline ? " shiny-input-container-inline" : "";
     var inline_str = inline ? ", inline = TRUE" : "";
 
-    var choices_str = `, choices = c(&quot;${choices.replaceAll("\n", '&quot;, &quot;')}&quot;)`
+    var choices_str = `, choices = c(&quot;${choices.replace(/\n/g, '&quot;, &quot;')}&quot;)`
     var input_str = `inputId = &quot;${id}&quot;, label = &quot;${label}&quot;${choices_str}${inline_str}${width_str}`;
     var label_tag = `<label class="control-label">${label}</label>`;
 
