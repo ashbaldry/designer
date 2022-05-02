@@ -560,16 +560,3 @@ outputSettings <- function(id) {
     )
   )
 }
-
-screenshotSettings <- function(id) {
-  ns <- NS(id)
-  tagList(
-    shinyscreenshot::screenshotButton(
-      id = "canvas-page",
-      label = "PNG",
-      timer = 1,
-      scale = 1.5,
-      filename = "ui"
-    )
-  )
-}

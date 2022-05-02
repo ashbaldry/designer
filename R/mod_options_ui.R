@@ -31,6 +31,9 @@ OptionsModUI <- function(id) {
         type = "button",
         class = "btn btn-secondary btn-block",
         "Preview Full Page"
+      ),
+      div(
+        screenshotSettings(ns("screenshots"), "canvas-page")
       )
     )
   )

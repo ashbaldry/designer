@@ -130,15 +130,6 @@ SidebarModUI <- function(id) {
       )
     ),
     div(
-      class = "screenshots screenshot-container",
-      h6(class = "screenshots-header", icon("save", "aria-hidden" =  "true"), "Screenshot options"),
-      div(
-        class = "screenshot-options",
-        `data-component` = "screenshots",
-        screenshotSettings(ns("screenshots"))
-      )
-    ),
-    div(
       class = "container bin-container",
       h6(class = "bin-header", icon("trash", "aria-hidden" = "true"), "Drag Here to Delete Item"),
       div(

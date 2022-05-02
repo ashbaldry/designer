@@ -178,7 +178,18 @@ h5.modal-title {
   top: 0;
 }
 
-.page-canvas-shell.preview .page-preview-button {
+.page-screenshot-button {
+  display: none;
+  position: absolute;
+  right: 150px;
+  top: 0;
+}
+
+.page-canvas-shell.preview .page-preview-button{
+  display: inline;
+}
+
+.page-canvas-shell.preview .page-screenshot-button{
   display: inline;
 }
 

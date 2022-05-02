@@ -11,6 +11,11 @@ CanvasModUI <- function(id) {
   div(
     class = "page-canvas-shell",
     span(
+      class = "page-screenshot-button",
+      previewScreenshotSettings(ns("preview_screenshot"),
+                                "page-canvas")
+    ),
+    span(
       class = "page-preview-button",
       tags$button(
         id = ns("close_preview"),
