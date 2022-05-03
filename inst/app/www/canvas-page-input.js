@@ -40,7 +40,7 @@ htmlToJSON = function(el, inner = false) {
     r_function: el.dataset.shinyfunction,
     r_arguments: el.dataset.shinyattributes,
     r_comments: el.dataset.shinycomments,
-    text: $(el).ignore().text().replaceAll(/\s*\n\s*/g, ""),
+    text: $(el).ignore().text().replace(/\s*\n\s*/g, ""),
     htmlclass: el.className,
     children: children
   };
