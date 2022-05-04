@@ -20,10 +20,13 @@ $(document).ready(function() {
 
   $("#app_name").on("change", el => {
     const title = $(el.target).val();
-    var shiny_atts = $("#canvas-page").data("shinyattributes").replace(/"[^"]+"/, `"${title}"`);
     $("#canvas-title").html(title);
     $(".navbar-brand").html(title);
-    $("#canvas-page").attr("data-shinyattributes", shiny_atts);
+
+    if ($("#canvas-page").data("shinyattributes")) {
+      var shiny_atts = $("#canvas-page").data("shinyattributes").replace(/"[^"]+"/, `"${title}"`);
+      $("#canvas-page").attr("data-shinyattributes", shiny_atts);
+    }
   });
 
   Sortable.create(document.getElementById("sidebar-bin"), {
