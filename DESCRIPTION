@@ -1,14 +1,13 @@
 Package: designer
-Title: 'Shiny' application UI drag-and-drop helper
+Title: 'Shiny' UI Prototype Builder
 Version: 0.1.0
 Authors@R: person('Ashley', 'Baldry', email = 'arbaldry91@gmail.com', role = c('cre', 'aut'))
-Description: A 'shiny' application that enables the user to create a mock UI, 
-    being able to drag and drop elements before being able to save the code in an R script.
+Description: A 'shiny' application that enables the user to create a prototype UI, 
+    being able to drag and drop UI components before being able to save or download the equivalent R code.
 License: MIT + file LICENSE
 Imports: 
     config (>= 0.3.1),
     golem (>= 0.3.1),
-    htmltools,
     shiny (>= 1.7.1),
     bslib,
     jsonlite,
@@ -16,8 +15,8 @@ Imports:
     shinyscreenshot
 Encoding: UTF-8
 RoxygenNote: 7.1.2
-URL: https://www.github.com/ashbaldry/designer
-BugReports: https://www.github.com/ashbaldry/designer/issues
+URL: https://github.com/ashbaldry/designer
+BugReports: https://github.com/ashbaldry/designer/issues
 Suggests: 
     covr,
     testthat (>= 3.0.0),
