@@ -11,6 +11,14 @@ header > h1 {
   margin: 0;
 }
 
+.component-form h2 {
+  font-size: 1.1rem;
+}
+
+.component-form h3, .bin-container h3 {
+  font-size: 1.05rem;
+}
+
 h5.modal-title {
   margin-top: 0;
 }
@@ -92,11 +100,11 @@ h5.modal-title {
   max-width: 300px;
 }
 
-.component_settings{
+.component-settings{
   display: none;
 }
 
-.component_settings :first-child {
+.component-settings :first-child {
   margin-top: 0;
 }
 

@@ -4,18 +4,18 @@ const UPDATEABLE_ELEMENT = [
 ];
 
 $(document).ready(function() {
-  $(".component_settings").on("change", updateDesignerElement);
+  $(".component-settings").on("change", updateDesignerElement);
   $(".component_comments").on("change", updateDesignerElement);
   updateDesignerElement(true);
 
-  $(".component_settings[data-component= '" + selected_component + "']").css("display", "unset");
+  $(".component-settings[data-component= '" + selected_component + "']").css("display", "unset");
 
   $("#settings-component .dropdown-item").on("click", (el) => {
     selected_component = $(el.target).data("shinyelement");
     $("#settings-component .dropdown-item").removeClass("active");
     $(el.target).addClass("active");
-    $(".component_settings").css("display", "");
-    $(".component_settings[data-component= '" + selected_component + "']").css("display", "unset");
+    $(".component-settings").css("display", "");
+    $(".component-settings[data-component= '" + selected_component + "']").css("display", "unset");
     updateDesignerElement(true);
   });
 

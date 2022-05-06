@@ -66,23 +66,62 @@ inputLabel <- function(label, ...) {
   )
 }
 
-LABELS <- list(
-  WIDTH = inputLabel(
-    "Width",
-    "<p>Either use a specific width (e.g. 400px) or a percentage (e.g. 100%).</p>",
-    "<p>If just a number is used, then it will be treated as pixels (px)</p>"
-  ),
-  HEIGHT = inputLabel(
-    "Height",
-    "<p>Either use a specific width (e.g. 400px) or a percentage (e.g. 100%).</p>",
-    "<p>If just a number is used, then it will be treated as pixels (px)</p>"
-  ),
-  INPUT_ID = inputLabel(
-    "Input ID",
-    "<p>ID attribute given to the component, used to get the input value on the server side</p>",
-    "<p>Leave blank for a randomly generated ID</p>"
+idInput <- function(id) {
+  textInput(
+    inputId = id,
+    label = inputLabel(
+      "Input ID",
+      "<p>ID attribute given to the component, used to get the input value on the server side</p>",
+      "<p>Leave blank for a randomly generated ID</p>"
+    ),
+    value = "",
+    placeholder = "Optional"
   )
-)
+}
+
+labelInput <- function(id) {
+  textInput(
+    id,
+    label = "Label",
+    value = "Label"
+  )
+}
+
+widthInput <- function(id, value = "", placeholder = "Optional") {
+  textInput(
+    inputId = id,
+    label = inputLabel(
+      "Width",
+      "<p>Either use a specific width (e.g. 400px) or a percentage (e.g. 100%).</p>",
+      "<p>If just a number is used, then it will be treated as pixels (px)</p>"
+    ),
+    value = value,
+    placeholder = placeholder
+  )
+}
+
+heightInput <- function(id, value = "") {
+  textInput(
+    inputId = id,
+    label = inputLabel(
+      "Height",
+      "<p>Either use a specific width (e.g. 400px) or a percentage (e.g. 100%).</p>",
+      "<p>If just a number is used, then it will be treated as pixels (px)</p>"
+    ),
+    value = value
+  )
+}
+
+#' Component Settings
+#'
+#' @noRd
+componentSettings <- function(id, settings_func, ns = NS(NULL)) {
+  div(
+    class = "component-settings",
+    `data-component` = id,
+    settings_func(ns(id))
+  )
+}
 
 #' Bootstrap Component Settings
 #'
@@ -98,7 +137,7 @@ columnSettings <- function(id) {
   ns <- NS(id)
 
   tagList(
-    h5("Column Settings"),
+    h2("Column Settings"),
     numericInput(
       ns("width"),
       "Width",
@@ -118,7 +157,7 @@ columnSettings <- function(id) {
     ),
 
     tags$br(),
-    h6("Notes"),
+    h3("Notes"),
     tags$ul(
       tags$li("Columns can only be included in", tags$b("rows")),
       tags$li(
@@ -128,9 +167,9 @@ columnSettings <- function(id) {
   )
 }
 
-rowSettings <- function() {
+rowSettings <- function(id) {
   tagList(
-    h6("Notes:"),
+    h3("Notes:"),
     tags$ul(
       tags$li("The only component that can be a direct child of a row are columns"),
       tags$li(
@@ -145,7 +184,7 @@ tabSettings <- function(id) {
   ns <- NS(id)
 
   tagList(
-    h5("Tab Panel Settings"),
+    h2("Tab Panel Settings"),
     textInput(
       ns("name"),
       label = "Name",
@@ -180,7 +219,7 @@ headerSettings <- function(id) {
   ns <- NS(id)
 
   tagList(
-    h5("Header Settings"),
+    h2("Header Settings"),
     selectInput(
       ns("tag"),
       inputLabel(
@@ -201,7 +240,7 @@ textSettings <- function(id) {
   ns <- NS(id)
 
   tagList(
-    h5("Text Settings"),
+    h2("Text Settings"),
     selectInput(
       ns("type"),
       label = "HTML Tag",
@@ -219,9 +258,9 @@ textSettings <- function(id) {
   )
 }
 
-inputPanelSettings <- function() {
+inputPanelSettings <- function(id) {
   tagList(
-    h6("Notes:"),
+    h3("Notes:"),
     tags$ul(
       tags$li("By default inputs will be aligned vertically, input panels enable the inputs to be aligned horizontally")
     )
@@ -232,32 +271,18 @@ inputSettings <- function(id) {
   ns <- NS(id)
 
   tagList(
-    h5("Input Settings"),
+    h2("Input Settings"),
     selectInput(
       ns("type"),
       label = "Input Type",
       choices = INPUT_TYPES
     ),
-    textInput(
-      ns("label"),
-      label = "Label",
-      value = "Label"
-    ),
-    textInput(
-      ns("id"),
-      label = LABELS$INPUT_ID,
-      value = "",
-      placeholder = "Optional"
-    ),
-    textInput(
-      ns("width"),
-      label = LABELS$WIDTH,
-      value = "",
-      placeholder = "Optional"
-    ),
+    labelInput(ns("label")),
+    idInput(ns("id")),
+    widthInput(ns("width")),
 
     tags$br(),
-    h6("Notes:"),
+    h3("Notes:"),
     tags$ul(
       tags$li("To position several inputs horizontally, they must be put within an input panel")
     )
@@ -268,26 +293,13 @@ fileSettings <- function(id) {
   ns <- NS(id)
 
   tagList(
-    h5("File Input Settings"),
-    textInput(
-      ns("label"),
-      label = "Label",
-      value = "File Input"
-    ),
-    textInput(
-      ns("id"),
-      label = LABELS$INPUT_ID,
-      value = ""
-    ),
-    textInput(
-      ns("width"),
-      label = LABELS$WIDTH,
-      value = "",
-      placeholder = "Optional"
-    ),
+    h2("File Input Settings"),
+    labelInput(ns("label")),
+    idInput(ns("id")),
+    widthInput(ns("width")),
 
     tags$br(),
-    h6("Notes:"),
+    h3("Notes:"),
     tags$ul(
       tags$li("To position several inputs horizontally, they must be put within an input panel")
     )
@@ -298,17 +310,9 @@ sliderSettings <- function(id) {
   ns <- NS(id)
 
   tagList(
-    h5("Slider Settings"),
-    textInput(
-      ns("label"),
-      label = "Label",
-      value = "Label"
-    ),
-    textInput(
-      ns("id"),
-      label = LABELS$INPUT_ID,
-      value = ""
-    ),
+    h2("Slider Settings"),
+    labelInput(ns("label")),
+    idInput(ns("id")),
     selectInput(
       ns("type"),
       label = "Input Type",
@@ -319,15 +323,10 @@ sliderSettings <- function(id) {
       ns("range"),
       "Ranged Slider"
     ),
-    textInput(
-      ns("width"),
-      label = LABELS$WIDTH,
-      value = "",
-      placeholder = "Optional"
-    ),
+    widthInput(ns("width")),
 
     tags$br(),
-    h6("Notes:"),
+    h3("Notes:"),
     tags$ul(
       tags$li("To position several inputs horizontally, they must be put within an input panel")
     )
@@ -338,30 +337,17 @@ dateSettings <- function(id) {
   ns <- NS(id)
 
   tagList(
-    h5("Date Settings"),
-    textInput(
-      ns("label"),
-      label = "Label",
-      value = "Date Input"
-    ),
-    textInput(
-      ns("id"),
-      label = LABELS$INPUT_ID,
-      value = ""
-    ),
+    h2("Date Settings"),
+    labelInput(ns("label")),
+    idInput(ns("id")),
     checkboxInput(
       ns("range"),
       "Date Range"
     ),
-    textInput(
-      ns("width"),
-      label = LABELS$WIDTH,
-      value = "",
-      placeholder = "Optional"
-    ),
+    widthInput(ns("width")),
 
     tags$br(),
-    h6("Notes:"),
+    h3("Notes:"),
     tags$ul(
       tags$li("To position several inputs horizontally, they must be put within an input panel")
     )
@@ -372,27 +358,14 @@ checkboxSettings <- function(id) {
   ns <- NS(id)
 
   tagList(
-    h5("Checkbox Settings"),
-    textInput(
-      ns("label"),
-      label = "Label",
-      value = "Label"
-    ),
-    textInput(
-      ns("id"),
-      label = LABELS$INPUT_ID,
-      value = ""
-    ),
+    h2("Checkbox Settings"),
+    labelInput(ns("label")),
+    idInput(ns("id")),
     checkboxInput(
       ns("checked"),
       label = "Checked"
     ),
-    textInput(
-      ns("width"),
-      label = LABELS$WIDTH,
-      value = "",
-      placeholder = "Optional"
-    )
+    widthInput(ns("width"))
   )
 }
 
@@ -400,7 +373,7 @@ radioSettings <- function(id) {
   ns <- NS(id)
 
   tagList(
-    h5("Radio Button Settings"),
+    h2("Radio Button Settings"),
     radioButtons(
       ns("type"),
       label = "Button Type",
@@ -408,16 +381,8 @@ radioSettings <- function(id) {
       selected = "radio",
       inline = TRUE
     ),
-    textInput(
-      ns("label"),
-      label = "Label",
-      value = "Label"
-    ),
-    textInput(
-      ns("id"),
-      label = LABELS$INPUT_ID,
-      value = ""
-    ),
+    labelInput(ns("label")),
+    idInput(ns("id")),
     textAreaInput(
       ns("choices"),
       label = "Choices (One Per Line)",
@@ -428,12 +393,7 @@ radioSettings <- function(id) {
       ns("inline"),
       label = "Inline"
     ),
-    textInput(
-      ns("width"),
-      label = LABELS$WIDTH,
-      value = "",
-      placeholder = "Optional"
-    )
+    widthInput(ns("width"))
   )
 }
 
@@ -441,26 +401,13 @@ dropdownSettings <- function(id) {
   ns <- NS(id)
 
   tagList(
-    h5("Dropdown Settings"),
-    textInput(
-      ns("label"),
-      label = "Label",
-      value = "Label"
-    ),
-    textInput(
-      ns("id"),
-      label = LABELS$INPUT_ID,
-      value = ""
-    ),
-    textInput(
-      ns("width"),
-      label = LABELS$WIDTH,
-      value = "",
-      placeholder = "Optional"
-    ),
+    h2("Dropdown Settings"),
+    labelInput(ns("label")),
+    idInput(ns("id")),
+    widthInput(ns("width")),
 
     tags$br(),
-    h6("Notes:"),
+    h3("Notes:"),
     tags$ul(
       tags$li("To position several inputs horizontally, they must be put within an input panel")
     )
@@ -471,32 +418,19 @@ buttonSettings <- function(id) {
   ns <- NS(id)
 
   tagList(
-    h5("Button Settings"),
+    h2("Button Settings"),
     selectInput(
       ns("class"),
       "Button Type",
       setNames(BUTTON_TYPES, tools::toTitleCase(BUTTON_TYPES))
     ),
-    textInput(
-      ns("label"),
-      label = "Contents",
-      value = "Button"
-    ),
-    textInput(
-      ns("id"),
-      label = LABELS$INPUT_ID,
-      value = ""
-    ),
+    labelInput(ns("label")),
+    idInput(ns("id")),
     checkboxInput(
       ns("download"),
       "Download Button"
     ),
-    textInput(
-      ns("width"),
-      label = LABELS$WIDTH,
-      value = "",
-      placeholder = "Optional"
-    )
+    widthInput(ns("width"))
   )
 }
 
@@ -504,7 +438,7 @@ outputSettings <- function(id) {
   ns <- NS(id)
 
   tagList(
-    h5("Output Settings"),
+    h2("Output Settings"),
     selectInput(
       ns("type"),
       "Output Type",
@@ -545,20 +479,19 @@ outputSettings <- function(id) {
     conditionalPanel(
       "['plot', 'image'].includes(input.type)",
       ns = ns,
-      textInput(
+      heightInput(
         ns("height"),
-        LABELS$HEIGHT,
-        "400px"
+        value = "400px"
       ),
-      textInput(
+      widthInput(
         ns("width"),
-        LABELS$WIDTH,
-        "100%"
+        value = "400px",
+        placeholder = ""
       )
     ),
 
     tags$br(),
-    h6("Notes"),
+    h3("Notes"),
     tags$ul(
       tags$li("Plot and image output will show area of plot, but image will not stretch to fit")
     )
