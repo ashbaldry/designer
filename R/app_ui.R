@@ -8,7 +8,7 @@ appUI <- function(request) {
     addGolemExternalResources(),
 
     tags$header(
-      "{designer} - Design your UI"
+      h1("{designer} - Design your UI")
     ),
 
     fluidPage(
