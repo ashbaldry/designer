@@ -18,7 +18,7 @@ pageChoices <- function(ns) {
               id = ns(x),
               name = "page_types",
               value = x,
-              checked = if (x == PAGE_TYPES[1]) NA else NULL
+              checked = if (x == "bootstrapPage") NA else NULL
             ),
             tags$label(
               class = "form-check-label",
