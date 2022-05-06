@@ -11,4 +11,5 @@ $run_dev.*
 ^app\.R$
 ^rsconnect$
 _\.new\.png$
-R/_disable_autoload\.R
+^R/_disable_autoload\.R$
+^man/figures/example_app\.gif$

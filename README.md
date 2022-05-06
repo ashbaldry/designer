@@ -30,7 +30,7 @@ To open the `{designer}` application and create your own UI, run the following c
 designer::designApp()
 ```
 
-![](man/figures/example_app.jpeg)
+![](https://raw.githubusercontent.com/ashbaldry/designer/main/man/figures/example_app.gif)
 
 Once opened, create the application as required until you are happy with the layout of the application, then copy the code to the relevant R file
 
