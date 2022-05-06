@@ -39,23 +39,25 @@ Once opened, create the application as required until you are happy with the lay
 ``` r
 # ui.R
 
-basicPage(
+bootstrapPage(
+  title = "Shiny Application",
+  theme = bslib::bs_theme(4),
   h1(
     "My shiny application"
   ),
   inputPanel(
     selectInput(
-      inputId = "dropdown_2tbkzytoo4",
+      inputId = "dropdown_gxc2o1ekgb",
       label = "Label",
       choices = "..."
     ),
     selectInput(
-      inputId = "dropdown_98svapo3yc",
+      inputId = "dropdown_azset57v65",
       label = "Label",
       choices = "..."
     ),
     selectInput(
-      inputId = "dropdown_r4c3gddqt5",
+      inputId = "dropdown_itgcle8yze",
       label = "Label",
       choices = "..."
     )
@@ -65,16 +67,16 @@ basicPage(
       width = 6,
       # Bar plot
       plotOutput(
-        outputId = "plot_ck2tg9gny9",
-        height = "300px"
+        outputId = "plot_zvu8c9upbu",
+        height = "200px"
       )
     ),
     column(
       width = 6,
       # Line chart
       plotOutput(
-        outputId = "plot_wxx1w3h0u7",
-        height = "300px"
+        outputId = "plot_qsmfr0lp57",
+        height = "200px"
       )
     )
   )
