@@ -13,17 +13,17 @@ SettingsModUI <- function(id) {
     settingsDropdownButton(
       id = ns("page_type_button"),
       label = "Page Type",
-      content = pageChoices(ns)
+      contents = pageChoices(ns)
     ),
     settingsDropdownButton(
       id = ns("component_button"),
       label = "Component",
-      content = componentChoices(ns)
+      contents = componentChoices(ns)
     ),
     settingsDropdownButton(
       id = ns("code_button"),
       label = "Code",
-      content = div(
+      contents = div(
         id = ns("code_dropdown"),
         `aria-labelledby` = ns("code_button"),
         class = "dropdown-menu dropdown-menu-wide clickable-dropdown",
@@ -33,7 +33,7 @@ SettingsModUI <- function(id) {
     settingsDropdownButton(
       id = ns("options_button"),
       label = "Settings",
-      content = div(
+      contents = div(
         id = ns("options_dropdown"),
         `aria-labelledby` = ns("options_button"),
         class = "dropdown-menu dropdown-menu-wide page-type-dropdown clickable-dropdown",

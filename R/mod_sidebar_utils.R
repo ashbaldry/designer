@@ -485,7 +485,7 @@ outputSettings <- function(id) {
       ),
       widthInput(
         ns("width"),
-        value = "400px",
+        value = "100%",
         placeholder = ""
       )
     ),
