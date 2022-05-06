@@ -519,6 +519,7 @@ const designerElements = {
     var id = $("#sidebar-button-id").val();
     var width = validateCssUnit($("#sidebar-button-width").val(), "");
     var button_class = $("#sidebar-button-class").val();
+    var downloadable = document.getElementById("sidebar-button-download").checked;
 
     if (id === "") {
       id = createRandomID("button");
@@ -530,14 +531,21 @@ const designerElements = {
       width_str = `, width = &quot;${width}&quot;`;
     }
 
+    var r_func = "actionButton", id_arg = "inputId", download_icon = "";
+    if (downloadable) {
+      r_func = "downloadButton";
+      id_arg = "outputId";
+      download_icon = '<i class="fa fa-download" role="presentation" aria-label="download icon"></i>';
+    }
+
     var class_str = button_class === "default" ? "" : `, class = &quot;btn-${button_class}&quot;`;
     var btn_class = button_class === "default" ? "" : "btn-" + button_class;
 
-    var input_str = `inputId = &quot;${id}&quot;{class_str}${width_str}`;
+    var input_str = `${id_arg} = &quot;${id}&quot;{class_str}${width_str}`;
     return `<button class="btn btn-default ${btn_class} action-button designer-element"
                     type="button" ${style_str}
-                    data-shinyfunction="actionButton"
-                    data-shinyattributes="${input_str}">${label}</button>`;
+                    data-shinyfunction="${r_func}"
+                    data-shinyattributes="${input_str}">${download_icon}${label}</button>`;
   },
 
   output: function() {

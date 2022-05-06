@@ -487,6 +487,10 @@ buttonSettings <- function(id) {
       label = LABELS$INPUT_ID,
       value = ""
     ),
+    checkboxInput(
+      ns("download"),
+      "Download Button"
+    ),
     textInput(
       ns("width"),
       label = LABELS$WIDTH,
