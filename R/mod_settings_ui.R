@@ -10,73 +10,34 @@ SettingsModUI <- function(id) {
 
   div(
     class = "row settings-row row-cols-4",
-    div(
-      class = "col px-2",
-      div(
-        tags$button(
-          id = ns("page_type_button"),
-          type = "button",
-          class = "btn btn-block btn-secondary dropdown-toggle",
-          `data-toggle` = "dropdown",
-          `aria-expanded` = "false",
-          "Page Type"
-        ),
-        pageChoices(ns)
+    settingsDropdownButton(
+      id = ns("page_type_button"),
+      label = "Page Type",
+      content = pageChoices(ns)
+    ),
+    settingsDropdownButton(
+      id = ns("component_button"),
+      label = "Component",
+      content = componentChoices(ns)
+    ),
+    settingsDropdownButton(
+      id = ns("code_button"),
+      label = "Code",
+      content = div(
+        id = ns("code_dropdown"),
+        `aria-labelledby` = ns("code_button"),
+        class = "dropdown-menu dropdown-menu-wide clickable-dropdown",
+        CodeModUI(ns("code"))
       )
     ),
-
-    div(
-      class = "col px-2",
-      div(
-        tags$button(
-          id = ns("component_button"),
-          type = "button",
-          class = "btn btn-block btn-secondary dropdown-toggle",
-          `data-toggle` = "dropdown",
-          `aria-expanded` = "false",
-          "Component"
-        ),
-        componentChoices(ns)
-      )
-    ),
-
-    div(
-      class = "col px-2",
-      div(
-        tags$button(
-          id = ns("code_button"),
-          type = "button",
-          class = "btn btn-block btn-secondary dropdown-toggle",
-          `data-toggle` = "dropdown",
-          `aria-expanded` = "false",
-          "Code"
-        ),
-        div(
-          id = ns("code_dropdown"),
-          `aria-labelledby` = ns("code_button"),
-          class = "dropdown-menu dropdown-menu-wide clickable-dropdown",
-          CodeModUI(ns("code"))
-        )
-      )
-    ),
-
-    div(
-      class = "col px-2",
-      div(
-        tags$button(
-          id = ns("options_button"),
-          type = "button",
-          class = "btn btn-block btn-secondary dropdown-toggle",
-          `data-toggle` = "dropdown",
-          `aria-expanded` = "false",
-          "Settings"
-        ),
-        div(
-          id = ns("options_dropdown"),
-          `aria-labelledby` = ns("options_button"),
-          class = "dropdown-menu dropdown-menu-wide page-type-dropdown clickable-dropdown",
-          OptionsModUI(NULL)
-        )
+    settingsDropdownButton(
+      id = ns("options_button"),
+      label = "Settings",
+      content = div(
+        id = ns("options_dropdown"),
+        `aria-labelledby` = ns("options_button"),
+        class = "dropdown-menu dropdown-menu-wide page-type-dropdown clickable-dropdown",
+        OptionsModUI(NULL)
       )
     )
   )

@@ -1,3 +1,27 @@
+#' Settings Button
+#'
+#' @param id HTML id selector of the button
+#' @param label Label to show on the button
+#' @param contents \code{\link[shiny]{tagList}} to show when clicking the button
+#'
+#' @noRd
+settingsDropdownButton <- function(id, label, contents) {
+  div(
+    class = "col px-2",
+    div(
+      tags$button(
+        id = id,
+        type = "button",
+        class = "btn btn-block btn-secondary dropdown-toggle",
+        `data-toggle` = "dropdown",
+        `aria-expanded` = "false",
+       label
+      ),
+      contents
+    )
+  )
+}
+
 PAGE_TYPES <- c("basicPage", "bootstrapPage", "fillPage", "fluidPage", "navbarPage")
 
 pageChoices <- function(ns) {
