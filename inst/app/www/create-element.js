@@ -562,6 +562,7 @@ const designerElements = {
       html_tag = "span";
     }
     var type2 = type === "table" ? "datatable" : (type === "verbatimText" ? "text" : type);
+    var output_func = (type === "table" ? "dataTable" : type) + "Output";
     var inline_text = inline && !["verbatimText", "table"].includes(type) ? ", inline = TRUE" : "";
 
     if (id === "") {
@@ -598,7 +599,7 @@ const designerElements = {
     return `<${html_tag} ${designer_str}
                          class="designer-element output-element ${type}-output-element shiny-${type2}-output"
                          style="${style_str}"
-                         data-shinyfunction="${type}Output"
+                         data-shinyfunction="${output_func}"
                          data-shinyattributes="${input_str}">${output_tag}</${html_tag}>`
   }
 };
