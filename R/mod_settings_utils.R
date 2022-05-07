@@ -22,7 +22,13 @@ settingsDropdownButton <- function(id, label, contents) {
   )
 }
 
-PAGE_TYPES <- c("basicPage", "bootstrapPage", "fillPage", "fluidPage", "navbarPage")
+PAGE_TYPES <- c(
+  "Basic Page" = "basicPage",
+  "Standard Page" = "bootstrapPage",
+  "Fill Page" = "fillPage",
+  "Fluid Page" = "fluidPage",
+  "Navigation Bar Page" = "navbarPage"
+)
 
 pageChoices <- function(ns) {
   div(
@@ -33,7 +39,8 @@ pageChoices <- function(ns) {
       div(
         class = "form-group",
         id = ns("page_type"),
-        lapply(PAGE_TYPES, function(x) {
+        lapply(names(PAGE_TYPES), function(page) {
+          x <- PAGE_TYPES[[page]]
           div(
             class = "form-check",
             tags$input(
@@ -47,7 +54,7 @@ pageChoices <- function(ns) {
             tags$label(
               class = "form-check-label",
               `for` = ns(x),
-              x
+              page
             )
           )
         })
