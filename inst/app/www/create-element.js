@@ -269,10 +269,10 @@ const designerElements = {
 
     var input_tag;
     if (type === "textArea") {
-      input_tag = `<textarea class="form-control" placeholder="textArea"></textarea>`;
+      input_tag = `<textarea class="form-control" placeholder="textarea input"></textarea>`;
     } else {
       const input_types = {numeric: "Numeric", text: "Text", password: "Password"};
-      input_tag = `<input class="form-control" type="${input_types[type]} Input" placeholder="${type}">`;
+      input_tag = `<input class="form-control" type="${input_types[type]} Input" placeholder="${type} input">`;
     }
 
     var input_str = `inputId = &quot;${id}&quot;, label = &quot;${label}&quot;${value_str}${width_str}`;
@@ -432,7 +432,7 @@ const designerElements = {
     var input_str = `inputId = &quot;${id}&quot;, label = &quot;${label}&quot;${width_str}`;
     var label_tag = `<label class="control-label">${label}</label>`;
 
-    var date_tag = `<input class="form-control" type="text" title="Date format: yyyy-mm-dd"
+    var date_tag = `<input class="form-control" type="text" title="Date format: yyyy-mm-dd" placeholder="date input"
                             data-date-language="en" data-date-week-start="0" data-date-format="yyyy-mm-dd"
                             data-date-start-view="month" data-date-autoclose="true"/>`;
     var input_tag;
@@ -499,7 +499,6 @@ const designerElements = {
     var r_func = type === "radio" ? "radioButtons" : "checkboxGroupInput";
     var role = type === "radio" ? "radiogroup" : "group";
 
-    var inline_class = inline ? " shiny-input-container-inline" : "";
     var inline_str = inline ? ", inline = TRUE" : "";
 
     var choices_str = `, choices = c(&quot;${choices.replace(/\n/g, '&quot;, &quot;')}&quot;)`
