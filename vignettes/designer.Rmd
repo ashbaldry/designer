@@ -1,0 +1,19 @@
+---
+title: "Prototyping Your UI with `designer`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Designing Your UI}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(designer)
+```

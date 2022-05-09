@@ -4,7 +4,14 @@ Version: 0.1.0
 Authors@R: person('Ashley', 'Baldry', email = 'arbaldry91@gmail.com', role = c('cre', 'aut'))
 Description: A 'shiny' application that enables the user to create a prototype UI, 
     being able to drag and drop UI components before being able to save or download the equivalent R code.
+URL: https://github.com/ashbaldry/designer
+BugReports: https://github.com/ashbaldry/designer/issues
 License: MIT + file LICENSE
+Language: en-GB
+Encoding: UTF-8
+RoxygenNote: 7.1.2
+Config/testthat/edition: 3
+VignetteBuilder: knitr
 Imports: 
     config (>= 0.3.1),
     golem (>= 0.3.1),
@@ -14,14 +21,10 @@ Imports:
     shinipsum,
     shinyscreenshot,
     cicerone
-Encoding: UTF-8
-RoxygenNote: 7.1.2
-URL: https://github.com/ashbaldry/designer
-BugReports: https://github.com/ashbaldry/designer/issues
 Suggests: 
     covr,
     testthat (>= 3.0.0),
     shinytest2,
-    globals
-Config/testthat/edition: 3
-Language: en-GB
+    globals,
+    knitr,
+    rmarkdown
