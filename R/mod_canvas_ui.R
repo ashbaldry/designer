@@ -16,11 +16,11 @@ CanvasModUI <- function(id) {
         id = "canvas-page",
         label = "Snapshot UI",
         filename = "ui_wireframe",
-        class = "btn-info"
+        class = "btn-outline-dark"
       ),
       tags$button(
         id = ns("close_preview"),
-        class = "btn btn-info",
+        class = "btn btn-outline-dark",
         icon("times", "aria-hidden" = "true"),
         "Close Preview"
       )

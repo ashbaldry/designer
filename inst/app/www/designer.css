@@ -2,11 +2,11 @@ header {
   text-align: center;
   padding: 6px;
   background-color: antiquewhite;
-  font-family: monospace;
   margin-bottom: 10px;
 }
 
 header > h1 {
+  font-family: monospace;
   font-size: 1.2rem;
   margin: 0;
 }
@@ -21,6 +21,13 @@ header > h1 {
 
 h5.modal-title {
   margin-top: 0;
+}
+
+.guide-button {
+  position: absolute;
+  right: 0.5rem;
+  top: 0;
+  line-height: 1.2rem;
 }
 
 .dropdown-menu-wide {
@@ -187,7 +194,7 @@ h5.modal-title {
   display: none;
   position: absolute;
   right: 0;
-  top: 0;
+  top: 1.5rem;
 }
 
 .page-canvas-shell.preview .page-preview-button {

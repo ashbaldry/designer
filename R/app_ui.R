@@ -8,7 +8,12 @@ appUI <- function(request) {
     addGolemExternalResources(),
 
     tags$header(
-      h1("{designer} - Design your UI")
+      h1("{designer} - Design your UI"),
+      tags$button(
+        id = "help",
+        class = "btn btn-outline-dark action-button guide-button",
+        "Help"
+      )
     ),
 
     fluidPage(
@@ -61,7 +66,8 @@ addGolemExternalResources <- function() {
     ),
     ionRangeSliderDependency(),
     datePickerDependency(),
-    dataTableDependency
+    dataTableDependency,
+    cicerone::use_cicerone()
   )
 }
 

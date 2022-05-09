@@ -32,6 +32,7 @@ SidebarModUI <- function(id) {
 
   tagList(
     div(
+      id = "component_settings",
       div(
         id = ns("container"),
         class = "container component-container"
@@ -70,6 +71,7 @@ SidebarModUI <- function(id) {
       )
     ),
     div(
+      id = "component_delete",
       class = "container bin-container",
       h3(class = "bin-header", icon("trash", "aria-hidden" = "true"), "Drag Here to Delete Item"),
       div(
