@@ -5,7 +5,7 @@ const UPDATEABLE_ELEMENT = [
 
 $(document).ready(function() {
   $(".component-settings").on("change keyup", updateDesignerElement);
-  $(".component_comments").on("change keyup", updateDesignerElement);
+  $(".component_comments").on("change blur", updateDesignerElement);
   $('.component-container').on("mouseover", () => {$(":focus").blur()});
   updateDesignerElement(true);
 
