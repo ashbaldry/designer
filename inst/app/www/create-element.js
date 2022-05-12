@@ -272,8 +272,8 @@ const designerElements = {
     if (type === "textArea") {
       input_tag = `<textarea class="form-control" placeholder="textarea input"></textarea>`;
     } else {
-      const input_types = {numeric: "Numeric", text: "Text", password: "Password"};
-      input_tag = `<input class="form-control" type="${input_types[type]} Input" placeholder="${type} input">`;
+      const input_types = {numeric: "number", text: "text", password: "password"};
+      input_tag = `<input class="form-control" type="${input_types[type]}" placeholder="${type} input">`;
     }
 
     var input_str = `inputId = &quot;${id}&quot;, label = &quot;${label}&quot;${value_str}${width_str}`;
