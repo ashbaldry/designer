@@ -4,8 +4,8 @@ const UPDATEABLE_ELEMENT = [
 ];
 
 $(document).ready(function() {
-  $(".component-settings").on("change", updateDesignerElement);
-  $(".component_comments").on("change", updateDesignerElement);
+  $(".component-settings").on("change keyup", updateDesignerElement);
+  $(".component_comments").on("change keyup", updateDesignerElement);
   updateDesignerElement(true);
 
   $(".component-settings[data-component= '" + selected_component + "']").css("display", "unset");
