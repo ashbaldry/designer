@@ -8,6 +8,7 @@ License: MIT + file LICENSE
 Imports: 
     config (>= 0.3.1),
     golem (>= 0.3.1),
+    htmltools,
     shiny (>= 1.7.1),
     bslib,
     jsonlite,
