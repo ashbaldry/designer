@@ -57,18 +57,32 @@ addGolemExternalResources <- function() {
   golem::add_resource_path("www", appSys("app/www"))
   golem::add_resource_path("images", appSys("app/images"))
 
-  tags$head(
+  ui_head <- tags$head(
     golem::favicon(),
     golem::bundle_resources(
       path = appSys("app/www"),
       app_title = "Shiny UI Designer",
-      name = "designer"
+      name = "designer",
+      version = "0.1.0"
     ),
     ionRangeSliderDependency(),
     datePickerDependency(),
     dataTableDependency,
     cicerone::use_cicerone()
   )
+
+  ui_head <- htmltools::attachDependencies(
+    ui_head,
+    htmltools::htmlDependency(
+      name = "Sortable",
+      version = "1.14.0",
+      src = "srcjs/sortable",
+      script = "Sortable.min.js",
+      package = "designer"
+    )
+  )
+
+  ui_head
 }
 
 ionRangeSliderDependency <- getFromNamespace("ionRangeSliderDependency", "shiny")
