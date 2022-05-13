@@ -20,7 +20,7 @@ The drag-and-drop nature of the application means that it is easy for both R and
 devtools::install_github("ashbaldry/designer")
 ```
 
-Alternatively, you can launch the addin via the RStudio menu. The application is also available on-line through [shinyapps.io](https://ashbaldry.shinyapps.io/designer).
+The application is also available on-line through [shinyapps.io](https://ashbaldry.shinyapps.io/designer).
 
 ## Usage
 
@@ -29,6 +29,8 @@ To open the `{designer}` application and create your own UI, run the following c
 ``` r
 designer::designApp()
 ```
+
+Alternatively, you can launch the addin via the RStudio menu. 
 
 ![](https://raw.githubusercontent.com/ashbaldry/designer/main/man/figures/example_app.gif)
 
