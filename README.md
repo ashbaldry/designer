@@ -20,7 +20,7 @@ The drag-and-drop nature of the application means that it is easy for both R and
 devtools::install_github("ashbaldry/designer")
 ```
 
-The application is also available on-line through [shinyapps.io](https://ashbaldry.shinyapps.io/designer).
+Alternatively, you can launch the addin via the RStudio menu. The application is also available on-line through [shinyapps.io](https://ashbaldry.shinyapps.io/designer).
 
 ## Usage
 
