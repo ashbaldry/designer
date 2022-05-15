@@ -13,3 +13,6 @@ $run_dev.*
 _\.new\.png$
 ^R/_disable_autoload\.R$
 ^man/figures/example_app\.gif$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$

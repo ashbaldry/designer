@@ -17,7 +17,8 @@ Imports:
     cicerone
 Encoding: UTF-8
 RoxygenNote: 7.1.2
-URL: https://github.com/ashbaldry/designer
+URL: https://github.com/ashbaldry/designer,
+    https://ashbaldry.github.io/designer/
 BugReports: https://github.com/ashbaldry/designer/issues
 Suggests: 
     covr,
