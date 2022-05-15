@@ -1,18 +1,12 @@
 ---
 title: "Prototyping Your UI with `designer`"
+date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Designing Your UI}
+  %\VignetteIndexEntry{Prototyping Your UI with `designer`}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
-
-```{r, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>"
-)
-```
 
 `designer` is intended to make the initial generation of a UI wireframe of a shiny application as quick and simple as possible.
 
