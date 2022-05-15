@@ -40,6 +40,9 @@ This function does not return a value; interrupt R to stop the application (usua
 }
 \description{
 Runs the designer Shiny application.
+
+For more information about how the application works, either run the "Help" guide in-app, or run
+\code{vignette("designer")}.
 }
 \examples{
 \dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
