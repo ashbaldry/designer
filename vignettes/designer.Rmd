@@ -28,7 +28,7 @@ First is the choice of page.
 - `navbarPage` is useful when creating multi-page applications. 
   - Currently `dashboardPage` (part of `{shinydashboard}`) is not available due to conflicting styles, however the contents of each tab can be copy and pasted within the `dashboardBody` argument.
 - `fillPage` takes advantage of the rows and columns to align content.
-- `bootstrapPage` and `basicPage` are included for cases where the developer has more broad knowledge of HTML and CSS and will adapt the application more once it is wireframed.
+- `bootstrapPage` and `basicPage` are included for cases where the developer has more broad knowledge of HTML and CSS and will adapt the application more once the wireframe is created.
 
 ### Components
 
