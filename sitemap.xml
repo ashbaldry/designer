@@ -13,6 +13,12 @@
     <loc>https://ashbaldry.github.io/designer/LICENSE-text.html</loc>
   </url>
   <url>
+    <loc>https://ashbaldry.github.io/designer/articles/designer.html</loc>
+  </url>
+  <url>
+    <loc>https://ashbaldry.github.io/designer/articles/index.html</loc>
+  </url>
+  <url>
     <loc>https://ashbaldry.github.io/designer/authors.html</loc>
   </url>
   <url>
@@ -23,6 +29,9 @@
   </url>
   <url>
     <loc>https://ashbaldry.github.io/designer/reference/designApp.html</loc>
+  </url>
+  <url>
+    <loc>https://ashbaldry.github.io/designer/reference/designer-package.html</loc>
   </url>
   <url>
     <loc>https://ashbaldry.github.io/designer/reference/index.html</loc>

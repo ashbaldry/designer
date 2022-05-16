@@ -1,8 +1,9 @@
 pandoc: 2.7.3
 pkgdown: 2.0.3
 pkgdown_sha: ~
-articles: {}
-last_built: 2022-05-15T17:17Z
+articles:
+  designer: designer.html
+last_built: 2022-05-16T09:16Z
 urls:
   reference: https://ashbaldry.github.io/designer/reference
   article: https://ashbaldry.github.io/designer/articles
