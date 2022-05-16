@@ -4,7 +4,8 @@ Version: 0.1.0
 Authors@R: person('Ashley', 'Baldry', email = 'arbaldry91@gmail.com', role = c('cre', 'aut'))
 Description: A 'shiny' application that enables the user to create a prototype UI, 
     being able to drag and drop UI components before being able to save or download the equivalent R code.
-URL: https://github.com/ashbaldry/designer
+URL: https://github.com/ashbaldry/designer,
+    https://ashbaldry.github.io/designer/
 BugReports: https://github.com/ashbaldry/designer/issues
 License: MIT + file LICENSE
 Language: en-GB

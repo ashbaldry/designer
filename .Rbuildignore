@@ -15,3 +15,6 @@ _\.new\.png$
 ^man/figures/example_app\.gif$
 ^doc$
 ^Meta$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
