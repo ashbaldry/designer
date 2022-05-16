@@ -1,0 +1,71 @@
+---
+title: "Prototyping Your UI with `designer`"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Prototyping Your UI with `designer`}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+`designer` is intended to make the initial generation of a UI wireframe of a shiny application as quick and simple as possible.
+
+The package contains a `shiny` application that enables the user to build the UI of a `shiny` application by drag and dropping several `shiny` components - such as inputs, outputs and buttons - into one of the available pages in the `{shiny}` package. Once finalised, the R code used to generate the UI can be copied or downloaded to a `ui.R` file, and then the rest of the application like the server logic and styling can be built by the developer.
+
+The drag-and-drop nature of the application means that it is easy for both R and non-R users to collaborate in designing the UI of their shiny application. Comments can be added to any component so that it is simple to remember what should be included for each input/output.
+
+To run the application, use `designer::designApp()` or select "Shiny UI Builder" in the Addins. 
+
+---
+
+## Application
+
+There are several steps in creating the desired application UI:
+
+### Page
+
+First is the choice of page.
+
+- `fluidPage` is the most commonly used page in shiny applications.
+- `navbarPage` is useful when creating multi-page applications. 
+  - Currently `dashboardPage` (part of `{shinydashboard}`) is not available due to conflicting styles, however the contents of each tab can be copy and pasted within the `dashboardBody` argument.
+- `fillPage` takes advantage of the rows and columns to align content.
+- `bootstrapPage` and `basicPage` are included for cases where the developer has more broad knowledge of HTML and CSS and will adapt the application more once the wireframe is created.
+
+### Components
+
+Next is adding the components to the page. A list of available components mentioned below. When creating components the `{shiny}` function parameters that can affect the look/layout of the UI (e.g. width and labels) are available to customise, but the more server-logic related parameters (e.g. dropdown choices) are left to the application developer later on.
+
+| Component | `{shiny}` Function | Description |
+| -------------- | --------------------------- | ---------------------------------------------- |
+| Tab | `tabPanel` | (`navbarPage` only) Adding/Removing a tab |
+| Header | `h1` to `h6` | |
+| Row | `fluidRow` | |
+| Column | `column` | |
+| Text | `p`, `ol`, `ul` | Adding text or a list to a page |
+| Input Panel | `inputPanel` | |
+| Dropdown | `selectInput` | |
+| Input | `textInput`, `numericInput`, `textAreaInput`, `passwordInput` | |
+| Slider | `sliderInput` | |
+| File Input | `fileInput` | |
+| Calendar | `dateInput`, `dateRangeInput` | |
+| Checkbox | `checkboxInput` | |
+| Radio Buttons | `checkboxInput` | |
+| Button | `actionButton` | |
+| Output | `textOutput`, `verbatimTextOutput`, `plotOutput`, `imageOutput`, `DTOutput`, `uiOutput` | |
+
+#### Notes
+
+A few layout rules have been implemented into the application to try and match the Bootstrap UI framework that aren't always checked in `{shiny}`.
+
+- Columns can only be added to rows. This matches the [grid system](https://getbootstrap.com/docs/4.6/layout/grid/) Bootstrap have used (which is based off flexbox).
+- For a similar reason rows are the only component that can be directly added to columns. Anything can be added into a row (even more columns)
+- The only components that are allowed in input panels are inputs and buttons. 
+
+### Saving
+
+Once the wireframe is complete, then there is the ability to save the code, either by downloading the file or copying the code. There is also the opportunity to take a screenshot to annotate further if required.
+
+### Extras
+
+There are some development tools that have been enabled upon start-up that can be removed to preview the UI as the end user would see the application, such as borders around all components, colouring some empty components like columns and rows, and removing component names from the UI.

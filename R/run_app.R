@@ -3,6 +3,9 @@
 #' @description
 #' Runs the designer Shiny application.
 #'
+#' For more information about how the application works, either run the "Help" guide in-app, or run
+#' \code{vignette("designer")}.
+#'
 #' @param ... arguments to pass to \code{golem_opts}. See \code{\link[golem]{get_golem_options}} for more details.
 #' @inheritParams shiny::shinyApp
 #'
@@ -11,9 +14,6 @@
 #'
 #' @examplesIf interactive()
 #' designApp()
-#'
-#' @import shiny
-#' @importFrom stats setNames
 #'
 #' @export
 designApp <- function(onStart = NULL, options = list(), enableBookmarking = NULL, uiPattern = "/", ...) {
