@@ -14,6 +14,8 @@ The package contains a `shiny` application that enables the user to build the UI
 
 The drag-and-drop nature of the application means that it is easy for both R and non-R users to collaborate in designing the UI of their shiny application. Comments can be added to any component so that it is simple to remember what should be included for each input/output.
 
+To run the application, use `designer::designApp()` or select "Shiny UI Builder" in the Addins. 
+
 ---
 
 ## Application
