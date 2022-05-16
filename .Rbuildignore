@@ -18,3 +18,5 @@ _\.new\.png$
 ^_pkgdown\.yml$
 ^docs$
 ^pkgdown$
+^CRAN-RELEASE$
+^cran-comments\.md$
