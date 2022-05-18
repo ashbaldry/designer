@@ -1,7 +1,10 @@
 Package: designer
 Title: 'Shiny' UI Prototype Builder
 Version: 0.1.0
-Authors@R: person('Ashley', 'Baldry', email = 'arbaldry91@gmail.com', role = c('cre', 'aut'))
+Authors@R: c(
+    person('Ashley', 'Baldry', email = 'arbaldry91@gmail.com', role = c('cre', 'aut')),
+    person('Sam', 'Parmar', email = 'parmartsam@gmail.com', role = 'ctb')
+)
 Description: A 'shiny' application that enables the user to create a prototype UI, 
     being able to drag and drop UI components before being able to save or download the equivalent R code.
 URL: https://github.com/ashbaldry/designer,
