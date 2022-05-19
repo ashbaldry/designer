@@ -18,7 +18,7 @@ The drag-and-drop nature of the application means that it is easy for both R and
 Install from [CRAN](https://cran.r-project.org/web/packages/designer/index.html) with:
 
 ``` r
-install.packages("esquisse")
+install.packages("designer")
 ```
 
 Or install the development version from [GitHub](https://github.com/ashbaldry/designer) with:
