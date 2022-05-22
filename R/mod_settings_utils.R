@@ -27,7 +27,8 @@ PAGE_TYPES <- c(
   "Standard Page" = "bootstrapPage",
   "Fill Page" = "fillPage",
   "Fluid Page" = "fluidPage",
-  "Navigation Bar Page" = "navbarPage"
+  "Navigation Bar Page" = "navbarPage",
+  "Dashboard Page" = "dashboardPage"
 )
 
 pageChoices <- function(ns) {
