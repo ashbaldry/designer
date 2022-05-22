@@ -5,6 +5,9 @@ updatePage = function() {
   if (page_type === "navbarPage") {
     $(".navbar-tab-item").css("display", "");
     $("#settings-component a[name='tab_panel']").click();
+  } else if (page_type === "dashboardPage") {
+    $(".navbar-tab-item").css("display", "");
+    $("#settings-component a[name='tab_panel']").click();
   } else {
     $(".navbar-tab-item").css("display", "none");
     $("#settings-component a[name='header']").click();
@@ -49,10 +52,34 @@ createCanvasPage = function(page) {
               </nav>
               <div class="container-fluid navbar-page-tabs">
                 <div id="canvas-page" class="tab-content"
-                     data-tabsetid="${page_id}" data-shinyfunction="${page}"
+                     data-tabsetid="${page_id}" data-shinyfunction="navbarPage"
                      data-shinyattributes="title = &quot;${title}&quot;, theme = bslib::bs_theme(4)"></div>
               </div>
             </div>`;
+  } else if (page === "dashboardPage") {
+    return `
+      <div id="canvas-page" class="wrapper designer-page-template" data-shinyfunction="bs4Dash::dashboardPage">
+        <nav data-fixed="false" class="main-header navbar navbar-expand navbar-white navbar-light"
+             data-shinyfunction="bs4Dash::dashboardHeader">
+          <ul class="navbar-nav">
+            <a class="nav-link" data-widget="pushmenu" href="#">
+              <i class="fa fa-bars" role="presentation" aria-label="bars icon"></i>
+            </a>
+          </ul>
+          <ul class="navbar-nav ml-auto navbar-right"></ul>
+        </nav>
+        <aside id="sidebarId" data-fixed="true" data-minified="true" data-collapsed="false"
+               data-disable="FALSE" class="main-sidebar sidebar-dark-primary elevation-4"
+               data-shinyfunction="bs4Dash::dashboardSidebar">
+          <div class="sidebar" id="sidebarItemExpanded">
+            <nav class="mt-2"></nav>
+          </div>
+        </aside>
+        <div class="content-wrapper" data-shinyfunction="bs4Dash::dashboardBody">
+          <section class="content"></section>
+        </div>
+      </div>
+    `;
   } else {
     let page_class = "";
     if (page === "fixedPage") {
