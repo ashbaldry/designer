@@ -73,14 +73,16 @@ addGolemExternalResources <- function() {
 
   ui_head <- htmltools::attachDependencies(
     ui_head,
-    htmltools::htmlDependency(
-      name = "Sortable",
-      version = "1.14.0",
-      src = "srcjs/sortable",
-      script = "Sortable.min.js",
-      package = "designer"
+
+      htmltools::htmlDependency(
+        name = "Sortable",
+        version = "1.14.0",
+        src = "srcjs/sortable",
+        script = "Sortable.min.js",
+        package = "designer"
     )
   )
+  ui_head <- addbs4DashDependencies(ui_head, NULL)
 
   ui_head
 }
@@ -88,3 +90,4 @@ addGolemExternalResources <- function() {
 ionRangeSliderDependency <- getFromNamespace("ionRangeSliderDependency", "shiny")
 datePickerDependency <- getFromNamespace("datePickerDependency", "shiny")
 dataTableDependency <- getFromNamespace("dataTableDependency", "shiny")
+addbs4DashDependencies <- getFromNamespace("add_bs4Dash_deps", "bs4Dash")
