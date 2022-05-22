@@ -87,22 +87,25 @@
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
+<p>Install from <a href="https://cran.r-project.org/web/packages/designer/index.html" class="external-link">CRAN</a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Install the latest version from GitHub:</span>
-<span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"ashbaldry/designer"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"designer"</span><span class="op">)</span></code></pre></div>
+<p>Or install the development version from <a href="https://github.com/ashbaldry/designer" class="external-link">GitHub</a> with:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"ashbaldry/designer"</span><span class="op">)</span></code></pre></div>
 <p>The application is also available on-line through <a href="https://ashbaldry.shinyapps.io/designer" class="external-link">shinyapps.io</a>.</p>
 </div>
 <div class="section level2">
 <h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
 </h2>
 <p>To open the <a href="https://github.com/ashbaldry/designer" class="external-link">designer</a> application and create your own UI, run the following code:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">designer</span><span class="fu">::</span><span class="fu"><a href="reference/designApp.html">designApp</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p>Alternatively, you can launch the addin via the RStudio menu.</p>
 <p><img src="https://raw.githubusercontent.com/ashbaldry/designer/main/man/figures/example_app.gif"></p>
 <p>Once opened, create the application as required until you are happy with the layout of the application, then copy the code to the relevant R file</p>
 <p><img src="reference/figures/example_app_filled.jpeg"></p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># ui.R</span>
 
 <span class="fu">bootstrapPage</span><span class="op">(</span>
@@ -195,6 +198,7 @@
 <h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
 <li>Ashley Baldry <br><small class="roles"> Maintainer, author </small>  </li>
+<li><a href="authors.html">More about authors...</a></li>
 </ul>
 </div>
 
