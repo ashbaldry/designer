@@ -18,14 +18,19 @@ $(document).ready(function() {
   $("#preview").on("click", () => { $(".page-canvas-shell").addClass("preview"); });
   $("#canvas-close_preview").on("click", () => { $(".page-canvas-shell").removeClass("preview"); });
 
-  $("#app_name").on("change", el => {
+  $("#app_name").on("change keyup", el => {
     const title = $(el.target).val();
     $("#canvas-title").html(title);
     $(".navbar-brand").html(title);
+    $(".brand-link").html(title);
 
     if ($("#canvas-page").data("shinyattributes")) {
       var shiny_atts = $("#canvas-page").data("shinyattributes").replace(/"[^"]+"/, `"${title}"`);
       $("#canvas-page").attr("data-shinyattributes", shiny_atts);
+    }
+    if ($("#canvas-page>.main-header").data("shinyattributes")) {
+      var shiny_atts2 = $("#canvas-page>.main-header").data("shinyattributes").replace(/"[^"]+"/, `"${title}"`);
+      $("#canvas-page>.main-header").attr("data-shinyattributes", shiny_atts2);
     }
   });
 

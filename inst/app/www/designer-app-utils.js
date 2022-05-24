@@ -59,9 +59,10 @@ createCanvasPage = function(page) {
             </div>`;
   } else if (page === "dashboardPage") {
     return `
-      <div id="canvas-page" class="wrapper designer-page-template" data-shinyfunction="bs4Dash::dashboardPage">
+      <div id="canvas-page" class="wrapper designer-page-template"
+           data-shinyfunction="bs4Dash::dashboardPage" data-shinyattributes="title = &quot;${title}&quot;">
         <nav data-fixed="false" class="main-header navbar navbar-expand navbar-white navbar-light"
-             data-shinyfunction="bs4Dash::dashboardHeader">
+             data-shinyfunction="bs4Dash::dashboardHeader" data-shinyattributes="title = &quot;${title}&quot;">
           <ul class="navbar-nav">
             <a class="nav-link" data-widget="pushmenu" href="#">
               <i class="fa fa-bars" role="presentation" aria-label="bars icon"></i>
@@ -72,6 +73,7 @@ createCanvasPage = function(page) {
         <aside id="sidebarId" data-fixed="true" data-minified="true" data-collapsed="false"
                data-disable="FALSE" class="main-sidebar sidebar-dark-primary elevation-4"
                data-shinyfunction="bs4Dash::dashboardSidebar">
+          <div class="brand-link">${title}</div>
           <div class="sidebar" id="sidebarItemExpanded">
             <nav class="mt-2">
               <ul class="nav nav-pills nav-sidebar flex-column sidebar-menu nav-child-indent"
