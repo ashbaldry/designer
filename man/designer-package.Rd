@@ -12,12 +12,18 @@ To learn more about \code{designer}, have a read of the vignette: \code{vignette
 Useful links:
 \itemize{
   \item \url{https://github.com/ashbaldry/designer}
+  \item \url{https://ashbaldry.github.io/designer/}
   \item Report bugs at \url{https://github.com/ashbaldry/designer/issues}
 }
 
 }
 \author{
 \strong{Maintainer}: Ashley Baldry \email{arbaldry91@gmail.com}
+
+Other contributors:
+\itemize{
+  \item Sam Parmar \email{parmartsam@gmail.com} [contributor]
+}
 
 }
 \keyword{internal}
