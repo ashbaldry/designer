@@ -501,6 +501,7 @@ const designerElements = {
     var role = type === "radio" ? "radiogroup" : "group";
 
     var inline_str = inline ? ", inline = TRUE" : "";
+    var inline_class = inline ? "-inline" : "";
 
     var choices_str = `, choices = c(&quot;${choices.replace(/\n/g, '&quot;, &quot;')}&quot;)`
     var input_str = `inputId = &quot;${id}&quot;, label = &quot;${label}&quot;${choices_str}${inline_str}${width_str}`;
@@ -509,7 +510,7 @@ const designerElements = {
     var choices_tag = choices.split("\n").map(x => createCheckbox(x, id = id, type = type, inline = inline)).join("");
     var input_tag = `<div class="shiny-options-group">${choices_tag}</div>`;
 
-    return `<div class="designer-element form-group shiny-input-container shiny-input-${type}group ${inline_class}"
+    return `<div class="designer-element form-group shiny-input-container shiny-input-${type}group${inline_class}"
                  data-shinyfunction="${r_func}" data-shinyattributes="${input_str}" ${style_str}
                  role="${role}">${label_tag}${input_tag}</div>`;
   },
