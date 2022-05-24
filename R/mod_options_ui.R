@@ -32,12 +32,9 @@ OptionsModUI <- function(id) {
         class = "btn btn-secondary btn-block",
         "Preview Full Page"
       ),
-      shinyscreenshot::screenshotButton(
-        id = "canvas-page",
-        label = "Snapshot UI",
-        scale = 1.5,
-        filename = "ui_wireframe",
-        class = "btn-secondary btn-block"
+      screenshtButton(
+        class = "btn-secondary btn-block",
+        scale = 1.5
       )
     )
   )

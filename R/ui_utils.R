@@ -54,3 +54,14 @@ warningModal <- function(id) {
     )
   )
 }
+
+screenshtButton <- function(...) {
+  btn <- shinyscreenshot::screenshotButton(
+    id = "canvas-page",
+    label = "Snapshot UI",
+    filename = "ui_wireframe",
+    ...
+  )
+  btn[[2]]$attribs$class <- sub(" btn-default", "", btn[[2]]$attribs$class)
+  btn
+}

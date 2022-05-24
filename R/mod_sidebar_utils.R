@@ -198,19 +198,17 @@ tabSettings <- function(id) {
       ),
       placeholder = "Keep blank to copy name"
     ),
-    actionButton(
-      ns("add"),
-      label = "Add Tab",
-      class = "btn-success"
+    tags$button(
+      id = ns("add"),
+      type = "button",
+      class = "btn btn-success action-button",
+      "Add Tab"
     ),
-    actionButton(
-      ns("delete"),
-      label = "Delete Tab",
-      class = "btn-error"
-    ),
-    div(
-      id = ns("alert"),
-      class = "tab-alert"
+    tags$button(
+      id = ns("delete"),
+      type = "button",
+      class = "btn btn-danger action-button",
+      "Delete Tab"
     )
   )
 }

@@ -51,6 +51,7 @@ h5.modal-title {
 .dropdown-item.active, .dropdown-item:active {
   font-weight: 500;
   background-color: #999999;
+  color: #ffffff!important;
 }
 
 .settings-row {
@@ -199,6 +200,7 @@ h5.modal-title {
   position: absolute;
   right: 0;
   top: 1.5rem;
+  z-index: 9000;
 }
 
 .page-canvas-shell.preview .page-preview-button {
@@ -212,15 +214,6 @@ h5.modal-title {
 .designer-page-template {
   height: 100%;
   overflow-y: auto;
-}
-
-/* bs4Dash specific conditions */
-#canvas-page .main-header {
-  margin-bottom: 0;
-}
-
-#canvas-page .wrapper .content-wrapper {
-  min-height: calc(100% - 3.6rem);
 }
 
 .navbar-page-tabs {
@@ -332,4 +325,21 @@ span.plot-output-element, span.image-output-element {
 
 .designer-page-template .designer-element>p {
   position: absolute;
+}
+
+/* bs4Dash specific conditions */
+#canvas-page .main-header {
+  margin-bottom: 0;
+}
+
+#canvas-page .wrapper .content-wrapper {
+  min-height: calc(100% - 3.6rem);
+}
+
+#component_settings label {
+  font-weight: 400;
+}
+
+#settings-options_dropdown label {
+  font-weight: 400;
 }
