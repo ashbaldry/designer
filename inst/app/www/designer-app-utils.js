@@ -38,9 +38,10 @@ updateCanvasCheck = function() {
 
 createCanvasPage = function(page) {
   const title = $("#canvas-title").html();
+  const page_id = Math.round(Math.random() * 8999 + 1000);
 
   if (page === "navbarPage") {
-    var page_id = Math.round(Math.random() * 8999 + 1000);
+
     return `<div class="designer-page-template">
               <nav class="navbar navbar-default navbar-static-top" role="navigation">
                 <div class="container-fluid">
@@ -72,7 +73,12 @@ createCanvasPage = function(page) {
                data-disable="FALSE" class="main-sidebar sidebar-dark-primary elevation-4"
                data-shinyfunction="bs4Dash::dashboardSidebar">
           <div class="sidebar" id="sidebarItemExpanded">
-            <nav class="mt-2"></nav>
+            <nav class="mt-2">
+              <ul class="nav nav-pills nav-sidebar flex-column sidebar-menu nav-child-indent"
+                  data-widget="treeview" role="menu" data-accordion="true" data-shinyfunction="bs4Dash::sidebarMenu">
+                <div id="tabs_${page_id}" class="sidebarMenuSelectedTabItem" data-value="null"></div>
+              </ul>
+            </nav>
           </div>
         </aside>
         <div class="content-wrapper" data-shinyfunction="bs4Dash::dashboardBody">
