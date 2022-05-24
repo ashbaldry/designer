@@ -27,13 +27,23 @@ $.fn.ignore = function(sel) {
   return this.clone().find(sel || ">*").remove().end();
 };
 
-htmlToJSON = function(el, inner = false) {
+getChildrenJSON = function(el) {
   var children = [];
   for (var i = 0; i < el.children.length; i++) {
     if (el.children[i].dataset.shinyfunction) {
       children.push(htmlToJSON(el.children[i], true));
+    } else if (el.children[i].children.length) {
+      var child_content = getChildrenJSON(el.children[i]);
+      if (child_content.length) {
+        children = children.concat(child_content);
+      }
     }
   }
+  return children;
+};
+
+htmlToJSON = function(el, inner = false) {
+  var children = getChildrenJSON(el);
 
   var el_json = {
     tagName: el.tagName.toLowerCase(),
