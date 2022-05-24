@@ -76,13 +76,15 @@ createCanvasPage = function(page) {
             <nav class="mt-2">
               <ul class="nav nav-pills nav-sidebar flex-column sidebar-menu nav-child-indent"
                   data-widget="treeview" role="menu" data-accordion="true" data-shinyfunction="bs4Dash::sidebarMenu">
-                <div id="tabs_${page_id}" class="sidebarMenuSelectedTabItem" data-value="null"></div>
+                <div id="tabs_${page_id}" class="sidebarMenuSelectedTabItem"></div>
               </ul>
             </nav>
           </div>
         </aside>
         <div class="content-wrapper" data-shinyfunction="bs4Dash::dashboardBody">
-          <section class="content"></section>
+          <section class="content">
+            <div class="tab-content"></div>
+          </section>
         </div>
       </div>
     `;
