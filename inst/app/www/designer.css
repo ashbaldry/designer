@@ -214,7 +214,7 @@ h5.modal-title {
   overflow-y: auto;
 }
 
-/* */
+/* bs4Dash specific conditions */
 #canvas-page .main-header {
   margin-bottom: 0;
 }
