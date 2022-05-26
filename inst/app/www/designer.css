@@ -328,6 +328,14 @@ span.plot-output-element, span.image-output-element {
 }
 
 /* bs4Dash specific conditions */
+body {
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+}
+
+#canvas-page.wrapper {
+  font-family: "Source Sans Pro",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+}
+
 #canvas-page .main-header {
   margin-bottom: 0;
 }
@@ -336,10 +344,6 @@ span.plot-output-element, span.image-output-element {
   min-height: calc(100% - 3.6rem);
 }
 
-#component_settings label {
-  font-weight: 400;
-}
-
-#settings-options_dropdown label {
+#component_settings label, #settings-options_dropdown label, #canvas-page:not(.wrapper) label {
   font-weight: 400;
 }
