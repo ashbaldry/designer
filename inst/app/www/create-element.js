@@ -542,7 +542,7 @@ const designerElements = {
     var class_str = button_class === "default" ? "" : `, class = &quot;btn-${button_class}&quot;`;
     var btn_class = button_class === "default" ? "" : "btn-" + button_class;
 
-    var input_str = `${id_arg} = &quot;${id}&quot;{class_str}${width_str}`;
+    var input_str = `${id_arg} = &quot;${id}&quot;${class_str}${width_str}`;
     return `<button class="btn btn-default ${btn_class} action-button designer-element"
                     type="button" ${style_str}
                     data-shinyfunction="${r_func}"
