@@ -4,6 +4,7 @@ testthat::test_that("designer app works", {
 
   shiny_app <- designApp()
   app <- shinytest2::AppDriver$new(shiny_app, name = "designapp")
+  on.exit(app$stop())
 
   # Checking page is loaded
   app$expect_unique_names()
