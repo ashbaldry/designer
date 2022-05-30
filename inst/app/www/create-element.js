@@ -537,6 +537,8 @@ const designerElements = {
     var width_class = "";
     if (width > 0) {
       width_class = `col-sm col-sm-${width}`;
+    } else {
+      width = "NULL";
     }
 
     var colour_class = "";
