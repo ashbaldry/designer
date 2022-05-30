@@ -17,7 +17,7 @@ function addPage () {
 function deletePage () {
   const page_type = $('#settings-page_type input:radio:checked').val();
   if (page_type === "dashboardPage") {
-    deleteMenuItem();
+    deleteTab();
   } else {
     deleteTab();
   }
@@ -79,7 +79,7 @@ function addTab () {
 function deleteTab () {
   const tab_name = $("#sidebar-tab_panel-name").val();
 
-  const delete_tab = $(`ul.navbar-nav a[data-name='${tab_name}']`);
+  const delete_tab = $(`ul.nav a[data-name='${tab_name}']`);
   if (delete_tab.length === 0) {
     $("#sidebar-tab_panel-alert").html(`
       <div class="alert alert-danger" role="alert">
@@ -94,7 +94,7 @@ function deleteTab () {
 
   $("#sidebar-tab_panel-alert div").alert("close");
 
-  const tab_value = $(`ul.navbar-nav a[data-name='${tab_name}']`).data("value");
+  const tab_value = $(`ul.nav a[data-name='${tab_name}']`).data("value");
   $(delete_tab[0].parentElement).remove();
   $(`.tab-content .tab-pane[data-value='${tab_value}']`).remove();
 }
@@ -157,8 +157,4 @@ function addMenuItem () {
   enableSortablePage(document.getElementById(`shiny-tab-${tab_value}`));
 
   navbar_item = navbar_item + 1;
-}
-
-function deleteMenuItem () {
-
 }

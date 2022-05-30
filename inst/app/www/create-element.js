@@ -1,6 +1,6 @@
 var selected_component = "header";
 const UPDATEABLE_ELEMENT = [
-  "dropdown", "input", "output", "button", "radio", "checkbox", "date", "file", "slider"
+  "dropdown", "input", "output", "button", "radio", "checkbox", "date", "file", "slider", "box", "value_box"
 ];
 
 $(document).ready(function() {
@@ -568,6 +568,34 @@ const designerElements = {
               <script type="application/json">{"solidHeader":true,"width":6,"collapsible":true,"closable":false,"maximizable":false,"gradient":false,"background":"${background}","status":"${colour}"}</script>
             </div>`;
   },
+
+  value_box: function() {
+    var value = $("#sidebar-value_box-value").val();
+    var subtitle = $("#sidebar-value_box-subtitle").val();
+    var width = $("#sidebar-value_box-width").val();
+    var colour = $("#sidebar-value_box-colour").val();
+
+    var width_class = "";
+    if (width > 0) {
+      width_class = `col-sm col-sm-${width}`;
+    } else {
+      width = "NULL";
+    }
+
+    var colour_class = "";
+    if (colour !== "white") {
+      colour_class = "bg-" + colour;
+    }
+
+    return `<div class="${width_class} designer-element"
+                 data-shinyfunction="bs4Dash::bs4ValueBox"
+                 data-shinyattributes="value = &quot;${value}&quot;, subtitle = &quot;${subtitle}&quot;, color = &quot;${colour}&quot;, width = ${width}">
+              <div class="small-box ${colour_class}">
+                <div class="inner">${value}<p class="small-box-subtitle">${subtitle}</p></div>
+                <div class="small-box-footer" style="height: 30px;"></div>
+              </div>
+            </div>`;
+  }
 };
 
 const OUTPUT_CONTENTS = {

@@ -14,7 +14,8 @@ COMPONENTS <- c(
   "Checkbox" = "checkbox",
   "Radio Buttons" = "radio",
   "Button" = "button",
-  "Output" = "output"
+  "Output" = "output",
+  "Value Box" = "value_box"
 )
 
 #' Bootstrap Component Creation Module
@@ -56,6 +57,7 @@ SidebarModUI <- function(id) {
         componentSettings("radio", radioSettings, ns),
         componentSettings("button", buttonSettings, ns),
         componentSettings("box", boxSettings, ns),
+        componentSettings("value_box", valueBoxSettings, ns),
         componentSettings("output", outputSettings, ns),
         br(),
         div(
