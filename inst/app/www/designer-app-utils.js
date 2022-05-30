@@ -4,12 +4,15 @@ updatePage = function() {
 
   if (page_type === "navbarPage") {
     $(".navbar-tab-item").css("display", "");
+    $(".bs4-item").css("display", "none");
     $("#settings-component a[name='tab_panel']").click();
   } else if (page_type === "dashboardPage") {
     $(".navbar-tab-item").css("display", "");
+    $(".bs4-item").css("display", "");
     $("#settings-component a[name='tab_panel']").click();
   } else {
     $(".navbar-tab-item").css("display", "none");
+    $(".bs4-item").css("display", "none");
     $("#settings-component a[name='header']").click();
 
     enableSortablePage(document.getElementById("canvas-page"));

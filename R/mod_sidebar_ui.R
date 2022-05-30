@@ -1,7 +1,9 @@
 COMPONENTS <- c(
+  "Tab" = "tab_panel",
   "Header" = "header",
   "Row" = "row",
   "Column" = "column",
+  "Box/Card" = "box",
   "Text" = "text",
   "Input Panel" = "input_panel",
   "Dropdown (selectInput)" = "dropdown",
@@ -53,6 +55,7 @@ SidebarModUI <- function(id) {
         componentSettings("checkbox", checkboxSettings, ns),
         componentSettings("radio", radioSettings, ns),
         componentSettings("button", buttonSettings, ns),
+        componentSettings("box", boxSettings, ns),
         componentSettings("output", outputSettings, ns),
         br(),
         div(

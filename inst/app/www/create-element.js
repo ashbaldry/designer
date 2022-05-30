@@ -71,7 +71,11 @@ function updateDesignerElement (update_sortable = false) {
         var component = selected_component;
         var sortable_settings = designerSortableSettings[component];
         if (sortable_settings) {
-          Sortable.create(evt.item, sortable_settings);
+          if (component === "box") {
+            Sortable.create($(evt.item).find('.card-body')[0], sortable_settings);
+          } else {
+            Sortable.create(evt.item, sortable_settings);
+          }
         }
       },
       onEnd: function(evt) {
@@ -522,7 +526,46 @@ const designerElements = {
                          style="${style_str}"
                          data-shinyfunction="${output_func}"
                          data-shinyattributes="${input_str}">${output_tag}</${html_tag}>`
-  }
+  },
+
+  box: function() {
+    var label = $("#sidebar-box-label").val();
+    var width = $("#sidebar-box-width").val();
+    var colour = $("#sidebar-box-colour").val();
+    var background = $("#sidebar-box-background").val();
+
+    var width_class = "";
+    if (width > 0) {
+      width_class = `col-sm col-sm-${width}`;
+    }
+
+    var colour_class = "";
+    if (colour !== "white") {
+      colour_class = "card-outline card-" + colour;
+    }
+
+    var background_class = "";
+    if (background !== "white") {
+      background_class = "bg-" + background;
+    }
+
+    return `<div class="${width_class} designer-element"
+                 data-shinyfunction="bs4Dash::bs4Card"
+                 data-shinyattributes="title = &quot;${label}&quot;, status = &quot;${colour}&quot;, background = &quot;${background}&quot;, width = ${width}">
+              <div class="card bs4Dash ${colour_class} ${background_class}">
+                <div class="card-header">
+                  <h3 class="card-title">${label}</h3>
+                  <div class="card-tools float-right">
+                    <button class="btn btn-tool btn-sm ${background_class}" type="button" data-card-widget="collapse">
+                      <i class="fa fa-minus" role="presentation" aria-label="minus icon"></i>
+                    </button>
+                  </div>
+                </div>
+                <div class="card-body"></div>
+                </div>
+              <script type="application/json">{"solidHeader":true,"width":6,"collapsible":true,"closable":false,"maximizable":false,"gradient":false,"background":"${background}","status":"${colour}"}</script>
+            </div>`;
+  },
 };
 
 const OUTPUT_CONTENTS = {
@@ -556,6 +599,14 @@ const designerSortableSettings = {
       name: "shared",
       put: function (to, from, clone) {
         return clone.classList.contains("form-group") || clone.classList.contains("btn");
+      }
+    }
+  },
+  box: {
+    group: {
+      name: "shared",
+      put: function (to, from, clone) {
+        return !clone.classList.contains("col-sm");
       }
     }
   }

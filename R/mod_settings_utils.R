@@ -64,23 +64,30 @@ pageChoices <- function(ns) {
   )
 }
 
+NAVBAR_COMPONENTS <- "tab_panel"
+BS4_COMPONENTS <- "box"
+
 componentChoices <- function(ns) {
   div(
     id = ns("component"),
     `aria-labelledby` = ns("component_button"),
     class = "dropdown-menu dropdown-menu-right dropdown-menu-wide component-type-dropdown",
-    tags$a(
-      class = "dropdown-item navbar-tab-item",
-      `data-shinyelement` = "tab_panel",
-      name = "tab_panel",
-      "Tab"
-    ),
     lapply(names(COMPONENTS), function(component) {
-      first_item <- COMPONENTS[[component]] == COMPONENTS[[1]]
+      first_item <- COMPONENTS[[component]] == "header"
+      comp <- COMPONENTS[[component]]
+
+      if (comp %in% BS4_COMPONENTS) {
+        extra_class <- "bs4-item"
+      } else if (comp %in% NAVBAR_COMPONENTS) {
+        extra_class <- "component-item navbar-tab-item"
+      } else {
+        extra_class <- "component-item"
+      }
+
       tags$a(
-        class = paste("dropdown-item component-item", if (first_item) "active" else ""),
-        `data-shinyelement` = COMPONENTS[[component]],
-        name = COMPONENTS[[component]],
+        class = paste("dropdown-item", extra_class, if (first_item) "active" else ""),
+        `data-shinyelement` = comp,
+        name = comp,
         component
       )
     })
