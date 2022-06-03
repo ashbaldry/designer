@@ -1,7 +1,8 @@
 {
+  "private": true,
   "name": "designer",
   "version": "0.2.0",
-  "main": "index.js",
+  "main": "",
   "scripts": {
     "build": "node build.js && node minify.js && rm -rf tmp",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,13 +11,11 @@
     "type": "git",
     "url": "git+https://github.com/ashbaldry/designer.git"
   },
-  "keywords": [],
-  "author": "",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/ashbaldry/designer/issues"
   },
-  "homepage": "https://github.com/ashbaldry/designer#readme",
+  "homepage": "https://ashbaldry.github.com/designer",
   "dependencies": {
     "@types/rstudio-shiny": "https://github.com/rstudio/shiny#v1.7.1",
     "jquery": "^3.6.0",
