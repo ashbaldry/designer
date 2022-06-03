@@ -1,0 +1,29 @@
+{
+  "name": "designer",
+  "version": "0.2.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ashbaldry/designer.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ashbaldry/designer/issues"
+  },
+  "homepage": "https://github.com/ashbaldry/designer#readme",
+  "dependencies": {
+    "@types/rstudio-shiny": "https://github.com/rstudio/shiny#v1.7.1",
+    "sortablejs": "^1.15.0"
+  },
+  "devDependencies": {
+    "@node-minify/clean-css": "^6.2.0",
+    "@node-minify/core": "^6.2.0",
+    "@node-minify/uglify-js": "^6.2.0"
+  }
+}

@@ -71,18 +71,20 @@ addGolemExternalResources <- function() {
     cicerone::use_cicerone()
   )
 
+  designer_scripts <- list.files(system.file("srcjs/designer", package = "designer"), ".js$")
+
+  ui_head <- addbs4DashDependencies(ui_head, NULL)
+
   ui_head <- htmltools::attachDependencies(
     ui_head,
-
-      htmltools::htmlDependency(
-        name = "Sortable",
-        version = "1.14.0",
-        src = "srcjs/sortable",
-        script = "Sortable.min.js",
-        package = "designer"
+    htmltools::htmlDependency(
+      name = "Sortable",
+      version = "1.14.0",
+      src = "srcjs/sortable",
+      script = "Sortable.min.js",
+      package = "designer"
     )
   )
-  ui_head <- addbs4DashDependencies(ui_head, NULL)
 
   ui_head
 }
