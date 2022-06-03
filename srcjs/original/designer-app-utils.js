@@ -19,16 +19,7 @@ updatePage = function() {
   }
 };
 
-enableSortablePage = function(el) {
-  Sortable.create(el, {
-    group: {
-      name: "shared",
-      put: function (to, from, clone) {
-        return !clone.classList.contains("col-sm");
-      }
-    }
-  });
-};
+
 
 updateCanvasCheck = function() {
   if ($("#canvas-page").html() === "") {

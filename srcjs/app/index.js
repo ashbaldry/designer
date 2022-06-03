@@ -1,3 +1,5 @@
+import { BasicPage } from '../page/BasicPage';
+
 $(function() {
     $(".help-icon").tooltip({
       boundary: "window",
@@ -5,7 +7,7 @@ $(function() {
     });
   
     $("#settings-page_type").on("change", updateCanvasCheck);
-    updatePage();
+    const page = new BasicPage();
   
     $("#confirm_reset").on("click", updatePage);
     $(".copy-ui-button").on("click", copyUICode);
