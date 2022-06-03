@@ -1,9 +1,7 @@
-const minify = require('@node-minify/core');
-const uglifyJS = require('@node-minify/uglify-js');
-
-minify({
-  compressor: uglifyJS,
-  input: 'test.js',
-  output: '../inst/app/www/designer.min.js',
-  callback: function(err, min) {}
-});
+require("esbuild").build({
+  entryPoints: ["input/canvas-page-input.js"],
+  bundle: true,
+  outfile: "tmp"
+}).catch(
+  () => process.exit(1)
+);
