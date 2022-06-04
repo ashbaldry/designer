@@ -36,7 +36,6 @@ export class DashboardPage extends Page {
 
     constructor() {
         super();
-        const html = this.page_html.replaceAll("$page_id$", this.getTabID());
-        this.updatePage(html);
+        this.updatePage(this.page_html);
     }
 };

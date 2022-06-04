@@ -19,7 +19,7 @@ export class Page {
     };
 
     getPageHTML(html, title = "") {
-        return html.replaceAll("$title$", title);
+        return html.replaceAll("$page_id$", this.getTabID()).replaceAll("$title$", title);
     };
 
     updatePage(html) {
