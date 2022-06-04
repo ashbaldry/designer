@@ -22,11 +22,16 @@ export class Page {
         return html.replaceAll("$title$", title);
     };
 
+    updatePage(html) {
+        const title = $("#canvas-title").html();;
+        $(".page-canvas").html(this.getPageHTML(html, title));
+    };
+
     enableSortablePage (id) {
         Sortable.create(document.getElementById(id), {
             group: {
                 name: "shared",
-                put: function (to, from, clone) {
+                put: function (_to, _from, clone) {
                     return !clone.classList.contains("col-sm");
                 }
             }

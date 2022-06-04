@@ -5,7 +5,7 @@ export class BasicPage extends Page {
 
     constructor() {
         super();
-        $(".page-canvas").html(this.getPageHTML(this.page_html, $("canvas-title").html()));
+        this.updatePage(this.page_html);
         this.enableSortablePage("canvas-page");
     }
 };

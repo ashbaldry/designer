@@ -4,7 +4,7 @@
   "version": "0.2.0",
   "main": "",
   "scripts": {
-    "build": "node build.js && node minify.js && rm -rf tmp",
+    "build": "node build.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -22,6 +22,7 @@
     "sortablejs": "^1.15.0"
   },
   "devDependencies": {
+    "@node-minify/babel-minify": "^6.2.0",
     "@node-minify/clean-css": "^6.2.0",
     "@node-minify/core": "^6.2.0",
     "@node-minify/google-closure-compiler": "^6.2.0",
