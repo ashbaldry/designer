@@ -19,8 +19,6 @@ updatePage = function() {
   }
 };
 
-
-
 updateCanvasCheck = function() {
   if ($("#canvas-page").html() === "") {
     $("#canvas-page").html("<div></div>");

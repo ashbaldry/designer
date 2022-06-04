@@ -27,6 +27,7 @@
     "@node-minify/core": "^6.2.0",
     "@node-minify/google-closure-compiler": "^6.2.0",
     "@node-minify/uglify-js": "^6.2.0",
-    "esbuild": "^0.14.42"
+    "esbuild": "^0.14.42",
+    "fs": "^0.0.1-security"
   }
 }

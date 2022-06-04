@@ -1,7 +1,8 @@
 var esbuild = require("esbuild");
+const fs = require('fs');
 
 esbuild.build({
-  entryPoints: ['index.js'],
+  entryPoints: ['app/index.js'],
   bundle: true,
   sourcemap: true,
   outfile: '../inst/app/www/designer.min.js',
@@ -14,9 +15,8 @@ esbuild.build({
 esbuild.build({
   entryPoints: ['input/canvas-page-input.js'],
   bundle: true,
-  outfile: '../inst/app/www/canvas-page.min.js',
-  platform: 'node',
-  minify: true
+  outfile: '../inst/app/www/canvas-page.js',
+  platform: 'node'
 }).catch(
   () => process.exit(1)
 );
