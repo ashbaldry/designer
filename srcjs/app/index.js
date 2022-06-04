@@ -5,7 +5,7 @@ $(function() {
   initPage();
   initSettings();
 
-  $(".help-icon").tooltip({ boundary: "window", placement: "right"});
+  $(".help-icon").tooltip({ boundary: "window", placement: "right" });
 
   Sortable.create(document.getElementById("sidebar-bin"), {
     group: {
