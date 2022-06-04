@@ -19,7 +19,7 @@ export class Page {
     };
 
     getPageHTML(html, title = "") {
-        return html.replaceAll(/\s*\n\s*/g, ' ').replaceAll("$title$", title);
+        return html.replaceAll("$title$", title);
     };
 
     updatePage(html) {
@@ -37,4 +37,8 @@ export class Page {
             }
         });
     };
+
+    getTabID () {
+        return Math.round(Math.random() * 8999 + 1000);
+    }    
 };
