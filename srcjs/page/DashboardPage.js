@@ -1,6 +1,9 @@
 import { Page } from './Page';
 
 export class DashboardPage extends Page {
+    navbar_item_style = "";
+    bs4_item_style = "";
+    enable_on_load = false;
     page_html = `
         <div id="canvas-page" class="wrapper designer-page-template"
              data-shinyfunction="bs4Dash::dashboardPage" data-shinyattributes="title = &quot;$title$&quot;">
@@ -37,5 +40,6 @@ export class DashboardPage extends Page {
     constructor() {
         super();
         this.updatePage(this.page_html);
+        this.updateComponentDropdown(this.navbar_item_style, this.bs4_item_style);
     }
 };

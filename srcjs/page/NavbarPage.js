@@ -1,6 +1,8 @@
 import { Page } from './Page';
 
 export class NavbarPage extends Page {
+    navbar_item_style = "";
+    enable_on_load = false;    
     page_html = `
         <div class="designer-page-template">
             <nav class="navbar navbar-default navbar-static-top" role="navigation">
@@ -22,5 +24,6 @@ export class NavbarPage extends Page {
     constructor() {
         super();
         this.updatePage(this.page_html);
+        this.updateComponentDropdown(this.navbar_item_style, this.bs4_item_style);
     }
 };
