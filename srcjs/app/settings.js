@@ -1,4 +1,6 @@
 export function initSettings() {
+    $(".copy-ui-button").on("click", copyUICode);
+
     $("#remove_label").on("change", toggleComponentLabels);
     $("#remove_colour").on("change", toggleBackgroundColours);
     $("#remove_border").on("change", toggleBorders);
@@ -31,3 +33,9 @@ function toggleBorders () {
         $(".designer-page-template").addClass("hidden-borders");
     }
 };
+
+function copyUICode () {
+    var copy_text = document.getElementById("settings-code-code").textContent;
+    navigator.clipboard.writeText(copy_text);
+    return;
+  };
