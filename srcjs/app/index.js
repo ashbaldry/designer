@@ -1,8 +1,10 @@
 import { initPage } from "../page/init";
 import { initSettings } from "./settings";
+import { initComponents } from "../component/init";
 
 $(function() {
   initPage();
+  initComponents();
   initSettings();
 
   $(".help-icon").tooltip({ boundary: "window", placement: "right" });

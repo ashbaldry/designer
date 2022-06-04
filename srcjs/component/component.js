@@ -1,12 +1,14 @@
 export class Component {
-    #name;
-    #parameters;
+    name;
+    parameters;
+
+    constructor() {};
 
     getName() {
-        return this.#name;
-    }
+        return this.name;
+    };
 
     getParams() {
-        return this.#parameters;
+        return this.parameters;
     };
 };
