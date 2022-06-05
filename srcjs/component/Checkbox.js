@@ -28,7 +28,7 @@ export class CheckboxInput extends Component {
         const label = $("#sidebar-label").val();
 
         let id = $("#sidebar-id").val();
-        id = id === "" ? this.createID("input") : id;
+        id = id === "" ? this.createID("checkbox") : id;
 
         const width = this.validateCssUnit($("#sidebar-width").val());
         const style_str = width ? `width: ${width};` : "";

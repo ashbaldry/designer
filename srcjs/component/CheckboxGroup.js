@@ -34,7 +34,7 @@ export class CheckboxGroupInput extends Component {
         const label = $("#sidebar-label").val();
 
         let id = $("#sidebar-id").val();
-        id = id === "" ? this.createID("input") : id;
+        id = id === "" ? this.createID("checkbox") : id;
 
         var type = $("#sidebar-type").val();
         const input_info = this.types.find(x => x.value === type);

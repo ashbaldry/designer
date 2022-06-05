@@ -1,14 +1,3 @@
-SLIDER_TYPES <- c(
-  "Numeric" = "number",
-  "Date" = "date",
-  "Timestamp" = "datetime"
-)
-
-RADIO_BUTTON_TYPES <- c(
-  "Radio" = "radio",
-  "Checkbox" = "checkbox"
-)
-
 OUTPUT_TYPES <- c(
   "Text" = "text",
   "Verbatim Text" = "verbatimText",
@@ -92,33 +81,6 @@ tabSettings <- function(id) {
       type = "button",
       class = "btn btn-danger action-button",
       "Delete Tab"
-    )
-  )
-}
-
-sliderSettings <- function(id) {
-  ns <- NS(id)
-
-  tagList(
-    h2("Slider Settings"),
-    labelInput(ns("label")),
-    idInput(ns("id")),
-    selectInput(
-      ns("type"),
-      label = "Input Type",
-      choices = SLIDER_TYPES,
-      selected = "number"
-    ),
-    checkboxInput(
-      ns("range"),
-      "Ranged Slider"
-    ),
-    widthInput(ns("width")),
-
-    tags$br(),
-    h3("Notes:"),
-    tags$ul(
-      tags$li("To position several inputs horizontally, they must be put within an input panel")
     )
   )
 }

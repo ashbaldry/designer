@@ -104,7 +104,7 @@ componentRange <- function(ns) {
     "range",
     checkboxInput(
       ns("range"),
-      "Date Range"
+      "Ranged Input"
     )
   )
 }

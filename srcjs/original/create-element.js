@@ -1,9 +1,4 @@
 function updateDesignerElement (update_sortable = false) {
-  if (component === "slider") {
-    var slider_type = $(".component-container").find("input").data("data-type");
-    $(".component-container").find("input").ionRangeSlider({ prettify: sliderPrettifier[slider_type]});
-  }
-
   if (component === "output") {
     Shiny.bindAll();
   }
@@ -38,92 +33,7 @@ function updateDesignerElement (update_sortable = false) {
   }
 }
 
-const sliderPrettifier = {
-  number: null,
-  date: function (num) {
-    var sel_date = new Date(num);
-    console.log(sel_date);
-    return sel_date.getFullYear() + "-" + (sel_date.getMonth() + 1) + "-" + sel_date.getDate();
-  },
-  datetime: function (num) {
-    var sel_date = new Date(num);
-    console.log(sel_date);
-    return sel_date.getFullYear() + "-" + (sel_date.getMonth() + 1) + "-" + sel_date.getDate() + " " +
-    sel_date.getHours() + ":" + sel_date.getMinutes() + ":" + sel_date.getSeconds();
-  }
-};
-
 const designerElements = {
-  slider: function() {
-    var label = $("#sidebar-slider-label").val();
-    var id = $("#sidebar-slider-id").val();
-    var format = $("#sidebar-slider-type").val();
-    var range = document.getElementById("sidebar-slider-range").checked;
-    var width = validateCssUnit($("#sidebar-slider-width").val(), "");
-
-    if (id === "") {
-      id = createRandomID("slider");
-    }
-
-    var width_str = "", style_str = "";
-    if (width !== "") {
-      style_str = ` style="width: ${width};"`;
-      width_str = `, width = &quot;${width}&quot;`;
-    }
-
-    var step = 1, min = 0, max = 10, from = 5, to = 7;
-    var value_str, input_value_str;
-    var curr_time, curr_date = new Date(), time_format = "";
-
-    if (format === "number") {
-      if (range) {
-        input_value_str = "c(5, 7)";
-      } else {
-        input_value_str = "5";
-      }
-      value_str = `, min = 0, max = 10, value = ${input_value_str}`;
-    } else {
-      if (format === "date") {
-        curr_date.setHours(0, 0, 0, 0);
-      }
-
-      step = format === "date" ? 1000 * 60 * 60 * 24 : 1000;
-      curr_time = curr_date.getTime();
-      min = curr_time - 5 * step;
-      max = curr_time + 5 * step;
-      from = curr_time;
-      to = curr_time + 2 * step;
-
-      time_format = format === "date" ? "%F" : "%F %T";
-      var r_datefunc = format === "date" ? "Sys.Date()" : "Sys.time()";
-      var r_mult = format === "date" ? "" : "000";
-
-      if (range) {
-        input_value_str = `"c(${r_datefunc}, ${r_datefunc} + 2${r_mult})"`
-      } else {
-        input_value_str = r_datefunc;
-      }
-      value_str = `, min = ${r_datefunc} - 5${r_mult}, max = ${r_datefunc} + 5${r_mult}, value = ${input_value_str}`;
-    }
-
-    var range_attr = "";
-    if (range) {
-      range_attr = `data-type="double" data-drag-interval="true" data-to="${to}"`
-    }
-
-    var input_str = `inputId = &quot;${id}&quot;, label = &quot;${label}&quot;${value_str}${width_str}`;
-    var label_tag = `<label class="control-label">${label}</label>`;
-    var input_tag = `<input class="js-range-slider"
-                            data-data-type="${format}" data-skin="shiny" data-grid="true" data-grid-num="10"
-                            data-grid-snap="false" data-prettifyed-enabled="true" data-prettifyed-separator=","
-                            data-keyboard="true" ${range_attr} data-time-format="${time_format}"
-                            data-step="${step}" data-min="${min}" data-max="${max}" data-from="${from}">`;
-
-    return `<div class="designer-element form-group shiny-input-container" ${style_str}
-                 data-shinyattributes="${input_str}"
-                 data-shinyfunction="sliderInput">${label_tag}${input_tag}</div>`;
-  },
-
   button: function() {
     var label = $("#sidebar-button-label").val();
     var id = $("#sidebar-button-id").val();
