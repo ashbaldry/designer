@@ -59,7 +59,10 @@ componentOffset = function(ns) {
     "offset",
     numericInput(
       ns("offset"),
-      "Offset",
+      inputLabel(
+        "Offset",
+        "The gap between the window/previous column and this column"
+      ),
       value = 0,
       min = 0,
       max = 11

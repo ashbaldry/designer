@@ -16,6 +16,17 @@ export class Component {
         for (let i = 0; i < this.parameters.length; i++) {
             $(".component-settings[data-component= '" + this.parameters[i] + "']").css("display", "unset");
         }
+        this.updateNotes();
+    };
+
+    updateNotes() {
+        $("#sidebar-notes").html(null);
+        if (this.notes) {
+            $("#sidebar-notes").html("<h3>Notes</h3><ul></ul>");
+            for (let i = 0; i < this.notes.length; i++) {
+                $("#sidebar-notes ul").append("<li>" + this.notes[i] + "</li>");
+            }
+        }
     };
 
     createComponent() {

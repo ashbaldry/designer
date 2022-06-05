@@ -30,6 +30,9 @@ SidebarModUI <- function(id) {
           componentOffset(ns)
         ),
         tags$section(
+          id = ns("notes"),
+        ),
+        tags$section(
           class = "component-comments",
           textAreaInput(
             ns("comments"),

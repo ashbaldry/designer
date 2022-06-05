@@ -3,12 +3,16 @@ import { Component } from './Component';
 export class Column extends Component {
     name = "column";
     parameters = ["width_num", "offset"];
+    updatable = false;
     html = `
         <div class="designer-element col-sm col-sm-$width$$offset_class$"
              data-shinyfunction="column"
              data-shinyattributes="width = $width$$offset_r$"></div>
     `;
-    updatable = false;
+    notes = [
+        "Columns can only be included in <b>rows</b>.",
+        "Rows are split into 12 column units, if the sum of columns' width exceeds 12, they get wrapped onto a new line."
+    ]
     sortable_settings = {
         group: {
             name: "shared",
