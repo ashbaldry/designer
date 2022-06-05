@@ -24,6 +24,7 @@ SidebarModUI <- function(id) {
         class = "component-form",
         tags$section(
           class = "component-parameters",
+          h2(id = ns("title")),
           componentTag(ns),
           componentType(ns),
           componentLabel(ns),

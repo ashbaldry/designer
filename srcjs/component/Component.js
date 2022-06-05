@@ -17,8 +17,14 @@ export class Component {
         for (let i = 0; i < this.parameters.length; i++) {
             $(".component-settings[data-component= '" + this.parameters[i] + "']").css("display", "unset");
         }
+        this.updateTitle();
         this.updateNotes();
     };
+
+    updateTitle() {
+        const title = this.name ? `${this.name} Settings` : null;
+        $("#sidebar-title").html(title);
+    }
 
     updateNotes() {
         $("#sidebar-notes").html(null);

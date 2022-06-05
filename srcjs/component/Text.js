@@ -1,7 +1,7 @@
 import { Component } from './Component';
 
 export class Text extends Component {
-    name = "text";
+    name = "Text";
     parameters = ["tag", "textarea"];
     tags = [
         {value: "p", label: "Paragraph <p>", text: "Paragraph <p>"}, 

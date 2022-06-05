@@ -1,7 +1,7 @@
 import { Component } from './Component';
 
 export class Header extends Component {
-    name = "header";
+    name = "Header";
     parameters = ["tag", "text"];
     
     tags = [

@@ -1,7 +1,6 @@
 import { Component } from './Component';
 
 export class Row extends Component {
-    name = "row";
     parameters = [];
     updatable = false;
     html = `<div class="designer-element row row-designer" data-shinyfunction="fluidRow"></div>`;

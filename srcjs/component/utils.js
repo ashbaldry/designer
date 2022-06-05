@@ -4,10 +4,7 @@ import { Column } from './Column';
 import { Text } from './Text';
 import { InputPanel } from './InputPanel';
 import { Input } from './Input';
-
-export function updateComponent () {
-
-};
+import { FileInput } from './FileInput';
 
 export function getComponent(name, update = true) {
     if (name === "header") {
@@ -22,6 +19,8 @@ export function getComponent(name, update = true) {
         return new InputPanel(update);
     } else if (name === "input") {
         return new Input(update);
+    } else if (name === "file") {
+        return new FileInput(update);
     } else {
         return new Header(update);
     }
