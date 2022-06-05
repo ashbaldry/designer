@@ -2,6 +2,8 @@ import { component } from "./init";
 
 export class Component {
     updatable = true;
+    display_comments = true;
+    display_container = true;
     name;
     parameters;
     tags;
@@ -19,6 +21,8 @@ export class Component {
         }
         this.updateTitle();
         this.updateNotes();
+        $(".component-container").css("display", this.display_container ? "" : "none");
+        $(".component-comments").css("display", this.display_comments ? "" : "none");
     };
 
     updateTitle() {

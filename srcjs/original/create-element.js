@@ -1,53 +1,10 @@
-var selected_component = "header";
-const UPDATEABLE_ELEMENT = [
-  "dropdown", "input", "output", "button", "radio", "checkbox", "date", "file", "slider", "box", "value_box"
-];
-
-$(document).ready(function() {
-  $(".component-settings").on("change keyup", updateDesignerElement);
-  $(".component_comments").on("change blur", updateDesignerElement);
-  $('.component-container').on("mouseover", () => {$(":focus").blur()});
-  updateDesignerElement(true);
-
-  $(".component-settings[data-component= '" + selected_component + "']").css("display", "unset");
-
-  $("#settings-component .dropdown-item").on("click", (el) => {
-    selected_component = $(el.target).data("shinyelement");
-    $("#settings-component .dropdown-item").removeClass("active");
-    $(el.target).addClass("active");
-    $(".component-settings").css("display", "");
-    $(".component-settings[data-component= '" + selected_component + "']").css("display", "unset");
-    updateDesignerElement(true);
-  });
-});
-
 function updateDesignerElement (update_sortable = false) {
-  $(".component-container").html(null);
-  var component = selected_component;
-
-  // Need to do multiple things when //
-  if (component === "tab_panel") {
-    $(".component-container").css("display", "none");
-    $(".component_comments").css("display", "none");
-    return;
-  }
-
-  var component_html = designerElements[component]();
-  var container = document.getElementById("sidebar-container");
-
-  $(".component-container").css("display", "");
-  $(".component_comments").css("display", "");
-  $(".component-container").html(component_html);
-  if ($("#sidebar-comments").val() !== "") {
-    $(".component-container>.designer-element").attr("data-shinycomments", $("#sidebar-comments").val());
-    $(".component-container>.designer-element").attr("title", $("#sidebar-comments").val());
-    $(".component-container>.designer-element").attr("data-toggle", "tooltip");
-  }
-
   if (component === "slider") {
     var slider_type = $(".component-container").find("input").data("data-type");
     $(".component-container").find("input").ionRangeSlider({ prettify: sliderPrettifier[slider_type]});
-  } else if (component === "output") {
+  }
+
+  if (component === "output") {
     Shiny.bindAll();
   }
 
