@@ -31,7 +31,9 @@ SidebarModUI <- function(id) {
           componentID(ns),
           componentText(ns),
           componentTextArea(ns),
+          componentChoices(ns),
           componentRange(ns),
+          componentInline(ns),
           componentWidth(ns),
           componentWidthNum(ns),
           componentOffset(ns)

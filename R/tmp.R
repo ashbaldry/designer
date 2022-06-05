@@ -123,34 +123,6 @@ sliderSettings <- function(id) {
   )
 }
 
-radioSettings <- function(id) {
-  ns <- NS(id)
-
-  tagList(
-    h2("Radio Button Settings"),
-    radioButtons(
-      ns("type"),
-      label = "Button Type",
-      choices = RADIO_BUTTON_TYPES,
-      selected = "radio",
-      inline = TRUE
-    ),
-    labelInput(ns("label")),
-    idInput(ns("id")),
-    textAreaInput(
-      ns("choices"),
-      label = "Choices (One Per Line)",
-      value = "Choice 1\nChoice 2",
-      height = "5rem"
-    ),
-    checkboxInput(
-      ns("inline"),
-      label = "Inline"
-    ),
-    widthInput(ns("width"))
-  )
-}
-
 buttonSettings <- function(id) {
   ns <- NS(id)
 

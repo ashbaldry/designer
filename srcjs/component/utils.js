@@ -8,6 +8,7 @@ import { FileInput } from './FileInput';
 import { SelectInput } from './SelectInput';
 import { DateInput } from './DateInput';
 import { CheckboxInput } from './Checkbox';
+import { CheckboxGroupInput } from './CheckboxGroup';
 
 export function getComponent(name) {
     if (name === "header") {
@@ -30,7 +31,10 @@ export function getComponent(name) {
         return new DateInput();
     } else if (name === "checkbox") {
         return new CheckboxInput();
-    } else {
-        return new Header();
+    } else if (name === "radio") {
+        return new CheckboxGroupInput();
     }
+    
+
+    return new Header();
 }

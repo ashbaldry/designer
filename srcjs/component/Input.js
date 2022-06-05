@@ -1,7 +1,7 @@
 import { Component } from './Component';
 
 export class Input extends Component {
-    name = "input";
+    name = "Input";
     parameters = ["type", "id", "label", "width"];
     types = [
         {value: "text", label: "Text", r_func: "textInput"}, 

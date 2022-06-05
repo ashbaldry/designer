@@ -47,8 +47,6 @@ function updateDesignerElement (update_sortable = false) {
   if (component === "slider") {
     var slider_type = $(".component-container").find("input").data("data-type");
     $(".component-container").find("input").ionRangeSlider({ prettify: sliderPrettifier[slider_type]});
-  } else if (component === "date") {
-    $(".component-container").find("input").bsDatepicker();
   } else if (component === "output") {
     Shiny.bindAll();
   }
@@ -81,11 +79,6 @@ function updateDesignerElement (update_sortable = false) {
       }
     });
   }
-}
-
-function createCheckbox (x, id = "", type = "checkbox", inline = false) {
-  var check_class = inline ? type + "-inline" : type;
-  return `<label class="${check_class}"><input type="${type}"><span>${x}</span></label>`;
 }
 
 const sliderPrettifier = {
@@ -172,42 +165,6 @@ const designerElements = {
     return `<div class="designer-element form-group shiny-input-container" ${style_str}
                  data-shinyattributes="${input_str}"
                  data-shinyfunction="sliderInput">${label_tag}${input_tag}</div>`;
-  },
-
-  radio: function() {
-    var label = $("#sidebar-radio-label").val();
-    var id = $("#sidebar-radio-id").val();
-    var width = validateCssUnit($("#sidebar-radio-width").val(), "");
-    var type = $('#sidebar-radio-type input:checked').val();
-    var choices = $('#sidebar-radio-choices').val();
-    var inline = document.getElementById("sidebar-radio-inline").checked;
-
-    if (id === "") {
-      id = createRandomID(type + "group");
-    }
-
-    var width_str = "", style_str = "";
-    if (width !== "") {
-      style_str = ` style="width: ${width};"`;
-      width_str = `, width = &quot;${width}&quot;`;
-    }
-
-    var r_func = type === "radio" ? "radioButtons" : "checkboxGroupInput";
-    var role = type === "radio" ? "radiogroup" : "group";
-
-    var inline_str = inline ? ", inline = TRUE" : "";
-    var inline_class = inline ? "-inline" : "";
-
-    var choices_str = `, choices = c(&quot;${choices.replace(/\n/g, '&quot;, &quot;')}&quot;)`
-    var input_str = `inputId = &quot;${id}&quot;, label = &quot;${label}&quot;${choices_str}${inline_str}${width_str}`;
-    var label_tag = `<label class="control-label">${label}</label>`;
-
-    var choices_tag = choices.split("\n").map(x => createCheckbox(x, id = id, type = type, inline = inline)).join("");
-    var input_tag = `<div class="shiny-options-group">${choices_tag}</div>`;
-
-    return `<div class="designer-element form-group shiny-input-container shiny-input-${type}group${inline_class}"
-                 data-shinyfunction="${r_func}" data-shinyattributes="${input_str}" ${style_str}
-                 role="${role}">${label_tag}${input_tag}</div>`;
   },
 
   button: function() {

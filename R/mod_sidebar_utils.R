@@ -87,12 +87,34 @@ componentTextArea <- function(ns) {
   )
 }
 
+componentChoices <- function(ns) {
+  component(
+    "choices",
+    textAreaInput(
+      ns("choices"),
+      label = "Choices (One Per Line)",
+      value = "Choice 1\nChoice 2",
+      height = "5rem"
+    )
+  )
+}
+
 componentRange <- function(ns) {
   component(
     "range",
     checkboxInput(
       ns("range"),
       "Date Range"
+    )
+  )
+}
+
+componentInline <- function(ns) {
+  component(
+    "inline",
+    checkboxInput(
+      ns("inline"),
+      "In-Line"
     )
   )
 }

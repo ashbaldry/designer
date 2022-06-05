@@ -31,7 +31,7 @@ PAGE_TYPES <- c(
   "Dashboard Page" = "dashboardPage"
 )
 
-pageChoices <- function(ns) {
+pageOptions <- function(ns) {
   div(
     `aria-labelledby` = ns("page_type_button"),
     class = "dropdown-menu dropdown-menu-right dropdown-menu-wide page-type-dropdown clickable-dropdown",
@@ -86,7 +86,7 @@ COMPONENTS <- c(
 NAVBAR_COMPONENTS <- "tab_panel"
 BS4_COMPONENTS <- c("box", "value_box")
 
-componentChoices <- function(ns) {
+componentOptions <- function(ns) {
   div(
     id = ns("component"),
     `aria-labelledby` = ns("component_button"),
