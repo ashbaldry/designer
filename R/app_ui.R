@@ -68,7 +68,11 @@ addGolemExternalResources <- function() {
     ionRangeSliderDependency(),
     datePickerDependency(),
     dataTableDependency,
-    cicerone::use_cicerone()
+    cicerone::use_cicerone(),
+
+    tags$meta(name = "description", content = "Create Wireframes of the UI of shiny applications"),
+    tags$meta(name = "keywords", content = "R, shiny, designer, prototype, wireframe"),
+    tags$meta(name = "author", content = "Ashley Baldry"),
   )
 
   designer_scripts <- list.files(system.file("srcjs/designer", package = "designer"), ".js$")
