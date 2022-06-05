@@ -1,3 +1,32 @@
+#' Bootstrap Component Inputs
+#'
+#' @description
+#' A way to be able to adjust components so that can more easily visualise how the shiny application will look.
+#'
+#' @param id The character vector to use for the namespace.
+#'
+#' @return A \code{shiny.tag.list} of settings specific to the selected component
+#'
+#' @noRd
+componentTag <- function(ns) {
+  selectInput(
+    ns("tag"),
+    inputLabel(
+      "HTML Tag",
+      "The size of the header will reduce as the number increases. Use sequentially for best user experience."
+    ),
+    NULL
+  )
+}
+
+componentText <- function(ns) {
+  textInput(
+    ns("text"),
+    "Contents",
+    placeholder = "Add Text"
+  )
+}
+
 TEXT_TAGS <- c(
   "Paragraph <p>" = "p",
   "Ordered List <ol>" = "ol",

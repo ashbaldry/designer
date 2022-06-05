@@ -1,23 +1,3 @@
-COMPONENTS <- c(
-  "Tab" = "tab_panel",
-  "Header" = "header",
-  "Row" = "row",
-  "Column" = "column",
-  "Box/Card" = "box",
-  "Text" = "text",
-  "Input Panel" = "input_panel",
-  "Dropdown (selectInput)" = "dropdown",
-  "Input" = "input",
-  "Slider" = "slider",
-  "File Input" = "file",
-  "Calendar (dateInput)" = "date",
-  "Checkbox" = "checkbox",
-  "Radio Buttons" = "radio",
-  "Button" = "button",
-  "Output" = "output",
-  "Value Box" = "value_box"
-)
-
 #' Bootstrap Component Creation Module
 #'
 #' @description
@@ -34,7 +14,7 @@ SidebarModUI <- function(id) {
   ns <- NS(id)
 
   tagList(
-    div(
+    tags$section(
       id = "component_settings",
       div(
         id = ns("container"),
@@ -42,26 +22,13 @@ SidebarModUI <- function(id) {
       ),
       tags$form(
         class = "component-form",
-        componentSettings("tab_panel", tabSettings, ns),
-        componentSettings("header", headerSettings, ns),
-        componentSettings("row", rowSettings, ns),
-        componentSettings("column", columnSettings, ns),
-        componentSettings("text", textSettings, ns),
-        componentSettings("input_panel", inputPanelSettings, ns),
-        componentSettings("dropdown", dropdownSettings, ns),
-        componentSettings("input", inputSettings, ns),
-        componentSettings("file", fileSettings, ns),
-        componentSettings("slider", sliderSettings, ns),
-        componentSettings("date", dateSettings, ns),
-        componentSettings("checkbox", checkboxSettings, ns),
-        componentSettings("radio", radioSettings, ns),
-        componentSettings("button", buttonSettings, ns),
-        componentSettings("box", boxSettings, ns),
-        componentSettings("value_box", valueBoxSettings, ns),
-        componentSettings("output", outputSettings, ns),
-        br(),
-        div(
-          class = "component_comments",
+        tags$section(
+          class = "component-parameters",
+          componentTag(ns),
+          componentText(ns)
+        ),
+        tags$section(
+          class = "component-comments",
           textAreaInput(
             ns("comments"),
             label = inputLabel(
@@ -75,7 +42,7 @@ SidebarModUI <- function(id) {
         )
       )
     ),
-    div(
+    tags$section(
       id = "component_delete",
       class = "container bin-container",
       h3(class = "bin-header", icon("trash", "aria-hidden" = "true"), "Drag Here to Delete Item"),

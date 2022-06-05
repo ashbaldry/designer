@@ -64,8 +64,27 @@ pageChoices <- function(ns) {
   )
 }
 
+COMPONENTS <- c(
+  "Tab" = "tab_panel",
+  "Header" = "header",
+  "Row" = "row",
+  "Column" = "column",
+  "Box/Card" = "box",
+  "Text" = "text",
+  "Input Panel" = "input_panel",
+  "Dropdown (selectInput)" = "dropdown",
+  "Input" = "input",
+  "Slider" = "slider",
+  "File Input" = "file",
+  "Calendar (dateInput)" = "date",
+  "Checkbox" = "checkbox",
+  "Radio Buttons" = "radio",
+  "Button" = "button",
+  "Output" = "output",
+  "Value Box" = "value_box"
+)
 NAVBAR_COMPONENTS <- "tab_panel"
-BS4_COMPONENTS <- "box"
+BS4_COMPONENTS <- c("box", "value_box")
 
 componentChoices <- function(ns) {
   div(
