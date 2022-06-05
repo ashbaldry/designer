@@ -73,11 +73,6 @@ export class DateInput extends Component {
     updateComponent(update_sortable = false) {
         super.updateComponent(update_sortable);
 
-        $(".component-container").find("select").selectize({
-            labelField: "label",
-            valueField: "value",
-            searchField: ["label"],
-            placeholder: "select input"
-        });
+        $(".component-container").find("input").bsDatepicker();
     };
 }
