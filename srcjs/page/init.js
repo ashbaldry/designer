@@ -5,5 +5,5 @@ export function initPage () {
     $("#settings-page_type").on("change", changePageCheck);
     $("#confirm_reset").on("click", createPage);
 
-    $("#app_name").on("change keyup", updateTitle);    
+    $("#app_name").on("change keyup", updateTitle);   
 };

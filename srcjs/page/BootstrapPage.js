@@ -6,10 +6,4 @@ export class BootstrapPage extends Page {
              data-shinyfunction="bootstrapPage"
              data-shinyattributes="title = &quot;$title$&quot;, theme = bslib::bs_theme(4)"></div>
     `;
-
-    constructor() {
-        super();
-        this.updatePage(this.page_html);
-        this.enableSortablePage("canvas-page");
-    }
 };

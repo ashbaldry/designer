@@ -20,10 +20,4 @@ export class NavbarPage extends Page {
             </div>
         </div>
     `;
-
-    constructor() {
-        super();
-        this.updatePage(this.page_html);
-        this.updateComponentDropdown(this.navbar_item_style, this.bs4_item_style);
-    }
 };

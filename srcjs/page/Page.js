@@ -4,14 +4,12 @@ export class Page {
     enable_on_load = true;
     page_html;
         
-    constructor() {
-        this.updateComponentDropdown(this.navbar_item_style, this.bs4_item_style);
-    };
+    constructor() {};
 
-    updateComponentDropdown (navbar_display, bs4_display) {
-        $(".navbar-tab-item").css("display", navbar_display);
-        $(".bs4-item").css("display", bs4_display);
-        if (navbar_display === "none") {
+    updateComponentDropdown () {
+        $(".navbar-tab-item").css("display", this.navbar_item_style);
+        $(".bs4-item").css("display", this.bs4_item_style);
+        if (this.navbar_item_style === "none") {
             $("#settings-component a[name='header']").trigger("click");
         } else {
             $("#settings-component a[name='tab_panel']").trigger("click");
@@ -22,9 +20,9 @@ export class Page {
         return html.replaceAll("$page_id$", this.getTabID()).replaceAll("$title$", title);
     };
 
-    updatePage(html) {
-        const title = $("#canvas-title").html();;
-        $(".page-canvas").html(this.getPageHTML(html, title));
+    updatePage() {
+        const title = $("#canvas-title").html();
+        $(".page-canvas").html(this.getPageHTML(this.page_html, title));
     };
 
     enableSortablePage (id) {

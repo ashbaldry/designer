@@ -25,6 +25,11 @@ export function createPage () {
         page = new BasicPage();
     }
 
+    page.updatePage();
+    if (page.enable_on_load) {
+        page.enableSortablePage("canvas-page");
+    }
+    page.updateComponentDropdown();
     return page;
 };
 
