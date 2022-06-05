@@ -44,14 +44,7 @@ function updateDesignerElement (update_sortable = false) {
     $(".component-container>.designer-element").attr("data-toggle", "tooltip");
   }
 
-  if (component === "dropdown") {
-    $(".component-container").find("select").selectize({
-      labelField: "label",
-      valueField: "value",
-      searchField: ["label"],
-      placeholder: "select input"
-    });
-  } else if (component === "slider") {
+  if (component === "slider") {
     var slider_type = $(".component-container").find("input").data("data-type");
     $(".component-container").find("input").ionRangeSlider({ prettify: sliderPrettifier[slider_type]});
   } else if (component === "date") {
@@ -90,10 +83,6 @@ function updateDesignerElement (update_sortable = false) {
   }
 }
 
-function createRandomID (prefix) {
-  return prefix + "_" + Math.random().toString(36).substr(2, 10);
-}
-
 function validateCssUnit (x, fallback) {
   const regex = /^(auto|inherit|fit-content|calc\(.*\)|((\.\d+)|(\d+(\.\d+)?))(%|in|cm|mm|ch|em|ex|rem|pt|pc|px|vh|vw|vmin|vmax))$/;
   if (regex.test(x)) {
@@ -126,30 +115,6 @@ const sliderPrettifier = {
 };
 
 const designerElements = {
-  dropdown: function() {
-    var label = $("#sidebar-dropdown-label").val();
-    var id = $("#sidebar-dropdown-id").val();
-    var width = validateCssUnit($("#sidebar-dropdown-width").val(), "");
-
-    if (id === "") {
-      id = createRandomID("dropdown");
-    }
-
-    var width_str = "", style_str = "";
-    if (width !== "") {
-      style_str = ` style="width: ${width};"`;
-      width_str = `, width = &quot;${width}&quot;`;
-    }
-
-    var input_str = `inputId = &quot;${id}&quot;, label = &quot;${label}&quot;, choices = &quot;...&quot;${width_str}`;
-    var label_tag = `<label class="control-label">${label}</label>`;
-
-    return `<div class="designer-element form-group shiny-input-container"
-                 ${style_str}
-                 data-shinyattributes="${input_str}"
-                 data-shinyfunction="selectInput">${label_tag}<div><select></div></div>`;
-  },
-
   slider: function() {
     var label = $("#sidebar-slider-label").val();
     var id = $("#sidebar-slider-id").val();
@@ -218,39 +183,6 @@ const designerElements = {
     return `<div class="designer-element form-group shiny-input-container" ${style_str}
                  data-shinyattributes="${input_str}"
                  data-shinyfunction="sliderInput">${label_tag}${input_tag}</div>`;
-  },
-
-  file: function() {
-    var label = $("#sidebar-file-label").val();
-    var id = $("#sidebar-file-id").val();
-    var width = validateCssUnit($("#sidebar-file-width").val(), "");
-
-    if (id === "") {
-      id = createRandomID("file");
-    }
-
-    var width_str = "", style_str = "";
-    if (width !== "") {
-      style_str = ` style="width: ${width};"`;
-      width_str = `, width = &quot;${width}&quot;`;
-    }
-
-    var input_str = `inputId = &quot;${id}&quot;, label = &quot;${label}&quot;${width_str}`;
-    var label_tag = `<label class="control-label">${label}</label>`;
-    var input_tag = `<div class="input-group">
-      <label class="input-group-btn input-group-prepend">
-        <span class="btn btn-default btn-file">
-          Browse...
-          <input type="file"
-                 style="position: absolute !important; top: -99999px !important; left: -99999px !important;"/>
-        </span>
-      </label>
-      <input type="text" class="form-control" placeholder="No file selected" readonly="readonly"/>
-    </div>`;
-
-    return `<div class="designer-element form-group shiny-input-container"
-                 data-shinyfunction="fileInput" ${style_str}
-                 data-shinyattributes="${input_str}">${label_tag}${input_tag}</div>`;
   },
 
   date: function() {

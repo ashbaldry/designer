@@ -96,23 +96,6 @@ tabSettings <- function(id) {
   )
 }
 
-fileSettings <- function(id) {
-  ns <- NS(id)
-
-  tagList(
-    h2("File Input Settings"),
-    labelInput(ns("label")),
-    idInput(ns("id")),
-    widthInput(ns("width")),
-
-    tags$br(),
-    h3("Notes:"),
-    tags$ul(
-      tags$li("To position several inputs horizontally, they must be put within an input panel")
-    )
-  )
-}
-
 sliderSettings <- function(id) {
   ns <- NS(id)
 
@@ -201,23 +184,6 @@ radioSettings <- function(id) {
       label = "Inline"
     ),
     widthInput(ns("width"))
-  )
-}
-
-dropdownSettings <- function(id) {
-  ns <- NS(id)
-
-  tagList(
-    h2("Dropdown Settings"),
-    labelInput(ns("label")),
-    idInput(ns("id")),
-    widthInput(ns("width")),
-
-    tags$br(),
-    h3("Notes:"),
-    tags$ul(
-      tags$li("To position several inputs horizontally, they must be put within an input panel")
-    )
   )
 }
 

@@ -5,6 +5,7 @@ import { Text } from './Text';
 import { InputPanel } from './InputPanel';
 import { Input } from './Input';
 import { FileInput } from './FileInput';
+import { SelectInput } from './SelectInput';
 
 export function getComponent(name, update = true) {
     if (name === "header") {
@@ -19,6 +20,8 @@ export function getComponent(name, update = true) {
         return new InputPanel(update);
     } else if (name === "input") {
         return new Input(update);
+    } else if (name === "dropdown") {
+        return new SelectInput(update);
     } else if (name === "file") {
         return new FileInput(update);
     } else {
