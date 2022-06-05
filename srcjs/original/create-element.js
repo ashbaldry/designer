@@ -126,16 +126,6 @@ const sliderPrettifier = {
 };
 
 const designerElements = {
-  header: function() {
-    var tag = $("#sidebar-header-tag").val();
-    var value = $("#sidebar-header-value").val();
-
-    return `<${tag} class="designer-element" data-shinyfunction="${tag}">${value}</${tag}>`;
-  },
-
-  row: function() {
-    return `<div class="designer-element row row-designer" data-shinyfunction="fluidRow"></div>`;
-  },
 
   column: function() {
     var width = $("#sidebar-column-width").val();

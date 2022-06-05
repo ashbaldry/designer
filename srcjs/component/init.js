@@ -1,6 +1,6 @@
 import { getComponent } from "./utils";
 
-var component;
+export var component;
 
 export function initComponents () {
     component = new getComponent("header");

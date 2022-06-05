@@ -25,7 +25,9 @@ SidebarModUI <- function(id) {
         tags$section(
           class = "component-parameters",
           componentTag(ns),
-          componentText(ns)
+          componentText(ns),
+          componentWidthNum(ns),
+          componentOffset(ns)
         ),
         tags$section(
           class = "component-comments",

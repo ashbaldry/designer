@@ -1,8 +1,11 @@
+import { component } from "./init";
+
 export class Component {
     updatable = true;
     name;
     parameters;
     tags;
+    notes;
     sortable_settings;
     html;
 
@@ -16,7 +19,7 @@ export class Component {
     };
 
     createComponent() {
-        throw new Error("Method not implemented");
+        return this.html;
     };
 
     replaceHTMLPlaceholders(html, options) {
@@ -37,7 +40,6 @@ export class Component {
     };
 
     enableSortable() {
-        var self = this;
         Sortable.create(
             document.getElementById("sidebar-container"), {
             group: {
@@ -46,15 +48,15 @@ export class Component {
               put: false
             },
             onClone: function(evt) {
-              if (this.sortable_settings) {
-                Sortable.create(evt.item, this.sortable_settings);
-              }
+                if (component.sortable_settings) {
+                    Sortable.create(evt.item, component.sortable_settings);
+                }
             },
-            onEnd: function(evt) {
-              $('.page-canvas [data-toggle="tooltip"]').tooltip();
-              if (this.updatable || $("#sidebar-comments").val() !== "") {
-                $("#sidebar-comments").val("");
-                self.updateComponent();
+            onEnd: function(_evt) {
+                $('.page-canvas [data-toggle="tooltip"]').tooltip();
+                if (component.updatable || $("#sidebar-comments").val() !== "") {
+                    $("#sidebar-comments").val("");
+                    component.updateComponent();
               }
             }
         });
