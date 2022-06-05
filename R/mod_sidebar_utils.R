@@ -8,24 +8,42 @@
 #' @return A \code{shiny.tag.list} of settings specific to the selected component
 #'
 #' @noRd
+component <- function(id, ...) {
+  div(
+    class = "component-settings",
+    `data-component` = id,
+    ...
+  )
+}
+
 componentTag <- function(ns) {
-  selectInput(
-    ns("tag"),
-    inputLabel(
-      "HTML Tag",
-      "The size of the header will reduce as the number increases. Use sequentially for best user experience."
-    ),
-    NULL
+  component(
+    "tag",
+    selectInput(
+      ns("tag"),
+      inputLabel(
+        "HTML Tag",
+        "The size of the header will reduce as the number increases. Use sequentially for best user experience."
+      ),
+      NULL
+    )
   )
 }
 
 componentText <- function(ns) {
+  component(
+    "text",
   textInput(
     ns("text"),
     "Contents",
     placeholder = "Add Text"
   )
+  )
 }
+
+
+
+
 
 TEXT_TAGS <- c(
   "Paragraph <p>" = "p",

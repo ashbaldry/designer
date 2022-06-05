@@ -17,6 +17,7 @@ export class Header extends Component {
 
     constructor() {
         super();
+        this.showRelevantOptions();
         this.updateTag();
         this.updateText("Header");
     }
@@ -24,6 +25,6 @@ export class Header extends Component {
     createComponent() {
         const tag = $("#sidebar-tag").val();
         const value = $("#sidebar-text").val();
-        return this.replaceHTMLPlaceholders(this.html, {tag: tag, value: value})
+        return this.replaceHTMLPlaceholders(this.html, {tag: tag, value: value});
     }
 }

@@ -8,6 +8,13 @@ export class Component {
 
     constructor() {};
 
+    showRelevantOptions() {
+        $(".component-settings").css("display", "");
+        for (let i = 0; i < this.parameters.length; i++) {
+            $(".component-settings[data-component= '" + this.parameters[i] + "']").css("display", "unset");
+        }
+    };
+
     createComponent() {
         throw new Error("Method not implemented");
     };
