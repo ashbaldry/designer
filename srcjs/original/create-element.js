@@ -126,43 +126,6 @@ const sliderPrettifier = {
 };
 
 const designerElements = {
-  input: function() {
-    var type = $("#sidebar-input-type").val();
-    var label = $("#sidebar-input-label").val();
-    var id = $("#sidebar-input-id").val();
-    var width = validateCssUnit($("#sidebar-input-width").val(), "");
-
-    if (id === "") {
-      id = createRandomID("input");
-    }
-
-    var value_str = "";
-    if (type === "numeric") {
-      value_str = ", value = 1";
-    }
-
-    var width_str = "", style_str = "";
-    if (width !== "") {
-      style_str = ` style="width: ${width};"`;
-      width_str = `, width = &quot;${width}&quot;`;
-    }
-
-    var input_tag;
-    if (type === "textArea") {
-      input_tag = `<textarea class="form-control" placeholder="textarea input"></textarea>`;
-    } else {
-      const input_types = {numeric: "number", text: "text", password: "password"};
-      input_tag = `<input class="form-control" type="${input_types[type]}" placeholder="${type} input">`;
-    }
-
-    var input_str = `inputId = &quot;${id}&quot;, label = &quot;${label}&quot;${value_str}${width_str}`;
-    var label_tag = `<label class="control-label">${label}</label>`;
-
-    return `<div class="designer-element form-group shiny-input-container"${style_str}
-                 data-shinyattributes="${input_str}"
-                 data-shinyfunction="${type}Input">${label_tag}${input_tag}</div>`;
-  },
-
   dropdown: function() {
     var label = $("#sidebar-dropdown-label").val();
     var id = $("#sidebar-dropdown-id").val();

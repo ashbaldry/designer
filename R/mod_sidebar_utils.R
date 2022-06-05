@@ -8,14 +8,6 @@
 #' @return A \code{shiny.tag.list} of settings specific to the selected component
 #'
 #' @noRd
-component <- function(id, ...) {
-  div(
-    class = "component-settings",
-    `data-component` = id,
-    ...
-  )
-}
-
 componentTag <- function(ns) {
   component(
     "tag",
@@ -26,6 +18,45 @@ componentTag <- function(ns) {
         "The size of the header will reduce as the number increases. Use sequentially for best user experience."
       ),
       NULL
+    )
+  )
+}
+
+componentType <- function(ns) {
+  component(
+    "type",
+    selectInput(
+      ns("type"),
+      "Input Type",
+      NULL
+    )
+  )
+}
+
+componentLabel <- function(ns) {
+  component(
+    "label",
+    textInput(
+      ns("label"),
+      label = "Label",
+      value = "Label"
+    )
+  )
+
+}
+
+componentID <- function(ns) {
+  component(
+    "id",
+    textInput(
+      inputId = ns("id"),
+      label = inputLabel(
+        "Input ID",
+        "<p>ID attribute given to the component, used to get the input value on the server side</p>",
+        "<p>Leave blank for a randomly generated ID</p>"
+      ),
+      value = "",
+      placeholder = "Optional"
     )
   )
 }
@@ -52,6 +83,22 @@ componentTextArea <- function(ns) {
       ),
       value = "",
       height = "5rem"
+    )
+  )
+}
+
+componentWidth <- function(ns) {
+  component(
+    ns("width"),
+    textInput(
+      inputId = ns("width"),
+      label = inputLabel(
+        "Width",
+        "<p>Either use a specific width (e.g. 400px) or a percentage (e.g. 100%).</p>",
+        "<p>If just a number is used, then it will be treated as pixels (px)</p>"
+      ),
+      value = "",
+      placeholder = "Optional"
     )
   )
 }
@@ -85,3 +132,24 @@ componentOffset = function(ns) {
   )
 }
 
+component <- function(id, ...) {
+  div(
+    class = "component-settings",
+    `data-component` = id,
+    ...
+  )
+}
+
+inputLabel <- function(label, ...) {
+  tagList(
+    label,
+    a(
+      class = "help-icon",
+      href = "#",
+      "data-toggle" = "tooltip",
+      "data-html" = "true",
+      "?",
+      title = paste(...)
+    )
+  )
+}

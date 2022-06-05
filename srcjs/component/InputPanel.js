@@ -5,6 +5,9 @@ export class InputPanel extends Component {
     parameters = [];
     updatable = false;
     html = `<div class="designer-element shiny-input-panel shiny-flow-layout" data-shinyfunction="inputPanel"></div>`;
+    notes = [
+        "By default inputs will be aligned vertically, input panels enable the inputs to be aligned horizontally."
+    ]
     sortable_settings = {
         group: {
             name: "shared",

@@ -5,6 +5,7 @@ export class Component {
     name;
     parameters;
     tags;
+    types;
     notes;
     sortable_settings;
     html;
@@ -92,12 +93,30 @@ export class Component {
         }
     };
 
+    updateType() {
+        if (this.types) {
+            var selectize = $("#sidebar-type").selectize()[0].selectize;
+            selectize.clearOptions(true);
+            selectize.addOption(this.types);
+            selectize.refreshOptions(false);
+            selectize.addItem(this.types[0].value);
+        }
+    };
+    
+    updateTextInput(id, text = "") {
+        $(`#sidebar-${id}`).val(text);
+    };
+
     updateText(text = "") {
         $("#sidebar-text").val(text);
     };
 
     updateTextArea(text = "") {
         $("#sidebar-textarea").val(text);
+    };
+
+    updateTextLabel(text = "label") {
+        $("#sidebar-label").val(text);
     };
 
     createID(prefix = "") {

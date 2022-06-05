@@ -3,6 +3,7 @@ import { Row } from './Row';
 import { Column } from './Column';
 import { Text } from './Text';
 import { InputPanel } from './InputPanel';
+import { Input } from './Input';
 
 export function updateComponent () {
 
@@ -19,6 +20,8 @@ export function getComponent(name, update = true) {
         return new Text(update);
     } else if (name === "input_panel") {
         return new InputPanel(update);
+    } else if (name === "input") {
+        return new Input(update);
     } else {
         return new Header(update);
     }
