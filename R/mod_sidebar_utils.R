@@ -41,6 +41,21 @@ componentText <- function(ns) {
   )
 }
 
+componentTextArea <- function(ns) {
+  component(
+    "textarea",
+    textAreaInput(
+      ns("textarea"),
+      label = inputLabel(
+        "Contents",
+        "Add individual list items on separate lines"
+      ),
+      value = "",
+      height = "5rem"
+    )
+  )
+}
+
 componentWidthNum = function(ns) {
   component(
     "width_num",

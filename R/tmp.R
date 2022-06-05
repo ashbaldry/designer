@@ -1,9 +1,3 @@
-TEXT_TAGS <- c(
-  "Paragraph <p>" = "p",
-  "Ordered List <ol>" = "ol",
-  "Unordered List <ul>" = "ul"
-)
-
 INPUT_TYPES <- c(
   "Text" = "text",
   "Text Area" = "textArea",
@@ -133,53 +127,6 @@ componentSettings <- function(id, settings_func, ns = NS(NULL)) {
 #' @return A \code{shiny.tag.list} of settings specific to the selected component
 #'
 #' @noRd
-columnSettings <- function(id) {
-  ns <- NS(id)
-
-  tagList(
-    h2("Column Settings"),
-    numericInput(
-      ns("width"),
-      "Width",
-      value = 3,
-      min = 1,
-      max = 12
-    ),
-    numericInput(
-      ns("offset"),
-      inputLabel(
-        "Offset",
-        "The gap between the window/previous column and this column"
-      ),
-      value = 0,
-      min = 0,
-      max = 11
-    ),
-
-    tags$br(),
-    h3("Notes"),
-    tags$ul(
-      tags$li("Columns can only be included in", tags$b("rows")),
-      tags$li(
-        "Rows are split into 12 column units, if the sum of columns' width exceeds 12, they get wrapped onto a new line"
-      )
-    )
-  )
-}
-
-rowSettings <- function(id) {
-  tagList(
-    h3("Notes:"),
-    tags$ul(
-      tags$li("The only component that can be a direct child of a row are columns"),
-      tags$li(
-        "By default, a row will have no height and is determined by the contents inside.",
-        "To easily drop elements into the rows, they have a minimum height of 50px in this app"
-      )
-    )
-  )
-}
-
 tabSettings <- function(id) {
   ns <- NS(id)
 
@@ -209,49 +156,6 @@ tabSettings <- function(id) {
       type = "button",
       class = "btn btn-danger action-button",
       "Delete Tab"
-    )
-  )
-}
-
-headerSettings <- function(id) {
-  ns <- NS(id)
-
-  tagList(
-    h2("Header Settings"),
-    selectInput(
-      ns("tag"),
-      inputLabel(
-        "HTML Tag",
-        "The size of the header will reduce as the number increases. Use sequentially for best user experience."
-      ),
-      c(paste0("h", 1:6), "div")
-    ),
-    textInput(
-      ns("value"),
-      "Contents",
-      "Header"
-    )
-  )
-}
-
-textSettings <- function(id) {
-  ns <- NS(id)
-
-  tagList(
-    h2("Text Settings"),
-    selectInput(
-      ns("type"),
-      label = "HTML Tag",
-      choices = TEXT_TAGS
-    ),
-    textAreaInput(
-      ns("contents"),
-      label = inputLabel(
-        "Contents",
-        "Add individual list items on separate lines"
-      ),
-      value = "",
-      height = "5rem"
     )
   )
 }

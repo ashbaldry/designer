@@ -92,8 +92,12 @@ export class Component {
         }
     };
 
-    updateText(text) {
+    updateText(text = "") {
         $("#sidebar-text").val(text);
+    };
+
+    updateTextArea(text = "") {
+        $("#sidebar-textarea").val(text);
     };
 
     createID(prefix = "") {

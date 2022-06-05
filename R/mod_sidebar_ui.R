@@ -26,6 +26,7 @@ SidebarModUI <- function(id) {
           class = "component-parameters",
           componentTag(ns),
           componentText(ns),
+          componentTextArea(ns),
           componentWidthNum(ns),
           componentOffset(ns)
         ),

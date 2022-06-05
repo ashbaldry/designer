@@ -1,0 +1,21 @@
+import { Component } from './Component';
+
+export class InputPanel extends Component {
+    name = "input_panel";
+    parameters = [];
+    updatable = false;
+    html = `<div class="designer-element shiny-input-panel shiny-flow-layout" data-shinyfunction="inputPanel"></div>`;
+    sortable_settings = {
+        group: {
+            name: "shared",
+            put: function (_to, _from, clone) {
+                return clone.classList.contains("form-group") || clone.classList.contains("btn");
+            }
+        }
+    };
+
+    constructor() {
+        super();
+        this.showRelevantOptions();
+    }
+}

@@ -126,41 +126,6 @@ const sliderPrettifier = {
 };
 
 const designerElements = {
-
-  column: function() {
-    var width = $("#sidebar-column-width").val();
-    var offset = $("#sidebar-column-offset").val();
-
-    var offset_class = "";
-    var offset_r = "";
-    if (offset > 0) {
-      offset_class = ` offset-md-${offset}`;
-      offset_r = `, offset = ${offset}`;
-    }
-
-    return `<div class="designer-element col-sm col-sm-${width}${offset_class}"
-                 data-shinyfunction="column"
-                 data-shinyattributes="width = ${width}${offset_r}"></div>`;
-  },
-
-  text: function() {
-    var tag = $("#sidebar-text-type").val();
-
-    var contents = "";
-    if (tag === "p") {
-      contents = $("#sidebar-text-contents").val().replace(/\n/g, " ");
-    } else {
-      var list_items = $("#sidebar-text-contents").val().split("\n");
-      contents = list_items.map(x => '<li data-shinyfunction="tags$li">' + x + "</li>").join("");
-    }
-
-    return `<${tag} class="designer-element" data-shinyfunction="tags$${tag}">${contents}</${tag}>`;
-  },
-
-  input_panel: function() {
-    return `<div class="designer-element shiny-input-panel shiny-flow-layout" data-shinyfunction="inputPanel"></div>`;
-  },
-
   input: function() {
     var type = $("#sidebar-input-type").val();
     var label = $("#sidebar-input-label").val();
@@ -598,30 +563,6 @@ const OUTPUT_CONTENTS = {
 };
 
 const designerSortableSettings = {
-  row: {
-    group: {
-      name: "shared",
-      put: function (to, from, clone) {
-        return clone.classList.contains("col-sm");
-      }
-    }
-  },
-  column: {
-    group: {
-      name: "shared",
-      put: function (to, from, clone) {
-        return !clone.classList.contains("col-sm");
-      }
-    }
-  },
-  input_panel: {
-    group: {
-      name: "shared",
-      put: function (to, from, clone) {
-        return clone.classList.contains("form-group") || clone.classList.contains("btn");
-      }
-    }
-  },
   box: {
     group: {
       name: "shared",
