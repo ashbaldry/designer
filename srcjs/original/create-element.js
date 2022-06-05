@@ -83,17 +83,6 @@ function updateDesignerElement (update_sortable = false) {
   }
 }
 
-function validateCssUnit (x, fallback) {
-  const regex = /^(auto|inherit|fit-content|calc\(.*\)|((\.\d+)|(\d+(\.\d+)?))(%|in|cm|mm|ch|em|ex|rem|pt|pc|px|vh|vw|vmin|vmax))$/;
-  if (regex.test(x)) {
-    return x;
-  } else if (/^\d+$/.test(x)) {
-    return x + "px";
-  } else {
-    return fallback;
-  }
-}
-
 function createCheckbox (x, id = "", type = "checkbox", inline = false) {
   var check_class = inline ? type + "-inline" : type;
   return `<label class="${check_class}"><input type="${type}"><span>${x}</span></label>`;
@@ -183,47 +172,6 @@ const designerElements = {
     return `<div class="designer-element form-group shiny-input-container" ${style_str}
                  data-shinyattributes="${input_str}"
                  data-shinyfunction="sliderInput">${label_tag}${input_tag}</div>`;
-  },
-
-  date: function() {
-    var label = $("#sidebar-date-label").val();
-    var id = $("#sidebar-date-id").val();
-    var width = validateCssUnit($("#sidebar-date-width").val(), "");
-    var range = document.getElementById("sidebar-date-range").checked;
-
-    if (id === "") {
-      id = createRandomID("date");
-    }
-
-    var r_func = range ? "dateRangeInput" : "dateInput";
-    var date_class = range ? "shiny-date-range-input" : "shiny-date-input";
-
-    var width_str = "", style_str = "";
-    if (width !== "") {
-      style_str = ` style="width: ${width};"`;
-      width_str = `, width = &quot;${width}&quot;`;
-    }
-
-    var input_str = `inputId = &quot;${id}&quot;, label = &quot;${label}&quot;${width_str}`;
-    var label_tag = `<label class="control-label">${label}</label>`;
-
-    var date_tag = `<input class="form-control" type="text" title="Date format: yyyy-mm-dd" placeholder="date input"
-                            data-date-language="en" data-date-week-start="0" data-date-format="yyyy-mm-dd"
-                            data-date-start-view="month" data-date-autoclose="true"/>`;
-    var input_tag;
-    if (range) {
-      var mid_tag = `<span class="input-group-addon input-group-prepend input-group-append">
-                       <span class ="input-group-text"> to </span>
-                     </span>`;
-
-      input_tag = `<div class="input-daterange input-group input-group-sm">${date_tag}${mid_tag}${date_tag}</div>`;
-    } else {
-      input_tag = date_tag;
-    }
-
-    return `<div class="designer-element form-group shiny-input-container ${date_class}"
-                 data-shinyfunction="${r_func}" ${style_str}
-                 data-shinyattributes="${input_str}">${label_tag}${input_tag}</div>`;
   },
 
   checkbox: function() {

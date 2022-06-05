@@ -87,6 +87,16 @@ componentTextArea <- function(ns) {
   )
 }
 
+componentRange <- function(ns) {
+  component(
+    "range",
+    checkboxInput(
+      ns("range"),
+      "Date Range"
+    )
+  )
+}
+
 componentWidth <- function(ns) {
   component(
     ns("width"),

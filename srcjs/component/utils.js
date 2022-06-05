@@ -6,25 +6,28 @@ import { InputPanel } from './InputPanel';
 import { Input } from './Input';
 import { FileInput } from './FileInput';
 import { SelectInput } from './SelectInput';
+import { DateInput } from './DateInput';
 
-export function getComponent(name, update = true) {
+export function getComponent(name) {
     if (name === "header") {
-        return new Header(update);
+        return new Header();
     } else if (name === "row") {
-        return new Row(update);
+        return new Row();
     } else if (name === "column") {
-        return new Column(update);
+        return new Column();
     } else if (name === "text") {
-        return new Text(update);
+        return new Text();
     } else if (name === "input_panel") {
-        return new InputPanel(update);
+        return new InputPanel();
     } else if (name === "input") {
-        return new Input(update);
+        return new Input();
     } else if (name === "dropdown") {
-        return new SelectInput(update);
+        return new SelectInput();
     } else if (name === "file") {
-        return new FileInput(update);
+        return new FileInput();
+    } else if (name === "date") {
+        return new DateInput();
     } else {
-        return new Header(update);
+        return new Header();
     }
 }

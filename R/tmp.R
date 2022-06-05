@@ -123,27 +123,6 @@ sliderSettings <- function(id) {
   )
 }
 
-dateSettings <- function(id) {
-  ns <- NS(id)
-
-  tagList(
-    h2("Date Settings"),
-    labelInput(ns("label")),
-    idInput(ns("id")),
-    checkboxInput(
-      ns("range"),
-      "Date Range"
-    ),
-    widthInput(ns("width")),
-
-    tags$br(),
-    h3("Notes:"),
-    tags$ul(
-      tags$li("To position several inputs horizontally, they must be put within an input panel")
-    )
-  )
-}
-
 checkboxSettings <- function(id) {
   ns <- NS(id)
 
