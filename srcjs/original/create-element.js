@@ -174,33 +174,6 @@ const designerElements = {
                  data-shinyfunction="sliderInput">${label_tag}${input_tag}</div>`;
   },
 
-  checkbox: function() {
-    var label = $("#sidebar-checkbox-label").val();
-    var id = $("#sidebar-checkbox-id").val();
-    var width = validateCssUnit($("#sidebar-checkbox-width").val(), "");
-    var checked = document.getElementById("sidebar-checkbox-checked").checked;
-
-    if (id === "") {
-      id = createRandomID("checkbox");
-    }
-
-    var width_str = "", style_str = "";
-    if (width !== "") {
-      style_str = ` style="width: ${width};"`;
-      width_str = `, width = &quot;${width}&quot;`;
-    }
-
-    var checked_str = checked ? ", value = TRUE" : "";
-    var checked_attr = checked ? `checked="checked"` : "";
-
-    var input_str = `inputId = &quot;${id}&quot;, label = &quot;${label}&quot;${checked_str}${width_str}`;
-    var input_tag = `<label><input type="checkbox" ${checked_attr}><span>${label}</span></label>`;
-
-    return `<div class="designer-element form-group shiny-input-container" ${style_str}
-                 data-shinyfunction="checkboxInput"
-                 data-shinyattributes="${input_str}"><div class="checkbox">${input_tag}</div>`;
-  },
-
   radio: function() {
     var label = $("#sidebar-radio-label").val();
     var id = $("#sidebar-radio-id").val();

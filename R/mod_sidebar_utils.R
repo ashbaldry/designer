@@ -99,7 +99,7 @@ componentRange <- function(ns) {
 
 componentWidth <- function(ns) {
   component(
-    ns("width"),
+    "width",
     textInput(
       inputId = ns("width"),
       label = inputLabel(

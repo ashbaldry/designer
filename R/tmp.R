@@ -123,21 +123,6 @@ sliderSettings <- function(id) {
   )
 }
 
-checkboxSettings <- function(id) {
-  ns <- NS(id)
-
-  tagList(
-    h2("Checkbox Settings"),
-    labelInput(ns("label")),
-    idInput(ns("id")),
-    checkboxInput(
-      ns("checked"),
-      label = "Checked"
-    ),
-    widthInput(ns("width"))
-  )
-}
-
 radioSettings <- function(id) {
   ns <- NS(id)
 

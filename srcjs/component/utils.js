@@ -7,6 +7,7 @@ import { Input } from './Input';
 import { FileInput } from './FileInput';
 import { SelectInput } from './SelectInput';
 import { DateInput } from './DateInput';
+import { CheckboxInput } from './Checkbox';
 
 export function getComponent(name) {
     if (name === "header") {
@@ -27,6 +28,8 @@ export function getComponent(name) {
         return new FileInput();
     } else if (name === "date") {
         return new DateInput();
+    } else if (name === "checkbox") {
+        return new CheckboxInput();
     } else {
         return new Header();
     }
