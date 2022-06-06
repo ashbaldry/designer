@@ -27,7 +27,7 @@ componentType <- function(ns) {
     "type",
     selectInput(
       inputId = ns("type"),
-      label = "Input Type",
+      label = "Type",
       NULL
     )
   )
