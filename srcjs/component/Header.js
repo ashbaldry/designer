@@ -19,7 +19,7 @@ export class Header extends Component {
         super();
         this.showRelevantOptions();
         this.updateTag();
-        this.updateText("Header");
+        this.updateTextInput("text", "Header");
     }
 
     createComponent() {

@@ -48,8 +48,10 @@ export class SliderInput extends Component {
 
         const ranged = document.getElementById("sidebar-range").checked;
         const values = this.getValues(format, ranged);
+        const range_attr = ranged ? `data-type="double" data-drag-interval="true" data-to="$to$"` : "";
 
         return this.replaceHTMLPlaceholders(this.html, {
+            range_attr: range_attr,
             id: id,
             label: label, 
             format: format,

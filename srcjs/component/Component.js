@@ -12,7 +12,10 @@ export class Component {
     sortable_settings;
     html;
 
-    constructor() {};
+    constructor() {
+        $("label[for='sidebar-type']").html("Type");
+        $("label[for='sidebar-id']").html("Input ID");
+    };
 
     showRelevantOptions() {
         $(".component-settings").css("display", "");
@@ -112,21 +115,25 @@ export class Component {
             selectize.addItem(this.types[0].value);
         }
     };
+
+    updateTextInputs(elements) {
+        for (var i = 0; i < elements.length; i++) {
+            this.updateTextInput(elements[i].id, elements[i].text);
+        }
+    };
     
     updateTextInput(id, text = "") {
         $(`#sidebar-${id}`).val(text);
     };
 
-    updateText(text = "") {
-        $("#sidebar-text").val(text);
+    updateTextInputs(elements) {
+        for (var i = 0; i < elements.length; i++) {
+            this.updateLabel(elements[i].id, elements[i].text);
+        }
     };
 
-    updateTextArea(text = "") {
-        $("#sidebar-textarea").val(text);
-    };
-
-    updateTextLabel(text = "label") {
-        $("#sidebar-label").val(text);
+    updateLabel(id, text = "") {
+        $(`label[for='sidebar-${id}']`).html(text);
     };
 
     createID(prefix = "") {

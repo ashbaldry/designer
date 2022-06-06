@@ -15,7 +15,7 @@ export class Text extends Component {
         super();
         this.showRelevantOptions();
         this.updateTag();
-        this.updateTextArea("");
+        this.updateTextInput("textarea", "");
     }
 
     createComponent() {

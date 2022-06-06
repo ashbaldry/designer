@@ -32,6 +32,7 @@ export class Output extends Component {
         this.updateTextInput("label", "Label");
         this.updateTextInput("height", "400px");
         this.updateTextInput("width", "100%");
+        this.updateLabel("id", "Output ID");
     }
 
     createComponent() {
