@@ -13,8 +13,10 @@ export class Component {
     html;
 
     constructor() {
-        $("label[for='sidebar-type']").html("Type");
-        $("label[for='sidebar-id']").html("Input ID");
+        this.updateLabels([
+            {id: "type", text: "Type"}, 
+            {id: "id", text: "Input ID"}
+        ]);
     };
 
     showRelevantOptions() {
@@ -126,7 +128,7 @@ export class Component {
         $(`#sidebar-${id}`).val(text);
     };
 
-    updateTextInputs(elements) {
+    updateLabels(elements) {
         for (var i = 0; i < elements.length; i++) {
             this.updateLabel(elements[i].id, elements[i].text);
         }
