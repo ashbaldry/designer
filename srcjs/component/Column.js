@@ -1,7 +1,7 @@
 import { Component } from './Component';
 
 export class Column extends Component {
-    name = "column";
+    name = "Column";
     parameters = ["width_num", "offset"];
     updatable = false;
     html = `

@@ -42,6 +42,7 @@ export class Button extends Component {
 
         const input_type = $("#sidebar-type").val();
         const input_info = this.types.find(x => x.value === input_type);
+        if (!input_info) return;
         const btn_class = input_info.css_class;
         const class_str = input_type === "default" ? "" : `, class = &quot;${btn_class}&quot;`;
 

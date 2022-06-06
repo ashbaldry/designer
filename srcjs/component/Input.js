@@ -37,6 +37,7 @@ export class Input extends Component {
 
         const input_type = $("#sidebar-type").val();
         const input_info = this.types.find(x => x.value === input_type);
+        if (!input_info) return;
         const r_func = input_info.r_func;
 
         let input_tag;

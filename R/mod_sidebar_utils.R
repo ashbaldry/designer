@@ -12,8 +12,8 @@ componentTag <- function(ns) {
   component(
     "tag",
     selectInput(
-      ns("tag"),
-      inputLabel(
+      inputId = ns("tag"),
+      label = inputLabel(
         "HTML Tag",
         "The size of the header will reduce as the number increases. Use sequentially for best user experience."
       ),
@@ -26,9 +26,21 @@ componentType <- function(ns) {
   component(
     "type",
     selectInput(
-      ns("type"),
-      "Input Type",
+      inputId = ns("type"),
+      label = "Input Type",
       NULL
+    )
+  )
+}
+
+componentPlot <- function(ns) {
+  component(
+    "plot",
+    selectInput(
+      inputId = ns("plot"),
+      label = "Plot Type",
+      c("random", "point", "bar", "boxplot", "col", "tile", "line", "bin2d", "contour", "density",
+        "density_2d", "dotplot", "hex", "freqpoly", "histogram", "ribbon", "raster", "tile", "violin")
     )
   )
 }
@@ -37,7 +49,7 @@ componentLabel <- function(ns) {
   component(
     "label",
     textInput(
-      ns("label"),
+      inputId = ns("label"),
       label = "Label",
       value = "Label"
     )
@@ -65,8 +77,8 @@ componentText <- function(ns) {
   component(
     "text",
     textInput(
-      ns("text"),
-      "Contents",
+      inputId = ns("text"),
+      label = "Contents",
       placeholder = "Add Text"
     )
   )
@@ -76,7 +88,7 @@ componentTextArea <- function(ns) {
   component(
     "textarea",
     textAreaInput(
-      ns("textarea"),
+      inputId = ns("textarea"),
       label = inputLabel(
         "Contents",
         "Add individual list items on separate lines"
@@ -91,7 +103,7 @@ componentChoices <- function(ns) {
   component(
     "choices",
     textAreaInput(
-      ns("choices"),
+      inputId = ns("choices"),
       label = "Choices (One Per Line)",
       value = "Choice 1\nChoice 2",
       height = "5rem"
@@ -103,8 +115,8 @@ componentRange <- function(ns) {
   component(
     "range",
     checkboxInput(
-      ns("range"),
-      "Ranged Input"
+      inputId = ns("range"),
+      label = "Ranged Input"
     )
   )
 }
@@ -113,8 +125,8 @@ componentInline <- function(ns) {
   component(
     "inline",
     checkboxInput(
-      ns("inline"),
-      "In-Line"
+      inputId = ns("inline"),
+      label = "In-Line"
     )
   )
 }
@@ -123,8 +135,8 @@ componentDownload <- function(ns) {
   component(
     "download",
     checkboxInput(
-      ns("download"),
-      "Downloadable"
+      inputId = ns("download"),
+      label = "Downloadable"
     )
   )
 }
@@ -145,12 +157,28 @@ componentWidth <- function(ns) {
   )
 }
 
+componentHeight <- function(ns) {
+  component(
+    "height",
+    textInput(
+      inputId = ns("height"),
+      label = inputLabel(
+        "Height",
+        "<p>Either use a specific width (e.g. 400px) or a percentage (e.g. 100%).</p>",
+        "<p>If just a number is used, then it will be treated as pixels (px)</p>"
+      ),
+      value = "",
+      placeholder = "Optional"
+    )
+  )
+}
+
 componentWidthNum = function(ns) {
   component(
     "width_num",
     numericInput(
-      ns("width_num"),
-      "Width",
+      inputId = ns("width_num"),
+      label = "Width",
       value = 3,
       min = 1,
       max = 12
@@ -162,8 +190,8 @@ componentOffset = function(ns) {
   component(
     "offset",
     numericInput(
-      ns("offset"),
-      inputLabel(
+      inputId = ns("offset"),
+      label = inputLabel(
         "Offset",
         "The gap between the window/previous column and this column"
       ),

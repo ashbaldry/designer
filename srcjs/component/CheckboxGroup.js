@@ -38,6 +38,7 @@ export class CheckboxGroupInput extends Component {
 
         var type = $("#sidebar-type").val();
         const input_info = this.types.find(x => x.value === type);
+        if (!input_info) return;
         const r_func = input_info.r_func;
         const role = input_info.role;
 

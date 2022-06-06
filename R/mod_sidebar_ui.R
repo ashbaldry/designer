@@ -27,15 +27,29 @@ SidebarModUI <- function(id) {
           h2(id = ns("title")),
           componentTag(ns),
           componentType(ns),
+          conditionalPanel(
+            "input.type === 'plot'",
+            ns = ns,
+            componentPlot(ns)
+          ),
           componentLabel(ns),
           componentID(ns),
           componentText(ns),
-          componentTextArea(ns),
+          conditionalPanel(
+            "!['plot', 'image', 'table'].includes(input.type)",
+            ns = ns,
+            componentTextArea(ns)
+          ),
           componentChoices(ns),
           componentRange(ns),
           componentInline(ns),
           componentDownload(ns),
           componentWidth(ns),
+          conditionalPanel(
+            "['plot', 'image'].includes(input.type)",
+            ns = ns,
+            componentHeight(ns)
+          ),
           componentWidthNum(ns),
           componentOffset(ns)
         ),

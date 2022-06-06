@@ -1,6 +1,7 @@
 import { Component } from './Component';
 
 export class InputPanel extends Component {
+    name = "Input Panel";
     parameters = [];
     updatable = false;
     html = `<div class="designer-element shiny-input-panel shiny-flow-layout" data-shinyfunction="inputPanel"></div>`;

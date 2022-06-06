@@ -1,18 +1,3 @@
-OUTPUT_TYPES <- c(
-  "Text" = "text",
-  "Verbatim Text" = "verbatimText",
-  "Plot" = "plot",
-  "Image" = "image",
-  "Table" = "table",
-  "HTML" = "html"
-)
-
-PLOT_TYPES <- c(
-  "random", "point", "bar", "boxplot", "col", "tile", "line",
-  "bin2d", "contour", "density", "density_2d", "dotplot", "hex", "freqpoly", "histogram",
-  "ribbon", "raster", "tile", "violin"
-)
-
 #' Input Label
 #'
 #' @description
@@ -25,18 +10,6 @@ PLOT_TYPES <- c(
 #'
 #' @noRd
 widthInput <- function(id, value = "", placeholder = "Optional") {}
-
-heightInput <- function(id, value = "") {
-  textInput(
-    inputId = id,
-    label = inputLabel(
-      "Height",
-      "<p>Either use a specific width (e.g. 400px) or a percentage (e.g. 100%).</p>",
-      "<p>If just a number is used, then it will be treated as pixels (px)</p>"
-    ),
-    value = value
-  )
-}
 
 #' Bootstrap Component Settings
 #'
@@ -77,70 +50,6 @@ tabSettings <- function(id) {
       type = "button",
       class = "btn btn-danger action-button",
       "Delete Tab"
-    )
-  )
-}
-
-outputSettings <- function(id) {
-  ns <- NS(id)
-
-  tagList(
-    h2("Output Settings"),
-    selectInput(
-      ns("type"),
-      "Output Type",
-      OUTPUT_TYPES
-    ),
-    conditionalPanel(
-      "input.type === 'plot'",
-      ns = ns,
-      selectInput(
-        ns("plot"),
-        "Plot Type",
-        PLOT_TYPES
-      )
-    ),
-    conditionalPanel(
-      "!['table', 'verbatimText'].includes(input.type)",
-      ns = ns,
-      checkboxInput(
-        ns("inline"),
-        "Inline Output"
-      )
-    ),
-    textInput(
-      ns("id"),
-      "Output ID",
-      ""
-    ),
-    conditionalPanel(
-      "['text', 'verbatimText', 'html'].includes(input.type)",
-      ns = ns,
-      textAreaInput(
-        ns("contents"),
-        label = "Contents",
-        value = "",
-        height = "5rem"
-      )
-    ),
-    conditionalPanel(
-      "['plot', 'image'].includes(input.type)",
-      ns = ns,
-      heightInput(
-        ns("height"),
-        value = "400px"
-      ),
-      widthInput(
-        ns("width"),
-        value = "100%",
-        placeholder = ""
-      )
-    ),
-
-    tags$br(),
-    h3("Notes"),
-    tags$ul(
-      tags$li("Plot and image output will show area of plot, but image will not stretch to fit")
     )
   )
 }

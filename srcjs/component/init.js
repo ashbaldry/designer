@@ -6,7 +6,7 @@ export function initComponents () {
     component = new getComponent("header");
     component.updateComponent(true);
 
-    $(".component-parameters").on("change keyup", () => component.updateComponent());
+    $(".component-settings").on("change keyup", () => component.updateComponent());
     $(".component-comments").on("change blur", () => component.updateComponent());
     $('.component-container').on("mouseover", () => {$(":focus").trigger("blur")});
 

@@ -11,6 +11,7 @@ import { CheckboxInput } from './Checkbox';
 import { CheckboxGroupInput } from './CheckboxGroup';
 import { SliderInput } from './SliderInput';
 import { Button } from './Button';
+import { Output } from './Output';
 
 export function getComponent(name) {
     if (name === "header") {
@@ -39,6 +40,8 @@ export function getComponent(name) {
         return new SliderInput();
     } else if (name === "button") {
         return new Button();
+    } else if (name === "output") {
+        return new Output();
     }
     
 
