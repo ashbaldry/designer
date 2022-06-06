@@ -119,6 +119,16 @@ componentInline <- function(ns) {
   )
 }
 
+componentDownload <- function(ns) {
+  component(
+    "download",
+    checkboxInput(
+      ns("download"),
+      "Downloadable"
+    )
+  )
+}
+
 componentWidth <- function(ns) {
   component(
     "width",

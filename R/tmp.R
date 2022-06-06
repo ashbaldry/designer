@@ -13,10 +13,6 @@ PLOT_TYPES <- c(
   "ribbon", "raster", "tile", "violin"
 )
 
-BUTTON_TYPES <- c(
-  "default", "primary", "secondary", "success", "danger", "warning", "info", "light", "dark"
-)
-
 #' Input Label
 #'
 #' @description
@@ -82,26 +78,6 @@ tabSettings <- function(id) {
       class = "btn btn-danger action-button",
       "Delete Tab"
     )
-  )
-}
-
-buttonSettings <- function(id) {
-  ns <- NS(id)
-
-  tagList(
-    h2("Button Settings"),
-    selectInput(
-      ns("class"),
-      "Button Type",
-      setNames(BUTTON_TYPES, tools::toTitleCase(BUTTON_TYPES))
-    ),
-    labelInput(ns("label")),
-    idInput(ns("id")),
-    checkboxInput(
-      ns("download"),
-      "Download Button"
-    ),
-    widthInput(ns("width"))
   )
 }
 
