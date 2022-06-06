@@ -13,6 +13,9 @@ export class Component {
     html;
 
     constructor() {
+        $('#component_settings').css("display", "");
+        $('#tab_settings').css("display", "none");
+
         this.updateLabels([
             {id: "type", text: "Type"}, 
             {id: "id", text: "Input ID"}

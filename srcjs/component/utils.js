@@ -12,6 +12,7 @@ import { CheckboxGroupInput } from './CheckboxGroup';
 import { SliderInput } from './SliderInput';
 import { Button } from './Button';
 import { Output } from './Output';
+import { Tab } from './Tab';
 
 export function getComponent(name) {
     if (name === "header") {
@@ -42,6 +43,8 @@ export function getComponent(name) {
         return new Button();
     } else if (name === "output") {
         return new Output();
+    } else if (name === "tab_panel") {
+        return new Tab();
     }
     
 

@@ -223,3 +223,42 @@ inputLabel <- function(label, ...) {
     )
   )
 }
+
+#' Tab Settings
+#'
+#' @noRd
+componentTab <- function(ns) {
+  tagList(
+    h2("Tab Panel Settings"),
+    textInput(
+      ns("tab_name"),
+      label = "Name",
+      value = "Tab 1"
+    ),
+    textInput(
+      ns("tab_value"),
+      label = inputLabel(
+        "Value",
+        "Used to reference switching the tab, or changing visibility of the tab on the server"
+      ),
+      placeholder = "Keep blank to copy name"
+    ),
+    tags$button(
+      id = ns("tab_add"),
+      type = "button",
+      class = "btn btn-success action-button",
+      "Add Tab"
+    ),
+    tags$button(
+      id = ns("tab_delete"),
+      type = "button",
+      class = "btn btn-danger action-button",
+      "Delete Tab"
+    ),
+    br(),
+    br(),
+    div(
+      id = ns("tab_alert")
+    )
+  )
+}
