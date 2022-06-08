@@ -16,6 +16,7 @@ SidebarModUI <- function(id) {
   tagList(
     tags$section(
       id = "tab_settings",
+      class = "tab-parameters",
       componentTab(ns)
     ),
     tags$section(

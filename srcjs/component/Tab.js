@@ -173,7 +173,7 @@ export class Tab extends Component{
 
     deleteTab(tab_name) {
         const tab_value = $(`ul.nav a[data-name='${tab_name}']`).data("value");
-        $(delete_tab[0].parentElement).remove();
+        $(`ul.nav a[data-name='${tab_name}']`).parent().remove();
         $(`.tab-content .tab-pane[data-value='${tab_value}']`).remove();
     };
 

@@ -2,7 +2,6 @@ import { getComponent } from "./utils";
 import { Tab } from "./Tab";
 
 export var component;
-const tab = new Tab();
 
 export function initComponents () {
     component = new getComponent("header");
@@ -16,8 +15,8 @@ export function initComponents () {
     });
     $('.component-container').on("mouseover", () => {$(":focus").trigger("blur")});
 
-    $("#sidebar-tab_add").on("click", () => tab.addPage())
-    $("#sidebar-tab_delete").on("click", () => tab.deletePage())
+    $("#sidebar-tab_add").on("click", () => component.addPage())
+    $("#sidebar-tab_delete").on("click", () => component.deletePage())
 
     $("#settings-component .dropdown-item").on("click", (el) => {
         component = new getComponent($(el.target).data("shinyelement"));
