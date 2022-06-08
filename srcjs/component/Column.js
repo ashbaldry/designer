@@ -31,8 +31,8 @@ export class Column extends Component {
         const width = $("#sidebar-width_num").val();
         const offset = $("#sidebar-offset").val();
 
-        var offset_class = offset > 0 ? ` offset-md-${offset}` : "";
-        var offset_r = offset > 0 ? `, offset = ${offset}` : "";
+        const offset_class = offset > 0 ? ` offset-md-${offset}` : "";
+        const offset_r = offset > 0 ? `, offset = ${offset}` : "";
 
         return this.replaceHTMLPlaceholders(this.html, {width: width, offset_class: offset_class, offset_r: offset_r});
     }

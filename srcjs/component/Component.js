@@ -79,7 +79,12 @@ export class Component {
             },
             onClone: function(evt) {
                 if (component.sortable_settings) {
-                    Sortable.create(evt.item, component.sortable_settings);
+                    if (component.name === "Box") {
+                        Sortable.create($(evt.item).find('.card-body')[0], component.sortable_settings);
+                    } else {
+                        Sortable.create(evt.item, component.sortable_settings);
+                    }
+                    
                 }
             },
             onEnd: function(_evt) {

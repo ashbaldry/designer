@@ -39,6 +39,8 @@ SidebarModUI <- function(id) {
           ),
           componentLabel(ns),
           componentID(ns),
+          componentColour(ns),
+          componentBackground(ns),
           componentText(ns),
           conditionalPanel(
             "!['plot', 'image', 'table'].includes(input.type)",

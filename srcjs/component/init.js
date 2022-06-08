@@ -1,5 +1,4 @@
 import { getComponent } from "./utils";
-import { Tab } from "./Tab";
 
 export var component;
 
@@ -7,12 +6,8 @@ export function initComponents () {
     component = new getComponent("header");
     component.updateComponent(true);
 
-    $(".component-settings").on("change keyup", () => {
-        if (component.name !== "Tab") component.updateComponent();
-    });
-    $(".component-comments").on("change blur", () => {
-        if (component.name !== "Tab") component.updateComponent();
-    });
+    $(".component-settings").on("change keyup", () => component.updateComponent());
+    $(".component-comments").on("change blur", () => component.updateComponent());
     $('.component-container').on("mouseover", () => {$(":focus").trigger("blur")});
 
     $("#sidebar-tab_add").on("click", () => component.addPage())

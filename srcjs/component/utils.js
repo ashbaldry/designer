@@ -13,6 +13,7 @@ import { SliderInput } from './SliderInput';
 import { Button } from './Button';
 import { Output } from './Output';
 import { Tab } from './Tab';
+import { Box } from './Box';
 
 export function getComponent(name) {
     if (name === "header") {
@@ -45,6 +46,8 @@ export function getComponent(name) {
         return new Output();
     } else if (name === "tab_panel") {
         return new Tab();
+    } else if (name === "box") {
+        return new Box();
     }
     
 

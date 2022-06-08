@@ -73,6 +73,30 @@ componentID <- function(ns) {
   )
 }
 
+componentColour <- function(ns) {
+  component(
+    "colour",
+    selectInput(
+      ns("colour"),
+      "Colour",
+      bs4Dash::getAdminLTEColors(),
+      "white"
+    )
+  )
+}
+
+componentBackground <- function(ns) {
+  component(
+    "background",
+    selectInput(
+      ns("background"),
+      "Background Colour",
+      bs4Dash::getAdminLTEColors(),
+      "white"
+    )
+  )
+}
+
 componentText <- function(ns) {
   component(
     "text",
@@ -180,7 +204,7 @@ componentWidthNum = function(ns) {
       inputId = ns("width_num"),
       label = "Width",
       value = 3,
-      min = 1,
+      min = 0,
       max = 12
     )
   )
