@@ -8,7 +8,7 @@ export class Tab extends Component{
         super();
 
         $('#component_settings').css("display", "none");
-        $('#tab_settings').css("display", "");
+        $('#tab_settings').css("display", "unset");
     };
 
     updateComponent() {
