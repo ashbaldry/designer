@@ -1,6 +1,7 @@
 import { initPage } from "../page/init";
 import { initSettings } from "./settings";
 import { initComponents } from "../component/init";
+import { canvasPageBinding } from "../input/canvas-page-input";
 
 $(function() {
     initPage();
@@ -21,3 +22,5 @@ $(function() {
         }
     });  
 });
+
+Shiny.inputBindings.register(canvasPageBinding);

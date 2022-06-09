@@ -1,6 +1,6 @@
 import { htmlToJSON } from "./utils";
 
-var canvasPageBinding = new Shiny.InputBinding();
+export var canvasPageBinding = new Shiny.InputBinding();
 
 $.extend(canvasPageBinding, {
   find: function(scope) {
@@ -20,5 +20,3 @@ $.extend(canvasPageBinding, {
     $(el).off(".page-canvas");
   }
 });
-
-Shiny.inputBindings.register(canvasPageBinding);
