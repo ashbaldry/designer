@@ -34,7 +34,7 @@ export function createPage () {
 };
 
 export function changePageCheck () {
-    if ($("#canvas-page").html() === "") {
+    if ($("#canvas-page").html() === "" || $("#canvas-page.wrapper .tab-content").html() === "") {
         $("#canvas-page").html("<div></div>");
         createPage();
     } else {
