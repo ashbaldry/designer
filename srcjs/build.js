@@ -7,7 +7,7 @@ esbuild.build({
   sourcemap: true,
   outfile: '../inst/app/www/designer.min.js',
   platform: 'node',
-  minify: false
+  minify: true
 }).catch(
   () => process.exit(1)
 );
