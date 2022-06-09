@@ -1,7 +1,7 @@
 import { Component } from './Component';
 
 export class ValueBox extends Component {
-    name = "Box";
+    name = "Value Box";
     parameters = ["value", "label", "background", "width_num"];
     notes = [
         "If the width > 0, then the box is included in a column and can only be included in <b>rows</b>",

@@ -336,12 +336,16 @@ span.plot-output-element, span.image-output-element {
 }
 
 /* bs4Dash specific conditions */
-body {
+body * {
   font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
 }
 
-#canvas-page.wrapper {
+body #canvas-page.wrapper * {
   font-family: "Source Sans Pro",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+}
+
+body #canvas-page.wrapper .fa, body #canvas-page.wrapper .fas, body #canvas-page.wrapper .far {
+  font-family: "Font Awesome 5 Free";
 }
 
 #canvas-page .main-header {
@@ -362,4 +366,9 @@ body {
 
 #component_settings label, #settings-options_dropdown label, #canvas-page:not(.wrapper) label {
   font-weight: 400;
+}
+
+.layout-fixed #canvas-page .main-sidebar {
+  position: absolute;
+  height: 100%;
 }

@@ -8,6 +8,8 @@ export function initSettings() {
     $(document).on("click", ".clickable-dropdown", e => { e.stopPropagation(); });
     $("#preview").on("click", () => { $(".page-canvas-shell").addClass("preview"); });
     $("#canvas-close_preview").on("click", () => { $(".page-canvas-shell").removeClass("preview"); });
+
+    Shiny.addCustomMessageHandler("toggleBS4DashDeps", toggleBS4DashDeps)
 };
 
 function toggleComponentLabels () {
@@ -39,3 +41,15 @@ function copyUICode () {
     navigator.clipboard.writeText(copy_text);
     return;
   };
+
+function toggleBS4DashDeps(toggle) {
+    const stylesheets = document.styleSheets;
+    for (var i = 0; i < stylesheets.length; i++) {
+        var stylesheet = stylesheets.item(i);
+        if (stylesheet.href.includes("AdminLTE") || stylesheet.href.includes("bs4Dash")) {
+            stylesheet.disabled = toggle === "hide";
+        }
+        
+    }
+    
+};

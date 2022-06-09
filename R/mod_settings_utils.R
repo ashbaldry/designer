@@ -38,7 +38,7 @@ pageOptions <- function(ns) {
     tags$form(
       class = "px-2",
       div(
-        class = "form-group",
+        class = "form-group shiny-input-radiogroup",
         id = ns("page_type"),
         lapply(names(PAGE_TYPES), function(page) {
           x <- PAGE_TYPES[[page]]
@@ -48,7 +48,7 @@ pageOptions <- function(ns) {
               class = "form-check-input",
               type = "radio",
               id = ns(x),
-              name = "page_types",
+              name = ns("page_type"),
               value = x,
               checked = if (x == "fluidPage") NA else NULL
             ),

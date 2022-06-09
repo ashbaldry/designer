@@ -77,8 +77,6 @@ addGolemExternalResources <- function() {
 
   designer_scripts <- list.files(system.file("srcjs/designer", package = "designer"), ".js$")
 
-  ui_head <- addbs4DashDependencies(ui_head, NULL)
-
   ui_head <- htmltools::attachDependencies(
     ui_head,
     htmltools::htmlDependency(
@@ -96,4 +94,3 @@ addGolemExternalResources <- function() {
 ionRangeSliderDependency <- getFromNamespace("ionRangeSliderDependency", "shiny")
 datePickerDependency <- getFromNamespace("datePickerDependency", "shiny")
 dataTableDependency <- getFromNamespace("dataTableDependency", "shiny")
-addbs4DashDependencies <- getFromNamespace("add_bs4Dash_deps", "bs4Dash")
