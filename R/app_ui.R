@@ -68,21 +68,27 @@ addGolemExternalResources <- function() {
     ionRangeSliderDependency(),
     datePickerDependency(),
     dataTableDependency,
-    cicerone::use_cicerone()
+    cicerone::use_cicerone(),
+
+    tags$meta(name = "description", content = "Create Wireframes of the UI of shiny applications"),
+    tags$meta(name = "keywords", content = "R, shiny, designer, prototype, wireframe"),
+    tags$meta(name = "author", content = "Ashley Baldry"),
   )
+
+  designer_scripts <- list.files(system.file("srcjs/designer", package = "designer"), ".js$")
+
+  ui_head <- addbs4DashDependencies(ui_head, NULL)
 
   ui_head <- htmltools::attachDependencies(
     ui_head,
-
-      htmltools::htmlDependency(
-        name = "Sortable",
-        version = "1.14.0",
-        src = "srcjs/sortable",
-        script = "Sortable.min.js",
-        package = "designer"
+    htmltools::htmlDependency(
+      name = "Sortable",
+      version = "1.14.0",
+      src = "srcjs/sortable",
+      script = "Sortable.min.js",
+      package = "designer"
     )
   )
-  ui_head <- addbs4DashDependencies(ui_head, NULL)
 
   ui_head
 }

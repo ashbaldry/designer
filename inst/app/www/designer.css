@@ -72,6 +72,10 @@ h5.modal-title {
   border: #CDCDCD 1px solid;
 }
 
+.tab-parameters {
+  display: none;
+}
+
 .row ::-webkit-scrollbar {
   width: 10px;
   height: 10px;

@@ -13,12 +13,12 @@ SettingsModUI <- function(id) {
     settingsDropdownButton(
       id = ns("page_type_button"),
       label = "Page Type",
-      contents = pageChoices(ns)
+      contents = pageOptions(ns)
     ),
     settingsDropdownButton(
       id = ns("component_button"),
       label = "Component",
-      contents = componentChoices(ns)
+      contents = componentOptions(ns)
     ),
     settingsDropdownButton(
       id = ns("code_button"),
