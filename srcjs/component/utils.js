@@ -14,6 +14,7 @@ import { Button } from './Button';
 import { Output } from './Output';
 import { Tab } from './Tab';
 import { Box } from './Box';
+import { ValueBox } from './ValueBox';
 
 export function getComponent(name) {
     if (name === "header") {
@@ -48,6 +49,8 @@ export function getComponent(name) {
         return new Tab();
     } else if (name === "box") {
         return new Box();
+    } else if (name === "value_box") {
+        return new ValueBox();
     }
     
 

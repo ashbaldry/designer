@@ -45,6 +45,17 @@ componentPlot <- function(ns) {
   )
 }
 
+componentValue <- function(ns) {
+  component(
+    "value",
+    textInput(
+      inputId = ns("value"),
+      label = "Value",
+      value = "Value"
+    )
+  )
+}
+
 componentLabel <- function(ns) {
   component(
     "label",
@@ -54,7 +65,6 @@ componentLabel <- function(ns) {
       value = "Label"
     )
   )
-
 }
 
 componentID <- function(ns) {

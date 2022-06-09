@@ -37,6 +37,7 @@ SidebarModUI <- function(id) {
             ns = ns,
             componentPlot(ns)
           ),
+          componentValue(ns),
           componentLabel(ns),
           componentID(ns),
           componentColour(ns),
