@@ -277,6 +277,20 @@ componentTab <- function(ns) {
       ),
       placeholder = "Keep blank to copy name"
     ),
+    htmltools::tagAppendAttributes(
+      selectizeInput(
+        inputId = ns("tab_icon"),
+        label = "Icon",
+        choices = c("Optional" = ""),
+        options = list(
+          render = I("{
+            item: function(item, escape) { return '<div class=\"item icon-option\">' + item.label + '</div>'; },
+            option: function(item, escape) { return '<div class=\"option icon-option\">' + item.label + '</div>'; }
+          }")
+        )
+      ),
+      class = "icon-choices"
+    ),
     tags$button(
       id = ns("tab_add"),
       type = "button",
@@ -296,3 +310,16 @@ componentTab <- function(ns) {
     )
   )
 }
+
+getFAIcons <- function() {
+  setNames(
+    fa_tbl$name,
+    paste0(
+      "<i class='", ifelse(fa_tbl$name %in% fa_brands, "fab", "fa"), " fa-", fa_tbl$name, "' aria-hidden='true'></i>",
+      fa_tbl$label
+    )
+  )
+}
+
+fa_tbl <- getFromNamespace("fa_tbl", "fontawesome")
+fa_brands <- getFromNamespace("font_awesome_brands", "fontawesome")

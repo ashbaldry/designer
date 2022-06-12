@@ -26,7 +26,8 @@ Imports:
     jsonlite,
     shinipsum,
     shinyscreenshot,
-    cicerone
+    cicerone,
+    fontawesome
 Suggests: 
     covr,
     testthat (>= 3.0.0),

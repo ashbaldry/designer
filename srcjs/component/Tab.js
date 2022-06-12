@@ -45,17 +45,25 @@ export class Tab extends Component{
 
         const tab_panel = $(".tab-content");
         const active_class = tab_panel.html() === "" ? "active" : "";
+
+        const tab_icon = $("#sidebar-tab_icon").val();
+        const icon_r = tab_icon === "" ? "" : `, icon = icon(&quot;${tab_icon}&quot;)`;
+        const icon_class = tab_icon === "" ? "" : $("#sidebar-tab_icon option").html().includes("fab") ? "fab" : "fa";
+        const icon_html = tab_icon === "" ? "" : `<i aria-hidden="true" class="${icon_class} fa-${tab_icon} fa-fw" role="presentation"></i>`;
         
         nav_panel.append(`
             <li class="${active_class}">
                 <a href="#tab-${nav_id}-${this._item}" data-toggle="tab"
-                   data-bs-toggle="tab" data-value="${tab_value}" data-name="${tab_name}">${tab_name}</a>
+                   data-bs-toggle="tab" data-value="${tab_value}" data-name="${tab_name}">
+                   ${icon_html}
+                   ${tab_name}
+                </a>
             </li>
         `);
 
         tab_panel.append(`
             <div class="tab-pane ${active_class}" data-value="${tab_value}" id="tab-${nav_id}-${this._item}"
-                 data-shinyfunction="tabPanel" data-shinyattributes="title = &quot;${tab_name}&quot;, value = &quot;${tab_value}&quot;"></div>
+                 data-shinyfunction="tabPanel" data-shinyattributes="title = &quot;${tab_name}&quot;, value = &quot;${tab_value}&quot;"${icon_r}></div>
         `);
 
         this.enableSortablePage(`tab-${nav_id}-${this._item}`);

@@ -147,6 +147,11 @@ h5.modal-title {
   min-height: 50px;
 }
 
+.icon-option .fa, .icon-option .fab {
+  width: 20px;
+  margin-right: 10px;
+}
+
 .bin-container .bin-header {
   position: absolute;
   margin-top: 0.2rem;
