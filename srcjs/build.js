@@ -1,5 +1,4 @@
 var esbuild = require("esbuild");
-const fs = require('fs');
 
 esbuild.build({
   entryPoints: ['app/index.js'],

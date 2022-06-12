@@ -39,6 +39,7 @@ export class ValueBox extends Component {
         this.updateTextInput("value", "-");        
         this.updateTextInput("label", "Label");
         this.updateTextInput("width_num", 3);
+        $("#sidebar-width_num").attr("min", 0);
     }
 
     createComponent() {

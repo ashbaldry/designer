@@ -44,6 +44,7 @@ export class Box extends Component {
         this.showRelevantOptions();
         this.updateTextInput("label", "Label");
         this.updateTextInput("width_num", 6);
+        $("#sidebar-width_num").attr("min", 0);
     }
 
     createComponent() {

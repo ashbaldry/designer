@@ -25,6 +25,7 @@ export class Column extends Component {
     constructor() {
         super();
         this.showRelevantOptions();
+        $("#sidebar-width_num").attr("min", 1);
     }
 
     createComponent() {
