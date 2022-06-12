@@ -23,15 +23,10 @@ export class Tab extends Component{
         const page_type = this.getPageType();
 
         const tab_name = $("#sidebar-tab_name").val();
-        if (this.checkDuplicateNames(tab_name, page_type)) {
-            return;
-        }
-
         let tab_value = $("#sidebar-tab_value").val();
         if (tab_value === "") {
           tab_value = this.createID("tab");
-        }
-        if (this.checkDuplicateIDs(tab_value, page_type)) {
+        } else if (this.checkDuplicateIDs(tab_value, page_type)) {
             return;
         }
 
@@ -130,8 +125,8 @@ export class Tab extends Component{
         }
     };
 
-    checkDuplicateIDs(tab_name, page_type) {
-        if ($(this.getValueIdentifier(tab_name, page_type)).length > 0) {
+    checkDuplicateIDs(tab_value, page_type) {
+        if ($(this.getValueIdentifier(tab_value, page_type)).length > 0) {
             $("#sidebar-tab_alert").html(`
                 <div class="alert alert-danger" role="alert">
                     ${tab_value} is the ID of an existing menu item. Please choose a unique ID
@@ -157,35 +152,46 @@ export class Tab extends Component{
     deletePage() {
         const page_type = this.getPageType();
         const tab_name = $("#sidebar-tab_name").val();
+        let tab_value = $("#sidebar-tab_value").val();
 
-        if (!this.checkExistingNames(tab_name, page_type)) {
+        if (this.checkMissingName(tab_name, page_type)) {
+            return true;
+        } else if (this.getNameIdentifier(tab_name, page_type).length > 1 && tab_value === "") {
+            $("#sidebar-tab_alert").html(`
+                <div class="alert alert-danger" role="alert">
+                    Duplicate tabs contain the name "${tab_name}" and no value has been provided. Please provide the specific ID of the tab to delete.
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            `);   
             return true;
         }
 
         $("#sidebar-tab_alert div").alert("close");
 
         if (page_type === "dashboardPage") {
-            this.deleteMenuItem(tab_name);
+            tab_value = tab_value === "" ? $(`ul.nav a[data-name='${tab_name}']`).data("value") : tab_value;
+            this.deleteMenuItem(tab_value);
         } else {
-            this.deleteTab(tab_name);
+            tab_value = tab_value === "" ? $(`ul.nav a[data-name='${tab_name}']`).data("value") : tab_value;
+            this.deleteTab(tab_value);
         }
     };
 
-    deleteTab(tab_name) {
-        const tab_value = $(`ul.nav a[data-name='${tab_name}']`).data("value");
-        $(`ul.nav a[data-name='${tab_name}']`).parent().remove();
+    deleteTab(tab_value) {
+        $(`ul.nav a[data-value='${tab_value}']`).parent().remove();
         $(`.tab-content .tab-pane[data-value='${tab_value}']`).remove();
     };
 
-    deleteMenuItem(tab_name) {
-        const tab_value = $(`ul.nav a[data-name='${tab_name}']`).data("value");
+    deleteMenuItem(tab_value) {
         $(`#tab-${tab_value}`).parent().remove();
         $(`#shiny-tab-${tab_value}`).remove();
     };    
     
-    checkExistingNames(tab_name, page_type) {
+    checkMissingName(tab_name, page_type) {
         if ($(this.getNameIdentifier(tab_name, page_type)).length > 0) {
-            return true;
+            return false;
         } else {
             $("#sidebar-tab_alert").html(`
                 <div class="alert alert-danger" role="alert">
@@ -195,7 +201,7 @@ export class Tab extends Component{
                     </button>
                 </div>
             `);            
-            return false;
+            return true;
         }
     };
 }
