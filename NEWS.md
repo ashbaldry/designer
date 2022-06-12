@@ -12,6 +12,8 @@
 
 * Fixed rendering issue with radio buttons and grouped checkboxes (#26)
 
+* Close and snapshot buttons are visible on full page preview for navbar page 
+
 ## 0.1.0
 
 * Initial package release
