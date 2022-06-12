@@ -27,14 +27,20 @@ testthat::test_that("designer app works", {
   testthat::expect_true(grepl("fluidPage(", jsonToRScript(ui), fixed = TRUE))
 
   # Expect all components create a component that can be dragged
-  shiny_components <- setdiff(COMPONENTS, c(BS4_COMPONENTS, NAVBAR_COMPONENTS))
+  app$click(selector = '#settings-page_type .form-check [value="dashboardPage"]')
+  ui <- app$get_value(input = "canvas-canvas")
+  testthat::expect_true(grepl("dashboardPage(", jsonToRScript(ui), fixed = TRUE))
+
+  app$click(selector = "#sidebar-tab_add")
+
+  shiny_components <- setdiff(COMPONENTS, NAVBAR_COMPONENTS)
   for (component in shiny_components) {
-    app$click(selector = paste0("#settings-component .component-item[name='", component, "']"))
+    app$click(selector = paste0("#settings-component .dropdown-item[name='", component, "']"))
     testthat::expect_true(app$get_html("#sidebar-container") != "")
   }
 
   # Choose all different outputs that create IDs
-  app$click(selector = "#settings-component .component-item[name='output']")
+  app$click(selector = "#settings-component .dropdown-item[name='output']")
   original_outputs <- app$get_values()$output
   app$set_inputs("sidebar-type" = "plot")
   app$set_inputs("sidebar-type" = "table")
@@ -45,5 +51,5 @@ testthat::test_that("designer app works", {
 
   # Check that UI gets added to code module
   app$click(selector = "#settings-code_button")
-  testthat::expect_true(grepl("fluidPage", app$get_value(output = "settings-code-code")))
+  testthat::expect_true(grepl("dashboardPage", app$get_value(output = "settings-code-code")))
 })
