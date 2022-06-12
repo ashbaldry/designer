@@ -349,8 +349,13 @@ body #canvas-page.wrapper * {
   font-family: "Source Sans Pro",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
 }
 
-body #canvas-page.wrapper .fa, body #canvas-page.wrapper .fas, body #canvas-page.wrapper .far {
+body #canvas-page.wrapper .fa, body #canvas-page.wrapper .fas,
+body #canvas-page.wrapper .far {
   font-family: "Font Awesome 5 Free";
+}
+
+body #canvas-page.wrapper .fab {
+  font-family: "Font Awesome 5 Brands";
 }
 
 #canvas-page .main-header {

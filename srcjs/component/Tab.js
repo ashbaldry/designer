@@ -63,7 +63,7 @@ export class Tab extends Component{
 
         tab_panel.append(`
             <div class="tab-pane ${active_class}" data-value="${tab_value}" id="tab-${nav_id}-${this._item}"
-                 data-shinyfunction="tabPanel" data-shinyattributes="title = &quot;${tab_name}&quot;, value = &quot;${tab_value}&quot;"${icon_r}></div>
+                 data-shinyfunction="tabPanel" data-shinyattributes="title = &quot;${tab_name}&quot;, value = &quot;${tab_value}&quot;${icon_r}"></div>
         `);
 
         this.enableSortablePage(`tab-${nav_id}-${this._item}`);
@@ -73,13 +73,19 @@ export class Tab extends Component{
     addMenuItem(tab_name, tab_value) {
         const tab_panel = $("section.content .tab-content");
         const active_class = tab_panel.html() === "" ? "active" : "";
+
+        const tab_icon = $("#sidebar-tab_icon").val();
+        const icon_r = tab_icon === "" ? "" : `, icon = icon(&quot;${tab_icon}&quot;)`;
+        const icon_class = tab_icon === "" ? "" : $("#sidebar-tab_icon option").html().includes("fab") ? "fab" : "fa";
+        const icon_html = tab_icon === "" ? "" : `<i aria-hidden="true" class="${icon_class} fa-${tab_icon} nav-icon" role="presentation"></i>`;        
         
         $(".sidebarMenuSelectedTabItem").before(`
             <li class="nav-item" data-shinyfunction="bs4Dash::menuItem"
-                data-shinyattributes="text = &quot;${tab_name}&quot;, tabName = &quot;${tab_value}&quot;">
+                data-shinyattributes="text = &quot;${tab_name}&quot;, tabName = &quot;${tab_value}&quot;${icon_r}">
                 <a class="nav-link ${active_class}" id="tab-${tab_value}" href="#"
                    data-toggle="tab" data-target="#shiny-tab-${tab_value}"
                    data-value="${tab_value}" data-name="${tab_name}">
+                   ${icon_html}
                     <p>${tab_name}</p>
                 </a>
             </li>
