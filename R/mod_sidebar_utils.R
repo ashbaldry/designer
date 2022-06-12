@@ -207,7 +207,7 @@ componentHeight <- function(ns) {
   )
 }
 
-componentWidthNum = function(ns) {
+componentWidthNum <- function(ns) {
   component(
     "width_num",
     numericInput(
@@ -220,7 +220,7 @@ componentWidthNum = function(ns) {
   )
 }
 
-componentOffset = function(ns) {
+componentOffset <- function(ns) {
   component(
     "offset",
     numericInput(

@@ -75,8 +75,6 @@ addGolemExternalResources <- function() {
     tags$meta(name = "author", content = "Ashley Baldry"),
   )
 
-  designer_scripts <- list.files(system.file("srcjs/designer", package = "designer"), ".js$")
-
   ui_head <- htmltools::attachDependencies(
     ui_head,
     htmltools::htmlDependency(
