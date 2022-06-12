@@ -29,9 +29,9 @@ testthat::test_that("designer app works", {
   # Choose all different outputs that create IDs
   app$click(selector = ".component-item[name='output']")
   original_outputs <- app$get_values()$output
-  app$set_inputs("sidebar-output-type" = "plot")
-  app$set_inputs("sidebar-output-type" = "table")
-  app$set_inputs("sidebar-output-type" = "image")
+  app$set_inputs("sidebar-type" = "plot")
+  app$set_inputs("sidebar-type" = "table")
+  app$set_inputs("sidebar-type" = "image")
 
   new_outputs <- app$get_values()$output
   testthat::expect_length(new_outputs, 3 + length(original_outputs))
