@@ -33,6 +33,7 @@ warningModal <- function(id) {
         div(
           class = "modal-footer",
           tags$button(
+            id = "cancel_reset",
             type = "button",
             class = "btn btn-secondary",
             `data-dismiss` = "modal",

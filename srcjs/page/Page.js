@@ -1,4 +1,5 @@
 export class Page {
+    name;
     navbar_item_style = "none";
     bs4_item_style = "none";
     enable_on_load = true;

@@ -1,6 +1,7 @@
 import { Page } from './Page';
 
 export class NavbarPage extends Page {
+    name = "navbarPage";
     navbar_item_style = "";
     enable_on_load = false;    
     page_html = `

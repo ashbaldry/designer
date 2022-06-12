@@ -1,6 +1,7 @@
 import { Page } from './Page';
 
 export class FillPage extends Page {
+    name = "fillPage";
     page_html = `
         <div id="canvas-page" class="designer-page-template" 
              data-shinyfunction="fillPage"

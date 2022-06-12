@@ -1,6 +1,7 @@
 import { Page } from './Page';
 
 export class DashboardPage extends Page {
+    name = "dashboardPage";
     navbar_item_style = "";
     bs4_item_style = "";
     enable_on_load = false;

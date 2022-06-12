@@ -5,9 +5,10 @@ import { BootstrapPage } from './BootstrapPage';
 import { NavbarPage } from './NavbarPage';
 import { DashboardPage } from './DashboardPage';
 
+var page;
+
 export function createPage () {
     var page_type = $('#settings-page_type input:radio:checked').val();
-    var page;
   
     if (page_type === "basicPage") {
         page = new BasicPage();
@@ -41,6 +42,10 @@ export function changePageCheck () {
         $("#warning_modal").modal();
     }
 };
+
+export function revertPageSelection() {
+    $(`#settings-page_type input[value="${page.name}"]`).trigger("click");
+}
 
 export function updateTitle (el) {
     const title = $(el.target).val();
