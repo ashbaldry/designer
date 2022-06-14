@@ -11,8 +11,9 @@ header > h1 {
   margin: 0;
 }
 
-.component-form h2 {
+.component-form .sidebar-title {
   font-size: 1.1rem;
+  margin-top: 0.5rem;
 }
 
 .component-form h3, .bin-container h3 {
@@ -48,7 +49,7 @@ h5.modal-title {
   overflow-y: auto;
 }
 
-.dropdown-item.active, .dropdown-item:active {
+.dropdown-menu .dropdown-item.active, .dropdown-menu .dropdown-item:active {
   font-weight: 500;
   background-color: #999999;
   color: #ffffff!important;
@@ -341,7 +342,7 @@ span.plot-output-element, span.image-output-element {
 }
 
 /* bs4Dash specific conditions */
-body * {
+body, h1, h2, h3, h4, h5, h6, div, span, p, label {
   font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
 }
 
@@ -374,7 +375,8 @@ body #canvas-page.wrapper .fab {
   height: 100%;
 }
 
-#component_settings label, #settings-options_dropdown label, #canvas-page:not(.wrapper) label {
+#tab_settings label, #component_settings label,
+#settings-options_dropdown label, #canvas-page:not(.wrapper) label {
   font-weight: 400;
 }
 
