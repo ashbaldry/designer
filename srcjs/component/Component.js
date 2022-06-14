@@ -20,6 +20,21 @@ export class Component {
             {id: "type", text: "Type"}, 
             {id: "id", text: "Input ID"}
         ]);
+
+        this.updateTextInputs([
+            {id: "value", text: "Value"},
+            {id: "label", text: "Label"},
+            {id: "id", text: ""},
+            {id: "text", text: ""},
+            {id: "textarea", text: ""},
+            {id: "choices", text: "Choice 1\nChoice 2"},
+            {id: "width", text: ""},
+            {id: "width_num", text: 3},
+            {id: "offset", text: 0},
+            {id: "height", text: ""},
+            {id: "tab_name", text: "Tab 1"},
+            {id: "tab_value", text: ""}
+        ]);
     };
 
     showRelevantOptions() {
