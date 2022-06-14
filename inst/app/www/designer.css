@@ -384,3 +384,7 @@ body #canvas-page.wrapper .fab {
   position: absolute;
   height: 100%;
 }
+
+#canvas-page .content-wrapper .designer-element:not(pre, .shiny-input-panel, .row-designer, .col-sm, .btn) {
+  background-color: transparent;
+}

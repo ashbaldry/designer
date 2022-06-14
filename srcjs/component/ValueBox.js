@@ -2,7 +2,7 @@ import { Component } from './Component';
 
 export class ValueBox extends Component {
     name = "Value Box";
-    parameters = ["value", "label", "background", "width_num"];
+    parameters = ["value", "label", "icon", "background", "width_num"];
     notes = [
         "If the width > 0, then the box is included in a column and can only be included in <b>rows</b>",
         "Rows are split into 12 column units, if the sum of boxs' width exceeds 12, they get wrapped onto a new line"
@@ -11,7 +11,7 @@ export class ValueBox extends Component {
     html = `
         <div class="$width_class$ designer-element"
              data-shinyfunction="bs4Dash::bs4ValueBox"
-             data-shinyattributes="value = &quot;$value$&quot;, subtitle = &quot;$label$&quot;, color = &quot;$background$&quot;, width = $width$">
+             data-shinyattributes="value = &quot;$value$&quot;, subtitle = &quot;$label$&quot;$icon_r$, color = &quot;$background$&quot;, width = $width$">
             <div class="small-box $colour_class$">
                 <div class="inner">
                     $value$
@@ -19,6 +19,7 @@ export class ValueBox extends Component {
                         $label$
                     </p>
                 </div>
+                $icon_html$
                 <div class="small-box-footer" style="height: 30px;"></div>
             </div>
         </div>
@@ -50,14 +51,21 @@ export class ValueBox extends Component {
         const width_class = width > 0 ? `col-sm col-sm-${width}` : "";
         const width_r = width > 0 ? width : "NULL";
 
+        const tab_icon = $("#sidebar-icon").val();
+        const icon_r = tab_icon === "" ? "" : `, icon = icon(&quot;${tab_icon}&quot;)`;
+        const icon_class = tab_icon === "" ? "" : $("#sidebar-icon option").html().includes("fab") ? "fab" : "fa";
+        const icon_html = tab_icon === "" ? "" : `<div class="icon"><i aria-hidden="true" class="${icon_class} fa-${tab_icon} fa-fw" role="presentation"></i></div>`;            
+
         const background = $("#sidebar-background").val();
-        const background_class = background === "white" ? "" : `bg-${background}`;
+        const background_class = `bg-${background}`;
 
         return this.replaceHTMLPlaceholders(this.html, {
             value: value,
             label: label, 
             width_class: width_class,
             width_r: width_r,
+            icon_html: icon_html,
+            icon_r: icon_r,
             colour: background,
             colour_class: background_class
         });

@@ -50,7 +50,7 @@ export class Button extends Component {
 
         const tab_icon = $("#sidebar-icon").val();
         const icon_r = tab_icon === "" || downloadable ? "" : `, icon = icon(&quot;${tab_icon}&quot;)`;
-        const icon_class = tab_icon === "" || downloadable ? "" : $("#sidebar-tab_icon option").html().includes("fab") ? "fab" : "fa";
+        const icon_class = tab_icon === "" || downloadable ? "" : $("#sidebar-icon option").html().includes("fab") ? "fab" : "fa";
         icon_html = tab_icon === "" || downloadable ? icon_html : `<i aria-hidden="true" class="${icon_class} fa-${tab_icon} fa-fw" role="presentation"></i>`;          
 
         const width = this.validateCssUnit($("#sidebar-width").val());
