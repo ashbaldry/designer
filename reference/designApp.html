@@ -19,7 +19,7 @@ vignette("designer").'><meta property="og:image" content="https://ashbaldry.gith
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">designer</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.0</span>
       </span>
     </div>
 
@@ -75,28 +75,39 @@ vignette("designer").'><meta property="og:image" content="https://ashbaldry.gith
 <dd><p>A function that will be called before the app is actually run.
 This is only needed for <code>shinyAppObj</code>, since in the <code>shinyAppDir</code>
 case, a <code>global.R</code> file can be used for this purpose.</p></dd>
+
+
 <dt>options</dt>
 <dd><p>Named options that should be passed to the <code>runApp</code> call
 (these can be any of the following: "port", "launch.browser", "host", "quiet",
 "display.mode" and "test.mode"). You can also specify <code>width</code> and
 <code>height</code> parameters which provide a hint to the embedding environment
 about the ideal height/width for the app.</p></dd>
+
+
 <dt>enableBookmarking</dt>
 <dd><p>Can be one of <code>"url"</code>, <code>"server"</code>, or
 <code>"disable"</code>. The default value, <code>NULL</code>, will respect the setting from
 any previous calls to  <code><a href="https://rdrr.io/pkg/shiny/man/enableBookmarking.html" class="external-link">enableBookmarking()</a></code>. See <code><a href="https://rdrr.io/pkg/shiny/man/enableBookmarking.html" class="external-link">enableBookmarking()</a></code>
 for more information on bookmarking your app.</p></dd>
+
+
 <dt>uiPattern</dt>
 <dd><p>A regular expression that will be applied to each <code>GET</code>
 request to determine whether the <code>ui</code> should be used to handle the
 request. Note that the entire request path must match the regular
 expression in order for the match to be considered successful.</p></dd>
+
+
 <dt>...</dt>
 <dd><p>arguments to pass to <code>golem_opts</code>. See <code><a href="https://rdrr.io/pkg/golem/man/get_golem_options.html" class="external-link">get_golem_options</a></code> for more details.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>This function does not return a value; interrupt R to stop the application (usually by pressing Ctrl+C or Esc).</p>
+    
+
+<p>This function does not return a value; interrupt R to stop the application (usually by pressing Ctrl+C or Esc).</p>
     </div>
 
     <div id="ref-examples">
@@ -118,7 +129,7 @@ expression in order for the match to be considered successful.</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
 </div>
 
       </footer></div>
