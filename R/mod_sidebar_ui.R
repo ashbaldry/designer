@@ -40,6 +40,7 @@ SidebarModUI <- function(id) {
           componentValue(ns),
           componentLabel(ns),
           componentID(ns),
+          componentIcon(ns),
           componentColour(ns),
           componentBackground(ns),
           componentText(ns),

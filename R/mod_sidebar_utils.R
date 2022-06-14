@@ -83,6 +83,26 @@ componentID <- function(ns) {
   )
 }
 
+componentIcon <- function(ns) {
+  component(
+    "icon",
+    htmltools::tagAppendAttributes(
+      selectizeInput(
+        inputId = ns("icon"),
+        label = "Icon",
+        choices = c("Optional" = ""),
+        options = list(
+          render = I("{
+            item: function(item, escape) { return '<div class=\"item icon-option\">' + item.label + '</div>'; },
+            option: function(item, escape) { return '<div class=\"option icon-option\">' + item.label + '</div>'; }
+          }")
+        )
+      ),
+      class = "icon-choices"
+    )
+  )
+}
+
 componentColour <- function(ns) {
   component(
     "colour",
