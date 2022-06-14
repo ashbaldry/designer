@@ -38,11 +38,13 @@ CodeModuleServer <- function(id, ui_code) {
         )
       } else {
         writeToUI(r_code())
+        session$sendCustomMessage("runjs", list(script = "$('#save_toast').toast('show');"))
       }
     })
 
     observeEvent(input$overwrite, {
       writeToUI(r_code())
+      session$sendCustomMessage("runjs", list(script = "$('#save_toast').toast('show');"))
     })
 
     output$code <- renderPrint(cat(r_code()))

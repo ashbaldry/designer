@@ -9,7 +9,8 @@ export function initSettings() {
     $("#preview").on("click", () => { $(".page-canvas-shell").addClass("preview"); });
     $("#canvas-close_preview").on("click", () => { $(".page-canvas-shell").removeClass("preview"); });
 
-    Shiny.addCustomMessageHandler("toggleBS4DashDeps", toggleBS4DashDeps)
+    Shiny.addCustomMessageHandler("toggleBS4DashDeps", toggleBS4DashDeps);
+    Shiny.addCustomMessageHandler("runjs", function(message) { console.log(message); (0, eval)(message.script); });
 };
 
 function toggleComponentLabels () {
@@ -39,6 +40,7 @@ function toggleBorders () {
 function copyUICode () {
     var copy_text = document.getElementById("settings-code-code").textContent;
     navigator.clipboard.writeText(copy_text);
+    $("#copy_toast").toast("show");
     return;
   };
 

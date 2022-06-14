@@ -15,26 +15,47 @@ CodeModUI <- function(id) {
   tagList(
     tags$form(
       class = "code-ui-form",
-      tags$button(
-        class = "copy-ui-button btn btn-default",
-        icon("copy"),
-        "Copy"
+      span(
+        toast("copy_toast", "Copied!"),
+        tags$button(
+          class = "copy-ui-button btn btn-default",
+          role = "button",
+          icon("copy"),
+          "Copy"
+        )
       ),
       if (interactive()) {
-        actionButton(
-          ns("save"),
-          "Save To ui.R",
-          icon("save")
+        span(
+          toast("save_toast", "Saved!"),
+          actionButton(
+            ns("save"),
+            "Save To ui.R",
+            icon("save")
+          )
         )
-      } else {
-        downloadButton(
-          ns("download")
-        )
-      }
+      },
+      downloadButton(
+        ns("download")
+      )
     ),
     tagAppendAttributes(
       verbatimTextOutput(ns("code"), placeholder = TRUE),
       class = "code-output"
+    )
+  )
+}
+
+toast <- function(id, text) {
+  div(
+    id = id,
+    class = "toast hide",
+    role = "alert",
+    `aria-live` = "assertive",
+    `aria-atomic` = "true",
+    `data-autohide` = "true",
+    div(
+      class = "toast-body",
+      tags$b(text)
     )
   )
 }

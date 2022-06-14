@@ -60,7 +60,7 @@ h5.modal-title {
 }
 
 .settings-row .dropdown-menu {
-  z-index: 9000;
+  z-index: 1050;
 }
 
 .component-form {
@@ -164,6 +164,15 @@ h5.modal-title {
 
 .code-ui-form {
   margin: 0 0 0.5rem 0.5rem;
+}
+
+.code-ui-form .toast.show, .code-ui-form .toast.showing, .code-ui-form .toast.fade {
+  position: absolute;
+  top: -2rem;
+}
+
+.code-ui-form #save_toast {
+  right: 55%;
 }
 
 .code-output {
