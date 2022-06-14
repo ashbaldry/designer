@@ -11,8 +11,9 @@ header > h1 {
   margin: 0;
 }
 
-.component-form h2 {
+.component-form .sidebar-title {
   font-size: 1.1rem;
+  margin-top: 0.5rem;
 }
 
 .component-form h3, .bin-container h3 {
@@ -48,13 +49,18 @@ h5.modal-title {
   overflow-y: auto;
 }
 
-.dropdown-item.active, .dropdown-item:active {
+.dropdown-menu .dropdown-item.active, .dropdown-menu .dropdown-item:active {
   font-weight: 500;
   background-color: #999999;
+  color: #ffffff!important;
 }
 
 .settings-row {
   margin-bottom: 15px;
+}
+
+.settings-row .dropdown-menu {
+  z-index: 9000;
 }
 
 .component-form {
@@ -65,6 +71,10 @@ h5.modal-title {
   padding: 5px;
   border-radius: 5px;
   border: #CDCDCD 1px solid;
+}
+
+.tab-parameters {
+  display: none;
 }
 
 .row ::-webkit-scrollbar {
@@ -138,6 +148,11 @@ h5.modal-title {
   min-height: 50px;
 }
 
+.icon-option .fa, .icon-option .fab {
+  width: 20px;
+  margin-right: 10px;
+}
+
 .bin-container .bin-header {
   position: absolute;
   margin-top: 0.2rem;
@@ -195,6 +210,7 @@ h5.modal-title {
   position: absolute;
   right: 0;
   top: 1.5rem;
+  z-index: 9000;
 }
 
 .page-canvas-shell.preview .page-preview-button {
@@ -319,4 +335,56 @@ span.plot-output-element, span.image-output-element {
 
 .designer-page-template .designer-element>p {
   position: absolute;
+}
+
+.designer-page-template .card-body {
+  min-height: 200px;
+}
+
+/* bs4Dash specific conditions */
+body, h1, h2, h3, h4, h5, h6, div, span, p, label {
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+}
+
+body #canvas-page.wrapper * {
+  font-family: "Source Sans Pro",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+}
+
+body #canvas-page.wrapper .fa, body #canvas-page.wrapper .fas,
+body #canvas-page.wrapper .far {
+  font-family: "Font Awesome 5 Free";
+}
+
+body #canvas-page.wrapper .fab {
+  font-family: "Font Awesome 5 Brands";
+}
+
+#canvas-page .main-header {
+  margin-bottom: 0;
+}
+
+#canvas-page.wrapper .content-wrapper {
+  min-height: calc(100% - 3.55rem);
+  height: calc(100% - 3.55rem);
+  overflow-y: auto;
+}
+
+#canvas-page .content-wrapper>.content,
+#canvas-page .content-wrapper>.content>.tab-content,
+#canvas-page .content-wrapper>.content>.tab-content>.tab-pane {
+  height: 100%;
+}
+
+#tab_settings label, #component_settings label,
+#settings-options_dropdown label, #canvas-page:not(.wrapper) label {
+  font-weight: 400;
+}
+
+.layout-fixed #canvas-page .main-sidebar {
+  position: absolute;
+  height: 100%;
+}
+
+#canvas-page .content-wrapper .designer-element:not(pre, .shiny-input-panel, .row-designer, .col-sm, .btn) {
+  background-color: transparent;
 }

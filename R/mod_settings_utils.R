@@ -27,17 +27,18 @@ PAGE_TYPES <- c(
   "Standard Page" = "bootstrapPage",
   "Fill Page" = "fillPage",
   "Fluid Page" = "fluidPage",
-  "Navigation Bar Page" = "navbarPage"
+  "Navigation Bar Page" = "navbarPage",
+  "Dashboard Page" = "dashboardPage"
 )
 
-pageChoices <- function(ns) {
+pageOptions <- function(ns) {
   div(
     `aria-labelledby` = ns("page_type_button"),
     class = "dropdown-menu dropdown-menu-right dropdown-menu-wide page-type-dropdown clickable-dropdown",
     tags$form(
       class = "px-2",
       div(
-        class = "form-group",
+        class = "form-group shiny-input-radiogroup",
         id = ns("page_type"),
         lapply(names(PAGE_TYPES), function(page) {
           x <- PAGE_TYPES[[page]]
@@ -47,7 +48,7 @@ pageChoices <- function(ns) {
               class = "form-check-input",
               type = "radio",
               id = ns(x),
-              name = "page_types",
+              name = ns("page_type"),
               value = x,
               checked = if (x == "fluidPage") NA else NULL
             ),
@@ -63,23 +64,49 @@ pageChoices <- function(ns) {
   )
 }
 
-componentChoices <- function(ns) {
+COMPONENTS <- c(
+  "Tab" = "tab_panel",
+  "Header" = "header",
+  "Row" = "row",
+  "Column" = "column",
+  "Box/Card" = "box",
+  "Text" = "text",
+  "Input Panel" = "input_panel",
+  "Dropdown (selectInput)" = "dropdown",
+  "Input" = "input",
+  "Slider" = "slider",
+  "File Input" = "file",
+  "Calendar (dateInput)" = "date",
+  "Checkbox" = "checkbox",
+  "Radio Buttons" = "radio",
+  "Button" = "button",
+  "Output" = "output",
+  "Value Box" = "value_box"
+)
+NAVBAR_COMPONENTS <- "tab_panel"
+BS4_COMPONENTS <- c("box", "value_box")
+
+componentOptions <- function(ns) {
   div(
     id = ns("component"),
     `aria-labelledby` = ns("component_button"),
     class = "dropdown-menu dropdown-menu-right dropdown-menu-wide component-type-dropdown",
-    tags$a(
-      class = "dropdown-item navbar-tab-item",
-      `data-shinyelement` = "tab_panel",
-      name = "tab_panel",
-      "Tab"
-    ),
     lapply(names(COMPONENTS), function(component) {
-      first_item <- COMPONENTS[[component]] == COMPONENTS[[1]]
+      first_item <- COMPONENTS[[component]] == "header"
+      comp <- COMPONENTS[[component]]
+
+      if (comp %in% BS4_COMPONENTS) {
+        extra_class <- "bs4-item"
+      } else if (comp %in% NAVBAR_COMPONENTS) {
+        extra_class <- "component-item navbar-tab-item"
+      } else {
+        extra_class <- "component-item"
+      }
+
       tags$a(
-        class = paste("dropdown-item component-item", if (first_item) "active" else ""),
-        `data-shinyelement` = COMPONENTS[[component]],
-        name = COMPONENTS[[component]],
+        class = paste("dropdown-item", extra_class, if (first_item) "active" else ""),
+        `data-shinyelement` = comp,
+        name = comp,
         component
       )
     })

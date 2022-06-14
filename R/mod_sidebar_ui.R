@@ -1,20 +1,3 @@
-COMPONENTS <- c(
-  "Header" = "header",
-  "Row" = "row",
-  "Column" = "column",
-  "Text" = "text",
-  "Input Panel" = "input_panel",
-  "Dropdown (selectInput)" = "dropdown",
-  "Input" = "input",
-  "Slider" = "slider",
-  "File Input" = "file",
-  "Calendar (dateInput)" = "date",
-  "Checkbox" = "checkbox",
-  "Radio Buttons" = "radio",
-  "Button" = "button",
-  "Output" = "output"
-)
-
 #' Bootstrap Component Creation Module
 #'
 #' @description
@@ -31,7 +14,12 @@ SidebarModUI <- function(id) {
   ns <- NS(id)
 
   tagList(
-    div(
+    tags$section(
+      id = "tab_settings",
+      class = "tab-parameters",
+      componentTab(ns)
+    ),
+    tags$section(
       id = "component_settings",
       div(
         id = ns("container"),
@@ -39,24 +27,46 @@ SidebarModUI <- function(id) {
       ),
       tags$form(
         class = "component-form",
-        componentSettings("tab_panel", tabSettings, ns),
-        componentSettings("header", headerSettings, ns),
-        componentSettings("row", rowSettings, ns),
-        componentSettings("column", columnSettings, ns),
-        componentSettings("text", textSettings, ns),
-        componentSettings("input_panel", inputPanelSettings, ns),
-        componentSettings("dropdown", dropdownSettings, ns),
-        componentSettings("input", inputSettings, ns),
-        componentSettings("file", fileSettings, ns),
-        componentSettings("slider", sliderSettings, ns),
-        componentSettings("date", dateSettings, ns),
-        componentSettings("checkbox", checkboxSettings, ns),
-        componentSettings("radio", radioSettings, ns),
-        componentSettings("button", buttonSettings, ns),
-        componentSettings("output", outputSettings, ns),
-        br(),
-        div(
-          class = "component_comments",
+        tags$section(
+          class = "component-parameters",
+          h2(class = "sidebar-title", id = ns("title")),
+          componentTag(ns),
+          componentType(ns),
+          conditionalPanel(
+            "input.type === 'plot'",
+            ns = ns,
+            componentPlot(ns)
+          ),
+          componentValue(ns),
+          componentLabel(ns),
+          componentID(ns),
+          componentIcon(ns),
+          componentColour(ns),
+          componentBackground(ns),
+          componentText(ns),
+          conditionalPanel(
+            "!['plot', 'image', 'table'].includes(input.type)",
+            ns = ns,
+            componentTextArea(ns)
+          ),
+          componentChoices(ns),
+          componentRange(ns),
+          componentInline(ns),
+          componentDownload(ns),
+          componentWidth(ns),
+          conditionalPanel(
+            "['plot', 'image'].includes(input.type)",
+            ns = ns,
+            componentHeight(ns)
+          ),
+          componentWidthNum(ns),
+          componentOffset(ns)
+        ),
+        tags$section(
+          id = ns("notes"),
+        ),
+        tags$section(
+          class = "component-comments",
           textAreaInput(
             ns("comments"),
             label = inputLabel(
@@ -70,7 +80,7 @@ SidebarModUI <- function(id) {
         )
       )
     ),
-    div(
+    tags$section(
       id = "component_delete",
       class = "container bin-container",
       h3(class = "bin-header", icon("trash", "aria-hidden" = "true"), "Drag Here to Delete Item"),

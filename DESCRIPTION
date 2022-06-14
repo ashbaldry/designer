@@ -1,6 +1,6 @@
 Package: designer
 Title: 'Shiny' UI Prototype Builder
-Version: 0.1.1
+Version: 0.2.0
 Authors@R: c(
     person('Ashley', 'Baldry', email = 'arbaldry91@gmail.com', role = c('cre', 'aut')),
     person('Sam', 'Parmar', email = 'parmartsam@gmail.com', role = 'ctb'))
@@ -22,10 +22,12 @@ Imports:
     htmltools,
     shiny (>= 1.7.1),
     bslib,
+    bs4Dash,
     jsonlite,
     shinipsum,
     shinyscreenshot,
-    cicerone
+    cicerone,
+    fontawesome
 Suggests: 
     covr,
     testthat (>= 3.0.0),

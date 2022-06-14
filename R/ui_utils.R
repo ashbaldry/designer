@@ -33,6 +33,7 @@ warningModal <- function(id) {
         div(
           class = "modal-footer",
           tags$button(
+            id = "cancel_reset",
             type = "button",
             class = "btn btn-secondary",
             `data-dismiss` = "modal",
@@ -53,4 +54,15 @@ warningModal <- function(id) {
       )
     )
   )
+}
+
+screenshtButton <- function(...) {
+  btn <- shinyscreenshot::screenshotButton(
+    id = "canvas-page",
+    label = "Snapshot UI",
+    filename = "ui_wireframe",
+    ...
+  )
+  btn[[2]]$attribs$class <- sub(" btn-default", "", btn[[2]]$attribs$class)
+  btn
 }

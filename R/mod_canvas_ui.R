@@ -12,12 +12,7 @@ CanvasModUI <- function(id) {
     class = "page-canvas-shell",
     span(
       class = "page-preview-button",
-      shinyscreenshot::screenshotButton(
-        id = "canvas-page",
-        label = "Snapshot UI",
-        filename = "ui_wireframe",
-        class = "btn-outline-dark"
-      ),
+      screenshtButton(class = "btn-outline-dark"),
       tags$button(
         id = ns("close_preview"),
         class = "btn btn-outline-dark",
