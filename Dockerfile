@@ -17,7 +17,7 @@ RUN Rscript -e 'remotes::install_version("covr",upgrade="never", version = "3.5.
 RUN Rscript -e 'remotes::install_version("cicerone",upgrade="never", version = "1.0.4")'
 RUN Rscript -e 'remotes::install_version("shinyscreenshot",upgrade="never", version = "0.2.0")'
 RUN Rscript -e 'remotes::install_version("shinipsum",upgrade="never", version = "0.1.0")'
-RUN Rscript -e 'remotes::install_version("bs4Dash",upgrade="never", version = "NA")'
+RUN Rscript -e 'remotes::install_version("bs4Dash",upgrade="never", version = "2.1.0")'
 RUN Rscript -e 'remotes::install_version("golem",upgrade="never", version = "0.3.2")'
 RUN mkdir /build_zone
 ADD . /build_zone
