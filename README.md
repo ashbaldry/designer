@@ -92,6 +92,21 @@ bootstrapPage(
 )
 ```
 
+## Docker demo
+Optionally, you can also build a Dockerized version of the app:
+
+```
+sudo docker build -t designer -f Dockerfile .
+```
+
+After building the docker image (which should take a while) use the command:
+
+```
+docker run -p 80:80 designer
+```
+
+Depending on your Docker setup, the exposed application may be available under: http://localhost:80
+
 ## Notes
 
 Certain inputs will only include default values and not fully customisable; this is intentional as they are likely to change throughout development and therefore not something that is required at this time of the development process.
