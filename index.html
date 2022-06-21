@@ -152,6 +152,15 @@
 <span class="op">)</span></code></pre></div>
 </div>
 <div class="section level2">
+<h2 id="docker-demo">Docker demo<a class="anchor" aria-label="anchor" href="#docker-demo"></a>
+</h2>
+<p>Optionally, you can also build a Dockerized version of the app:</p>
+<pre><code>sudo docker build -t designer -f Dockerfile .</code></pre>
+<p>After building the docker image (which should take a while) use the command:</p>
+<pre><code>docker run -p 80:80 designer</code></pre>
+<p>Depending on your Docker setup, the exposed application may be available under: <a href="http://localhost:80" class="external-link uri">http://localhost:80</a></p>
+</div>
+<div class="section level2">
 <h2 id="notes">Notes<a class="anchor" aria-label="anchor" href="#notes"></a>
 </h2>
 <p>Certain inputs will only include default values and not fully customisable; this is intentional as they are likely to change throughout development and therefore not something that is required at this time of the development process.</p>
