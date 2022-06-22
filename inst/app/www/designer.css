@@ -29,7 +29,7 @@ h5.modal-title {
   margin-top: 0;
 }
 
-.guide-button {
+.btn.guide-button {
   position: absolute;
   right: 0.5rem;
   top: 0;

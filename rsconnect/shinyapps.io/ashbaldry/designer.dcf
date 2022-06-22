@@ -5,10 +5,10 @@ account: ashbaldry
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 6009870
-bundleId: 5899992
+bundleId: 6033318
 url: https://ashbaldry.shinyapps.io/designer/
-when: 1652379061.68562
-lastSyncTime: 1652379061.68562
+when: 1655925229.99109
+lastSyncTime: 1655925229.99209
 asMultiple: FALSE
 asStatic: FALSE
-ignoredFiles: .github/.gitignore|.github/CONTRIBUTING.md|.github/workflows/R-CMD-check.yaml|.github/workflows/test-coverage.yaml|CODE_OF_CONDUCT.md|dev/01_start.R|dev/02_dev.R|dev/03_deploy.R|dev/run_dev.R|man/designApp.Rd|man/figures/example_app.gif|man/figures/example_app_filled.jpeg|man/figures/logo.png|NEWS.md|README.md|tests/testthat/test-golem-recommended.R|tests/testthat/test-json-to-r.R|tests/testthat/test-shinytest2.R|tests/testthat/test-ui-modules.R|tests/testthat.R
+ignoredFiles: .Rbuildignore|_pkgdown.yml|cran-comments.md|dev/01_start.R|dev/02_dev.R|dev/03_deploy.R|dev/run_dev.R|Dockerfile|man/designApp.Rd|man/designer-package.Rd|man/figures/example_app.gif|man/figures/example_app_filled.jpeg|man/figures/logo.png|NEWS.md|README.md|tests/testthat/test-golem-recommended.R|tests/testthat/test-json-to-r.R|tests/testthat/test-shinytest2.R|tests/testthat/test-ui-modules.R|tests/testthat.R|vignettes/.gitignore|vignettes/designer.html|vignettes/designer.R|vignettes/designer.Rmd|.github|srcjs
