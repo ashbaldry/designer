@@ -31,7 +31,8 @@ guide <- cicerone::Cicerone$new(
   el = "component_delete",
   title = "Delete Component",
   description = paste(
-    "If you do include something in the UI that you no longer need, drag it here for it to be removed."
+    "If you do include something in the UI that you no longer need, drag it here for it to be removed.",
+    "Alternatively, right-click on an element and delete from the menu instead."
   )
 )$step(
   el = "settings-code_button",
