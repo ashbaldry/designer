@@ -12,9 +12,9 @@ export function initSettings () {
     Shiny.addCustomMessageHandler("toggleBS4DashDeps", toggleBS4DashDeps);
     Shiny.addCustomMessageHandler("runjs", function(message) { console.log(message); (0, eval)(message.script); });
 
+    $("body").on("click contextmenu", closeCanvasMenu);
     $("#canvas-canvas").on("contextmenu", showCanvasMenu);
     $("#canvas-menu").on("contextmenu", e => { e.preventDefault(); });
-    $("body").on("click", closeCanvasMenu);
     $("#sidebar-container").on("mousedown", closeCanvasMenu);
 
     $("#canvas-delete").on("click", deleteDesignerElement);
@@ -66,6 +66,9 @@ function toggleBS4DashDeps (toggle) {
 let selected_element;
 
 function showCanvasMenu (event) {
+    if ($(event.target).closest(".designer-element").length === 0) {
+        return;
+    }
     event.preventDefault();
     
     const { clientX: mouseX, clientY: mouseY } = event;
@@ -93,7 +96,6 @@ function normalizeMenuPosition (mouseX, mouseY) {
       const scopeY = mouseY - scopeOffsetY;
 
       const outOfBoundsOnX = scopeX + contextMenu.clientWidth > scope.clientWidth;
-
       const outOfBoundsOnY = scopeY + contextMenu.clientHeight > scope.clientHeight;
 
       let normalizedX = mouseX;
@@ -102,7 +104,6 @@ function normalizeMenuPosition (mouseX, mouseY) {
       if (outOfBoundsOnX) {
         normalizedX = scopeOffsetX + scope.clientWidth - contextMenu.clientWidth;
       }
-
       if (outOfBoundsOnY) {
         normalizedY = scopeOffsetY + scope.clientHeight - contextMenu.clientHeight;
       }
