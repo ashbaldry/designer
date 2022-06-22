@@ -170,7 +170,7 @@ export class Tab extends Component{
 
         if (this.checkMissingName(tab_name, page_type)) {
             return true;
-        } else if (this.getNameIdentifier(tab_name, page_type).length > 1 && tab_value === "") {
+        } else if ($(this.getNameIdentifier(tab_name, page_type)).length > 1 && tab_value === "") {
             $("#sidebar-tab_alert").html(`
                 <div class="alert alert-danger" role="alert">
                     Duplicate tabs contain the name "${tab_name}" and no value has been provided. Please provide the specific ID of the tab to delete.
