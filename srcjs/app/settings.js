@@ -1,4 +1,4 @@
-export function initSettings() {
+export function initSettings () {
     $(".copy-ui-button").on("click", copyUICode);
 
     $("#remove_label").on("change", toggleComponentLabels);
@@ -11,6 +11,13 @@ export function initSettings() {
 
     Shiny.addCustomMessageHandler("toggleBS4DashDeps", toggleBS4DashDeps);
     Shiny.addCustomMessageHandler("runjs", function(message) { console.log(message); (0, eval)(message.script); });
+
+    $("#canvas-canvas").on("contextmenu", showCanvasMenu);
+    $("#canvas-menu").on("contextmenu", e => { e.preventDefault(); });
+    $("body").on("click", closeCanvasMenu);
+    $("#sidebar-container").on("mousedown", closeCanvasMenu);
+
+    $("#canvas-delete").on("click", deleteDesignerElement);
 };
 
 function toggleComponentLabels () {
@@ -19,7 +26,7 @@ function toggleComponentLabels () {
     } else {
         $(".designer-page-template").addClass("hidden-after-label");
     }
-  };
+};
   
 function toggleBackgroundColours () {
     if (this.checked) {
@@ -42,9 +49,9 @@ function copyUICode () {
     navigator.clipboard.writeText(copy_text);
     $("#copy_toast").toast("show");
     return;
-  };
+};
 
-function toggleBS4DashDeps(toggle) {
+function toggleBS4DashDeps (toggle) {
     const stylesheets = document.styleSheets;
     for (var i = 0; i < stylesheets.length; i++) {
         var stylesheet = stylesheets.item(i);
@@ -53,5 +60,32 @@ function toggleBS4DashDeps(toggle) {
         }
         
     }
+    
+};
+
+let selected_element;
+
+function showCanvasMenu (event) {
+    event.preventDefault();
+    const { clientX: mouseX, clientY: mouseY } = event;
+
+    selected_element = $(event.target).closest(".designer-element");
+
+    $("#canvas-menu").css("top", `${mouseY}px`);
+    $("#canvas-menu").css("left", `${mouseX}px`);
+    $("#canvas-menu").removeClass("visible");
+
+    setTimeout(() => { $("#canvas-menu").addClass("visible"); });
+};
+
+function closeCanvasMenu () {
+    $("#canvas-menu").removeClass("visible");
+};
+
+function deleteDesignerElement (event) {
+    selected_element.remove();
+};
+
+function editDesignerElement (event) {
     
 };

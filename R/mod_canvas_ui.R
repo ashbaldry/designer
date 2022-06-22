@@ -45,6 +45,23 @@ CanvasModUI <- function(id) {
     div(
       class = "page-canvas",
       id = ns("canvas")
+    ),
+
+    div(
+      id = ns("menu"),
+      class = "right-click-menu",
+      div(
+        class = "item",
+        id = ns("edit"),
+        shiny::icon("edit"),
+        "Edit"
+      ),
+      div(
+        class = "item",
+        id = ns("delete"),
+        shiny::icon("times"),
+        "Delete"
+      )
     )
   )
 }
