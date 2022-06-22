@@ -66,7 +66,7 @@ export class Output extends Component {
 
         if (["plot", "image"].includes(output_type)) {
             const width = this.validateCssUnit($("#sidebar-width").val(), "100%");
-            let style_str = `width: ${width};`;
+            style_str = `width: ${width};`;
             let dim_str = width  === "100%" ? "" : `, width = &quot;${width}&quot;`;
     
             const height = this.validateCssUnit($("#sidebar-height").val(), "400px");
