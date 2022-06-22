@@ -283,7 +283,7 @@ inputLabel <- function(label, ...) {
 #' @noRd
 componentTab <- function(ns) {
   tagList(
-    h2("Tab Panel Settings"),
+    h2(class = "tab-title", "Tab Panel Settings"),
     textInput(
       ns("tab_name"),
       label = "Name",

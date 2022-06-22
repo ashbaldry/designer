@@ -1,4 +1,4 @@
-export function initSettings() {
+export function initSettings () {
     $(".copy-ui-button").on("click", copyUICode);
 
     $("#remove_label").on("change", toggleComponentLabels);
@@ -11,6 +11,13 @@ export function initSettings() {
 
     Shiny.addCustomMessageHandler("toggleBS4DashDeps", toggleBS4DashDeps);
     Shiny.addCustomMessageHandler("runjs", function(message) { console.log(message); (0, eval)(message.script); });
+
+    $("body").on("click contextmenu", closeCanvasMenu);
+    $("#canvas-canvas").on("contextmenu", showCanvasMenu);
+    $("#canvas-menu").on("contextmenu", e => { e.preventDefault(); });
+    $("#sidebar-container").on("mousedown", closeCanvasMenu);
+
+    $("#canvas-delete").on("click", deleteDesignerElement);
 };
 
 function toggleComponentLabels () {
@@ -19,7 +26,7 @@ function toggleComponentLabels () {
     } else {
         $(".designer-page-template").addClass("hidden-after-label");
     }
-  };
+};
   
 function toggleBackgroundColours () {
     if (this.checked) {
@@ -42,9 +49,9 @@ function copyUICode () {
     navigator.clipboard.writeText(copy_text);
     $("#copy_toast").toast("show");
     return;
-  };
+};
 
-function toggleBS4DashDeps(toggle) {
+function toggleBS4DashDeps (toggle) {
     const stylesheets = document.styleSheets;
     for (var i = 0; i < stylesheets.length; i++) {
         var stylesheet = stylesheets.item(i);
@@ -53,5 +60,65 @@ function toggleBS4DashDeps(toggle) {
         }
         
     }
+    
+};
+
+let selected_element;
+
+function showCanvasMenu (event) {
+    if ($(event.target).closest(".designer-element").length === 0) {
+        return;
+    }
+    event.preventDefault();
+    
+    const { clientX: mouseX, clientY: mouseY } = event;
+    const { normalizedX, normalizedY } = normalizeMenuPosition(mouseX, mouseY);
+
+    selected_element = $(event.target).closest(".designer-element");
+
+    $("#canvas-menu").css("top", `${normalizedY}px`);
+    $("#canvas-menu").css("left", `${normalizedX}px`);
+    $("#canvas-menu").removeClass("visible");
+
+    setTimeout(() => { $("#canvas-menu").addClass("visible"); });
+};
+
+function normalizeMenuPosition (mouseX, mouseY) {
+    const scope = document.getElementById("canvas-canvas");
+    const contextMenu = document.getElementById("canvas-menu");
+
+    let { left: scopeOffsetX, top: scopeOffsetY } = scope.getBoundingClientRect();
+      
+      scopeOffsetX = scopeOffsetX < 0 ? 0 : scopeOffsetX;
+      scopeOffsetY = scopeOffsetY < 0 ? 0 : scopeOffsetY;
+     
+      const scopeX = mouseX - scopeOffsetX;
+      const scopeY = mouseY - scopeOffsetY;
+
+      const outOfBoundsOnX = scopeX + contextMenu.clientWidth > scope.clientWidth;
+      const outOfBoundsOnY = scopeY + contextMenu.clientHeight > scope.clientHeight;
+
+      let normalizedX = mouseX;
+      let normalizedY = mouseY;
+
+      if (outOfBoundsOnX) {
+        normalizedX = scopeOffsetX + scope.clientWidth - contextMenu.clientWidth;
+      }
+      if (outOfBoundsOnY) {
+        normalizedY = scopeOffsetY + scope.clientHeight - contextMenu.clientHeight;
+      }
+
+      return { normalizedX, normalizedY };
+};
+
+function closeCanvasMenu () {
+    $("#canvas-menu").removeClass("visible");
+};
+
+function deleteDesignerElement (event) {
+    selected_element.remove();
+};
+
+function editDesignerElement (event) {
     
 };
