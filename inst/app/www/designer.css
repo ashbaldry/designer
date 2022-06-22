@@ -433,5 +433,5 @@ body #canvas-page.wrapper .fab {
 }
 
 #canvas-page .content-wrapper .designer-element:not(pre, .shiny-input-panel, .row-designer, .col-sm, .btn) {
-  background-color: transparent;
+  background-color: inherit;
 }
