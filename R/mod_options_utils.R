@@ -1,6 +1,6 @@
 CSSFileInput <- function(id, label) {
   div(
-    class = "form-group",
+    class = "form-group setting-input",
     tags$label(label),
     div(
       class = "custom-file",

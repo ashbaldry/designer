@@ -49,6 +49,10 @@ h5.modal-title {
   margin-bottom: 0.25rem;
 }
 
+.page-type-dropdown .setting-input {
+  padding-bottom: 1rem;
+}
+
 .component-type-dropdown {
   max-height: 20rem;
   overflow-y: auto;

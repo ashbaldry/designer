@@ -4,11 +4,14 @@ OptionsModUI <- function(id) {
   tagList(
     tags$form(
       class = "px-2",
-      textInput(
-        ns("app_name"),
-        label = "Application Title",
-        value = "Shiny Application",
-        width = "100%"
+      tagAppendAttributes(
+        textInput(
+          ns("app_name"),
+          label = "Application Title",
+          value = "Shiny Application",
+          width = "100%"
+        ),
+        class = "setting-input"
       ),
       CSSFileInput(
         ns("css_style"),

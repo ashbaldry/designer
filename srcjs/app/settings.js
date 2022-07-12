@@ -131,7 +131,7 @@ function applyCustomStyle(event) {
 
     let reader = new FileReader();
     reader.onload = (e) => {
-          const file = e.target.result;
+        const file = e.target.result;
         const lines = file.split(/\r\n|\n/);
         canvas_style.innerHTML = lines.join('\n');
 
