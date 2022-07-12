@@ -133,6 +133,11 @@ function applyCustomStyle(event) {
       const file = e.target.result;
       const lines = file.split(/\r\n|\n/);
       canvas_style.innerHTML = lines.join('\n');
+
+      const css_rules = canvas_style.sheet.cssRules;
+      for (var i = 0; i < css_rules.length; i++) {
+          css_rules[i].selectorText = "#canvas-page " + css_rules[i].selectorText;
+      }
   };
   
   reader.onerror = (e) => alert(e.target.error.name);
