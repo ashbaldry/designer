@@ -49,6 +49,10 @@ h5.modal-title {
   margin-bottom: 0.25rem;
 }
 
+.page-type-dropdown .setting-input {
+  padding-bottom: 1rem;
+}
+
 .component-type-dropdown {
   max-height: 20rem;
   overflow-y: auto;
@@ -394,44 +398,44 @@ body, h1, h2, h3, h4, h5, h6, div, span, p, label {
 }
 
 body #canvas-page.wrapper * {
-  font-family: "Source Sans Pro",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+  font-family: "Source Sans Pro",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol" !important;
 }
 
 body #canvas-page.wrapper .fa, body #canvas-page.wrapper .fas,
 body #canvas-page.wrapper .far {
-  font-family: "Font Awesome 5 Free";
+  font-family: "Font Awesome 5 Free" !important;
 }
 
 body #canvas-page.wrapper .fab {
-  font-family: "Font Awesome 5 Brands";
+  font-family: "Font Awesome 5 Brands" !important;
 }
 
 #canvas-page .main-header {
-  margin-bottom: 0;
+  margin-bottom: 0 !important;
 }
 
 #canvas-page.wrapper .content-wrapper {
-  min-height: calc(100% - 3.55rem);
-  height: calc(100% - 3.55rem);
-  overflow-y: auto;
+  min-height: calc(100% - 3.55rem) !important;
+  height: calc(100% - 3.55rem) !important;
+  overflow-y: auto !important;
 }
 
 #canvas-page .content-wrapper>.content,
 #canvas-page .content-wrapper>.content>.tab-content,
 #canvas-page .content-wrapper>.content>.tab-content>.tab-pane {
-  height: 100%;
+  height: 100% !important;
 }
 
 #tab_settings label, #component_settings label,
 #settings-options_dropdown label, #canvas-page:not(.wrapper) label {
-  font-weight: 400;
+  font-weight: 400 !important;
 }
 
 .layout-fixed #canvas-page .main-sidebar {
-  position: absolute;
-  height: 100%;
+  position: absolute !important;
+  height: 100% !important;
 }
 
 #canvas-page .content-wrapper .designer-element:not(pre, .shiny-input-panel, .row-designer, .col-sm, .btn) {
-  background-color: inherit;
+  background-color: inherit !important;
 }

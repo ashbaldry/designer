@@ -1,9 +1,16 @@
 export function initSettings () {
     $(".copy-ui-button").on("click", copyUICode);
+    $("#css_style").on("change", applyCustomStyle);
 
     $("#remove_label").on("change", toggleComponentLabels);
     $("#remove_colour").on("change", toggleBackgroundColours);
     $("#remove_border").on("change", toggleBorders);
+
+    $("body").on("click", () => {
+        if (document.querySelector("body").classList.contains("sidebar-mini")) {
+            document.querySelector("body").classList.remove("sidebar-mini");
+        }
+    });
 
     $(document).on("click", ".clickable-dropdown", e => { e.stopPropagation(); });
     $("#preview").on("click", () => { $(".page-canvas-shell").addClass("preview"); });
@@ -55,7 +62,7 @@ function toggleBS4DashDeps (toggle) {
     const stylesheets = document.styleSheets;
     for (var i = 0; i < stylesheets.length; i++) {
         var stylesheet = stylesheets.item(i);
-        if (stylesheet.href.includes("AdminLTE") || stylesheet.href.includes("bs4Dash")) {
+        if (stylesheet.href && (stylesheet.href.includes("AdminLTE") || stylesheet.href.includes("bs4Dash"))) {
             stylesheet.disabled = toggle === "hide";
         }
         
@@ -121,4 +128,44 @@ function deleteDesignerElement (event) {
 
 function editDesignerElement (event) {
     
+};
+
+function applyCustomStyle(event) {
+    const css_file = event.target.files[0];
+    const canvas_style = document.getElementById("canvas-style");
+    canvas_style.innerHTML = "";
+
+    let reader = new FileReader();
+    reader.onload = (e) => {
+        const file = e.target.result;
+        const lines = file.split(/\r\n|\n/);
+        canvas_style.innerHTML = lines.join('\n');
+
+        const css_rules = canvas_style.sheet.cssRules;
+        for (let i = 0; i < css_rules.length; i++) {
+            if (css_rules[i].selectorText) {
+                css_rules[i].selectorText = addCanvasPageSelector(css_rules[i].selectorText);
+            } else if (css_rules[i].media) {
+                let media_css_rules = css_rules[i].cssRules;
+                for (let j = 0; j < media_css_rules.length; j++) {
+                    media_css_rules[j].selectorText = addCanvasPageSelector(media_css_rules[j].selectorText);
+                }
+            }
+        }
+    };
+  
+  reader.onerror = (e) => alert(e.target.error.name);
+  reader.readAsText(css_file); 
+};
+
+function addCanvasPageSelector(selectors) {
+    return selectors.split(/, */g).map((x) => {
+        if (x === "body") {
+            return "#canvas-page";
+        } else if (/^\.wrapper\.sidebar/.test(x)) {
+            return x.replace(".wrapper", "");
+        } else {
+            return "#canvas-page " + x;
+        }
+    }).join(", ");
 };

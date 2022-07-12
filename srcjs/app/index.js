@@ -10,6 +10,8 @@ $(function() {
 
     $(".help-icon").tooltip({ boundary: "window", placement: "right" });
 
+    bsCustomFileInput.init();
+
     Sortable.create(document.getElementById("sidebar-bin"), {
         group: {
             name: "shared",
@@ -20,7 +22,7 @@ $(function() {
         onAdd: function (evt) {
             this.el.removeChild(evt.item);
         }
-    });  
+    });
 });
 
 Shiny.inputBindings.register(canvasPageBinding);
