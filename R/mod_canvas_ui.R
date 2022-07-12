@@ -40,7 +40,8 @@ CanvasModUI <- function(id) {
         id = ns("title"),
         class = "page-canvas-title",
         "Shiny Application"
-      )
+      ),
+      tags$style(id = ns("style"), type = "text/css")
     ),
     div(
       class = "page-canvas",

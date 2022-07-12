@@ -75,18 +75,25 @@ addGolemExternalResources <- function() {
     tags$meta(name = "author", content = "Ashley Baldry"),
   )
 
-  ui_head <- htmltools::attachDependencies(
+  htmltools::attachDependencies(
     ui_head,
-    htmltools::htmlDependency(
-      name = "Sortable",
-      version = "1.14.0",
-      src = "srcjs/sortable",
-      script = "Sortable.min.js",
-      package = "designer"
+    list(
+      htmltools::htmlDependency(
+        name = "Sortable",
+        version = "1.14.0",
+        src = "srcjs/sortable",
+        script = "Sortable.min.js",
+        package = "designer"
+      ),
+      htmltools::htmlDependency(
+        name = "bs-custom-file-input",
+        version = "1.3.4",
+        src = "srcjs/bs-custom-file-input",
+        script = "bs-custom-file-input.min.js",
+        package = "designer"
+      )
     )
   )
-
-  ui_head
 }
 
 ionRangeSliderDependency <- getFromNamespace("ionRangeSliderDependency", "shiny")

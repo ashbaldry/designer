@@ -10,7 +10,10 @@ OptionsModUI <- function(id) {
         value = "Shiny Application",
         width = "100%"
       ),
-      br(),
+      CSSFileInput(
+        ns("css_style"),
+        label = "Apply CSS Style"
+      ),
       checkboxInput(
         ns("remove_label"),
         label = "Show Component Labels",

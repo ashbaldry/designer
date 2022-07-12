@@ -5,6 +5,7 @@
   "main": "",
   "scripts": {
     "build": "node build.js",
+    "build_dev": "node build_dev.js",    
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

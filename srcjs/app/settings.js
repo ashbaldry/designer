@@ -1,5 +1,6 @@
 export function initSettings () {
     $(".copy-ui-button").on("click", copyUICode);
+    $("#css_style").on("change", applyCustomStyle);
 
     $("#remove_label").on("change", toggleComponentLabels);
     $("#remove_colour").on("change", toggleBackgroundColours);
@@ -55,7 +56,7 @@ function toggleBS4DashDeps (toggle) {
     const stylesheets = document.styleSheets;
     for (var i = 0; i < stylesheets.length; i++) {
         var stylesheet = stylesheets.item(i);
-        if (stylesheet.href.includes("AdminLTE") || stylesheet.href.includes("bs4Dash")) {
+        if (stylesheet.href && (stylesheet.href.includes("AdminLTE") || stylesheet.href.includes("bs4Dash"))) {
             stylesheet.disabled = toggle === "hide";
         }
         
@@ -121,4 +122,19 @@ function deleteDesignerElement (event) {
 
 function editDesignerElement (event) {
     
+};
+
+function applyCustomStyle(event) {
+  const css_file = event.target.files[0];
+  const canvas_style = document.getElementById("canvas-style");
+
+  let reader = new FileReader();
+  reader.onload = (e) => {
+      const file = e.target.result;
+      const lines = file.split(/\r\n|\n/);
+      canvas_style.innerHTML = lines.join('\n');
+  };
+  
+  reader.onerror = (e) => alert(e.target.error.name);
+  reader.readAsText(css_file); 
 };
