@@ -144,13 +144,11 @@ function applyCustomStyle(event) {
         const css_rules = canvas_style.sheet.cssRules;
         for (let i = 0; i < css_rules.length; i++) {
             if (css_rules[i].selectorText) {
-                var append_text = css_rules[i].selectorText.split(/, */g).map(x => "#canvas-page " + x).join(", ");
-                css_rules[i].selectorText = append_text;
+                css_rules[i].selectorText = addCanvasPageSelector(css_rules[i].selectorText);
             } else if (css_rules[i].media) {
                 let media_css_rules = css_rules[i].cssRules;
                 for (let j = 0; j < media_css_rules.length; j++) {
-                    var append_text2 = media_css_rules[j].selectorText.split(/, */g).map(x => "#canvas-page " + x).join(", ");
-                    media_css_rules[j].selectorText = append_text2;
+                    media_css_rules[j].selectorText = addCanvasPageSelector(media_css_rules[j].selectorText);
                 }
             }
         }
@@ -160,16 +158,14 @@ function applyCustomStyle(event) {
   reader.readAsText(css_file); 
 };
 
-function addCanvasPage(selectors) {
-    const split_text = selectors.split(/, */g);
-    const canvas_text = split_text.map(x => {
+function addCanvasPageSelector(selectors) {
+    return selectors.split(/, */g).map((x) => {
         if (x === "body") {
-            "#canvas-page"
+            return "#canvas-page";
         } else if (/^\.wrapper\.sidebar/.test(x)) {
-            x.replace(".wrapper", "");
+            return x.replace(".wrapper", "");
         } else {
-            "#canvas-page " + x;
+            return "#canvas-page " + x;
         }
-    });
-    return canvas_text.join(", ");
+    }).join(", ");
 };
