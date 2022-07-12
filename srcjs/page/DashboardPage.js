@@ -8,7 +8,7 @@ export class DashboardPage extends Page {
     page_html = `
         <div id="canvas-page" class="wrapper designer-page-template"
              data-shinyfunction="bs4Dash::dashboardPage" data-shinyattributes="title = &quot;$title$&quot;">
-            <nav data-fixed="false" class="main-header navbar navbar-expand navbar-white navbar-light"
+            <nav data-fixed="false" class="main-header navbar navbar-expand navbar-light"
                  data-shinyfunction="bs4Dash::dashboardHeader" data-shinyattributes="title = &quot;$title$&quot;">
                 <ul class="navbar-nav">
                     <a class="nav-link" data-widget="pushmenu" href="#">

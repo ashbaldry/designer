@@ -125,20 +125,32 @@ function editDesignerElement (event) {
 };
 
 function applyCustomStyle(event) {
-  const css_file = event.target.files[0];
-  const canvas_style = document.getElementById("canvas-style");
+    const css_file = event.target.files[0];
+    const canvas_style = document.getElementById("canvas-style");
+    canvas_style.innerHTML = "";
 
-  let reader = new FileReader();
-  reader.onload = (e) => {
-      const file = e.target.result;
-      const lines = file.split(/\r\n|\n/);
-      canvas_style.innerHTML = lines.join('\n');
+    let reader = new FileReader();
+    reader.onload = (e) => {
+          const file = e.target.result;
+        const lines = file.split(/\r\n|\n/);
+        canvas_style.innerHTML = lines.join('\n');
 
-      const css_rules = canvas_style.sheet.cssRules;
-      for (var i = 0; i < css_rules.length; i++) {
-          css_rules[i].selectorText = "#canvas-page " + css_rules[i].selectorText;
-      }
-  };
+        const css_rules = canvas_style.sheet.cssRules;
+        for (let i = 0; i < css_rules.length; i++) {
+            if (css_rules[i].selectorText) {
+                var append_text = css_rules[i].selectorText.split(/, */g).map(x => "#canvas-page " + x).join(", ");
+                css_rules[i].selectorText = append_text;
+            } else if (css_rules[i].media) {
+                let media_css_rules = css_rules[i].cssRules;
+                for (let j = 0; j < media_css_rules.length; j++) {
+                    var append_text2 = media_css_rules[j].selectorText.split(/, */g).map(x => "#canvas-page " + x).join(", ");
+                    media_css_rules[j].selectorText = append_text2;
+                }
+            } else {
+                console.log(css_rules[i]);
+            }
+        }
+    };
   
   reader.onerror = (e) => alert(e.target.error.name);
   reader.readAsText(css_file); 
