@@ -6,6 +6,12 @@ export function initSettings () {
     $("#remove_colour").on("change", toggleBackgroundColours);
     $("#remove_border").on("change", toggleBorders);
 
+    $("body").on("click", () => {
+        if (document.querySelector("body").classList.contains("sidebar-mini")) {
+            document.querySelector("body").classList.remove("sidebar-mini");
+        }
+    });
+
     $(document).on("click", ".clickable-dropdown", e => { e.stopPropagation(); });
     $("#preview").on("click", () => { $(".page-canvas-shell").addClass("preview"); });
     $("#canvas-close_preview").on("click", () => { $(".page-canvas-shell").removeClass("preview"); });
@@ -146,12 +152,24 @@ function applyCustomStyle(event) {
                     var append_text2 = media_css_rules[j].selectorText.split(/, */g).map(x => "#canvas-page " + x).join(", ");
                     media_css_rules[j].selectorText = append_text2;
                 }
-            } else {
-                console.log(css_rules[i]);
             }
         }
     };
   
   reader.onerror = (e) => alert(e.target.error.name);
   reader.readAsText(css_file); 
+};
+
+function addCanvasPage(selectors) {
+    const split_text = selectors.split(/, */g);
+    const canvas_text = split_text.map(x => {
+        if (x === "body") {
+            "#canvas-page"
+        } else if (/^\.wrapper\.sidebar/.test(x)) {
+            x.replace(".wrapper", "");
+        } else {
+            "#canvas-page " + x;
+        }
+    });
+    return canvas_text.join(", ");
 };
