@@ -89,10 +89,10 @@
 </h2>
 <p>Install from <a href="https://cran.r-project.org/web/packages/designer/index.html" class="external-link">CRAN</a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"designer"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"designer"</span><span class="op">)</span></span></code></pre></div>
 <p>Or install the development version from <a href="https://github.com/ashbaldry/designer" class="external-link">GitHub</a> with:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"ashbaldry/designer"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"ashbaldry/designer"</span><span class="op">)</span></span></code></pre></div>
 <p>The application is also available on-line through <a href="https://ashbaldry.shinyapps.io/designer" class="external-link">shinyapps.io</a>.</p>
 </div>
 <div class="section level2">
@@ -100,56 +100,56 @@
 </h2>
 <p>To open the <a href="https://github.com/ashbaldry/designer" class="external-link">designer</a> application and create your own UI, run the following code:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">designer</span><span class="fu">::</span><span class="fu"><a href="reference/designApp.html">designApp</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">designer</span><span class="fu">::</span><span class="fu"><a href="reference/designApp.html">designApp</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p>Alternatively, you can launch the addin via the RStudio menu.</p>
 <p><img src="https://raw.githubusercontent.com/ashbaldry/designer/main/man/figures/example_app.gif"></p>
 <p>Once opened, create the application as required until you are happy with the layout of the application, then copy the code to the relevant R file</p>
 <p><img src="reference/figures/example_app_filled.jpeg"></p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># ui.R</span>
-
-<span class="fu">bootstrapPage</span><span class="op">(</span>
-  title <span class="op">=</span> <span class="st">"Shiny Application"</span>,
-  theme <span class="op">=</span> <span class="fu">bslib</span><span class="fu">::</span><span class="fu"><a href="https://rstudio.github.io/bslib/reference/bs_theme.html" class="external-link">bs_theme</a></span><span class="op">(</span><span class="fl">4</span><span class="op">)</span>,
-  <span class="fu">h1</span><span class="op">(</span>
-    <span class="st">"My shiny application"</span>
-  <span class="op">)</span>,
-  <span class="fu">inputPanel</span><span class="op">(</span>
-    <span class="fu">selectInput</span><span class="op">(</span>
-      inputId <span class="op">=</span> <span class="st">"dropdown_gxc2o1ekgb"</span>,
-      label <span class="op">=</span> <span class="st">"Label"</span>,
-      choices <span class="op">=</span> <span class="st">"..."</span>
-    <span class="op">)</span>,
-    <span class="fu">selectInput</span><span class="op">(</span>
-      inputId <span class="op">=</span> <span class="st">"dropdown_azset57v65"</span>,
-      label <span class="op">=</span> <span class="st">"Label"</span>,
-      choices <span class="op">=</span> <span class="st">"..."</span>
-    <span class="op">)</span>,
-    <span class="fu">selectInput</span><span class="op">(</span>
-      inputId <span class="op">=</span> <span class="st">"dropdown_itgcle8yze"</span>,
-      label <span class="op">=</span> <span class="st">"Label"</span>,
-      choices <span class="op">=</span> <span class="st">"..."</span>
-    <span class="op">)</span>
-  <span class="op">)</span>,
-  <span class="fu">fluidRow</span><span class="op">(</span>
-    <span class="fu">column</span><span class="op">(</span>
-      width <span class="op">=</span> <span class="fl">6</span>,
-      <span class="co"># Bar plot</span>
-      <span class="fu">plotOutput</span><span class="op">(</span>
-        outputId <span class="op">=</span> <span class="st">"plot_zvu8c9upbu"</span>,
-        height <span class="op">=</span> <span class="st">"200px"</span>
-      <span class="op">)</span>
-    <span class="op">)</span>,
-    <span class="fu">column</span><span class="op">(</span>
-      width <span class="op">=</span> <span class="fl">6</span>,
-      <span class="co"># Line chart</span>
-      <span class="fu">plotOutput</span><span class="op">(</span>
-        outputId <span class="op">=</span> <span class="st">"plot_qsmfr0lp57"</span>,
-        height <span class="op">=</span> <span class="st">"200px"</span>
-      <span class="op">)</span>
-    <span class="op">)</span>
-  <span class="op">)</span>
-<span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># ui.R</span></span>
+<span></span>
+<span><span class="fu">bootstrapPage</span><span class="op">(</span></span>
+<span>  title <span class="op">=</span> <span class="st">"Shiny Application"</span>,</span>
+<span>  theme <span class="op">=</span> <span class="fu">bslib</span><span class="fu">::</span><span class="fu"><a href="https://rstudio.github.io/bslib/reference/bs_theme.html" class="external-link">bs_theme</a></span><span class="op">(</span><span class="fl">4</span><span class="op">)</span>,</span>
+<span>  <span class="fu">h1</span><span class="op">(</span></span>
+<span>    <span class="st">"My shiny application"</span></span>
+<span>  <span class="op">)</span>,</span>
+<span>  <span class="fu">inputPanel</span><span class="op">(</span></span>
+<span>    <span class="fu">selectInput</span><span class="op">(</span></span>
+<span>      inputId <span class="op">=</span> <span class="st">"dropdown_gxc2o1ekgb"</span>,</span>
+<span>      label <span class="op">=</span> <span class="st">"Label"</span>,</span>
+<span>      choices <span class="op">=</span> <span class="st">"..."</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>    <span class="fu">selectInput</span><span class="op">(</span></span>
+<span>      inputId <span class="op">=</span> <span class="st">"dropdown_azset57v65"</span>,</span>
+<span>      label <span class="op">=</span> <span class="st">"Label"</span>,</span>
+<span>      choices <span class="op">=</span> <span class="st">"..."</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>    <span class="fu">selectInput</span><span class="op">(</span></span>
+<span>      inputId <span class="op">=</span> <span class="st">"dropdown_itgcle8yze"</span>,</span>
+<span>      label <span class="op">=</span> <span class="st">"Label"</span>,</span>
+<span>      choices <span class="op">=</span> <span class="st">"..."</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">)</span>,</span>
+<span>  <span class="fu">fluidRow</span><span class="op">(</span></span>
+<span>    <span class="fu">column</span><span class="op">(</span></span>
+<span>      width <span class="op">=</span> <span class="fl">6</span>,</span>
+<span>      <span class="co"># Bar plot</span></span>
+<span>      <span class="fu">plotOutput</span><span class="op">(</span></span>
+<span>        outputId <span class="op">=</span> <span class="st">"plot_zvu8c9upbu"</span>,</span>
+<span>        height <span class="op">=</span> <span class="st">"200px"</span></span>
+<span>      <span class="op">)</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>    <span class="fu">column</span><span class="op">(</span></span>
+<span>      width <span class="op">=</span> <span class="fl">6</span>,</span>
+<span>      <span class="co"># Line chart</span></span>
+<span>      <span class="fu">plotOutput</span><span class="op">(</span></span>
+<span>        outputId <span class="op">=</span> <span class="st">"plot_qsmfr0lp57"</span>,</span>
+<span>        height <span class="op">=</span> <span class="st">"200px"</span></span>
+<span>      <span class="op">)</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="docker-demo">Docker demo<a class="anchor" aria-label="anchor" href="#docker-demo"></a>
@@ -231,7 +231,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
       </footer>
