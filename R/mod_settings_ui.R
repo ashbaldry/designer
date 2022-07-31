@@ -9,16 +9,11 @@ SettingsModUI <- function(id) {
   ns <- NS(id)
 
   div(
-    class = "row settings-row row-cols-4",
+    class = "row settings-row row-cols-3",
     settingsDropdownButton(
       id = ns("page_type_button"),
       label = "Page Type",
       contents = pageOptions(ns)
-    ),
-    settingsDropdownButton(
-      id = ns("component_button"),
-      label = "Component",
-      contents = componentOptions(ns)
     ),
     settingsDropdownButton(
       id = ns("code_button"),

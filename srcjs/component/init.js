@@ -13,10 +13,9 @@ export function initComponents () {
     $("#sidebar-tab_add").on("click", () => component.addPage())
     $("#sidebar-tab_delete").on("click", () => component.deletePage())
 
-    $("#settings-component .dropdown-item").on("click", (el) => {
+    $(".accordion .card-header .btn").on("click", (el) => {
+        $(el.target).closest('.card').find('form').trigger("reset");
         component = new getComponent($(el.target).data("shinyelement"));
         component.updateComponent(true);
-        $("#settings-component .dropdown-item").removeClass("active");
-        $(el.target).addClass("active");
-    });    
+    });
 };

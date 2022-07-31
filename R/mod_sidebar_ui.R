@@ -12,74 +12,59 @@
 #' @noRd
 SidebarModUI <- function(id) {
   ns <- NS(id)
+  accordion_id <- ns("accordion")
 
   tagList(
-    tags$section(
-      id = "tab_settings",
-      class = "tab-parameters",
-      componentTab(ns)
+    div(
+      id = ns("container"),
+      class = "container component-container"
     ),
+
     tags$section(
-      id = "component_settings",
-      div(
-        id = ns("container"),
-        class = "container component-container"
+      class = "accordion",
+      id = accordion_id,
+
+      #### Header ####
+      sidebarItem(
+        id = ns("header"),
+        name = "Header",
+        element = "header",
+        parent_id = accordion_id,
+        active = TRUE,
+        compSettingTag(ns("header"), choices = paste0("h", 1:6)),
+        compSettingText(ns("header"), value = "Header")
       ),
-      tags$form(
-        class = "component-form",
-        tags$section(
-          class = "component-parameters",
-          h2(class = "sidebar-title", id = ns("title")),
-          componentTag(ns),
-          componentType(ns),
-          conditionalPanel(
-            "input.type === 'plot'",
-            ns = ns,
-            componentPlot(ns)
-          ),
-          componentValue(ns),
-          componentLabel(ns),
-          componentID(ns),
-          componentIcon(ns),
-          componentColour(ns),
-          componentBackground(ns),
-          componentText(ns),
-          conditionalPanel(
-            "!['plot', 'image', 'table'].includes(input.type)",
-            ns = ns,
-            componentTextArea(ns)
-          ),
-          componentChoices(ns),
-          componentRange(ns),
-          componentInline(ns),
-          componentDownload(ns),
-          componentWidth(ns),
-          conditionalPanel(
-            "['plot', 'image'].includes(input.type)",
-            ns = ns,
-            componentHeight(ns)
-          ),
-          componentWidthNum(ns),
-          componentOffset(ns)
-        ),
-        tags$section(
-          id = ns("notes"),
-        ),
-        tags$section(
-          class = "component-comments",
-          textAreaInput(
-            ns("comments"),
-            label = inputLabel(
-              "Add Code Comment",
-              "In this application, this will be available as a tooltip,",
-              "however this will also be included in the R script as a comment for reference."
-            ),
-            placeholder = "Comment included in R script",
-            rows = 2
+
+      #### Row ####
+      sidebarItem(
+        id = ns("row"),
+        name = "Row",
+        element = "row",
+        parent_id = accordion_id,
+        notes = list(
+          "The only component that can be a direct child of a row are columns.",
+          paste(
+            "By default, a row will have no height and is determined by the contents inside.",
+            "To easily drop elements into the rows, they have a minimum height of 50px in this app."
           )
+        )
+      ),
+
+      #### Column ####
+      sidebarItem(
+        id = ns("column"),
+        name = "Column",
+        element = "column",
+        parent_id = accordion_id,
+        compSettingWidthNum(ns("column")),
+        compSettingOffset(ns("column")),
+        notes = list(
+          tagList("Columns can only be included in", tags$b("rows"), "."),
+          "Rows are split into 12 column units, if the sum of columns' width exceeds 12, they get wrapped onto a new line."
         )
       )
     ),
+
     tags$section(
       id = "component_delete",
       class = "container bin-container",

@@ -21,7 +21,7 @@ header > h1 {
   margin-top: 0.5rem;
 }
 
-.component-form h3, .bin-container h3 {
+.card-body h3, .bin-container h3 {
   font-size: 1.05rem;
 }
 
@@ -124,10 +124,6 @@ h5.modal-title {
 
 .tooltip .tooltip-inner {
   max-width: 300px;
-}
-
-.component-settings{
-  display: none;
 }
 
 .component-settings :first-child {
