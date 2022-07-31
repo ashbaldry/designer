@@ -3,11 +3,13 @@
 #' @description
 #' A way to be able to adjust components so that can more easily visualise how the shiny application will look.
 #'
-#' @param id The character vector to use for the namespace.
+#' @param ns Namespace to include the component
 #'
 #' @return A \code{shiny.tag.list} of settings specific to the selected component
 #'
-#' @noRd
+#' @seealso \code{\link{component}}
+#'
+#' @rdname component_input
 componentTag <- function(ns) {
   component(
     "tag",
@@ -22,6 +24,7 @@ componentTag <- function(ns) {
   )
 }
 
+#' @rdname component_input
 componentType <- function(ns) {
   component(
     "type",
@@ -33,6 +36,7 @@ componentType <- function(ns) {
   )
 }
 
+#' @rdname component_input
 componentPlot <- function(ns) {
   component(
     "plot",
@@ -45,6 +49,7 @@ componentPlot <- function(ns) {
   )
 }
 
+#' @rdname component_input
 componentValue <- function(ns) {
   component(
     "value",
@@ -56,6 +61,7 @@ componentValue <- function(ns) {
   )
 }
 
+#' @rdname component_input
 componentLabel <- function(ns) {
   component(
     "label",
@@ -67,6 +73,7 @@ componentLabel <- function(ns) {
   )
 }
 
+#' @rdname component_input
 componentID <- function(ns) {
   component(
     "id",
@@ -83,6 +90,7 @@ componentID <- function(ns) {
   )
 }
 
+#' @rdname component_input
 componentIcon <- function(ns) {
   component(
     "icon",
@@ -103,6 +111,7 @@ componentIcon <- function(ns) {
   )
 }
 
+#' @rdname component_input
 componentColour <- function(ns) {
   component(
     "colour",
@@ -115,6 +124,7 @@ componentColour <- function(ns) {
   )
 }
 
+#' @rdname component_input
 componentBackground <- function(ns) {
   component(
     "background",
@@ -127,6 +137,7 @@ componentBackground <- function(ns) {
   )
 }
 
+#' @rdname component_input
 componentText <- function(ns) {
   component(
     "text",
@@ -138,6 +149,7 @@ componentText <- function(ns) {
   )
 }
 
+#' @rdname component_input
 componentTextArea <- function(ns) {
   component(
     "textarea",
@@ -153,6 +165,7 @@ componentTextArea <- function(ns) {
   )
 }
 
+#' @rdname component_input
 componentChoices <- function(ns) {
   component(
     "choices",
@@ -165,6 +178,7 @@ componentChoices <- function(ns) {
   )
 }
 
+#' @rdname component_input
 componentRange <- function(ns) {
   component(
     "range",
@@ -175,6 +189,7 @@ componentRange <- function(ns) {
   )
 }
 
+#' @rdname component_input
 componentInline <- function(ns) {
   component(
     "inline",
@@ -185,6 +200,7 @@ componentInline <- function(ns) {
   )
 }
 
+#' @rdname component_input
 componentDownload <- function(ns) {
   component(
     "download",
@@ -195,6 +211,7 @@ componentDownload <- function(ns) {
   )
 }
 
+#' @rdname component_input
 componentWidth <- function(ns) {
   component(
     "width",
@@ -211,6 +228,7 @@ componentWidth <- function(ns) {
   )
 }
 
+#' @rdname component_input
 componentHeight <- function(ns) {
   component(
     "height",
@@ -227,6 +245,7 @@ componentHeight <- function(ns) {
   )
 }
 
+#' @rdname component_input
 componentWidthNum <- function(ns) {
   component(
     "width_num",
@@ -240,6 +259,7 @@ componentWidthNum <- function(ns) {
   )
 }
 
+#' @rdname component_input
 componentOffset <- function(ns) {
   component(
     "offset",
@@ -256,6 +276,15 @@ componentOffset <- function(ns) {
   )
 }
 
+#' Component Settings Shell
+#'
+#' @description
+#' A container for the specified component input
+#'
+#' @param id The ID of the component input
+#' @param ... Shiny tags to include inside the component
+#'
+#' @return A shiny.tag of the compoenent settings
 component <- function(id, ...) {
   div(
     class = "component-settings",
@@ -278,9 +307,11 @@ inputLabel <- function(label, ...) {
   )
 }
 
-#' Tab Settings
+#' @details
+#' The tab component contains a selection of specific inputs related to adding a new tab, as
+#' the events to create it in the UI are different to the other components
 #'
-#' @noRd
+#' @rdname component
 componentTab <- function(ns) {
   tagList(
     h2(class = "tab-title", "Tab Panel Settings"),
