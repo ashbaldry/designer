@@ -31,7 +31,7 @@ testthat::test_that("designer app works", {
   ui <- app$get_value(input = "canvas-canvas")
   testthat::expect_true(grepl("dashboardPage(", jsonToRScript(ui), fixed = TRUE))
 
-  app$click(selector = "#sidebar-tab_add")
+  app$click(selector = "#sidebar-tab-add")
 
   shiny_components <- setdiff(COMPONENTS, NAVBAR_COMPONENTS)
   for (component in shiny_components) {

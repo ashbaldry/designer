@@ -1,7 +1,7 @@
 #' @noRd
 SidebarModuleServer <- function(id) {
   moduleServer(id, function(input, output, session) {
-    updateSelectizeInput(session, "tab_icon", choices = getFAIcons(), selected = "", server = TRUE)
+    updateSelectizeInput(session, "tab-icon", choices = getFAIcons(), selected = "", server = TRUE)
     updateSelectizeInput(session, "icon", choices = getFAIcons(), selected = "", server = TRUE)
 
     observeEvent(input$outputid, {

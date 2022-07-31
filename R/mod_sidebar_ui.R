@@ -24,6 +24,15 @@ SidebarModUI <- function(id) {
       class = "accordion",
       id = accordion_id,
 
+      #### Tab Item ####
+      sidebarItem(
+        id = ns("tab"),
+        name = "Tab",
+        element = "tab_panel",
+        parent_id = accordion_id,
+        componentTab(ns("tab"))
+      ),
+
       #### Header ####
       sidebarItem(
         id = ns("header"),
@@ -62,6 +71,21 @@ SidebarModUI <- function(id) {
           tagList("Columns can only be included in", tags$b("rows"), "."),
           "Rows are split into 12 column units, if the sum of columns' width exceeds 12, they get wrapped onto a new line."
         )
+      )
+    ),
+
+    tags$section(
+      class = "component-comments",
+      textAreaInput(
+        ns("comments"),
+        label = inputLabel(
+          "Add Code Comment",
+          "In the preview, this will be available as a tooltip,",
+          "however this will also be included in the R script as a comment for reference."
+        ),
+        placeholder = "Comment included in R script",
+        rows = 3,
+        width = "100%"
       )
     ),
 

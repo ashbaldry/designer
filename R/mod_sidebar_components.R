@@ -352,16 +352,17 @@ inputLabel <- function(label, ...) {
 #' the events to create it in the UI are different to the other components
 #'
 #' @rdname component
-componentTab <- function(ns) {
+componentTab <- function(id) {
+  ns <- NS(id)
+
   tagList(
-    h2(class = "tab-title", "Tab Panel Settings"),
     textInput(
-      ns("tab_name"),
+      ns("name"),
       label = "Name",
       value = "Tab 1"
     ),
     textInput(
-      ns("tab_value"),
+      ns("value"),
       label = inputLabel(
         "Value",
         "Used to reference switching the tab, or changing visibility of the tab on the server"
@@ -370,7 +371,7 @@ componentTab <- function(ns) {
     ),
     htmltools::tagAppendAttributes(
       selectizeInput(
-        inputId = ns("tab_icon"),
+        inputId = ns("icon"),
         label = "Icon",
         choices = c("Optional" = ""),
         options = list(
@@ -383,13 +384,13 @@ componentTab <- function(ns) {
       class = "icon-choices"
     ),
     tags$button(
-      id = ns("tab_add"),
+      id = ns("add"),
       type = "button",
       class = "btn btn-success action-button",
       "Add Tab"
     ),
     tags$button(
-      id = ns("tab_delete"),
+      id = ns("delete"),
       type = "button",
       class = "btn btn-danger action-button",
       "Delete Tab"
@@ -397,7 +398,7 @@ componentTab <- function(ns) {
     br(),
     br(),
     div(
-      id = ns("tab_alert")
+      id = ns("alert")
     )
   )
 }
