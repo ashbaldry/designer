@@ -255,6 +255,7 @@ h5.modal-title {
 .designer-element {
   border: 1px dashed black;
   z-index: 1;
+  cursor: pointer;
 }
 
 .designer-element:not(pre, .shiny-input-panel, .row-designer, .col-sm, .btn) {
