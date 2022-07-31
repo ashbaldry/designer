@@ -28,7 +28,7 @@ compSettingTag <- function(id, choices = NULL) {
 }
 
 #' @rdname component_setting
-compSettingType <- function(id) {
+compSettingType <- function(id, choices) {
   ns <- NS(id)
 
   component(
@@ -36,7 +36,8 @@ compSettingType <- function(id) {
     selectInput(
       inputId = ns("type"),
       label = "Type",
-      NULL
+      choices,
+      selected = choices[1]
     )
   )
 }

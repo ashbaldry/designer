@@ -2,11 +2,6 @@ import { Component } from './Component';
 
 export class Box extends Component {
     name = "Box";
-    parameters = ["label", "colour", "background", "width_num"];
-    notes = [
-        "If the width > 0, then the box is included in a column and can only be included in <b>rows</b>",
-        "Rows are split into 12 column units, if the sum of boxs' width exceeds 12, they get wrapped onto a new line"
-    ];
 
     html = `
         <div class="$width_class$ designer-element"
@@ -39,25 +34,17 @@ export class Box extends Component {
         }
     };
 
-    constructor() {
-        super();
-        this.showRelevantOptions();
-        this.updateTextInput("label", "Label");
-        this.updateTextInput("width_num", 6);
-        $("#sidebar-width_num").attr("min", 0);
-    }
-
     createComponent() {
-        const label = $("#sidebar-label").val();
+        const label = $("#sidebar-box-label").val();
         
-        const width = $("#sidebar-width_num").val();   
+        const width = $("#sidebar-box-width_num").val();   
         const width_class = width > 0 ? `col-sm col-sm-${width}` : "";
         const width_r = width > 0 ? width : "NULL";
 
-        const colour = $("#sidebar-colour").val();
+        const colour = $("#sidebar-box-colour").val();
         const colour_class = colour === "white" ? "" : `card-outline card-${colour}`;
 
-        const background = $("#sidebar-background").val();
+        const background = $("#sidebar-box-background").val();
         const background_class = background === "white" ? "" : `bg-${background}`;
 
         return this.replaceHTMLPlaceholders(this.html, {

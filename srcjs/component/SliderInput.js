@@ -1,17 +1,6 @@
 import { Component } from './Component';
 
 export class SliderInput extends Component {
-    name = "Slider Input";
-    parameters = ["type", "id", "label", "range", "width"];
-    types = [
-        {value: "number", label: "Numeric"}, 
-        {value: "date", label: "Date"}, 
-        {value: "datetime", label: "Timestamp"}
-    ];
-    notes = [
-        "To position several inputs horizontally, they must be put within an input panel."
-    ];
-
     html = `
         <div class="designer-element form-group shiny-input-container" $style_str$
              data-shinyattributes="inputId = &quot;$id$&quot;, label = &quot;$label$&quot;$value_str$$width_str$"
@@ -25,28 +14,19 @@ export class SliderInput extends Component {
         </div>
     `;
 
-    constructor() {
-        super();
-        this.showRelevantOptions();
-        this.updateType();
-        this.updateTextInput("id", "");
-        this.updateTextInput("label", "Label");
-        this.updateTextInput("width", "");
-    }
-
     createComponent() {
-        const label = $("#sidebar-label").val();
+        const label = $("#sidebar-slider-label").val();
 
-        let id = $("#sidebar-id").val();
+        let id = $("#sidebar-slider-id").val();
         id = id === "" ? this.createID("slider") : id;
 
-        const format = $("#sidebar-type").val();  
+        const format = $("#sidebar-slider-type").val();  
 
-        const width = this.validateCssUnit($("#sidebar-width").val());
-        const style_str = width ? `width: ${width};` : "";
+        const width = this.validateCssUnit($("#sidebar-slider-width").val());
+        const style_str = width ? `style="width: ${width};"` : "";
         const width_str = width ? `, width = &quot;${width}&quot;` : "";
 
-        const ranged = document.getElementById("sidebar-range").checked;
+        const ranged = document.getElementById("sidebar-slider-range").checked;
         const values = this.getValues(format, ranged);
         const range_attr = ranged ? `data-type="double" data-drag-interval="true" data-to="$to$"` : "";
 
@@ -106,7 +86,7 @@ export class SliderInput extends Component {
     updateComponent(update_sortable = false) {
         super.updateComponent(update_sortable);
 
-        const slider_type = $("#sidebar-type").val();
+        const slider_type = $("#sidebar-slider-type").val();
         $(".component-container").find("input").ionRangeSlider({ prettify: this.getSliderPrettifier(slider_type)});
     };
 

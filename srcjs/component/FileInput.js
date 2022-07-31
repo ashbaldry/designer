@@ -1,12 +1,6 @@
 import { Component } from './Component';
 
 export class FileInput extends Component {
-    name = "File Input";
-    parameters = ["id", "label", "width"];
-    notes = [
-        "To position several inputs horizontally, they must be put within an input panel."
-    ];
-
     html = `
         <div class="designer-element form-group shiny-input-container"
              data-shinyfunction="fileInput" $style_str$
@@ -24,22 +18,14 @@ export class FileInput extends Component {
         </div>
     `;
 
-    constructor() {
-        super();
-        this.showRelevantOptions();
-        this.updateTextInput("id", "");
-        this.updateTextInput("label", "Label");
-        this.updateTextInput("width", "");
-    }
-
     createComponent() {
-        const label = $("#sidebar-label").val();
+        const label = $("#sidebar-file-label").val();
 
-        let id = $("#sidebar-id").val();
+        let id = $("#sidebar-file-id").val();
         id = id === "" ? this.createID("input") : id;
 
-        const width = this.validateCssUnit($("#sidebar-width").val());
-        const style_str = width ? `width: ${width};` : "";
+        const width = this.validateCssUnit($("#sidebar-file-width").val());
+        const style_str = width ? `style="width: ${width};"` : "";
         const width_str = width ? `, width = &quot;${width}&quot;` : "";
 
         return this.replaceHTMLPlaceholders(this.html, {

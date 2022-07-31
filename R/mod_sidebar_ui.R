@@ -21,7 +21,7 @@ SidebarModUI <- function(id) {
     ),
 
     tags$section(
-      class = "accordion",
+      class = "accordion component-accordion",
       id = accordion_id,
 
       #### Tab Item ####
@@ -71,9 +71,143 @@ SidebarModUI <- function(id) {
           tagList("Columns can only be included in", tags$b("rows"), "."),
           "Rows are split into 12 column units, if the sum of columns' width exceeds 12, they get wrapped onto a new line."
         )
+      ),
+
+      #### Box ####
+      sidebarItem(
+        id = ns("box"),
+        name = "Box/Card",
+        element = "box",
+        parent_id = accordion_id,
+        compSettingLabel(ns("box")),
+        compSettingColour(ns("box")),
+        compSettingBackground(ns("box")),
+        compSettingWidthNum(ns("box"), value = 6, min = 0),
+        notes = list(
+          tagList("If the width > 0, then the box is included in a column and can only be included in", tags$b("rows"), "."),
+          "Rows are split into 12 column units, if the sum of boxs' width exceeds 12, they get wrapped onto a new line."
+        )
+      ),
+
+      #### Input Panel ####
+      sidebarItem(
+        id = ns("input_panel"),
+        name = "Input Panel",
+        element = "input_panel",
+        parent_id = accordion_id,
+        notes = "By default inputs will be aligned vertically, input panels enable the inputs to be aligned horizontally."
+      ),
+
+      #### Input ####
+      sidebarItem(
+        id = ns("input"),
+        name = "Basic Input",
+        element = "input",
+        parent_id = accordion_id,
+        compSettingType(
+          ns("input"),
+          choices = c("Text" = "text", "Text Area" = "textarea", "Numeric" = "number", "Password" = "password")
+        ),
+        compSettingID(ns("input")),
+        compSettingLabel(ns("input")),
+        compSettingWidth(ns("input")),
+        notes = "To position several inputs horizontally, they must be put within an input panel."
+      ),
+
+      #### Select Input ####
+      sidebarItem(
+        id = ns("dropdown"),
+        name = "Dropdown (selectInput)",
+        element = "dropdown",
+        parent_id = accordion_id,
+        compSettingID(ns("dropdown")),
+        compSettingLabel(ns("dropdown")),
+        compSettingWidth(ns("dropdown")),
+        notes = "To position several inputs horizontally, they must be put within an input panel."
+      ),
+
+      #### Slider Input ####
+      sidebarItem(
+        id = ns("slider"),
+        name = "Slider Input",
+        element = "slider",
+        parent_id = accordion_id,
+        compSettingType(
+          ns("slider"),
+          choices = c("Numeric" = "number", "Date" = "date", "Timestamp" = "datetime")
+        ),
+        compSettingID(ns("slider")),
+        compSettingLabel(ns("slider")),
+        compSettingRange(ns("slider")),
+        compSettingWidth(ns("slider")),
+        notes = "To position several inputs horizontally, they must be put within an input panel."
+      ),
+
+      #### Date Input ####
+      sidebarItem(
+        id = ns("date"),
+        name = "Calendar (dateInput)",
+        element = "date",
+        parent_id = accordion_id,
+        compSettingID(ns("date")),
+        compSettingLabel(ns("date")),
+        compSettingRange(ns("date")),
+        compSettingWidth(ns("date")),
+        notes = "To position several inputs horizontally, they must be put within an input panel."
+      ),
+
+      #### File Input ####
+      sidebarItem(
+        id = ns("file"),
+        name = "File Input",
+        element = "file",
+        parent_id = accordion_id,
+        compSettingID(ns("file")),
+        compSettingLabel(ns("file")),
+        compSettingWidth(ns("file")),
+        notes = "To position several inputs horizontally, they must be put within an input panel."
+      ),
+
+      #### Checkbox ####
+      sidebarItem(
+        id = ns("checkbox"),
+        name = "Checkbox",
+        element = "checkbox",
+        parent_id = accordion_id,
+        compSettingID(ns("checkbox")),
+        compSettingLabel(ns("checkbox")),
+        compSettingWidth(ns("checkbox"))
+      ),
+
+      #### Radio Buttons/Checkbox Group ####
+      sidebarItem(
+        id = ns("radio"),
+        name = "Radio Buttons",
+        element = "radio",
+        parent_id = accordion_id,
+        compSettingType(ns("radio"), choices = c("Radio" = "radio", "Checkbox" = "checkbox")),
+        compSettingID(ns("radio")),
+        compSettingLabel(ns("radio")),
+        compSettingChoices(ns("radio")),
+        compSettingInline(ns("radio")),
+        compSettingWidth(ns("radio"))
+      ),
+
+      #### Text ####
+      sidebarItem(
+        id = ns("text"),
+        name = "Text",
+        element = "text",
+        parent_id = accordion_id,
+        compSettingTag(
+          ns("text"),
+          choices = c("Paragraph <p>" = "p", "Ordered List <ol>" = "ol", "Unordered List <ul>" = "ul")
+        ),
+        compSettingTextArea(ns("text"))
       )
     ),
 
+    #### Comments ####
     tags$section(
       class = "component-comments",
       textAreaInput(
@@ -89,6 +223,7 @@ SidebarModUI <- function(id) {
       )
     ),
 
+    #### Deletion ####
     tags$section(
       id = "component_delete",
       class = "container bin-container",

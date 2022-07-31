@@ -72,14 +72,11 @@ h5.modal-title {
   z-index: 1050;
 }
 
-.component-form {
-  max-height: calc(100vh - 330px);
+.component-accordion {
+  max-height: calc(100vh - 500px);
   overflow-y: auto;
-  margin-top: 1rem;
-  background-color: #EFEFEF;
-  padding: 5px;
-  border-radius: 5px;
-  border: #CDCDCD 1px solid;
+  margin: 1rem 0;
+  padding: 0 5px;
 }
 
 .tab-parameters {

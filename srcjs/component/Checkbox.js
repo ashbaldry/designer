@@ -1,9 +1,6 @@
 import { Component } from './Component';
 
 export class CheckboxInput extends Component {
-    name = "Checkbox";
-    parameters = ["id", "label", "width"];
-
     html = `
         <div class="designer-element form-group shiny-input-container" $style_str$
                  data-shinyfunction="checkboxInput"
@@ -16,22 +13,14 @@ export class CheckboxInput extends Component {
         </div>
     `;
 
-    constructor() {
-        super();
-        this.showRelevantOptions();
-        this.updateTextInput("id", "");
-        this.updateTextInput("label", "Label");
-        this.updateTextInput("width", "");
-    }
-
     createComponent() {
-        const label = $("#sidebar-label").val();
+        const label = $("#sidebar-checkbox-label").val();
 
-        let id = $("#sidebar-id").val();
+        let id = $("#sidebar-checkbox-id").val();
         id = id === "" ? this.createID("checkbox") : id;
 
-        const width = this.validateCssUnit($("#sidebar-width").val());
-        const style_str = width ? `width: ${width};` : "";
+        const width = this.validateCssUnit($("#sidebar-checkbox-width").val());
+        const style_str = width ? `style="width: ${width};"` : "";
         const width_str = width ? `, width = &quot;${width}&quot;` : "";
 
         return this.replaceHTMLPlaceholders(this.html, {

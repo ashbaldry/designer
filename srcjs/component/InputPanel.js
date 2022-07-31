@@ -1,13 +1,9 @@
 import { Component } from './Component';
 
 export class InputPanel extends Component {
-    name = "Input Panel";
-    parameters = [];
     updatable = false;
-    html = `<div class="designer-element shiny-input-panel shiny-flow-layout" data-shinyfunction="inputPanel"></div>`;
-    notes = [
-        "By default inputs will be aligned vertically, input panels enable the inputs to be aligned horizontally."
-    ]
+    html = '<div class="designer-element shiny-input-panel shiny-flow-layout" data-shinyfunction="inputPanel"></div>';
+    
     sortable_settings = {
         group: {
             name: "shared",
@@ -16,9 +12,4 @@ export class InputPanel extends Component {
             }
         }
     };
-
-    constructor() {
-        super();
-        this.showRelevantOptions();
-    }
 }
