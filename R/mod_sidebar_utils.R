@@ -24,6 +24,17 @@ BS4_COMPONENTS <- c("box", "value_box")
 #'
 #' @description
 #' An item to add to the sidebar that opens up the settings for the selected component
+#'
+#' @param id HTML ID to namespace on
+#' @param name Label to show on the closed accordion
+#' @param element Character string to let JS know what component has been chosen
+#' @param parent_id HTML ID of the accordion
+#' @param ... Option inputs to add when expanding the accordion item
+#' @param notes A list of optional notes to include at the bottom of the settings
+#' @param active Logical, should the accordion item be open on start? Default set to `FALSE`
+#'
+#' @return
+#' A `shiny.tag` element containing the component accordion item with all input settings
 sidebarItem <- function(id, name, element, parent_id, ..., notes = NULL, active = FALSE) {
   ns <- NS(id)
 

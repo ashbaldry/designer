@@ -4,7 +4,7 @@ export class CheckboxInput extends Component {
     html = `
         <div class="designer-element form-group shiny-input-container" $style_str$
                  data-shinyfunction="checkboxInput"
-                 data-shinyattributes="inputId = &quot;$id&quot;, label = &quot;$label&quot;$width_str$">
+                 data-shinyattributes="inputId = &quot;$id$&quot;, label = &quot;$label$&quot;$width_str$">
             <div class="checkbox">
                 <label>
                     <input type="checkbox"><span>$label$</span>

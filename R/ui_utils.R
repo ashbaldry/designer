@@ -38,7 +38,7 @@ warningModal <- function(id) {
             class = "btn btn-secondary",
             `data-dismiss` = "modal",
             `data-bs-dismiss` = "modal",
-            shiny::icon("times"),
+            shiny::icon("xmark"),
             "No"
           ),
           tags$button(

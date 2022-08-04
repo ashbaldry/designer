@@ -89,6 +89,23 @@ SidebarModUI <- function(id) {
         )
       ),
 
+      #### Value Box ####
+      sidebarItem(
+        id = ns("value_box"),
+        name = "Value Box",
+        element = "value_box",
+        parent_id = accordion_id,
+        compSettingValue(ns("value_box")),
+        compSettingLabel(ns("value_box")),
+        compSettingIcon(ns("value_box")),
+        compSettingBackground(ns("value_box")),
+        compSettingWidthNum(ns("value_box"), value = 3, min = 0),
+        notes = list(
+          tagList("If the width > 0, then the box is included in a column and can only be included in", tags$b("rows"), "."),
+          "Rows are split into 12 column units, if the sum of boxs' width exceeds 12, they get wrapped onto a new line."
+        )
+      ),
+
       #### Input Panel ####
       sidebarItem(
         id = ns("input_panel"),
@@ -193,6 +210,33 @@ SidebarModUI <- function(id) {
         compSettingWidth(ns("radio"))
       ),
 
+      #### Button ####
+      sidebarItem(
+        id = ns("button"),
+        name = "Button",
+        element = "button",
+        parent_id = accordion_id,
+        compSettingType(
+          ns("button"),
+          choices = c(
+            "Default" = "default",
+            "Primary" = "primary",
+            "Secondary" = "secondary",
+            "Success" = "success",
+            "Danger" = "danger",
+            "Warning" = "warning",
+            "Info" = "info",
+            "Light" = "light",
+            "Dark" = "dark"
+          )
+        ),
+        compSettingID(ns("button")),
+        compSettingLabel(ns("button")),
+        compSettingIcon(ns("button")),
+        compSettingDownload(ns("button")),
+        compSettingWidth(ns("button"))
+      ),
+
       #### Text ####
       sidebarItem(
         id = ns("text"),
@@ -204,6 +248,45 @@ SidebarModUI <- function(id) {
           choices = c("Paragraph <p>" = "p", "Ordered List <ol>" = "ol", "Unordered List <ul>" = "ul")
         ),
         compSettingTextArea(ns("text"))
+      ),
+
+      #### Output ####
+      sidebarItem(
+        id = ns("output"),
+        name = "Output",
+        element = "output",
+        parent_id = accordion_id,
+        compSettingType(
+          ns("output"),
+          choices = c(
+            "Text" = "text",
+            "Verbatim Text" = "verbatim",
+            "Plot" = "plot",
+            "Image" = "image",
+            "Table" = "table",
+            "HTML" = "html"
+          )
+        ),
+        conditionalPanel(
+          "input['output-type'] === 'plot'",
+          ns = ns,
+          compSettingPlot(ns("output"))
+        ),
+        compSettingID(ns("output")),
+        compSettingLabel(ns("output")),
+        conditionalPanel(
+          "!['plot', 'image', 'table'].includes(input['output-type'])",
+          ns = ns,
+          compSettingTextArea(ns("output"))
+        ),
+        compSettingInline(ns("output")),
+        compSettingWidth(ns("output")),
+        conditionalPanel(
+          "['plot', 'image'].includes(input['output-type'])",
+          ns = ns,
+          compSettingHeight(ns("output"))
+        ),
+        notes = "Plot and image output will show area of plot, but image will not stretch to fit"
       )
     ),
 
