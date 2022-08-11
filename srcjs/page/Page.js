@@ -10,10 +10,10 @@ export class Page {
     updateComponentDropdown () {
         $(".navbar-tab-item").css("display", this.navbar_item_style);
         $(".bs4-item").css("display", this.bs4_item_style);
-        if (this.navbar_item_style === "none") {
-            $("#settings-component a[name='header']").trigger("click");
-        } else {
-            $("#settings-component a[name='tab_panel']").trigger("click");
+        
+        const component = this.navbar_item_style === "none" ? "header" : "tab";
+        if (!$(`#sidebar-${component}-body`).hasClass("show")) {
+            $(`#sidebar-${component}-header button`).trigger("click");
         }
     };
 

@@ -2,18 +2,8 @@ import { Component } from "./Component";
 
 export class Tab extends Component{
     _item = 1;
-    name = "Tab";
 
-    constructor() {
-        super();
-
-        $('#component_settings').css("display", "none");
-        $('#tab_settings').css("display", "unset");
-    };
-
-    updateComponent() {
-
-    };
+    updateComponent() {};
 
     getPageType() {
         return $('#settings-page_type input:radio:checked').val();
@@ -22,15 +12,15 @@ export class Tab extends Component{
     addPage() {
         const page_type = this.getPageType();
 
-        const tab_name = $("#sidebar-tab_name").val();
-        let tab_value = $("#sidebar-tab_value").val();
+        const tab_name = $("#sidebar-tab-name").val();
+        let tab_value = $("#sidebar-tab-value").val();
         if (tab_value === "") {
           tab_value = this.createID("tab");
         } else if (this.checkDuplicateIDs(tab_value, page_type)) {
             return;
         }
 
-        $("#sidebar-tab_alert div").alert("close");
+        $("#sidebar-tab-alert div").alert("close");
 
         if (page_type === "dashboardPage") {
             this.addMenuItem(tab_name, tab_value);
@@ -46,9 +36,9 @@ export class Tab extends Component{
         const tab_panel = $(".tab-content");
         const active_class = tab_panel.html() === "" ? "active" : "";
 
-        const tab_icon = $("#sidebar-tab_icon").val();
+        const tab_icon = $("#sidebar-tab-icon").val();
         const icon_r = tab_icon === "" ? "" : `, icon = icon(&quot;${tab_icon}&quot;)`;
-        const icon_class = tab_icon === "" ? "" : $("#sidebar-tab_icon option").html().includes("fab") ? "fab" : "fa";
+        const icon_class = tab_icon === "" ? "" : $("#sidebar-tab-icon option").html().includes("fab") ? "fab" : "fa";
         const icon_html = tab_icon === "" ? "" : `<i aria-hidden="true" class="${icon_class} fa-${tab_icon} fa-fw" role="presentation"></i>`;
         
         nav_panel.append(`
@@ -74,9 +64,9 @@ export class Tab extends Component{
         const tab_panel = $("section.content .tab-content");
         const active_class = tab_panel.html() === "" ? "active" : "";
 
-        const tab_icon = $("#sidebar-tab_icon").val();
+        const tab_icon = $("#sidebar-tab-icon").val();
         const icon_r = tab_icon === "" ? "" : `, icon = icon(&quot;${tab_icon}&quot;)`;
-        const icon_class = tab_icon === "" ? "" : $("#sidebar-tab_icon option").html().includes("fab") ? "fab" : "fa";
+        const icon_class = tab_icon === "" ? "" : $("#sidebar-tab-icon option").html().includes("fab") ? "fab" : "fa";
         const icon_html = tab_icon === "" ? "" : `<i aria-hidden="true" class="${icon_class} fa-${tab_icon} nav-icon" role="presentation"></i>`;        
         
         $(".sidebarMenuSelectedTabItem").before(`
@@ -117,7 +107,7 @@ export class Tab extends Component{
 
     checkDuplicateNames(tab_name, page_type) {
         if ($(this.getNameIdentifier(tab_name, page_type)).length > 0) {
-            $("#sidebar-tab_alert").html(`
+            $("#sidebar-tab-alert").html(`
                 <div class="alert alert-danger" role="alert">
                     ${tab_name} is the name of an existing menu item. Please choose a unique name
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -141,7 +131,7 @@ export class Tab extends Component{
 
     checkDuplicateIDs(tab_value, page_type) {
         if ($(this.getValueIdentifier(tab_value, page_type)).length > 0) {
-            $("#sidebar-tab_alert").html(`
+            $("#sidebar-tab-alert").html(`
                 <div class="alert alert-danger" role="alert">
                     ${tab_value} is the ID of an existing menu item. Please choose a unique ID
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -165,13 +155,13 @@ export class Tab extends Component{
 
     deletePage() {
         const page_type = this.getPageType();
-        const tab_name = $("#sidebar-tab_name").val();
-        let tab_value = $("#sidebar-tab_value").val();
+        const tab_name = $("#sidebar-tab-name").val();
+        let tab_value = $("#sidebar-tab-value").val();
 
         if (this.checkMissingName(tab_name, page_type)) {
             return true;
         } else if ($(this.getNameIdentifier(tab_name, page_type)).length > 1 && tab_value === "") {
-            $("#sidebar-tab_alert").html(`
+            $("#sidebar-tab-alert").html(`
                 <div class="alert alert-danger" role="alert">
                     Duplicate tabs contain the name "${tab_name}" and no value has been provided. Please provide the specific ID of the tab to delete.
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -182,7 +172,7 @@ export class Tab extends Component{
             return true;
         }
 
-        $("#sidebar-tab_alert div").alert("close");
+        $("#sidebar-tab-alert div").alert("close");
 
         if (page_type === "dashboardPage") {
             tab_value = tab_value === "" ? $(`ul.nav a[data-name='${tab_name}']`).data("value") : tab_value;
@@ -207,7 +197,7 @@ export class Tab extends Component{
         if ($(this.getNameIdentifier(tab_name, page_type)).length > 0) {
             return false;
         } else {
-            $("#sidebar-tab_alert").html(`
+            $("#sidebar-tab-alert").html(`
                 <div class="alert alert-danger" role="alert">
                     Unable to find a tab with the name "${tab_name}"
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">

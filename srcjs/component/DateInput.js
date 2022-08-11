@@ -1,12 +1,6 @@
 import { Component } from './Component';
 
 export class DateInput extends Component {
-    name = "Date";
-    parameters = ["id", "label", "range", "width"];
-    notes = [
-        "To position several inputs horizontally, they must be put within an input panel."
-    ];
-
     html = `
         <div class="designer-element form-group shiny-input-container $date_class$" $style_str$
              data-shinyattributes="inputId = &quot;$id$&quot;, label = &quot;$label$&quot;$width_str$"
@@ -36,25 +30,17 @@ export class DateInput extends Component {
         </div>       
     `;
 
-    constructor() {
-        super();
-        this.showRelevantOptions();
-        this.updateTextInput("id", "");
-        this.updateTextInput("label", "Label");
-        this.updateTextInput("width", "");
-    }
-
     createComponent() {
-        const label = $("#sidebar-label").val();
+        const label = $("#sidebar-date-label").val();
 
-        let id = $("#sidebar-id").val();
+        let id = $("#sidebar-date-id").val();
         id = id === "" ? this.createID("input") : id;
 
-        const width = this.validateCssUnit($("#sidebar-width").val());
-        const style_str = width ? `width: ${width};` : "";
+        const width = this.validateCssUnit($("#sidebar-date-width").val());
+        const style_str = width ? `style="width: ${width};"` : "";
         const width_str = width ? `, width = &quot;${width}&quot;` : "";
 
-        const range = document.getElementById("sidebar-range").checked;
+        const range = document.getElementById("sidebar-date-range").checked;
         const r_func = range ? "dateRangeInput" : "dateInput";
         const date_class = range ? "shiny-date-range-input" : "shiny-date-input";
         const input_tag = range ? this.date_range_input_html : this.date_input_html;
@@ -72,7 +58,6 @@ export class DateInput extends Component {
 
     updateComponent(update_sortable = false) {
         super.updateComponent(update_sortable);
-
         $(".component-container").find("input").bsDatepicker();
     };
 }

@@ -16,7 +16,7 @@ CanvasModUI <- function(id) {
       tags$button(
         id = ns("close_preview"),
         class = "btn btn-outline-dark",
-        icon("times", "aria-hidden" = "true"),
+        shiny::icon("xmark", "aria-hidden" = "true"),
         "Close Preview"
       )
     ),
@@ -60,7 +60,7 @@ CanvasModUI <- function(id) {
       div(
         class = "item",
         id = ns("delete"),
-        shiny::icon("times"),
+        shiny::icon("xmark"),
         "Delete"
       )
     )

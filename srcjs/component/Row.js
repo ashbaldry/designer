@@ -1,14 +1,9 @@
 import { Component } from './Component';
 
 export class Row extends Component {
-    name = "Row";
-    parameters = [];
     updatable = false;
-    html = `<div class="designer-element row row-designer" data-shinyfunction="fluidRow"></div>`;
-    notes = [
-        "The only component that can be a direct child of a row are columns.",
-        "By default, a row will have no height and is determined by the contents inside. To easily drop elements into the rows, they have a minimum height of 50px in this app."
-    ];
+    html = '<div class="designer-element row row-designer" data-shinyfunction="fluidRow"></div>';
+
     sortable_settings = {
         group: {
             name: "shared",
@@ -17,9 +12,4 @@ export class Row extends Component {
             }
         }
     };
-
-    constructor() {
-        super();
-        this.showRelevantOptions();
-    }
 }

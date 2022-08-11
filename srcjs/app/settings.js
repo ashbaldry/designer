@@ -6,6 +6,8 @@ export function initSettings () {
     $("#remove_colour").on("change", toggleBackgroundColours);
     $("#remove_border").on("change", toggleBorders);
 
+    $(".component-accordion .card-header button").on("click", scrollToComponent)
+
     $("body").on("click", () => {
         if (document.querySelector("body").classList.contains("sidebar-mini")) {
             document.querySelector("body").classList.remove("sidebar-mini");
@@ -69,6 +71,17 @@ function toggleBS4DashDeps (toggle) {
     }
     
 };
+
+function scrollToComponent () {
+    const card_header = this.closest(".card-header").id;
+    setTimeout(
+        () => {
+            document.getElementById(card_header).scrollIntoView({ behavior: 'smooth', block: 'start' });
+            $(this).trigger("blur");
+        },
+        250
+     )
+}
 
 let selected_element;
 

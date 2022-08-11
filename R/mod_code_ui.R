@@ -30,7 +30,7 @@ CodeModUI <- function(id) {
           actionButton(
             ns("save"),
             "Save To ui.R",
-            icon("save")
+            shiny::icon("floppy-disk")
           )
         )
       },
