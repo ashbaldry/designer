@@ -25,6 +25,10 @@ header > h1 {
   font-size: 1.05rem;
 }
 
+.card-body .notes-header {
+  margin-top: 0.2rem;
+}
+
 h5.modal-title {
   margin-top: 0;
 }
@@ -73,10 +77,43 @@ h5.modal-title {
 }
 
 .component-accordion {
-  max-height: calc(100vh - 500px);
+  height: calc(100vh - 500px);
   overflow-y: auto;
   margin: 1rem 0;
   padding: 0 5px;
+}
+
+.component-accordion.accordion>.card {
+  border-radius: 0.5rem;
+  margin-bottom: 0.2rem;
+  overflow: unset;
+}
+
+.component-accordion.accordion>.card>.card-header {
+  padding: 0.15rem 0.75rem;
+  background-color: #6c757d;
+  border-radius: 0.5rem;
+}
+
+.component-accordion.accordion>.card>.card-header .btn-link {
+  color: #fff;
+}
+
+.component-accordion.accordion>.card>.card-header button:focus {
+  border: 2px solid #fff;
+  box-shadow: none;
+}
+
+.component-accordion.accordion>.card .card-body {
+  padding: 0.75rem 1rem;
+}
+
+.component-accordion .card-body .form-group {
+  margin-bottom: 0.4rem;
+}
+
+.component-accordion .card-body .form-group label {
+  margin-bottom: 0.2rem;
 }
 
 .tab-parameters {
@@ -420,7 +457,7 @@ body #canvas-page.wrapper .fab {
   height: 100% !important;
 }
 
-#tab_settings label, #component_settings label,
+#tab_settings label, #component_settings label, #sidebar-accordion .card label,
 #settings-options_dropdown label, #canvas-page:not(.wrapper) label {
   font-weight: 400 !important;
 }

@@ -81,7 +81,7 @@ sidebarItem <- function(id, name, element, parent_id, ..., notes = NULL, active 
         ),
         if (!is.null(notes)) {
           tagList(
-            h3("Notes"),
+            h3(class = "notes-header", "Notes"),
             tags$ul(
               lapply(notes, tags$li)
             )
