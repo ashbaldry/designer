@@ -4,7 +4,7 @@ export class ValueBox extends Component {
     html = `
         <div class="$width_class$ designer-element"
              data-shinyfunction="bs4Dash::bs4ValueBox"
-             data-shinyattributes="value = &quot;$value$&quot;, subtitle = &quot;$label$&quot;$icon_r$, color = &quot;$colour$&quot;, width = $width$">
+             data-shinyattributes="value = &quot;$value$&quot;, subtitle = &quot;$label$&quot;$icon_r$, color = &quot;$colour$&quot;, width = $width_r$">
             <div class="small-box $colour_class$">
                 <div class="inner">
                     $value$
@@ -17,15 +17,6 @@ export class ValueBox extends Component {
             </div>
         </div>
     `;
-    
-    sortable_settings = {
-        group: {
-            name: "shared",
-            put: function (_to, _from, clone) {
-                return !clone.classList.contains("col-sm");
-            }
-        }
-    };
 
     createComponent() {
         const value = $("#sidebar-value_box-value").val();
