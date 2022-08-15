@@ -23,12 +23,21 @@ settingsDropdownButton <- function(id, label, contents) {
 }
 
 PAGE_TYPES <- c(
-  "Basic Page" = "basicPage",
   "Standard Page" = "bootstrapPage",
   "Fill Page" = "fillPage",
+  "Fixed Page" = "fixedPage",
   "Fluid Page" = "fluidPage",
   "Navigation Bar Page" = "navbarPage",
   "Dashboard Page" = "dashboardPage"
+)
+
+PAGE_DESCRIPTIONS <- c(
+  "Standard Page" = "Basic Bootstrap Page",
+  "Fill Page" = "Bootstrap Page that always fills the height and width of the browser window",
+  "Fixed Page" = "Bootstrap Page that maintains a fixed width for content on the page",
+  "Fluid Page" = "Bootstrap Page that updates the scales the width of the content dependent on page size",
+  "Navigation Bar Page" = "Bootstrap Page that contains a top level navigation bar to toggle a set of tabs",
+  "Dashboard Page" = "AdminLTE3 Dashboard Page"
 )
 
 pageOptions <- function(ns) {
@@ -50,7 +59,7 @@ pageOptions <- function(ns) {
               id = ns(x),
               name = ns("page_type"),
               value = x,
-              checked = if (x == "fluidPage") NA else NULL
+              checked = if (x == "fluidPage") NULL else NULL
             ),
             tags$label(
               class = "form-check-label",
