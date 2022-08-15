@@ -1,5 +1,6 @@
 import { BasicPage } from './BasicPage';
 import { FillPage } from './FillPage';
+import { FixedPage } from './FixedPage';
 import { FluidPage } from './FluidPage';
 import { BootstrapPage } from './BootstrapPage';
 import { NavbarPage } from './NavbarPage';
@@ -14,6 +15,8 @@ export function createPage () {
         page = new BasicPage();
     } else if (page_type === "fillPage") {
         page = new FillPage();
+    } else if (page_type === "fixedPage") {
+        page = new FixedPage();        
     } else if (page_type === "fluidPage") {
         page = new FluidPage();
     } else if (page_type === "bootstrapPage") {
@@ -33,6 +36,18 @@ export function createPage () {
     page.updateComponentDropdown();
     return page;
 };
+
+export function selectPage() {
+    let button_el = $(this);
+    if (!$(this).hasClass("canvas-page-choice")) {
+        button_el = $(this).closest(".canvas-page-choice");
+    }
+
+    button_el.closest(".canvas-modal").css("display", "none");
+
+    const page_choice = button_el.data('page');
+    $('#settings-page_type').find(`input[value='${page_choice}']`).trigger('click')
+}
 
 export function changePageCheck () {
     if ($("#canvas-page").html() === "" || $("#canvas-page.wrapper .tab-content").html() === "") {

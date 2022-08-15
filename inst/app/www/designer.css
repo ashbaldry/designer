@@ -265,6 +265,48 @@ h5.modal-title {
   display: inline;
 }
 
+.canvas-modal {
+  position: absolute;
+  top: 20%;
+  bottom: 20%;
+  left: 25%;
+  right: 25%;
+  border: #333 2px solid;
+  border-radius: 1rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: fit-content;
+  background: #FCFCFC;
+  box-shadow: #555 2px 2px 1rem 0.5rem;
+}
+
+.canvas-page-choices {
+  padding: 1rem;
+}
+
+.canvas-page-choice {
+  width: 40%;
+  margin: 1rem;
+  height: 8rem;
+  border-radius: 1rem;
+}
+
+.canvas-page-choice .canvas-choice-header {
+  margin-top: 0.5rem;
+  font-size: 1.4rem
+}
+
+.canvas-page-choice .canvas-choice-content {
+  font-size: 0.9rem;
+}
+
+.dimmed-canvas-page {
+  height: 100%;
+  background: #CCCCCC;
+}
+
 .page-canvas {
   height: calc(100% - 24px);
 }

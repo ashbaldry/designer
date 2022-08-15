@@ -8,7 +8,7 @@
 CanvasModUI <- function(id) {
   ns <- NS(id)
 
-  div(
+  tags$section(
     class = "page-canvas-shell",
     span(
       class = "page-preview-button",
@@ -20,7 +20,7 @@ CanvasModUI <- function(id) {
         "Close Preview"
       )
     ),
-    div(
+    tags$section(
       class = "page-canvas-header",
       tags$svg(
         xmlns = "http://www.w3.org/2000/svg",
@@ -43,7 +43,7 @@ CanvasModUI <- function(id) {
       ),
       tags$style(id = ns("style"), type = "text/css")
     ),
-    div(
+    tags$section(
       class = "page-canvas",
       id = ns("canvas")
     ),
@@ -63,17 +63,19 @@ CanvasModUI <- function(id) {
         shiny::icon("xmark"),
         "Delete"
       )
-    )
-  )
-}
+    ),
 
-safari_circle <- function(cx, fill, stroke) {
-  tags$circle(
-    cx = cx,
-    cy = "5",
-    r = "6",
-    fill = fill,
-    stroke = stroke,
-    `stroke-width` = ".5"
+    div(
+      class = "canvas-modal",
+      id = ns("modal"),
+      h3(
+        class = "canvas-modal-title",
+        "Select Page Type"
+      ),
+      div(
+        class = "canvas-page-choices",
+        lapply(seq_along(PAGE_TYPES), createPageItem)
+      )
+    )
   )
 }

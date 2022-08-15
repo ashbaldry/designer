@@ -67,9 +67,7 @@ function toggleBS4DashDeps (toggle) {
         if (stylesheet.href && (stylesheet.href.includes("AdminLTE") || stylesheet.href.includes("bs4Dash"))) {
             stylesheet.disabled = toggle === "hide";
         }
-        
     }
-    
 };
 
 function scrollToComponent () {
