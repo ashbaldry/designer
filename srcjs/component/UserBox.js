@@ -16,7 +16,7 @@ export class UserBox extends Component {
                     <h3 class="widget-user-username">$label$</h3>
                 </div>
                 <div class="widget-user-image">
-                    <img class="img-circle" alt="User Avatar"/>
+                    <img class="img-circle" alt="User Avatar" src="www/avatar.png"/>
                 </div>                
                 <div class="card-body" type="$type$"></div>
                 <div class="card-footer"></div>
