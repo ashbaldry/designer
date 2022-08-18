@@ -44,6 +44,16 @@ SidebarModUI <- function(id) {
         compSettingText(ns("header"), value = "Header")
       ),
 
+      #### Tab Panel ####
+      sidebarItem(
+        id = ns("tabset"),
+        name = "Tabset Panel",
+        element = "tabset",
+        parent_id = accordion_id,
+        compSettingType(ns("tabset"), c("tabs", "pills")),
+        componentTab(ns("tabset"))
+      ),
+
       #### Row ####
       sidebarItem(
         id = ns("row"),

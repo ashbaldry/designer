@@ -10,8 +10,8 @@ export function initComponents () {
     $(".component-comments").on("change blur", () => component.updateComponent());
     $('.component-container').on("mouseover", () => {$(":focus").trigger("blur")});
 
-    $("#sidebar-tab-add").on("click", () => component.addPage())
-    $("#sidebar-tab-delete").on("click", () => component.deletePage())
+    $(".add-tab-button").on("click", () => component.addPage())
+    $(".delete-tab-button").on("click", () => component.deletePage())
 
     $(".accordion .card-header .btn").on("click", (el) => {
         $(el.target).closest('.card').find('form').trigger("reset");

@@ -387,13 +387,13 @@ componentTab <- function(id) {
     tags$button(
       id = ns("add"),
       type = "button",
-      class = "btn btn-success action-button",
+      class = "btn btn-success action-button add-tab-button",
       "Add Tab"
     ),
     tags$button(
       id = ns("delete"),
       type = "button",
-      class = "btn btn-danger action-button",
+      class = "btn btn-danger action-button delete-tab-button",
       "Delete Tab"
     ),
     br(),

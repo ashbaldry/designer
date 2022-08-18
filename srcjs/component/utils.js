@@ -13,6 +13,7 @@ import { SliderInput } from './SliderInput';
 import { Button } from './Button';
 import { Output } from './Output';
 import { Tab } from './Tab';
+import { Tabset } from './Tabset';
 import { Box } from './Box';
 import { UserBox } from './UserBox';
 import { ValueBox } from './ValueBox';
@@ -48,6 +49,8 @@ export function getComponent(name) {
         return new Output();
     } else if (name === "tab_panel") {
         return new Tab();
+    } else if (name === "tabset") {
+        return new Tabset();
     } else if (name === "box") {
         return new Box();
     } else if (name === "user_box") {
@@ -55,7 +58,6 @@ export function getComponent(name) {
     } else if (name === "value_box") {
         return new ValueBox();
     }
-    
 
     return new Header();
 }

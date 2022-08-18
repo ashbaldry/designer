@@ -428,6 +428,7 @@ span.plot-output-element, span.image-output-element {
   position: absolute;
 }
 
+.designer-page-template .tabset-designer-component .tab-content>.tab-pane,
 .designer-page-template .card-body {
   min-height: 200px;
 }

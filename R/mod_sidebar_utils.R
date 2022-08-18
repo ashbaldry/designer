@@ -1,6 +1,7 @@
 COMPONENTS <- c(
   "Tab" = "tab_panel",
   "Header" = "header",
+  "Tabset Panel" = "tabset",
   "Row" = "row",
   "Column" = "column",
   "Box/Card" = "box",
