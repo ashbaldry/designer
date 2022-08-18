@@ -3,8 +3,9 @@ SidebarModuleServer <- function(id) {
   moduleServer(id, function(input, output, session) {
     updateSelectizeInput(session, "tab-icon", choices = getFAIcons(), selected = "", server = TRUE)
     updateSelectizeInput(session, "value_box-icon", choices = getFAIcons(), selected = "", server = TRUE)
+    updateSelectizeInput(session, "info_box-icon", choices = getFAIcons(), selected = "github", server = TRUE)
+    updateSelectizeInput(session, "tabset-icon", choices = getFAIcons(), selected = "", server = TRUE)
     updateSelectizeInput(session, "button-icon", choices = getFAIcons(), selected = "", server = TRUE)
-    # updateSelectizeInput(session, "icon", choices = getFAIcons(), selected = "", server = TRUE)
 
     observeEvent(input$outputid, {
       if (input[["output-type"]] == "plot") {

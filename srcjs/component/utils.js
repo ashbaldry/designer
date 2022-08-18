@@ -17,6 +17,7 @@ import { Tabset } from './Tabset';
 import { Box } from './Box';
 import { UserBox } from './UserBox';
 import { ValueBox } from './ValueBox';
+import { InfoBox } from './InfoBox';
 
 export function getComponent(name) {
     if (name === "header") {
@@ -57,6 +58,8 @@ export function getComponent(name) {
         return new UserBox();
     } else if (name === "value_box") {
         return new ValueBox();
+    } else if (name === "info_box") {
+        return new InfoBox();
     }
 
     return new Header();

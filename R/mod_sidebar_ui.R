@@ -116,6 +116,24 @@ SidebarModUI <- function(id) {
         )
       ),
 
+      #### Info Box ####
+      sidebarItem(
+        id = ns("info_box"),
+        name = "Info Box",
+        element = "info_box",
+        parent_id = accordion_id,
+        compSettingValue(ns("info_box")),
+        compSettingLabel(ns("info_box")),
+        compSettingIcon(ns("info_box")),
+        compSettingBackground(ns("info_box")),
+        compSettingFill(ns("info_box")),
+        compSettingWidthNum(ns("info_box"), value = 3, min = 0),
+        notes = list(
+          tagList("If the width > 0, then the box is included in a column and can only be included in", tags$b("rows"), "."),
+          "Rows are split into 12 column units, if the sum of boxs' width exceeds 12, they get wrapped onto a new line."
+        )
+      ),
+
       #### Value Box ####
       sidebarItem(
         id = ns("value_box"),

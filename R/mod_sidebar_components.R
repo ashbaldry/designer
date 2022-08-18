@@ -158,6 +158,19 @@ compSettingBackground <- function(id) {
 }
 
 #' @rdname component_setting
+compSettingFill <- function(id, label = "Fill Whole Box") {
+  ns <- NS(id)
+
+  component(
+    "fill",
+    checkboxInput(
+      ns("fill"),
+      label
+    )
+  )
+}
+
+#' @rdname component_setting
 compSettingText <- function(id, value = NULL) {
   ns <- NS(id)
 

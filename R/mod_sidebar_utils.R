@@ -17,10 +17,11 @@ COMPONENTS <- c(
   "Button" = "button",
   "Output" = "output",
   "User Box" = "user_box",
-  "Value Box" = "value_box"
+  "Value Box" = "value_box",
+  "Info Box" = "info_box"
 )
 NAVBAR_COMPONENTS <- "tab_panel"
-BS4_COMPONENTS <- c("box", "user_box", "value_box")
+BS4_COMPONENTS <- c("box", "user_box", "value_box","info_box")
 
 #' Component Accordion Item
 #'
