@@ -19,7 +19,7 @@ export class Tabset extends Component {
         const type = $("#sidebar-tabset-type").val();
         
         const is_dash_page = this.getPageType() === "dashboardPage";
-        const shiny_func = is_dash_page ? "bs4Dash::" : "tabsetPanel";
+        const shiny_func = is_dash_page ? "bs4Dash::bs4TabCard" : "tabsetPanel";
 
         let shiny_attribs = "";
         if (is_dash_page) {
