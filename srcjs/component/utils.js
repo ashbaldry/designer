@@ -14,6 +14,7 @@ import { Button } from './Button';
 import { Output } from './Output';
 import { Tab } from './Tab';
 import { Box } from './Box';
+import { UserBox } from './UserBox';
 import { ValueBox } from './ValueBox';
 
 export function getComponent(name) {
@@ -49,6 +50,8 @@ export function getComponent(name) {
         return new Tab();
     } else if (name === "box") {
         return new Box();
+    } else if (name === "user_box") {
+        return new UserBox();
     } else if (name === "value_box") {
         return new ValueBox();
     }

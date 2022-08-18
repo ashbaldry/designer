@@ -4,6 +4,7 @@ export class Component {
     updatable = true;
     display_comments = true;
     display_container = true;
+    has_card_body = false;
     name;
     parameters;
     tags;
@@ -73,7 +74,7 @@ export class Component {
             },
             onClone: function(evt) {
                 if (component.sortable_settings) {
-                    if (component.name === "Box") {
+                    if (component.has_card_body) {
                         Sortable.create($(evt.item).find('.card-body')[0], component.sortable_settings);
                     } else {
                         Sortable.create(evt.item, component.sortable_settings);

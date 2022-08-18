@@ -89,6 +89,23 @@ SidebarModUI <- function(id) {
         )
       ),
 
+      #### User Box ####
+      sidebarItem(
+        id = ns("user_box"),
+        name = "User Box/Card",
+        element = "user_box",
+        parent_id = accordion_id,
+        compSettingLabel(ns("user_box")),
+        compSettingType(ns("user_box"), c(1, 2)),
+        compSettingColour(ns("user_box")),
+        compSettingBackground(ns("user_box")),
+        compSettingWidthNum(ns("user_box"), value = 3, min = 0),
+        notes = list(
+          tagList("If the width > 0, then the box is included in a column and can only be included in", tags$b("rows"), "."),
+          "Rows are split into 12 column units, if the sum of boxs' width exceeds 12, they get wrapped onto a new line."
+        )
+      ),
+
       #### Value Box ####
       sidebarItem(
         id = ns("value_box"),

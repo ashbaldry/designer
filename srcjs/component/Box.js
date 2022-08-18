@@ -1,8 +1,7 @@
 import { Component } from './Component';
 
 export class Box extends Component {
-    name = "Box";
-
+    has_card_body = true;
     html = `
         <div class="$width_class$ designer-element"
              data-shinyfunction="bs4Dash::bs4Card"
