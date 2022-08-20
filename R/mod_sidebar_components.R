@@ -3,7 +3,8 @@
 #' @description
 #' A way to be able to adjust components so that can more easily visualise how the shiny application will look.
 #'
-#' @param ns Namespace to include the component
+#' @param id Namespace to include the component
+#' @param choices A vector of potential choices to include in the component
 #'
 #' @return A \code{shiny.tag.list} of settings specific to the selected component
 #'
@@ -71,6 +72,8 @@ compSettingValue <- function(id) {
   )
 }
 
+#' @param label Label of the input
+#' @param optional Logical, is the input optional?
 #' @rdname component_setting
 compSettingLabel <- function(id, label = "Label", optional = FALSE) {
   ns <- NS(id)

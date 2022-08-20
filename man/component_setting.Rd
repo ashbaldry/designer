@@ -31,7 +31,7 @@ compSettingPlot(id)
 
 compSettingValue(id)
 
-compSettingLabel(id)
+compSettingLabel(id, label = "Label", optional = FALSE)
 
 compSettingID(id)
 
@@ -64,9 +64,15 @@ compSettingWidthNum(id, value = 3, min = 1)
 compSettingOffset(id)
 }
 \arguments{
-\item{status}{Logical, are only status colours allowed, default is \code{FALSE}}
+\item{id}{Namespace to include the component}
 
-\item{ns}{Namespace to include the component}
+\item{choices}{A vector of potential choices to include in the component}
+
+\item{label}{Label of the input}
+
+\item{optional}{Logical, is the input optional?}
+
+\item{status}{Logical, are only status colours allowed, default is \code{FALSE}}
 }
 \value{
 A \code{shiny.tag.list} of settings specific to the selected component
