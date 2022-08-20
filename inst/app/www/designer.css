@@ -97,6 +97,8 @@ h5.modal-title {
 
 .component-accordion.accordion>.card>.card-header .btn-link {
   color: #fff;
+  padding-top: 0.1rem;
+  padding-bottom: 0.1rem;
 }
 
 .component-accordion.accordion>.card>.card-header button:focus {
