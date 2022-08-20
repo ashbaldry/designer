@@ -50,7 +50,16 @@ SidebarModUI <- function(id) {
         name = "Tabset Panel",
         element = "tabset",
         parent_id = accordion_id,
-        compSettingType(ns("tabset"), c("tabs", "pills")),
+        conditionalPanel(
+          "input['settings-page_type'] !== 'dashboardPage'",
+          compSettingType(ns("tabset"), c("tabs", "pills"))
+        ),
+        conditionalPanel(
+          "input['settings-page_type'] === 'dashboardPage'",
+          compSettingLabel(ns("tabset"), label = "Title", optional = TRUE),
+          compSettingColour(ns("tabset")),
+          compSettingWidthNum(ns("tabset"), value = 6, min = 0)
+        ),
         componentTab(ns("tabset"))
       ),
 

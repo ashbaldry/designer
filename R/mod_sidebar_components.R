@@ -72,15 +72,16 @@ compSettingValue <- function(id) {
 }
 
 #' @rdname component_setting
-compSettingLabel <- function(id) {
+compSettingLabel <- function(id, label = "Label", optional = FALSE) {
   ns <- NS(id)
 
   component(
     "label",
     textInput(
       inputId = ns("label"),
-      label = "Label",
-      value = "Label"
+      label = label,
+      value = if (optional) "" else label,
+      placeholder = if (optional) "Optional" else NULL
     )
   )
 }
