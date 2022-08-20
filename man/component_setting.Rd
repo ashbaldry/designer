@@ -10,6 +10,7 @@
 \alias{compSettingIcon}
 \alias{compSettingColour}
 \alias{compSettingBackground}
+\alias{compSettingFill}
 \alias{compSettingText}
 \alias{compSettingTextArea}
 \alias{compSettingChoices}
@@ -36,9 +37,11 @@ compSettingID(id)
 
 compSettingIcon(id)
 
-compSettingColour(id)
+compSettingColour(id, status = FALSE)
 
 compSettingBackground(id)
+
+compSettingFill(id, label = "Fill Whole Box")
 
 compSettingText(id, value = NULL)
 
@@ -61,6 +64,8 @@ compSettingWidthNum(id, value = 3, min = 1)
 compSettingOffset(id)
 }
 \arguments{
+\item{status}{Logical, are only status colours allowed, default is \code{FALSE}}
+
 \item{ns}{Namespace to include the component}
 }
 \value{

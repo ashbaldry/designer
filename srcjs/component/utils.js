@@ -18,6 +18,8 @@ import { Box } from './Box';
 import { UserBox } from './UserBox';
 import { ValueBox } from './ValueBox';
 import { InfoBox } from './InfoBox';
+import { BlockQuote } from './BlockQuote';
+import { Callout } from './Callout';
 
 export function getComponent(name) {
     if (name === "header") {
@@ -60,6 +62,10 @@ export function getComponent(name) {
         return new ValueBox();
     } else if (name === "info_box") {
         return new InfoBox();
+    } else if (name === "quote") {
+        return new BlockQuote();
+    } else if (name === "callout") {
+        return new Callout();
     }
 
     return new Header();

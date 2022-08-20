@@ -295,6 +295,32 @@ SidebarModUI <- function(id) {
         compSettingTextArea(ns("text"))
       ),
 
+      #### Block Quote ####
+      sidebarItem(
+        id = ns("quote"),
+        name = "Block Quote",
+        element = "quote",
+        parent_id = accordion_id,
+        compSettingColour(ns("quote")),
+        compSettingTextArea(ns("quote"))
+      ),
+
+      #### Callout ####
+      sidebarItem(
+        id = ns("callout"),
+        name = "Callout",
+        element = "callout",
+        parent_id = accordion_id,
+        compSettingLabel(ns("callout")),
+        compSettingColour(ns("callout"), status = TRUE),
+        compSettingTextArea(ns("callout")),
+        compSettingWidthNum(ns("callout"), value = 6, min = 0),
+        notes = list(
+          tagList("If the width > 0, then the box is included in a column and can only be included in", tags$b("rows"), "."),
+          "Rows are split into 12 column units, if the sum of boxs' width exceeds 12, they get wrapped onto a new line."
+        )
+      ),
+
       #### Output ####
       sidebarItem(
         id = ns("output"),

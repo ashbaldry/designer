@@ -127,17 +127,26 @@ compSettingIcon <- function(id) {
   )
 }
 
+#' @param status Logical, are only status colours allowed, default is `FALSE`
 #' @rdname component_setting
-compSettingColour <- function(id) {
+compSettingColour <- function(id, status = FALSE) {
   ns <- NS(id)
+
+  if (status) {
+    colours <- c("warning", "danger", "info", "success")
+    selected <- "info"
+  } else {
+    colours <- bs4Dash::getAdminLTEColors()
+    selected <- "white"
+  }
 
   component(
     "colour",
     selectInput(
       ns("colour"),
       "Colour",
-      bs4Dash::getAdminLTEColors(),
-      "white"
+      colours,
+      selected
     )
   )
 }
