@@ -3,7 +3,8 @@
 #' @description
 #' A way to be able to adjust components so that can more easily visualise how the shiny application will look.
 #'
-#' @param ns Namespace to include the component
+#' @param id Namespace to include the component
+#' @param choices A vector of potential choices to include in the component
 #'
 #' @return A \code{shiny.tag.list} of settings specific to the selected component
 #'
@@ -71,16 +72,19 @@ compSettingValue <- function(id) {
   )
 }
 
+#' @param label Label of the input
+#' @param optional Logical, is the input optional?
 #' @rdname component_setting
-compSettingLabel <- function(id) {
+compSettingLabel <- function(id, label = "Label", optional = FALSE) {
   ns <- NS(id)
 
   component(
     "label",
     textInput(
       inputId = ns("label"),
-      label = "Label",
-      value = "Label"
+      label = label,
+      value = if (optional) "" else label,
+      placeholder = if (optional) "Optional" else NULL
     )
   )
 }
@@ -127,17 +131,26 @@ compSettingIcon <- function(id) {
   )
 }
 
+#' @param status Logical, are only status colours allowed, default is `FALSE`
 #' @rdname component_setting
-compSettingColour <- function(id) {
+compSettingColour <- function(id, status = FALSE) {
   ns <- NS(id)
+
+  if (status) {
+    colours <- c("warning", "danger", "info", "success")
+    selected <- "info"
+  } else {
+    colours <- bs4Dash::getAdminLTEColors()
+    selected <- "white"
+  }
 
   component(
     "colour",
     selectInput(
       ns("colour"),
       "Colour",
-      bs4Dash::getAdminLTEColors(),
-      "white"
+      colours,
+      selected
     )
   )
 }
@@ -153,6 +166,19 @@ compSettingBackground <- function(id) {
       "Background Colour",
       bs4Dash::getAdminLTEColors(),
       "white"
+    )
+  )
+}
+
+#' @rdname component_setting
+compSettingFill <- function(id, label = "Fill Whole Box") {
+  ns <- NS(id)
+
+  component(
+    "fill",
+    checkboxInput(
+      ns("fill"),
+      label
     )
   )
 }
@@ -387,13 +413,13 @@ componentTab <- function(id) {
     tags$button(
       id = ns("add"),
       type = "button",
-      class = "btn btn-success action-button",
+      class = "btn btn-success action-button add-tab-button",
       "Add Tab"
     ),
     tags$button(
       id = ns("delete"),
       type = "button",
-      class = "btn btn-danger action-button",
+      class = "btn btn-danger action-button delete-tab-button",
       "Delete Tab"
     ),
     br(),

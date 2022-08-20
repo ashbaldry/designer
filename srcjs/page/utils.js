@@ -46,7 +46,7 @@ export function selectPage() {
     button_el.closest(".canvas-modal").css("display", "none");
 
     const page_choice = button_el.data('page');
-    $('#settings-page_type').find(`input[value='${page_choice}']`).trigger('click')
+    $('#settings-page_type').find(`input[value='${page_choice}']`).trigger('click');
 }
 
 export function changePageCheck () {

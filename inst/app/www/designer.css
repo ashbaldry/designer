@@ -97,6 +97,8 @@ h5.modal-title {
 
 .component-accordion.accordion>.card>.card-header .btn-link {
   color: #fff;
+  padding-top: 0.1rem;
+  padding-bottom: 0.1rem;
 }
 
 .component-accordion.accordion>.card>.card-header button:focus {
@@ -325,9 +327,21 @@ h5.modal-title {
 }
 
 .designer-element {
-  border: 1px dashed black;
   z-index: 1;
   cursor: pointer;
+}
+
+.designer-element:not(blockquote) {
+  border: 1px dashed black;
+}
+
+blockquote.designer-element {
+  border-top: 1px dashed;
+  border-right: 1px dashed;
+  border-bottom: 1px dashed;
+  border-top-color: black !important;
+  border-right-color: black !important;
+  border-bottom-color: black !important;
 }
 
 .designer-element:not(pre, .shiny-input-panel, .row-designer, .col-sm, .btn) {
@@ -428,6 +442,7 @@ span.plot-output-element, span.image-output-element {
   position: absolute;
 }
 
+.designer-page-template .tabset-designer-component .tab-content>.tab-pane,
 .designer-page-template .card-body {
   min-height: 200px;
 }
