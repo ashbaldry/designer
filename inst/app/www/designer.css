@@ -27,6 +27,12 @@ header > h1 {
 
 .card-body .notes-header {
   margin-top: 0.2rem;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+.card-body .notes-list {
+  font-size: 0.9rem;
 }
 
 h5.modal-title {
@@ -131,8 +137,12 @@ h5.modal-title {
   justify-content: space-between;
 }
 
-.component-form fieldset .form-group {
+.component-form fieldset>.component-settings {
   width: 48%;
+}
+
+.component-form .form-control {
+  height: auto;
 }
 
 .tab-parameters {

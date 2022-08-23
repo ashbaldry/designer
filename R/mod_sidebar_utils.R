@@ -91,6 +91,7 @@ sidebarItem <- function(id, name, element, parent_id, ..., notes = NULL, active 
           tagList(
             h3(class = "notes-header", "Notes"),
             tags$ul(
+              class = "notes-list",
               lapply(notes, tags$li)
             )
           )
