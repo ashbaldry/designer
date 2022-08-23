@@ -6,6 +6,7 @@ COMPONENTS <- c(
   "Column" = "column",
   "Box/Card" = "box",
   "Text" = "text",
+  "Callout" = "callout",
   "Blockquote" = "quote",
   "Input Panel" = "input_panel",
   "Dropdown (selectInput)" = "dropdown",
@@ -23,8 +24,8 @@ COMPONENTS <- c(
 )
 NAVBAR_COMPONENTS <- "tab_panel"
 BS4_COMPONENTS <- c(
-  "box", "user_box", "value_box","info_box",
-  "quote"
+  "box", "user_box", "value_box", "info_box",
+  "callout", "quote"
 )
 
 #' Component Accordion Item
