@@ -77,6 +77,7 @@ sidebarItem <- function(id, name, element, parent_id, ..., notes = NULL, active 
         class = "card-body",
         tags$form(
           id = ns("form"),
+          class = "component-form",
           ...
         ),
         if (!is.null(notes)) {

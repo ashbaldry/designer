@@ -116,6 +116,23 @@ h5.modal-title {
   margin-bottom: 0.2rem;
 }
 
+.component-form :not(label) {
+  font-size: 0.9rem;
+}
+
+.component-form label {
+  font-size: 1rem;
+}
+
+.component-form fieldset {
+  display: flex;
+  justify-content: space-between;
+}
+
+.component-form fieldset .form-group {
+  width: 48%;
+}
+
 .tab-parameters {
   display: none;
 }

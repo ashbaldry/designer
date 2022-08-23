@@ -65,8 +65,10 @@ SidebarModUI <- function(id) {
         name = "Column",
         element = "column",
         parent_id = accordion_id,
-        compSettingWidthNum(ns("column")),
-        compSettingOffset(ns("column")),
+        tags$fieldset(
+          compSettingWidthNum(ns("column")),
+          compSettingOffset(ns("column"))
+        ),
         notes = list(
           tagList("Columns can only be included in", tags$b("rows"), "."),
           "Rows are split into 12 column units, if the sum of columns' width exceeds 12, they get wrapped onto a new line."

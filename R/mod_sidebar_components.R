@@ -357,18 +357,20 @@ componentTab <- function(id) {
   ns <- NS(id)
 
   tagList(
-    textInput(
-      ns("name"),
-      label = "Name",
-      value = "Tab 1"
-    ),
-    textInput(
-      ns("value"),
-      label = inputLabel(
-        "Value",
-        "Used to reference switching the tab, or changing visibility of the tab on the server"
+    tags$fieldset(
+      textInput(
+        ns("name"),
+        label = "Name",
+        value = "Tab 1"
       ),
-      placeholder = "Keep blank to copy name"
+      textInput(
+        ns("value"),
+        label = inputLabel(
+          "Value",
+          "Used to reference switching the tab, or changing visibility of the tab on the server"
+        ),
+        placeholder = "Keep blank to copy name"
+      )
     ),
     htmltools::tagAppendAttributes(
       selectizeInput(
