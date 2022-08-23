@@ -1,4 +1,4 @@
-testthat::test_that("designer app works", {
+test_that("designer app works", {
   # Don't run these tests on the CRAN build servers
   testthat::skip_on_cran()
 
@@ -22,29 +22,29 @@ testthat::test_that("designer app works", {
   testthat::expect_equal(title, app_title)
 
   # Expecting page to change on click change
-  app$click(selector = '#settings-page_type .form-check [value="fluidPage"]')
+  app$click(selector = '#settings-page_type .form-check input[value="fluidPage"]')
   ui <- app$get_value(input = "canvas-canvas")
   testthat::expect_true(grepl("fluidPage(", jsonToRScript(ui), fixed = TRUE))
 
   # Expect all components create a component that can be dragged
-  app$click(selector = '#settings-page_type .form-check [value="dashboardPage"]')
+  app$click(selector = '#settings-page_type .form-check input[value="dashboardPage"]')
   ui <- app$get_value(input = "canvas-canvas")
   testthat::expect_true(grepl("dashboardPage(", jsonToRScript(ui), fixed = TRUE))
 
   app$click(selector = "#sidebar-tab-add")
 
-  shiny_components <- setdiff(COMPONENTS, NAVBAR_COMPONENTS)
-  for (component in shiny_components) {
-    app$click(selector = paste0("#settings-component .dropdown-item[name='", component, "']"))
-    testthat::expect_true(app$get_html("#sidebar-container") != "")
+  for (component in COMPONENTS[-1]) {
+    app$click(selector = paste("#sidebar", component, "header button", sep = "-"))
+    clicked_component <- app$get_html(selector = ".component-accordion .card.active")
+    testthat::expect_true(grepl(paste0("sidebar-", component, "-header"), clicked_component))
   }
 
   # Choose all different outputs that create IDs
-  app$click(selector = "#settings-component .dropdown-item[name='output']")
+  app$click(selector = "#sidebar-output-header button")
   original_outputs <- app$get_values()$output
-  app$set_inputs("sidebar-type" = "plot")
-  app$set_inputs("sidebar-type" = "table")
-  app$set_inputs("sidebar-type" = "image")
+  app$set_inputs("sidebar-output-type" = "plot")
+  app$set_inputs("sidebar-output-type" = "table")
+  app$set_inputs("sidebar-output-type" = "image")
 
   new_outputs <- app$get_values()$output
   testthat::expect_length(new_outputs, 3 + length(original_outputs))

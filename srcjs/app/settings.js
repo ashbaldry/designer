@@ -1,4 +1,6 @@
 export function initSettings () {
+    $('#settings-page_type').on('click', () => $(".canvas-modal").css("display", "none"));
+    
     $(".copy-ui-button").on("click", copyUICode);
     $("#css_style").on("change", applyCustomStyle);
 

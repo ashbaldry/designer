@@ -4,6 +4,8 @@ export class Component {
     updatable = true;
     display_comments = true;
     display_container = true;
+    has_card_body = false;
+    is_tab = false;
     name;
     parameters;
     tags;
@@ -14,32 +16,6 @@ export class Component {
 
     constructor() {
         $('#component_settings').css("display", "");
-    };
-
-    showRelevantOptions() {
-        $(".component-settings").css("display", "");
-        for (let i = 0; i < this.parameters.length; i++) {
-            $(".component-settings[data-component= '" + this.parameters[i] + "']").css("display", "unset");
-        }
-        this.updateTitle();
-        this.updateNotes();
-        $(".component-container").css("display", this.display_container ? "" : "none");
-        $(".component-comments").css("display", this.display_comments ? "" : "none");
-    };
-
-    updateTitle() {
-        const title = this.name ? `${this.name} Settings` : null;
-        $("#sidebar-title").html(title);
-    }
-
-    updateNotes() {
-        $("#sidebar-notes").html(null);
-        if (this.notes) {
-            $("#sidebar-notes").html("<h3>Notes</h3><ul></ul>");
-            for (let i = 0; i < this.notes.length; i++) {
-                $("#sidebar-notes ul").append("<li>" + this.notes[i] + "</li>");
-            }
-        }
     };
 
     createComponent() {
@@ -73,8 +49,10 @@ export class Component {
             },
             onClone: function(evt) {
                 if (component.sortable_settings) {
-                    if (component.name === "Box") {
+                    if (component.has_card_body) {
                         Sortable.create($(evt.item).find('.card-body')[0], component.sortable_settings);
+                    } else if (component.is_tab) {
+                        Sortable.create($(evt.item).find('.tab-content'), component.sortable_settings);
                     } else {
                         Sortable.create(evt.item, component.sortable_settings);
                     }
@@ -100,52 +78,12 @@ export class Component {
         }       
     };
 
-    updateTag() {
-        if (this.tags) {
-            var selectize = $("#sidebar-tag").selectize()[0].selectize;
-            selectize.clearOptions(true);
-            selectize.addOption(this.tags);
-            selectize.refreshOptions(false);
-            selectize.addItem(this.tags[0].value);
-        }
-    };
-
-    updateType() {
-        if (this.types) {
-            var selectize = $("#sidebar-type").selectize()[0].selectize;
-            selectize.clearOptions(true);
-            selectize.addOption(this.types);
-            selectize.refreshOptions(false);
-            selectize.addItem(this.types[0].value);
-        }
-    };
-
-    updateTextInputs(elements) {
-        for (var i = 0; i < elements.length; i++) {
-            this.updateTextInput(elements[i].id, elements[i].text);
-        }
-    };
-    
-    updateTextInput(id, text = "") {
-        $(`#sidebar-${id}`).val(text);
-    };
-
-    updateLabels(elements) {
-        for (var i = 0; i < elements.length; i++) {
-            this.updateLabel(elements[i].id, elements[i].text);
-        }
-    };
-
-    updateLabel(id, text = "") {
-        $(`label[for='sidebar-${id}']`).html(text);
-    };
-
     createID(prefix = "") {
         prefix = prefix ? prefix + "_" : prefix;
         return prefix + Math.random().toString(36).substring(2, 12);
     };
 
-    validateCssUnit (x, fallback) {
+    validateCssUnit(x, fallback) {
         if (this._regex.test(x)) {
             return x;
         } else if (/^\d+$/.test(x)) {

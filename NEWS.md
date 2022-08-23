@@ -8,13 +8,19 @@
 
 * Elements can be deleted by right clicking an element and deleting (#35)
 
+* Page choice is available on application start rather than choosing in the dropdown (#48)
+
 * JavaScript code has moved to separate folder to work on as a module rather than 2/3 large files
 
-### Bug Fixes 
+### Bug Fixes
 
 * Fixed rendering issue with radio buttons and grouped checkboxes (#26)
 
-* Close and snapshot buttons are visible on full page preview for navbar page 
+* Button class now appears in the code (#28)
+
+* Warning about duplicate tab names has been removed (#37) 
+
+* Close and snapshot buttons are visible on full page preview for navbar page
 
 ## 0.1.0
 

@@ -1,10 +1,12 @@
 COMPONENTS <- c(
   "Tab" = "tab_panel",
   "Header" = "header",
+  "Tabset Panel" = "tabset",
   "Row" = "row",
   "Column" = "column",
   "Box/Card" = "box",
   "Text" = "text",
+  "Blockquote" = "quote",
   "Input Panel" = "input_panel",
   "Dropdown (selectInput)" = "dropdown",
   "Input" = "input",
@@ -15,10 +17,15 @@ COMPONENTS <- c(
   "Radio Buttons" = "radio",
   "Button" = "button",
   "Output" = "output",
-  "Value Box" = "value_box"
+  "User Box" = "user_box",
+  "Value Box" = "value_box",
+  "Info Box" = "info_box"
 )
 NAVBAR_COMPONENTS <- "tab_panel"
-BS4_COMPONENTS <- c("box", "value_box")
+BS4_COMPONENTS <- c(
+  "box", "user_box", "value_box","info_box",
+  "quote"
+)
 
 #' Component Accordion Item
 #'

@@ -39,5 +39,5 @@ export class Page {
 
     getTabID () {
         return Math.round(Math.random() * 8999 + 1000);
-    }    
+    };
 };

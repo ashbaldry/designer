@@ -10,6 +10,7 @@
 \alias{compSettingIcon}
 \alias{compSettingColour}
 \alias{compSettingBackground}
+\alias{compSettingFill}
 \alias{compSettingText}
 \alias{compSettingTextArea}
 \alias{compSettingChoices}
@@ -30,15 +31,17 @@ compSettingPlot(id)
 
 compSettingValue(id)
 
-compSettingLabel(id)
+compSettingLabel(id, label = "Label", optional = FALSE)
 
 compSettingID(id)
 
 compSettingIcon(id)
 
-compSettingColour(id)
+compSettingColour(id, status = FALSE)
 
 compSettingBackground(id)
+
+compSettingFill(id, label = "Fill Whole Box")
 
 compSettingText(id, value = NULL)
 
@@ -61,7 +64,15 @@ compSettingWidthNum(id, value = 3, min = 1)
 compSettingOffset(id)
 }
 \arguments{
-\item{ns}{Namespace to include the component}
+\item{id}{Namespace to include the component}
+
+\item{choices}{A vector of potential choices to include in the component}
+
+\item{label}{Label of the input}
+
+\item{optional}{Logical, is the input optional?}
+
+\item{status}{Logical, are only status colours allowed, default is \code{FALSE}}
 }
 \value{
 A \code{shiny.tag.list} of settings specific to the selected component

@@ -44,5 +44,5 @@ export class ValueBox extends Component {
             colour: background,
             colour_class: background_class
         });
-    };   
+    };      
 }

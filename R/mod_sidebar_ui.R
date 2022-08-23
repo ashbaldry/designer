@@ -44,6 +44,25 @@ SidebarModUI <- function(id) {
         compSettingText(ns("header"), value = "Header")
       ),
 
+      #### Tab Panel ####
+      sidebarItem(
+        id = ns("tabset"),
+        name = "Tabset Panel",
+        element = "tabset",
+        parent_id = accordion_id,
+        conditionalPanel(
+          "input['settings-page_type'] !== 'dashboardPage'",
+          compSettingType(ns("tabset"), c("tabs", "pills"))
+        ),
+        conditionalPanel(
+          "input['settings-page_type'] === 'dashboardPage'",
+          compSettingLabel(ns("tabset"), label = "Title", optional = TRUE),
+          compSettingColour(ns("tabset")),
+          compSettingWidthNum(ns("tabset"), value = 6, min = 0)
+        ),
+        componentTab(ns("tabset"))
+      ),
+
       #### Row ####
       sidebarItem(
         id = ns("row"),
@@ -85,6 +104,41 @@ SidebarModUI <- function(id) {
         compSettingColour(ns("box")),
         compSettingBackground(ns("box")),
         compSettingWidthNum(ns("box"), value = 6, min = 0),
+        notes = list(
+          tagList("If the width > 0, then the box is included in a column and can only be included in", tags$b("rows"), "."),
+          "Rows are split into 12 column units, if the sum of boxs' width exceeds 12, they get wrapped onto a new line."
+        )
+      ),
+
+      #### User Box ####
+      sidebarItem(
+        id = ns("user_box"),
+        name = "User Box/Card",
+        element = "user_box",
+        parent_id = accordion_id,
+        compSettingLabel(ns("user_box")),
+        compSettingType(ns("user_box"), c(1, 2)),
+        compSettingColour(ns("user_box")),
+        compSettingBackground(ns("user_box")),
+        compSettingWidthNum(ns("user_box"), value = 3, min = 0),
+        notes = list(
+          tagList("If the width > 0, then the box is included in a column and can only be included in", tags$b("rows"), "."),
+          "Rows are split into 12 column units, if the sum of boxs' width exceeds 12, they get wrapped onto a new line."
+        )
+      ),
+
+      #### Info Box ####
+      sidebarItem(
+        id = ns("info_box"),
+        name = "Info Box",
+        element = "info_box",
+        parent_id = accordion_id,
+        compSettingValue(ns("info_box")),
+        compSettingLabel(ns("info_box")),
+        compSettingIcon(ns("info_box")),
+        compSettingBackground(ns("info_box")),
+        compSettingFill(ns("info_box")),
+        compSettingWidthNum(ns("info_box"), value = 3, min = 0),
         notes = list(
           tagList("If the width > 0, then the box is included in a column and can only be included in", tags$b("rows"), "."),
           "Rows are split into 12 column units, if the sum of boxs' width exceeds 12, they get wrapped onto a new line."
@@ -250,6 +304,32 @@ SidebarModUI <- function(id) {
           choices = c("Paragraph <p>" = "p", "Ordered List <ol>" = "ol", "Unordered List <ul>" = "ul")
         ),
         compSettingTextArea(ns("text"))
+      ),
+
+      #### Block Quote ####
+      sidebarItem(
+        id = ns("quote"),
+        name = "Block Quote",
+        element = "quote",
+        parent_id = accordion_id,
+        compSettingColour(ns("quote")),
+        compSettingTextArea(ns("quote"))
+      ),
+
+      #### Callout ####
+      sidebarItem(
+        id = ns("callout"),
+        name = "Callout",
+        element = "callout",
+        parent_id = accordion_id,
+        compSettingLabel(ns("callout")),
+        compSettingColour(ns("callout"), status = TRUE),
+        compSettingTextArea(ns("callout")),
+        compSettingWidthNum(ns("callout"), value = 6, min = 0),
+        notes = list(
+          tagList("If the width > 0, then the box is included in a column and can only be included in", tags$b("rows"), "."),
+          "Rows are split into 12 column units, if the sum of boxs' width exceeds 12, they get wrapped onto a new line."
+        )
       ),
 
       #### Output ####
