@@ -84,12 +84,14 @@ sidebarItem <- function(id, name, element, parent_id, ..., notes = NULL, active 
         class = "card-body",
         tags$form(
           id = ns("form"),
+          class = "component-form",
           ...
         ),
         if (!is.null(notes)) {
           tagList(
             h3(class = "notes-header", "Notes"),
             tags$ul(
+              class = "notes-list",
               lapply(notes, tags$li)
             )
           )

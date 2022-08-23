@@ -123,7 +123,8 @@ compSettingIcon <- function(id) {
           render = I("{
             item: function(item, escape) { return '<div class=\"item icon-option\">' + item.label + '</div>'; },
             option: function(item, escape) { return '<div class=\"option icon-option\">' + item.label + '</div>'; }
-          }")
+          }"),
+          maxOptions = 3000
         )
       ),
       class = "icon-choices"
@@ -211,7 +212,8 @@ compSettingTextArea <- function(id) {
         "Add individual list items on separate lines"
       ),
       value = "",
-      height = "5rem"
+      height = "5rem",
+      width = "100%"
     )
   )
 }
@@ -226,7 +228,8 @@ compSettingChoices <- function(id) {
       inputId = ns("choices"),
       label = "Choices (One Per Line)",
       value = "Choice 1\nChoice 2",
-      height = "5rem"
+      height = "5rem",
+      width = "100%"
     )
   )
 }
@@ -383,33 +386,44 @@ componentTab <- function(id) {
   ns <- NS(id)
 
   tagList(
-    textInput(
-      ns("name"),
-      label = "Name",
-      value = "Tab 1"
-    ),
-    textInput(
-      ns("value"),
-      label = inputLabel(
-        "Value",
-        "Used to reference switching the tab, or changing visibility of the tab on the server"
+    tags$fieldset(
+      div(
+        class = "component-settings",
+        textInput(
+          ns("name"),
+          label = "Name",
+          value = "Tab 1"
+        )
       ),
-      placeholder = "Keep blank to copy name"
+      div(
+        class = "component-settings",
+        textInput(
+          ns("value"),
+          label = inputLabel(
+            "Value",
+            "Used to reference switching the tab, or changing visibility of the tab on the server"
+          ),
+          placeholder = "Keep blank to copy name"
+        )
+      ),
     ),
-    htmltools::tagAppendAttributes(
-      selectizeInput(
-        inputId = ns("icon"),
-        label = "Icon",
-        choices = c("Optional" = ""),
-        options = list(
-          render = I("{
+    div(
+      class = "component-settings",
+      htmltools::tagAppendAttributes(
+        selectizeInput(
+          inputId = ns("icon"),
+          label = "Icon",
+          choices = c("Optional" = ""),
+          options = list(
+            render = I("{
             item: function(item, escape) { return '<div class=\"item icon-option\">' + item.label + '</div>'; },
             option: function(item, escape) { return '<div class=\"option icon-option\">' + item.label + '</div>'; }
           }"),
           maxOptions = 3000
-        )
-      ),
-      class = "icon-choices"
+          )
+        ),
+        class = "icon-choices"
+      )
     ),
     tags$button(
       id = ns("add"),

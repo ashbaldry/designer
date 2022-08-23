@@ -27,6 +27,12 @@ header > h1 {
 
 .card-body .notes-header {
   margin-top: 0.2rem;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+.card-body .notes-list {
+  font-size: 0.9rem;
 }
 
 h5.modal-title {
@@ -116,6 +122,31 @@ h5.modal-title {
 
 .component-accordion .card-body .form-group label {
   margin-bottom: 0.2rem;
+}
+
+.component-form :not(label) {
+  font-size: 0.9rem;
+}
+
+.component-form label {
+  font-size: 1rem;
+}
+
+.component-form fieldset {
+  display: flex;
+  justify-content: space-between;
+}
+
+.component-form>.component-settings .form-group {
+  width: 100%;
+}
+
+.component-form fieldset>.component-settings {
+  width: 48%;
+}
+
+.component-form .form-control {
+  height: auto;
 }
 
 .tab-parameters {
