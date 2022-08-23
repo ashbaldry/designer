@@ -387,19 +387,25 @@ componentTab <- function(id) {
 
   tagList(
     tags$fieldset(
-      textInput(
-        ns("name"),
-        label = "Name",
-        value = "Tab 1"
+      div(
+        class = "component-settings",
+        textInput(
+          ns("name"),
+          label = "Name",
+          value = "Tab 1"
+        )
       ),
-      textInput(
-        ns("value"),
-        label = inputLabel(
-          "Value",
-          "Used to reference switching the tab, or changing visibility of the tab on the server"
-        ),
-        placeholder = "Keep blank to copy name"
-      )
+      div(
+        class = "component-settings",
+        textInput(
+          ns("value"),
+          label = inputLabel(
+            "Value",
+            "Used to reference switching the tab, or changing visibility of the tab on the server"
+          ),
+          placeholder = "Keep blank to copy name"
+        )
+      ),
     ),
     htmltools::tagAppendAttributes(
       selectizeInput(
@@ -414,7 +420,7 @@ componentTab <- function(id) {
           maxOptions = 3000
         )
       ),
-      class = "icon-choices"
+      class = "component-settings icon-choices"
     ),
     tags$button(
       id = ns("add"),

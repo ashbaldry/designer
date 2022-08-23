@@ -62,6 +62,7 @@ SidebarModUI <- function(id) {
             compSettingWidthNum(ns("tabset"), value = 6, min = 0)
           )
         ),
+        tags$hr(),
         componentTab(ns("tabset"))
       ),
 

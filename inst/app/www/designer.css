@@ -137,6 +137,10 @@ h5.modal-title {
   justify-content: space-between;
 }
 
+.component-form>.component-settings {
+  width: 100%;
+}
+
 .component-form fieldset>.component-settings {
   width: 48%;
 }
