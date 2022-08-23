@@ -228,7 +228,8 @@ compSettingChoices <- function(id) {
       inputId = ns("choices"),
       label = "Choices (One Per Line)",
       value = "Choice 1\nChoice 2",
-      height = "5rem"
+      height = "5rem",
+      width = "100%"
     )
   )
 }
