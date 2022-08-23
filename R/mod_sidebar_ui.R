@@ -52,6 +52,7 @@ SidebarModUI <- function(id) {
         parent_id = accordion_id,
         conditionalPanel(
           "input['settings-page_type'] !== 'dashboardPage'",
+          class = "component-settings",
           compSettingType(ns("tabset"), c("tabs", "pills"))
         ),
         conditionalPanel(
