@@ -8,7 +8,7 @@ export function initSettings () {
     $("#remove_colour").on("change", toggleBackgroundColours);
     $("#remove_border").on("change", toggleBorders);
 
-    $(".component-accordion .card-header button").on("click", scrollToComponent)
+    $(".component-accordion .card-header button").on("click", scrollToComponent);
 
     $("body").on("click", () => {
         if (document.querySelector("body").classList.contains("sidebar-mini")) {

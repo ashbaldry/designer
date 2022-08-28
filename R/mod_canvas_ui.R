@@ -10,6 +10,7 @@ CanvasModUI <- function(id) {
 
   tags$section(
     class = "page-canvas-shell",
+    id = ns("html"),
     span(
       class = "page-preview-button",
       screenshtButton(class = "btn-outline-dark"),

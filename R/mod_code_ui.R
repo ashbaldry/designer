@@ -36,7 +36,8 @@ CodeModUI <- function(id) {
       },
       downloadButton(
         ns("download")
-      )
+      ),
+      bookmarkButton()
     ),
     tagAppendAttributes(
       verbatimTextOutput(ns("code"), placeholder = TRUE),
