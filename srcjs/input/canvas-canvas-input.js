@@ -25,9 +25,11 @@ $.extend(canvasBinding, {
     $(".canvas-modal").css("display", "none");
 
     if (page.enable_on_load) {
-        page.enableSortablePage("canvas-page");
+      page.enableSortablePage("canvas-page");
     } else {
-      
+      let tab_ids = [];
+      el.getElementsByClassName("tab-pane").forEach(x => tab_ids.push(x.id));
+      tab_ids.map(x => page.enableSortablePage(x));
     }
     page.updateComponentDropdown();    
   }
