@@ -1,3 +1,5 @@
+import { page } from "../page/utils";
+
 export var canvasBinding = new Shiny.InputBinding();
 
 $.extend(canvasBinding, {
@@ -21,5 +23,12 @@ $.extend(canvasBinding, {
   receiveMessage(el, data) {
     this.setValue(el, data);
     $(".canvas-modal").css("display", "none");
+
+    if (page.enable_on_load) {
+        page.enableSortablePage("canvas-page");
+    } else {
+      
+    }
+    page.updateComponentDropdown();    
   }
 });

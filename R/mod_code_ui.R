@@ -24,6 +24,9 @@ CodeModUI <- function(id) {
           "Copy"
         )
       ),
+      bookmarkButton(
+        label = "Save Link"
+      ),
       if (interactive()) {
         span(
           toast("save_toast", "Saved!"),
@@ -36,8 +39,7 @@ CodeModUI <- function(id) {
       },
       downloadButton(
         ns("download")
-      ),
-      bookmarkButton()
+      )
     ),
     tagAppendAttributes(
       verbatimTextOutput(ns("code"), placeholder = TRUE),
