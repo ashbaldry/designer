@@ -362,7 +362,7 @@ h5.modal-title {
   cursor: pointer;
 }
 
-.designer-element:not(blockquote) {
+.designer-element:not(blockquote, .card-body, .tab-pane) {
   border: 1px dashed black;
 }
 

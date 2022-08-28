@@ -1,5 +1,7 @@
 import { page } from "../page/utils";
 import { Component } from "../component/Component";
+import { Column } from "../component/Column";
+import { Row } from "../component/Row";
 
 export var canvasBinding = new Shiny.InputBinding();
 
@@ -11,7 +13,6 @@ $.extend(canvasBinding, {
     return $(el).find(".page-canvas").html();
   },
   setValue: function(el, value) {
-    console.log(value);
     $(el).find(".page-canvas").html(value);
   },
   subscribe: function(el, callback) {
@@ -29,11 +30,22 @@ $.extend(canvasBinding, {
       page.enableSortablePage("canvas-page");
     }
 
-    let tab_ids = [];
-    el.getElementsByClassName("tab-pane").forEach(x => tab_ids.push(x.id));
-    tab_ids.map(x => page.enableSortablePage(x));
-
     page.updateComponentDropdown();
+    // Fixes the first flashing component
     new Component().enableSortable();
+
+    const sortable_settings = new Column().sortable_settings;
+    const row_sortable_settings = new Row().sortable_settings;
+    
+    PARENT_DESIGNER_CLASSES.map(x => enableSortableComponent(x, settings = sortable_settings));
+    enableSortableComponent("designer-element row", settings = row_sortable_settings)
   }
 });
+
+const PARENT_DESIGNER_CLASSES = ["tab-pane", "designer-element col-sm", "designer-element card-body", "shiny-input-panel"];
+
+function enableSortableComponent(selector, settings) {
+  document.getElementsByClassName(selector).forEach(el => {
+    Sortable.create(el, settings);
+  })
+}

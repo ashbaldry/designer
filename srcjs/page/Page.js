@@ -26,15 +26,28 @@ export class Page {
         $(".page-canvas").html(this.getPageHTML(this.page_html, title));
     };
 
-    enableSortablePage (id) {
-        Sortable.create(document.getElementById(id), {
-            group: {
-                name: "shared",
-                put: function (_to, _from, clone) {
-                    return !clone.classList.contains("col-sm");
+    enableSortablePage(selector, by = "id") {
+        if (by === "id") {
+            Sortable.create(document.getElementById(selector), {
+                group: {
+                    name: "shared",
+                    put: function (_to, _from, clone) {
+                        return !clone.classList.contains("col-sm");
+                    }
                 }
-            }
-        });
+            });
+        } else {
+            document.getElementsByClassName(selector).forEach(el => {
+                Sortable.create(el, {
+                    group: {
+                        name: "shared",
+                        put: function (_to, _from, clone) {
+                            return !clone.classList.contains("col-sm");
+                        }
+                    }
+                });
+            })
+        }
     };
 
     getTabID () {

@@ -94,13 +94,11 @@ export class SliderInput extends Component {
         if (type === "date") {
             return function (num) {
                 var sel_date = new Date(num);
-                console.log(sel_date);
                 return sel_date.getFullYear() + "-" + (sel_date.getMonth() + 1) + "-" + sel_date.getDate();
             }
         } else if (type === "datetime") {
             return function (num) {
                 var sel_date = new Date(num);
-                console.log(sel_date);
                 return sel_date.getFullYear() + "-" + (sel_date.getMonth() + 1) + "-" + sel_date.getDate() + " " +
                 sel_date.getHours() + ":" + sel_date.getMinutes() + ":" + sel_date.getSeconds();
             }

@@ -7,6 +7,7 @@ CanvasModuleServer <- function(id) {
 
     onBookmark(function(state) {
       state$values$html <- input$html
+      state$values$designer_version <- packageVersion("designer")
     })
     onRestore(function(state) {
       session$sendInputMessage("html", state$values$html)
