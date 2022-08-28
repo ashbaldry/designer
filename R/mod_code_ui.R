@@ -25,7 +25,7 @@ CodeModUI <- function(id) {
         )
       ),
       bookmarkButton(
-        label = "Save Link"
+        label = "Share"
       ),
       if (interactive()) {
         span(

@@ -15,7 +15,6 @@ export class Component {
     html;
 
     constructor() {
-        $('#component_settings').css("display", "");
     };
 
     createComponent() {

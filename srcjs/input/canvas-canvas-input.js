@@ -1,4 +1,5 @@
 import { page } from "../page/utils";
+import { Component } from "../component/Component";
 
 export var canvasBinding = new Shiny.InputBinding();
 
@@ -26,11 +27,13 @@ $.extend(canvasBinding, {
 
     if (page.enable_on_load) {
       page.enableSortablePage("canvas-page");
-    } else {
-      let tab_ids = [];
-      el.getElementsByClassName("tab-pane").forEach(x => tab_ids.push(x.id));
-      tab_ids.map(x => page.enableSortablePage(x));
     }
-    page.updateComponentDropdown();    
+
+    let tab_ids = [];
+    el.getElementsByClassName("tab-pane").forEach(x => tab_ids.push(x.id));
+    tab_ids.map(x => page.enableSortablePage(x));
+
+    page.updateComponentDropdown();
+    new Component().enableSortable();
   }
 });
