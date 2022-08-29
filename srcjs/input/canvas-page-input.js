@@ -9,9 +9,6 @@ $.extend(canvasPageBinding, {
   getValue: function(el) {
     return htmlToJSON(document.getElementById("canvas-page"));
   },
-  setValue: function(el, value) {
-    $(el).text(value);
-  },
   subscribe: function(el, callback) {
     const observer = new MutationObserver(function() { callback(); });
     observer.observe(el, {subtree: true, childList: true, attributes: true});

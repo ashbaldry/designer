@@ -18,7 +18,7 @@ export class UserBox extends Component {
                 <div class="widget-user-image">
                     <img class="img-circle" alt="User Avatar" src="www/avatar.png"/>
                 </div>                
-                <div class="card-body" type="$type$"></div>
+                <div class="card-body designer-element" type="$type$"></div>
                 <div class="card-footer"></div>
             </div>
             <script type="application /json">{

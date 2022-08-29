@@ -66,6 +66,10 @@ A few layout rules have been implemented into the application to try and match t
 
 Once the wireframe is complete, then there is the ability to save the code, either by downloading the file or copying the code. There is also the opportunity to take a screenshot to annotate further if required.
 
+## Sharing Designs
+
+Alternatively you can share it with others using Code -> Share. This will generate a URL that when opened by another person (or yourself in the future) will show the saved state of the design and then can be added onto and saved again - this will generate a new URL to share.
+
 ### Extras
 
 There are some development tools that have been enabled upon start-up that can be removed to preview the UI as the end user would see the application, such as borders around all components, colouring some empty components like columns and rows, and removing component names from the UI.

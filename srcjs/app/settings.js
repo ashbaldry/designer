@@ -8,7 +8,7 @@ export function initSettings () {
     $("#remove_colour").on("change", toggleBackgroundColours);
     $("#remove_border").on("change", toggleBorders);
 
-    $(".component-accordion .card-header button").on("click", scrollToComponent)
+    $(".component-accordion .card-header button").on("click", scrollToComponent);
 
     $("body").on("click", () => {
         if (document.querySelector("body").classList.contains("sidebar-mini")) {
@@ -21,7 +21,7 @@ export function initSettings () {
     $("#canvas-close_preview").on("click", () => { $(".page-canvas-shell").removeClass("preview"); });
 
     Shiny.addCustomMessageHandler("toggleBS4DashDeps", toggleBS4DashDeps);
-    Shiny.addCustomMessageHandler("runjs", function(message) { console.log(message); (0, eval)(message.script); });
+    Shiny.addCustomMessageHandler("runjs", function(message) { (0, eval)(message.script); });
 
     $("body").on("click contextmenu", closeCanvasMenu);
     $("#canvas-canvas").on("contextmenu", showCanvasMenu);

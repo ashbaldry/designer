@@ -6,7 +6,7 @@ import { BootstrapPage } from './BootstrapPage';
 import { NavbarPage } from './NavbarPage';
 import { DashboardPage } from './DashboardPage';
 
-var page;
+export var page;
 
 export function createPage () {
     var page_type = $('#settings-page_type input:radio:checked').val();

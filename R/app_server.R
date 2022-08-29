@@ -4,9 +4,9 @@
 #'
 #' @noRd
 appServer <- function(input, output, session) {
-  observeEvent(input$help, {
-    guide$init()$start()
-  })
+  setBookmarkExclude(c("remove_border", "remove_label", "remove_colour", "help", "css_style"))
+
+  observeEvent(input$help, guide$init()$start())
 
   page_html <- CanvasModuleServer("canvas")
 
