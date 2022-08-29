@@ -388,7 +388,7 @@ componentTab <- function(id) {
   tagList(
     tags$fieldset(
       div(
-        class = "component-settings",
+        class = "tab-settings",
         textInput(
           ns("name"),
           label = "Name",
@@ -396,7 +396,7 @@ componentTab <- function(id) {
         )
       ),
       div(
-        class = "component-settings",
+        class = "tab-settings",
         textInput(
           ns("value"),
           label = inputLabel(
@@ -408,7 +408,7 @@ componentTab <- function(id) {
       ),
     ),
     div(
-      class = "component-settings",
+      class = "tab-settings",
       htmltools::tagAppendAttributes(
         selectizeInput(
           inputId = ns("icon"),

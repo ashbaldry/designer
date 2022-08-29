@@ -133,11 +133,13 @@ h5.modal-title {
   justify-content: space-between;
 }
 
-.component-form>.component-settings .form-group {
+.component-form>.component-settings .form-group,
+.component-form>.tab-settings .form-group{
   width: 100%;
 }
 
-.component-form fieldset>.component-settings {
+.component-form fieldset>.component-settings,
+.component-form fieldset>.tab-settings{
   width: 48%;
 }
 
