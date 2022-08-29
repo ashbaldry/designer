@@ -3,7 +3,7 @@ import { Component } from '../component/Component'
 import { Column } from '../component/Column'
 import { Row } from '../component/Row'
 
-export var canvasBinding = new Shiny.InputBinding()
+export const canvasBinding = new Shiny.InputBinding()
 
 $.extend(canvasBinding, {
   find: function (scope) {
@@ -34,11 +34,11 @@ $.extend(canvasBinding, {
     // Fixes the first flashing component
     new Component().enableSortable()
 
-    const sortable_settings = new Column().sortable_settings
-    const row_sortable_settings = new Row().sortable_settings
+    const sortableSettings = new Column().sortable_settings
+    const sortableRowSettings = new Row().sortable_settings
 
-    PARENT_DESIGNER_CLASSES.map(x => enableSortableComponent(x, settings = sortable_settings))
-    enableSortableComponent('designer-element row', settings = row_sortable_settings)
+    PARENT_DESIGNER_CLASSES.map(x => enableSortableComponent(x, sortableSettings))
+    enableSortableComponent('designer-element row', sortableRowSettings)
   }
 })
 

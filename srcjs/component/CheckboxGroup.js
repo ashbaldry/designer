@@ -24,7 +24,7 @@ export class CheckboxGroupInput extends Component {
     let id = $('#sidebar-radio-id').val()
     id = id === '' ? this.createID('checkbox') : id
 
-    let type = $('#sidebar-radio-type').val()
+    const type = $('#sidebar-radio-type').val()
     const input_info = this.types.find(x => x.value === type)
     if (!input_info) return
     const r_func = input_info.r_func
@@ -34,14 +34,14 @@ export class CheckboxGroupInput extends Component {
     const style_str = width ? `style="width: ${width};"` : ''
     const width_str = width ? `, width = &quot;${width}&quot;` : ''
 
-    let inline = document.getElementById('sidebar-radio-inline').checked
+    const inline = document.getElementById('sidebar-radio-inline').checked
     const inline_class = inline ? '-inline' : ''
     const inline_str = inline ? ', inline = TRUE' : ''
     const css_class = `shiny-input-${type}group${inline_class}`
 
     const choices = $('#sidebar-radio-choices').val()
     const choices_str = `, choices = c(&quot;${choices.replace(/\n/g, '&quot;, &quot;')}&quot;)`
-    const choices_html = choices.split('\n').map(x => this.createCheckbox(x, type = type, inline = inline)).join('')
+    const choices_html = choices.split('\n').map(x => this.createCheckbox(x, type, inline)).join('')
 
     return this.replaceHTMLPlaceholders(this.html, {
       id,

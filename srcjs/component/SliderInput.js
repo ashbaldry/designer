@@ -59,13 +59,12 @@ export class SliderInput extends Component {
       }
     }
 
-    let curr_time; const curr_date = new Date()
+    const curr_date = new Date()
     if (format === 'date') {
       curr_date.setHours(0, 0, 0, 0)
     }
-
+    const curr_time = curr_date.getTime()
     const step = format === 'date' ? 1000 * 60 * 60 * 24 : 1000
-    curr_time = curr_date.getTime()
 
     const min = curr_time - 5 * step
     const max = curr_time + 5 * step

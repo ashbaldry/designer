@@ -21,11 +21,6 @@ export class UserBox extends Component {
                 <div class="card-body designer-element" type="$type$"></div>
                 <div class="card-footer"></div>
             </div>
-            <script type="application /json">{
-                "title":"&lt;div class=\"widget-user-header\"&gt;\n  &lt;h3 class=\"widget-user-username\"&gt;$label$&lt;\/h3&gt;\n&lt;\/div&gt;\n&lt;div class=\"widget-user-image\"&gt;\n  &lt;img class=\"img-circle\" alt=\"User Avatar\"/&gt;\n&lt;\/div&gt;"
-                "solidHeader":true,"width":$width$,"collapsible":true,"closable":false,"maximizable":false,
-                "gradient":false,"background":"$background$","status":"$colour$"
-            }</script>
         </div>
     `
 

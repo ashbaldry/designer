@@ -14,9 +14,6 @@ export class Component {
   sortable_settings
   html
 
-  constructor () {
-  };
-
   createComponent () {
     return this.html
   };

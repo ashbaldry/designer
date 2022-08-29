@@ -5,8 +5,6 @@ export class Page {
   enable_on_load = true
   page_html
 
-  constructor () {};
-
   updateComponentDropdown () {
     $('.navbar-tab-item').css('display', this.navbar_item_style)
     $('.bs4-item').css('display', this.bs4_item_style)

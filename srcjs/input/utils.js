@@ -1,7 +1,7 @@
 export function htmlToJSON (el, inner = false) {
   const children = getChildrenJSON(el)
 
-  const el_json = {
+  const jsonElement = {
     tagName: el.tagName.toLowerCase(),
     r_function: el.dataset.shinyfunction,
     r_arguments: el.dataset.shinyattributes,
@@ -12,9 +12,9 @@ export function htmlToJSON (el, inner = false) {
   }
 
   if (inner) {
-    return el_json
+    return jsonElement
   } else {
-    return JSON.stringify(el_json)
+    return JSON.stringify(jsonElement)
   }
 };
 
@@ -28,9 +28,9 @@ function getChildrenJSON (el) {
     if (el.children[i].dataset.shinyfunction) {
       children.push(htmlToJSON(el.children[i], true))
     } else if (el.children[i].children.length) {
-      const child_content = getChildrenJSON(el.children[i])
-      if (child_content.length) {
-        children = children.concat(child_content)
+      const childContent = getChildrenJSON(el.children[i])
+      if (childContent.length > 0) {
+        children = children.concat(childContent)
       }
     }
   }

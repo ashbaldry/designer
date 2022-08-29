@@ -1,6 +1,6 @@
 import { htmlToJSON } from './utils'
 
-export var canvasPageBinding = new Shiny.InputBinding()
+export const canvasPageBinding = new Shiny.InputBinding()
 
 $.extend(canvasPageBinding, {
   find: function (scope) {
