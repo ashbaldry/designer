@@ -5,7 +5,8 @@
   "main": "",
   "scripts": {
     "build": "node build.js",
-    "build_dev": "node build_dev.js",    
+    "build_dev": "node build_dev.js",
+    "lint": "eslint --fix --ext .js,.jsx .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -23,6 +24,11 @@
     "sortablejs": "^1.15.0"
   },
   "devDependencies": {
-    "esbuild": "^0.14.42"
+    "esbuild": "^0.14.42",
+    "eslint": "^8.0.1",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-n": "^15.0.0",
+    "eslint-plugin-promise": "^6.0.0"
   }
 }

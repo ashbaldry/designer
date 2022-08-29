@@ -35,14 +35,14 @@ jsonToRScript <- function(json) {
 #' @return A string that can be written to a \code{ui.R} file
 #'
 #' @noRd
-htmlToRScript <- function(html_list, indent = 0) {
+htmlToRScript <- function(html_list, indent = 0L) {
   if (is.null(html_list$r_function)) return("")
 
   indent_space <- paste0(rep(" ", indent), collapse = "")
-  indent_text_space <- paste0(rep(" ", indent + 2), collapse = "")
+  indent_text_space <- paste0(rep(" ", indent + 2L), collapse = "")
 
-  if ("children" %in% names(html_list) && length(html_list$children) > 0) {
-    sub_rfuncs <- lapply(html_list$children, htmlToRScript, indent = indent + 2)
+  if ("children" %in% names(html_list) && length(html_list$children) > 0L) {
+    sub_rfuncs <- lapply(html_list$children, htmlToRScript, indent = indent + 2L)
     sub_rfuncs <- paste0(paste(sub_rfuncs, collapse = ",\n"), "\n")
   } else {
     sub_rfuncs <- ""
@@ -73,7 +73,7 @@ htmlToRScript <- function(html_list, indent = 0) {
   if (is.null(html_list$r_comments)) {
     r_comments <- ""
   } else {
-    r_comments <- paste0(indent_space, "# ", strsplit(html_list$r_comments, "\n")[[1]], "\n", collapse = "")
+    r_comments <- paste0(indent_space, "# ", strsplit(html_list$r_comments, "\n")[[1L]], "\n", collapse = "")
   }
 
   paste0(

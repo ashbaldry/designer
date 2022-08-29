@@ -1,19 +1,19 @@
-import { htmlToJSON } from "./utils";
+import { htmlToJSON } from './utils'
 
-export var canvasPageBinding = new Shiny.InputBinding();
+export const canvasPageBinding = new Shiny.InputBinding()
 
 $.extend(canvasPageBinding, {
-  find: function(scope) {
-    return $(scope).find(".page-canvas");
+  find: function (scope) {
+    return $(scope).find('.page-canvas')
   },
-  getValue: function(el) {
-    return htmlToJSON(document.getElementById("canvas-page"));
+  getValue: function (el) {
+    return htmlToJSON(document.getElementById('canvas-page'))
   },
-  subscribe: function(el, callback) {
-    const observer = new MutationObserver(function() { callback(); });
-    observer.observe(el, {subtree: true, childList: true, attributes: true});
+  subscribe: function (el, callback) {
+    const observer = new MutationObserver(function () { callback() })
+    observer.observe(el, { subtree: true, childList: true, attributes: true })
   },
-  unsubscribe: function(el) {
-    $(el).off(".page-canvas");
+  unsubscribe: function (el) {
+    $(el).off('.page-canvas')
   }
-});
+})

@@ -5,10 +5,10 @@ account: ashbaldry
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 6009870
-bundleId: 6245697
+bundleId: 6248183
 url: https://ashbaldry.shinyapps.io/designer/
-when: 1661711218.74983
-lastSyncTime: 1661711218.74983
+when: 1661782563.78323
+lastSyncTime: 1661782563.78323
 asMultiple: FALSE
 asStatic: FALSE
-ignoredFiles: .Rbuildignore|_pkgdown.yml|cran-comments.md|Dockerfile|NEWS.md|README.md|tests/testthat/test-golem-recommended.R|tests/testthat/test-json-to-r.R|tests/testthat/test-shinytest2.R|tests/testthat/test-ui-modules.R|tests/testthat.R|vignettes/.gitignore|vignettes/designer.html|vignettes/designer.R|vignettes/designer.Rmd|.github|dev|shiny_bookmarks
+ignoredFiles: .httr-oauth|.lintr|.Rbuildignore|_pkgdown.yml|cran-comments.md|Dockerfile|NEWS.md|README.md|vignettes/.gitignore|vignettes/designer.html|vignettes/designer.R|vignettes/designer.Rmd|.github|dev|man|shiny_bookmarks|srcjs|tests

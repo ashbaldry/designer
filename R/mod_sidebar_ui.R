@@ -40,7 +40,7 @@ SidebarModUI <- function(id) {
         element = "header",
         parent_id = accordion_id,
         active = TRUE,
-        compSettingTag(ns("header"), choices = paste0("h", 1:6)),
+        compSettingTag(ns("header"), choices = paste0("h", seq(6L))),
         compSettingText(ns("header"), value = "Header")
       ),
 
@@ -60,7 +60,7 @@ SidebarModUI <- function(id) {
           compSettingLabel(ns("tabset"), label = "Title", optional = TRUE),
           tags$fieldset(
             compSettingColour(ns("tabset")),
-            compSettingWidthNum(ns("tabset"), value = 6, min = 0)
+            compSettingWidthNum(ns("tabset"), value = 6L, min = 0L)
           )
         ),
         tags$hr(),
@@ -94,7 +94,10 @@ SidebarModUI <- function(id) {
         ),
         notes = list(
           tagList("Columns can only be included in", tags$b("rows"), "."),
-          "Rows are split into 12 column units, if the sum of columns' width exceeds 12, they get wrapped onto a new line."
+          paste(
+            "Rows are split into 12 column units, if the sum of columns' width exceeds 12,",
+            "they get wrapped onto a new line."
+          )
         )
       ),
 
@@ -106,14 +109,16 @@ SidebarModUI <- function(id) {
         parent_id = accordion_id,
         tags$fieldset(
           compSettingLabel(ns("box")),
-          compSettingWidthNum(ns("box"), value = 6, min = 0)
+          compSettingWidthNum(ns("box"), value = 6L, min = 0L)
         ),
         tags$fieldset(
           compSettingColour(ns("box")),
           compSettingBackground(ns("box"))
         ),
         notes = list(
-          tagList("If the width > 0, then the box is included in a column and can only be included in", tags$b("rows"), "."),
+          tagList(
+            "If the width > 0, then the box is included in a column and can only be included in", tags$b("rows"), "."
+          ),
           "Rows are split into 12 column units, if the sum of boxs' width exceeds 12, they get wrapped onto a new line."
         )
       ),
@@ -126,15 +131,17 @@ SidebarModUI <- function(id) {
         parent_id = accordion_id,
         compSettingLabel(ns("user_box")),
         tags$fieldset(
-          compSettingType(ns("user_box"), c(1, 2)),
-          compSettingWidthNum(ns("user_box"), value = 3, min = 0)
+          compSettingType(ns("user_box"), c(1L, 2L)),
+          compSettingWidthNum(ns("user_box"), value = 3L, min = 0L)
         ),
         tags$fieldset(
           compSettingColour(ns("user_box")),
           compSettingBackground(ns("user_box"))
         ),
         notes = list(
-          tagList("If the width > 0, then the box is included in a column and can only be included in", tags$b("rows"), "."),
+          tagList(
+            "If the width > 0, then the box is included in a column and can only be included in", tags$b("rows"), "."
+          ),
           "Rows are split into 12 column units, if the sum of boxs' width exceeds 12, they get wrapped onto a new line."
         )
       ),
@@ -151,14 +158,16 @@ SidebarModUI <- function(id) {
         ),
         tags$fieldset(
           compSettingIcon(ns("info_box")),
-          compSettingWidthNum(ns("info_box"), value = 3, min = 0)
+          compSettingWidthNum(ns("info_box"), value = 3L, min = 0L)
         ),
         tags$fieldset(
           compSettingBackground(ns("info_box")),
           compSettingFill(ns("info_box"))
         ),
         notes = list(
-          tagList("If the width > 0, then the box is included in a column and can only be included in", tags$b("rows"), "."),
+          tagList(
+            "If the width > 0, then the box is included in a column and can only be included in", tags$b("rows"), "."
+          ),
           "Rows are split into 12 column units, if the sum of boxs' width exceeds 12, they get wrapped onto a new line."
         )
       ),
@@ -176,10 +185,12 @@ SidebarModUI <- function(id) {
         compSettingIcon(ns("value_box")),
         tags$fieldset(
           compSettingBackground(ns("value_box")),
-          compSettingWidthNum(ns("value_box"), value = 3, min = 0)
+          compSettingWidthNum(ns("value_box"), value = 3L, min = 0L)
         ),
         notes = list(
-          tagList("If the width > 0, then the box is included in a column and can only be included in", tags$b("rows"), "."),
+          tagList(
+            "If the width > 0, then the box is included in a column and can only be included in", tags$b("rows"), "."
+          ),
           "Rows are split into 12 column units, if the sum of boxs' width exceeds 12, they get wrapped onto a new line."
         )
       ),
@@ -190,7 +201,9 @@ SidebarModUI <- function(id) {
         name = "Input Panel",
         element = "input_panel",
         parent_id = accordion_id,
-        notes = "By default inputs will be aligned vertically, input panels enable the inputs to be aligned horizontally."
+        notes = tagList(
+          "By default inputs will be aligned vertically, input panels enable the inputs to be aligned horizontally."
+        )
       ),
 
       #### Input ####
@@ -381,10 +394,12 @@ SidebarModUI <- function(id) {
         compSettingTextArea(ns("callout")),
         tags$fieldset(
           compSettingColour(ns("callout"), status = TRUE),
-          compSettingWidthNum(ns("callout"), value = 6, min = 0)
+          compSettingWidthNum(ns("callout"), value = 6L, min = 0L)
         ),
         notes = list(
-          tagList("If the width > 0, then the box is included in a column and can only be included in", tags$b("rows"), "."),
+          tagList(
+            "If the width > 0, then the box is included in a column and can only be included in", tags$b("rows"), "."
+          ),
           "Rows are split into 12 column units, if the sum of boxs' width exceeds 12, they get wrapped onto a new line."
         )
       ),
@@ -447,7 +462,7 @@ SidebarModUI <- function(id) {
           "however this will also be included in the R script as a comment for reference."
         ),
         placeholder = "Comment included in R script",
-        rows = 3,
+        rows = 3L,
         width = "100%"
       )
     ),

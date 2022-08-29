@@ -1,10 +1,10 @@
-import { Page } from './Page';
+import { Page } from './Page'
 
 export class NavbarPage extends Page {
-    name = "navbarPage";
-    navbar_item_style = "";
-    enable_on_load = false;    
-    page_html = `
+  name = 'navbarPage'
+  navbar_item_style = ''
+  enable_on_load = false
+  page_html = `
         <div class="designer-page-template">
             <nav class="navbar navbar-default navbar-static-top" role="navigation">
                 <div class="container-fluid">
@@ -20,5 +20,5 @@ export class NavbarPage extends Page {
                      data-shinyattributes="title = &quot;$title$&quot;, theme = bslib::bs_theme(4)"></div>
             </div>
         </div>
-    `;
+    `
 };

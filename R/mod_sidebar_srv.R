@@ -25,7 +25,7 @@ SidebarModuleServer <- function(id) {
         local({
           output_id <- input$outputid
           output[[output_id]] <- shiny::renderDataTable(
-            shinipsum::random_table(5, 3),
+            shinipsum::random_table(5L, 3L),
             options = list(dom = "t")
           )
         })

@@ -1,0 +1,21 @@
+linters: linters_with_defaults(
+   line_length_linter(120),
+   implicit_integer_linter(),
+   object_name_linter(c("snake_case", "camelCase", "CamelCase", "SNAKE_CASE", "symbols")),
+   any_duplicated_linter(),
+   any_is_na_linter(),
+   class_equals_linter(),
+   condition_message_linter(),
+   conjunct_test_linter(),
+   duplicate_argument_linter(),
+   expect_comparison_linter(),
+   expect_length_linter(),
+   expect_length_linter(),
+   expect_not_linter(),
+   expect_null_linter(),
+   redundant_ifelse_linter(),
+   undesirable_operator_linter(),
+   unneeded_concatenation_linter(),
+   unreachable_code_linter(),
+   yoda_test_linter()
+ )
