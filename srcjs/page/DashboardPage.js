@@ -1,11 +1,11 @@
-import { Page } from './Page';
+import { Page } from './Page'
 
 export class DashboardPage extends Page {
-    name = "dashboardPage";
-    navbar_item_style = "";
-    bs4_item_style = "";
-    enable_on_load = false;
-    page_html = `
+  name = 'dashboardPage'
+  navbar_item_style = ''
+  bs4_item_style = ''
+  enable_on_load = false
+  page_html = `
         <div id="canvas-page" class="wrapper designer-page-template"
              data-shinyfunction="bs4Dash::dashboardPage" data-shinyattributes="title = &quot;$title$&quot;">
             <nav data-fixed="false" class="main-header navbar navbar-expand navbar-light"
@@ -36,5 +36,5 @@ export class DashboardPage extends Page {
                 </section>
             </div>
         </div>
-    `;
+    `
 };

@@ -1,4 +1,4 @@
-var esbuild = require("esbuild");
+const esbuild = require('esbuild')
 
 esbuild.build({
   entryPoints: ['app/index.js'],
@@ -9,4 +9,4 @@ esbuild.build({
   minify: false
 }).catch(
   () => process.exit(1)
-);
+)

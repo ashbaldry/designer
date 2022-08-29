@@ -1,184 +1,180 @@
 export function initSettings () {
-    $('#settings-page_type').on('click', () => $(".canvas-modal").css("display", "none"));
-    
-    $(".copy-ui-button").on("click", copyUICode);
-    $("#css_style").on("change", applyCustomStyle);
+  $('#settings-page_type').on('click', () => $('.canvas-modal').css('display', 'none'))
 
-    $("#remove_label").on("change", toggleComponentLabels);
-    $("#remove_colour").on("change", toggleBackgroundColours);
-    $("#remove_border").on("change", toggleBorders);
+  $('.copy-ui-button').on('click', copyUICode)
+  $('#css_style').on('change', applyCustomStyle)
 
-    $(".component-accordion .card-header button").on("click", scrollToComponent);
+  $('#remove_label').on('change', toggleComponentLabels)
+  $('#remove_colour').on('change', toggleBackgroundColours)
+  $('#remove_border').on('change', toggleBorders)
 
-    $("body").on("click", () => {
-        if (document.querySelector("body").classList.contains("sidebar-mini")) {
-            document.querySelector("body").classList.remove("sidebar-mini");
-        }
-    });
+  $('.component-accordion .card-header button').on('click', scrollToComponent)
 
-    $(document).on("click", ".clickable-dropdown", e => { e.stopPropagation(); });
-    $("#preview").on("click", () => { $(".page-canvas-shell").addClass("preview"); });
-    $("#canvas-close_preview").on("click", () => { $(".page-canvas-shell").removeClass("preview"); });
+  $('body').on('click', () => {
+    if (document.querySelector('body').classList.contains('sidebar-mini')) {
+      document.querySelector('body').classList.remove('sidebar-mini')
+    }
+  })
 
-    Shiny.addCustomMessageHandler("toggleBS4DashDeps", toggleBS4DashDeps);
-    Shiny.addCustomMessageHandler("runjs", function(message) { (0, eval)(message.script); });
+  $(document).on('click', '.clickable-dropdown', e => { e.stopPropagation() })
+  $('#preview').on('click', () => { $('.page-canvas-shell').addClass('preview') })
+  $('#canvas-close_preview').on('click', () => { $('.page-canvas-shell').removeClass('preview') })
 
-    $("body").on("click contextmenu", closeCanvasMenu);
-    $("#canvas-canvas").on("contextmenu", showCanvasMenu);
-    $("#canvas-menu").on("contextmenu", e => { e.preventDefault(); });
-    $("#sidebar-container").on("mousedown", closeCanvasMenu);
+  Shiny.addCustomMessageHandler('toggleBS4DashDeps', toggleBS4DashDeps)
+  // eslint-disable-next-line no-eval
+  Shiny.addCustomMessageHandler('runjs', function (message) { (0, eval)(message.script) })
 
-    $("#canvas-delete").on("click", deleteDesignerElement);
+  $('body').on('click contextmenu', closeCanvasMenu)
+  $('#canvas-canvas').on('contextmenu', showCanvasMenu)
+  $('#canvas-menu').on('contextmenu', e => { e.preventDefault() })
+  $('#sidebar-container').on('mousedown', closeCanvasMenu)
+
+  $('#canvas-delete').on('click', deleteDesignerElement)
 };
 
 function toggleComponentLabels () {
-    if (this.checked) {
-        $(".designer-page-template").removeClass("hidden-after-label");
-    } else {
-        $(".designer-page-template").addClass("hidden-after-label");
-    }
+  if (this.checked) {
+    $('.designer-page-template').removeClass('hidden-after-label')
+  } else {
+    $('.designer-page-template').addClass('hidden-after-label')
+  }
 };
-  
+
 function toggleBackgroundColours () {
-    if (this.checked) {
-        $(".designer-page-template").removeClass("hidden-colour");
-    } else {
-        $(".designer-page-template").addClass("hidden-colour");
-    }
+  if (this.checked) {
+    $('.designer-page-template').removeClass('hidden-colour')
+  } else {
+    $('.designer-page-template').addClass('hidden-colour')
+  }
 };
-  
+
 function toggleBorders () {
-    if (this.checked) {
-        $(".designer-page-template").removeClass("hidden-borders");
-    } else {
-        $(".designer-page-template").addClass("hidden-borders");
-    }
+  if (this.checked) {
+    $('.designer-page-template').removeClass('hidden-borders')
+  } else {
+    $('.designer-page-template').addClass('hidden-borders')
+  }
 };
 
 function copyUICode () {
-    var copy_text = document.getElementById("settings-code-code").textContent;
-    navigator.clipboard.writeText(copy_text);
-    $("#copy_toast").toast("show");
-    return;
+  const copyText = document.getElementById('settings-code-code').textContent
+  navigator.clipboard.writeText(copyText)
+  $('#copy_toast').toast('show')
 };
 
 function toggleBS4DashDeps (toggle) {
-    const stylesheets = document.styleSheets;
-    for (var i = 0; i < stylesheets.length; i++) {
-        var stylesheet = stylesheets.item(i);
-        if (stylesheet.href && (stylesheet.href.includes("AdminLTE") || stylesheet.href.includes("bs4Dash"))) {
-            stylesheet.disabled = toggle === "hide";
-        }
+  const stylesheets = document.styleSheets
+  for (let i = 0; i < stylesheets.length; i++) {
+    const stylesheet = stylesheets.item(i)
+    if (stylesheet.href && (stylesheet.href.includes('AdminLTE') || stylesheet.href.includes('bs4Dash'))) {
+      stylesheet.disabled = toggle === 'hide'
     }
+  }
 };
 
 function scrollToComponent () {
-    const card_header = this.closest(".card-header").id;
-    setTimeout(
-        () => {
-            document.getElementById(card_header).scrollIntoView({ behavior: 'smooth', block: 'start' });
-            $(this).trigger("blur");
-        },
-        250
-     )
+  const cardHeader = this.closest('.card-header').id
+  setTimeout(
+    () => {
+      document.getElementById(cardHeader).scrollIntoView({ behavior: 'smooth', block: 'start' })
+      $(this).trigger('blur')
+    },
+    250
+  )
 }
 
-let selected_element;
+let selectedElement
 
 function showCanvasMenu (event) {
-    if ($(event.target).closest(".designer-element").length === 0) {
-        return;
-    }
-    event.preventDefault();
-    
-    const { clientX: mouseX, clientY: mouseY } = event;
-    const { normalizedX, normalizedY } = normalizeMenuPosition(mouseX, mouseY);
+  if ($(event.target).closest('.designer-element').length === 0) {
+    return
+  }
+  event.preventDefault()
 
-    selected_element = $(event.target).closest(".designer-element");
+  const { clientX: mouseX, clientY: mouseY } = event
+  const { normalizedX, normalizedY } = normalizeMenuPosition(mouseX, mouseY)
 
-    $("#canvas-menu").css("top", `${normalizedY}px`);
-    $("#canvas-menu").css("left", `${normalizedX}px`);
-    $("#canvas-menu").removeClass("visible");
+  selectedElement = $(event.target).closest('.designer-element')
 
-    setTimeout(() => { $("#canvas-menu").addClass("visible"); });
+  $('#canvas-menu').css('top', `${normalizedY}px`)
+  $('#canvas-menu').css('left', `${normalizedX}px`)
+  $('#canvas-menu').removeClass('visible')
+
+  setTimeout(() => { $('#canvas-menu').addClass('visible') })
 };
 
 function normalizeMenuPosition (mouseX, mouseY) {
-    const scope = document.getElementById("canvas-canvas");
-    const contextMenu = document.getElementById("canvas-menu");
+  const scope = document.getElementById('canvas-canvas')
+  const contextMenu = document.getElementById('canvas-menu')
 
-    let { left: scopeOffsetX, top: scopeOffsetY } = scope.getBoundingClientRect();
-      
-      scopeOffsetX = scopeOffsetX < 0 ? 0 : scopeOffsetX;
-      scopeOffsetY = scopeOffsetY < 0 ? 0 : scopeOffsetY;
-     
-      const scopeX = mouseX - scopeOffsetX;
-      const scopeY = mouseY - scopeOffsetY;
+  let { left: scopeOffsetX, top: scopeOffsetY } = scope.getBoundingClientRect()
 
-      const outOfBoundsOnX = scopeX + contextMenu.clientWidth > scope.clientWidth;
-      const outOfBoundsOnY = scopeY + contextMenu.clientHeight > scope.clientHeight;
+  scopeOffsetX = scopeOffsetX < 0 ? 0 : scopeOffsetX
+  scopeOffsetY = scopeOffsetY < 0 ? 0 : scopeOffsetY
 
-      let normalizedX = mouseX;
-      let normalizedY = mouseY;
+  const scopeX = mouseX - scopeOffsetX
+  const scopeY = mouseY - scopeOffsetY
 
-      if (outOfBoundsOnX) {
-        normalizedX = scopeOffsetX + scope.clientWidth - contextMenu.clientWidth;
-      }
-      if (outOfBoundsOnY) {
-        normalizedY = scopeOffsetY + scope.clientHeight - contextMenu.clientHeight;
-      }
+  const outOfBoundsOnX = scopeX + contextMenu.clientWidth > scope.clientWidth
+  const outOfBoundsOnY = scopeY + contextMenu.clientHeight > scope.clientHeight
 
-      return { normalizedX, normalizedY };
+  let normalizedX = mouseX
+  let normalizedY = mouseY
+
+  if (outOfBoundsOnX) {
+    normalizedX = scopeOffsetX + scope.clientWidth - contextMenu.clientWidth
+  }
+  if (outOfBoundsOnY) {
+    normalizedY = scopeOffsetY + scope.clientHeight - contextMenu.clientHeight
+  }
+
+  return { normalizedX, normalizedY }
 };
 
 function closeCanvasMenu () {
-    $("#canvas-menu").removeClass("visible");
+  $('#canvas-menu').removeClass('visible')
 };
 
 function deleteDesignerElement (event) {
-    selected_element.remove();
+  selectedElement.remove()
 };
 
-function editDesignerElement (event) {
-    
-};
+function applyCustomStyle (event) {
+  const cssFile = event.target.files[0]
+  const canvasStyle = document.getElementById('canvas-style')
+  canvasStyle.innerHTML = ''
 
-function applyCustomStyle(event) {
-    const css_file = event.target.files[0];
-    const canvas_style = document.getElementById("canvas-style");
-    canvas_style.innerHTML = "";
+  const reader = new FileReader()
+  reader.onload = (e) => {
+    const file = e.target.result
+    const lines = file.split(/\r\n|\n/)
+    canvasStyle.innerHTML = lines.join('\n')
 
-    let reader = new FileReader();
-    reader.onload = (e) => {
-        const file = e.target.result;
-        const lines = file.split(/\r\n|\n/);
-        canvas_style.innerHTML = lines.join('\n');
-
-        const css_rules = canvas_style.sheet.cssRules;
-        for (let i = 0; i < css_rules.length; i++) {
-            if (css_rules[i].selectorText) {
-                css_rules[i].selectorText = addCanvasPageSelector(css_rules[i].selectorText);
-            } else if (css_rules[i].media) {
-                let media_css_rules = css_rules[i].cssRules;
-                for (let j = 0; j < media_css_rules.length; j++) {
-                    media_css_rules[j].selectorText = addCanvasPageSelector(media_css_rules[j].selectorText);
-                }
-            }
+    const cssRules = canvasStyle.sheet.cssRules
+    for (let i = 0; i < cssRules.length; i++) {
+      if (cssRules[i].selectorText) {
+        cssRules[i].selectorText = addCanvasPageSelector(cssRules[i].selectorText)
+      } else if (cssRules[i].media) {
+        const cssMediaRules = cssRules[i].cssRules
+        for (let j = 0; j < cssMediaRules.length; j++) {
+          cssMediaRules[j].selectorText = addCanvasPageSelector(cssMediaRules[j].selectorText)
         }
-    };
-  
-  reader.onerror = (e) => alert(e.target.error.name);
-  reader.readAsText(css_file); 
+      }
+    }
+  }
+
+  reader.onerror = (e) => alert(e.target.error.name)
+  reader.readAsText(cssFile)
 };
 
-function addCanvasPageSelector(selectors) {
-    return selectors.split(/, */g).map((x) => {
-        if (x === "body") {
-            return "#canvas-page";
-        } else if (/^\.wrapper\.sidebar/.test(x)) {
-            return x.replace(".wrapper", "");
-        } else {
-            return "#canvas-page " + x;
-        }
-    }).join(", ");
+function addCanvasPageSelector (selectors) {
+  return selectors.split(/, */g).map((x) => {
+    if (x === 'body') {
+      return '#canvas-page'
+    } else if (/^\.wrapper\.sidebar/.test(x)) {
+      return x.replace('.wrapper', '')
+    } else {
+      return '#canvas-page ' + x
+    }
+  }).join(', ')
 };
