@@ -51,16 +51,12 @@ h5.modal-title {
   min-width: 200px;
 }
 
-.page-type-dropdown .form-check:not(:last-child) {
-  margin-bottom: 0.5rem;
-}
-
 .page-type-dropdown .form-group {
-  margin-bottom: 0.25rem;
+  margin-top: 0.5rem;
 }
 
-.page-type-dropdown .setting-input {
-  padding-bottom: 1rem;
+.page-type-dropdown .form-group, .page-type-dropdown .radio {
+  margin-bottom: 0.25rem;
 }
 
 .component-type-dropdown {
@@ -546,7 +542,7 @@ body #canvas-page.wrapper .fab {
 }
 
 #tab_settings label, #component_settings label, #sidebar-accordion .card label,
-#settings-options_dropdown label, #canvas-page:not(.wrapper) label {
+#settings-options_dropdown label, #canvas-page:not(.wrapper) label, #settings-page_type label {
   font-weight: 400 !important;
 }
 

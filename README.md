@@ -112,7 +112,7 @@ Depending on your Docker set-up, the exposed application may be available under:
 
 Once you are ready with your initial design, you can share it with others using Code -> Share. This will generate a URL that when opened by another person (or yourself in the future) will show the saved state of the design and then can be added onto and saved again - this will generate a new URL to share.
 
-**NB** For bookmarking to work, the server the `{designer}` application sits on must be configured to allow sessions to be saved on the disk. As the saved state only saves the HTML and a couple of inputs, each saved state is generally < 1kB.
+**NB** For bookmarking to work, the server the `{designer}` application sits on must be configured to allow sessions to be saved on the disk. As the saved state only saves the HTML and a couple of inputs, each saved state is generally only a couple of kilobytes.
 
 ## Notes
 
