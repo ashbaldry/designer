@@ -46,29 +46,7 @@ pageOptions <- function(ns) {
     class = "dropdown-menu dropdown-menu-right dropdown-menu-wide page-type-dropdown clickable-dropdown",
     tags$form(
       class = "px-2",
-      div(
-        class = "form-group shiny-input-radiogroup",
-        id = ns("page_type"),
-        lapply(names(PAGE_TYPES), function(page) {
-          x <- PAGE_TYPES[[page]]
-          div(
-            class = "form-check",
-            tags$input(
-              class = "form-check-input",
-              type = "radio",
-              id = ns(x),
-              name = ns("page_type"),
-              value = x,
-              checked = if (x == "fluidPage") NULL else NULL
-            ),
-            tags$label(
-              class = "form-check-label",
-              `for` = ns(x),
-              page
-            )
-          )
-        })
-      )
+      radioButtons(ns("page_type"), NULL, PAGE_TYPES, selected = character(0))
     )
   )
 }

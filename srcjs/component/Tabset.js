@@ -40,7 +40,7 @@ export class Tabset extends Component {
         if (this.isDashPage()) {
             const label = $("#sidebar-tabset-label").val();
             const title = label === "" ? "" : `<li class="pt-2 px-3"><h3 class="card-title">${label}</h3></li>`
-            const title_r = label === "" ? "" : `title = "${label}", `
+            const title_r = label === "" ? "" : `title = &quot;${label}&quot;, `
         
             const width = $("#sidebar-tabset-width_num").val();   
             const width_class = width > 0 ? `col-sm col-sm-${width}` : "";

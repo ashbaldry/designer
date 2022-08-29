@@ -3,6 +3,7 @@
 #' @noRd
 SettingsModuleServer <- function(id, ui_code) {
   moduleServer(id, function(input, output, session) {
+    setBookmarkExclude(c("code-save"))
 
     dash_deps_disabled <- reactiveVal(TRUE)
     observeEvent(input$page_type, {

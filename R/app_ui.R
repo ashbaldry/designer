@@ -72,7 +72,7 @@ addGolemExternalResources <- function() {
 
     tags$meta(name = "description", content = "Create Wireframes of the UI of shiny applications"),
     tags$meta(name = "keywords", content = "R, shiny, designer, prototype, wireframe"),
-    tags$meta(name = "author", content = "Ashley Baldry"),
+    tags$meta(name = "author", content = "Ashley Baldry")
   )
 
   htmltools::attachDependencies(

@@ -15,7 +15,7 @@ export class Box extends Component {
                         </button>
                     </div>
                 </div>
-                <div class="card-body"></div>
+                <div class="card-body designer-element"></div>
             </div>
             <script type="application /json">{
                 "solidHeader":true,"width":$width$,"collapsible":true,"closable":false,"maximizable":false,
