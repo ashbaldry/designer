@@ -16,3 +16,4 @@ _\.new\.png$
 ^cran-comments\.md$
 ^srcjs$
 ^Dockerfile$
+^\.lintr$

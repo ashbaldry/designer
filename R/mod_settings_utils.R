@@ -46,7 +46,7 @@ pageOptions <- function(ns) {
     class = "dropdown-menu dropdown-menu-right dropdown-menu-wide page-type-dropdown clickable-dropdown",
     tags$form(
       class = "px-2",
-      radioButtons(ns("page_type"), NULL, PAGE_TYPES, selected = character(0))
+      radioButtons(ns("page_type"), NULL, PAGE_TYPES, selected = character(0L))
     )
   )
 }

@@ -33,7 +33,7 @@ test_that("designer app works", {
 
   app$click(selector = "#sidebar-tab-add")
 
-  for (component in COMPONENTS[-1]) {
+  for (component in COMPONENTS[-1L]) {
     app$click(selector = paste("#sidebar", component, "header button", sep = "-"))
     clicked_component <- app$get_html(selector = ".component-accordion .card.active")
     testthat::expect_true(grepl(paste0("sidebar-", component, "-header"), clicked_component))
@@ -47,7 +47,7 @@ test_that("designer app works", {
   app$set_inputs("sidebar-output-type" = "image")
 
   new_outputs <- app$get_values()$output
-  testthat::expect_length(new_outputs, 3 + length(original_outputs))
+  testthat::expect_length(new_outputs, 3L + length(original_outputs))
 
   # Check that UI gets added to code module
   app$click(selector = "#settings-code_button")

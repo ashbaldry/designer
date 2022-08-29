@@ -18,7 +18,7 @@ appUI <- function(request) {
 
     fluidPage(
       title = "Shiny UI Designer",
-      theme = bslib::bs_theme(version = 4),
+      theme = bslib::bs_theme(version = 4L),
       lang = "en",
       warningModal("warning_modal"),
 
@@ -26,12 +26,12 @@ appUI <- function(request) {
 
       fluidRow(
         column(
-          width = 3,
+          width = 3L,
           class = "d-flex flex-column justify-content-between px-2",
           SidebarModUI("sidebar")
         ),
         column(
-          width = 9,
+          width = 9L,
           class = "px-2",
           CanvasModUI("canvas")
         )

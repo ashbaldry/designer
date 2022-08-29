@@ -23,7 +23,7 @@ compSettingTag <- function(id, choices = NULL) {
         "The size of the header will reduce as the number increases. Use sequentially for best user experience."
       ),
       choices,
-      selected = choices[1]
+      selected = choices[1L]
     )
   )
 }
@@ -38,7 +38,7 @@ compSettingType <- function(id, choices) {
       inputId = ns("type"),
       label = "Type",
       choices,
-      selected = choices[1]
+      selected = choices[1L]
     )
   )
 }
@@ -124,7 +124,7 @@ compSettingIcon <- function(id) {
             item: function(item, escape) { return '<div class=\"item icon-option\">' + item.label + '</div>'; },
             option: function(item, escape) { return '<div class=\"option icon-option\">' + item.label + '</div>'; }
           }"),
-          maxOptions = 3000
+          maxOptions = 3000L
         )
       ),
       class = "icon-choices"
@@ -312,7 +312,7 @@ compSettingHeight <- function(id) {
 }
 
 #' @rdname component_setting
-compSettingWidthNum <- function(id, value = 3, min = 1) {
+compSettingWidthNum <- function(id, value = 3L, min = 1L) {
   ns <- NS(id)
 
   component(
@@ -322,7 +322,7 @@ compSettingWidthNum <- function(id, value = 3, min = 1) {
       label = "Width",
       value = value,
       min = min,
-      max = 12
+      max = 12L
     )
   )
 }
@@ -339,9 +339,9 @@ compSettingOffset <- function(id) {
         "Offset",
         "The gap between the window/previous column and this column"
       ),
-      value = 0,
-      min = 0,
-      max = 11
+      value = 0L,
+      min = 0L,
+      max = 11L
     )
   )
 }
@@ -419,7 +419,7 @@ componentTab <- function(id) {
             item: function(item, escape) { return '<div class=\"item icon-option\">' + item.label + '</div>'; },
             option: function(item, escape) { return '<div class=\"option icon-option\">' + item.label + '</div>'; }
           }"),
-          maxOptions = 3000
+          maxOptions = 3000L
           )
         ),
         class = "icon-choices"

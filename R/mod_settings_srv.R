@@ -3,7 +3,7 @@
 #' @noRd
 SettingsModuleServer <- function(id, ui_code) {
   moduleServer(id, function(input, output, session) {
-    setBookmarkExclude(c("code-save"))
+    setBookmarkExclude("code-save")
 
     dash_deps_disabled <- reactiveVal(TRUE)
     observeEvent(input$page_type, {
@@ -45,4 +45,3 @@ toggleBS4DashDeps <- function(toggle = c("show", "hide"), session = shiny::getDe
 }
 
 addbs4DashDependencies <- getFromNamespace("add_bs4Dash_deps", "bs4Dash")
-

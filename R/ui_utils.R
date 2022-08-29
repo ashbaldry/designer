@@ -63,6 +63,6 @@ screenshtButton <- function(...) {
     filename = "ui_wireframe",
     ...
   )
-  btn[[2]]$attribs$class <- sub(" btn-default", "", btn[[2]]$attribs$class)
+  btn[[2L]]$attribs$class <- sub(" btn-default", "", btn[[2L]]$attribs$class)
   btn
 }
