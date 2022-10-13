@@ -217,8 +217,8 @@ SidebarModUI <- function(id) {
             ns("input"),
             choices = c(
               "Text" = "text",
-              "Text Area" = "textarea
-              ", "Numeric" = "number",
+              "Text Area" = "textarea",
+              "Numeric" = "number",
               "Password" = "password"
             )
           ),
