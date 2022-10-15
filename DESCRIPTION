@@ -34,4 +34,5 @@ Suggests:
     shinytest2,
     globals,
     knitr,
+    lintr,
     rmarkdown
