@@ -5,6 +5,7 @@ test_that("designer app works", {
   shiny_app <- designApp()
   app <- shinytest2::AppDriver$new(shiny_app, name = "designapp")
   on.exit(app$stop())
+  Sys.sleep(3L)
 
   # Checking page is loaded
   app$expect_unique_names()
@@ -20,8 +21,6 @@ test_that("designer app works", {
   title <- app$get_value(input = "app_name")
   app_title <- app$get_text("#canvas-title")
   testthat::expect_equal(title, app_title)
-
-  Sys.sleep(2L)
 
   # Expecting page to change on click change
   app$click(selector = '#settings-page_type .form-check input[value="fluidPage"]')
