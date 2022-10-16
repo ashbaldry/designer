@@ -22,12 +22,14 @@ test_that("designer app works", {
   testthat::expect_equal(title, app_title)
 
   # Expecting page to change on click change
-  app$click(selector = '#settings-page_type .form-check input[value="fluidPage"]')
+  app$click(selector = '#settings-page_type input[value="fluidPage"]')
+  app$wait_for_idle()
   ui <- app$get_value(input = "canvas-canvas")
   testthat::expect_true(grepl("fluidPage(", jsonToRScript(ui), fixed = TRUE))
 
   # Expect all components create a component that can be dragged
-  app$click(selector = '#settings-page_type .form-check input[value="dashboardPage"]')
+  app$click(selector = '#settings-page_type input[value="dashboardPage"]')
+  app$wait_for_idle()
   ui <- app$get_value(input = "canvas-canvas")
   testthat::expect_true(grepl("dashboardPage(", jsonToRScript(ui), fixed = TRUE))
 

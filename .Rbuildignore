@@ -17,3 +17,4 @@ _\.new\.png$
 ^srcjs$
 ^Dockerfile$
 ^\.lintr$
+^shiny_bookmarks$

@@ -311,6 +311,9 @@ compSettingHeight <- function(id) {
   )
 }
 
+#' @param value Value given to the component input
+#' @param min Minimum value given to the component input
+#'
 #' @rdname component_setting
 compSettingWidthNum <- function(id, value = 3L, min = 1L) {
   ns <- NS(id)
@@ -446,14 +449,18 @@ componentTab <- function(id) {
 }
 
 getFAIcons <- function() {
+  icon_metadata <- fontawesome::fa_metadata()
+  icon_classes <- unlist(
+    icon_metadata[c("icon_names_full_fas", "icon_names_full_far", "icon_names_full_fab")],
+    use.names = FALSE
+  )
+  icon_labels <- unlist(
+    icon_metadata[c("icon_names_fas", "icon_names_far", "icon_names_fab")],
+    use.names = FALSE
+  )
+
   setNames(
-    fa_tbl$name,
-    paste0(
-      "<i class='", ifelse(fa_tbl$name %in% fa_brands, "fab", "fa"), " fa-", fa_tbl$name, "' aria-hidden='true'></i>",
-      fa_tbl$label
-    )
+    icon_labels,
+    paste0("<i class='fa ", icon_classes, "' aria-hidden='true'></i>", icon_labels)
   )
 }
-
-fa_tbl <- getFromNamespace("fa_tbl", "fontawesome")
-fa_brands <- getFromNamespace("font_awesome_brands", "fontawesome")
