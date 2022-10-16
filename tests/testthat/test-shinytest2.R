@@ -21,6 +21,8 @@ test_that("designer app works", {
   app_title <- app$get_text("#canvas-title")
   testthat::expect_equal(title, app_title)
 
+  Sys.sleep(1L)
+
   # Expecting page to change on click change
   app$click(selector = '#settings-page_type .form-check input[value="fluidPage"]')
   ui <- app$get_value(input = "canvas-canvas")
