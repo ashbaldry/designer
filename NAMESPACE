@@ -3,3 +3,4 @@
 export(designApp)
 import(shiny)
 importFrom(stats,setNames)
+importFrom(utils,packageVersion)
