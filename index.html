@@ -152,13 +152,19 @@
 <span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="docker-demo">Docker demo<a class="anchor" aria-label="anchor" href="#docker-demo"></a>
+<h2 id="docker">Docker<a class="anchor" aria-label="anchor" href="#docker"></a>
 </h2>
 <p>Optionally, you can also build a Dockerized version of the app:</p>
 <pre><code>sudo docker build -t designer -f Dockerfile .</code></pre>
 <p>After building the docker image (which should take a while) use the command:</p>
 <pre><code>docker run -p 80:80 designer</code></pre>
-<p>Depending on your Docker setup, the exposed application may be available under: <a href="http://localhost:80" class="external-link uri">http://localhost:80</a></p>
+<p>Depending on your Docker set-up, the exposed application may be available under: <a href="http://localhost:80" class="external-link uri">http://localhost:80</a></p>
+</div>
+<div class="section level2">
+<h2 id="sharing-designs">Sharing Designs<a class="anchor" aria-label="anchor" href="#sharing-designs"></a>
+</h2>
+<p>Once you are ready with your initial design, you can share it with others using Code -&gt; Share. This will generate a URL that when opened by another person (or yourself in the future) will show the saved state of the design and then can be added onto and saved again - this will generate a new URL to share.</p>
+<p><strong>NB</strong> For bookmarking to work, the server the <a href="https://github.com/ashbaldry/designer" class="external-link">designer</a> application sits on must be configured to allow sessions to be saved on the disk. As the saved state only saves the HTML and a couple of inputs, each saved state is generally only a couple of kilobytes.</p>
 </div>
 <div class="section level2">
 <h2 id="notes">Notes<a class="anchor" aria-label="anchor" href="#notes"></a>
@@ -231,7 +237,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer>

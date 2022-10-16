@@ -28,6 +28,12 @@
     <loc>https://ashbaldry.github.io/designer/news/index.html</loc>
   </url>
   <url>
+    <loc>https://ashbaldry.github.io/designer/reference/component.html</loc>
+  </url>
+  <url>
+    <loc>https://ashbaldry.github.io/designer/reference/component_setting.html</loc>
+  </url>
+  <url>
     <loc>https://ashbaldry.github.io/designer/reference/designApp.html</loc>
   </url>
   <url>
@@ -35,5 +41,8 @@
   </url>
   <url>
     <loc>https://ashbaldry.github.io/designer/reference/index.html</loc>
+  </url>
+  <url>
+    <loc>https://ashbaldry.github.io/designer/reference/sidebarItem.html</loc>
   </url>
 </urlset>
