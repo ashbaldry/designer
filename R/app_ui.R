@@ -21,6 +21,7 @@ appUI <- function(request) {
       theme = bslib::bs_theme(version = 4L),
       lang = "en",
       warningModal("warning_modal"),
+      clearModal("clear_modal"),
 
       SettingsModUI("settings"),
 

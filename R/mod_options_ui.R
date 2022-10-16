@@ -45,7 +45,7 @@ OptionsModUI <- function(id) {
       tags$button(
         id = ns("canvas_clear"),
         type = "button",
-        class = "btn btn-error btn-block",
+        class = "btn btn-danger btn-block",
         "Clear Page"
       )
     )
