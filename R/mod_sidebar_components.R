@@ -311,6 +311,9 @@ compSettingHeight <- function(id) {
   )
 }
 
+#' @param value Value given to the component input
+#' @param min Minimum value given to the component input
+#'
 #' @rdname component_setting
 compSettingWidthNum <- function(id, value = 3L, min = 1L) {
   ns <- NS(id)

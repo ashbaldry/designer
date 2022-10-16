@@ -7,7 +7,7 @@
 designApp(
   onStart = NULL,
   options = list(),
-  enableBookmarking = NULL,
+  enableBookmarking = "server",
   uiPattern = "/",
   ...
 )

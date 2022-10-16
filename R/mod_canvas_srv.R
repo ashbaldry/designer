@@ -1,5 +1,6 @@
 #' Canvas Server Functions
 #'
+#' @importFrom utils packageVersion
 #' @noRd
 CanvasModuleServer <- function(id) {
   moduleServer(id, function(input, output, session) {

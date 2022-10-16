@@ -16,18 +16,18 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.1
 Config/testthat/edition: 3
 VignetteBuilder: knitr
-Imports: 
+Imports:
+    bslib,
+    bs4Dash,
+    cicerone,
     config (>= 0.3.1),
+    fontawesome,
     golem (>= 0.3.1),
     htmltools,
     shiny (>= 1.7.1),
-    bslib,
-    bs4Dash,
     jsonlite,
     shinipsum,
-    shinyscreenshot,
-    cicerone,
-    fontawesome
+    shinyscreenshot
 Suggests: 
     covr,
     testthat (>= 3.0.0),

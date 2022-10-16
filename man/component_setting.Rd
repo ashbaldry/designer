@@ -59,7 +59,7 @@ compSettingWidth(id)
 
 compSettingHeight(id)
 
-compSettingWidthNum(id, value = 3, min = 1)
+compSettingWidthNum(id, value = 3L, min = 1L)
 
 compSettingOffset(id)
 }
@@ -73,6 +73,10 @@ compSettingOffset(id)
 \item{optional}{Logical, is the input optional?}
 
 \item{status}{Logical, are only status colours allowed, default is \code{FALSE}}
+
+\item{value}{Value given to the component input}
+
+\item{min}{Minimum value given to the component input}
 }
 \value{
 A \code{shiny.tag.list} of settings specific to the selected component
