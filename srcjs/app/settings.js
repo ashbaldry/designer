@@ -7,6 +7,7 @@ export function initSettings () {
   $('#remove_label').on('change', toggleComponentLabels)
   $('#remove_colour').on('change', toggleBackgroundColours)
   $('#remove_border').on('change', toggleBorders)
+  $('#clear_canvas').on('click', clearCanvas)
 
   $('.component-accordion .card-header button').on('click', scrollToComponent)
 
@@ -54,6 +55,10 @@ function toggleBorders () {
   } else {
     $('.designer-page-template').addClass('hidden-borders')
   }
+};
+
+function clearCanvas () {
+  $('#canvas-page').html('')
 };
 
 function copyUICode () {

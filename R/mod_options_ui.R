@@ -41,6 +41,12 @@ OptionsModUI <- function(id) {
       screenshtButton(
         class = "btn-secondary btn-block",
         scale = 1.5
+      ),
+      tags$button(
+        id = ns("canvas_clear"),
+        type = "button",
+        class = "btn btn-error btn-block",
+        "Clear Page"
       )
     )
   )
