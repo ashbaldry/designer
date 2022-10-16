@@ -56,6 +56,64 @@ warningModal <- function(id) {
   )
 }
 
+#' Clear Modal
+#'
+#' @description
+#' Creates a modal when the user is about to clear the page, making sure they are okay
+#' to start from scratch.
+#'
+#' @param id ID to give to the modal
+#'
+#' @return HTML for a modal
+#'
+#' @noRd
+clearModal <- function(id) {
+  div(
+    class = "modal fade",
+    id = id,
+    tabindex = "-1",
+    `aria-hidden` = "true",
+    `data-bs-keyboard` = "false",
+    `data-keyboard` = "false",
+    div(
+      class = "modal-dialog",
+      role = "document",
+      div(
+        class = "modal-content",
+        div(
+          class = "modal-header",
+          h5(class = "modal-title", "Warning!")
+        ),
+        div(
+          class = "modal-body",
+          p("By confirming you will clear all contents of the page. Do you wish to continue?")
+        ),
+        div(
+          class = "modal-footer",
+          tags$button(
+            id = "cancel_reset",
+            type = "button",
+            class = "btn btn-secondary",
+            `data-dismiss` = "modal",
+            `data-bs-dismiss` = "modal",
+            shiny::icon("xmark"),
+            "Cancel"
+          ),
+          tags$button(
+            id = "confirm_clear",
+            type = "button",
+            class = "btn btn-primary",
+            `data-dismiss` = "modal",
+            `data-bs-dismiss` = "modal",
+            shiny::icon("check"),
+            "Confrim"
+          )
+        )
+      )
+    )
+  )
+}
+
 screenshtButton <- function(...) {
   btn <- shinyscreenshot::screenshotButton(
     id = "canvas-page",

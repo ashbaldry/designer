@@ -7,6 +7,8 @@ export function initSettings () {
   $('#remove_label').on('change', toggleComponentLabels)
   $('#remove_colour').on('change', toggleBackgroundColours)
   $('#remove_border').on('change', toggleBorders)
+  $('#canvas_clear').on('click', showClearWarning)
+  $('#confirm_clear').on('click', clearCanvas)
 
   $('.component-accordion .card-header button').on('click', scrollToComponent)
 
@@ -54,6 +56,18 @@ function toggleBorders () {
   } else {
     $('.designer-page-template').addClass('hidden-borders')
   }
+};
+
+function showClearWarning () {
+  if ($('#canvas-page').html() === '' || $('#canvas-page.wrapper .tab-content').html() === '') {
+    return null
+  } else {
+    $('#clear_modal').modal()
+  }
+};
+
+function clearCanvas () {
+  $('#canvas-page').html('')
 };
 
 function copyUICode () {
