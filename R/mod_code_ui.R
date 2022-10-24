@@ -24,9 +24,6 @@ CodeModUI <- function(id) {
           "Copy"
         )
       ),
-      bookmarkButton(
-        label = "Share"
-      ),
       if (interactive()) {
         span(
           toast("save_toast", "Saved!"),

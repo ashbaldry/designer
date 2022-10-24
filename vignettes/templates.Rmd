@@ -26,6 +26,9 @@ The order of finding the cached locations are:
 2. The site data directory
 3. The user cache directory
 
+## Storing Templates
+
+
 
 Plan:
 

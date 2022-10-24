@@ -12,5 +12,7 @@ appServer <- function(input, output, session) {
 
   SettingsModuleServer("settings", ui_code = page_html)
 
+  TemplateModuleServer("template", ui_code = page_html)
+
   SidebarModuleServer("sidebar")
 }

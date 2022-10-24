@@ -78,6 +78,34 @@ h5.modal-title {
   z-index: 1050;
 }
 
+.template-select .template-option {
+  padding: 0 1em;
+  cursor: pointer;
+}
+
+.template-select .template-option:hover {
+  background-color: #e9ecef;
+}
+
+.template-option .title {
+  font-weight: 700;
+}
+
+.template-option .author {
+  font-style: italic;
+  float: right;
+}
+
+.template-option .description {
+  font-size: 0.9rem;
+  text-overflow: ellipsis;
+  width: 100%;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
 .component-accordion {
   height: calc(100vh - 500px);
   overflow-y: auto;

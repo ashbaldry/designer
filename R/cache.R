@@ -1,10 +1,3 @@
-#' Store Saved Protoype
-#'
-#' @description
-save_design <- function(html, title = NULL, desc = NULL, user = NULL) {
-  cache_dir <- find_cache_dir()
-}
-
 #' Find designer directory
 #'
 #' @description
@@ -18,6 +11,8 @@ save_design <- function(html, title = NULL, desc = NULL, user = NULL) {
 #' people using a server more options to store the bookmarks, especially if
 #' the site data directory isn't available
 #'
+#' @inheritParams base::file.access
+#'
 #' @noRd
 find_cache_dir <- function(mode = 2) {
   custom_dir <- Sys.getenv("R_DESIGNER_CACHE", "")
@@ -25,19 +20,29 @@ find_cache_dir <- function(mode = 2) {
     return(custom_dir)
   }
 
-  shared_dir <- rappdirs::site_data_dir(appauthor = "R_designer")
+  shared_dir <- rappdirs::site_data_dir(
+    appname = "designer",
+    appauthor = "r-designer",
+    version = paste0("v", DESIGNER_VERSION)
+  )
   parent_shared_dir <- rappdirs::site_data_dir()
 
   if (file.access(shared_dir, mode = mode) == 0) {
     return(shared_dir)
   } else if (!dir.exists(shared_dir) && file.access(parent_shared_dir, mode = mode) == 0) {
-    dir.create(shared_dir)
+    dir.create(shared_dir, recursive = TRUE, showWarnings = FALSE)
     return(shared_dir)
   }
 
-  personal_dir <- rappdirs::user_data_dir(appauthor = "R_designer")
+  personal_dir <- rappdirs::user_data_dir(
+    appname = "designer",
+    appauthor = "r-designer",
+    version = paste0("v", DESIGNER_VERSION)
+  )
   if (!dir.exists(personal_dir)) {
     dir.create(personal_dir)
   }
   personal_dir
 }
+
+DESIGNER_VERSION <- 1
