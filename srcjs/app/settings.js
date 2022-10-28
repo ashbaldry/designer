@@ -32,6 +32,8 @@ export function initSettings () {
   $('#sidebar-container').on('mousedown', closeCanvasMenu)
 
   $('#canvas-delete').on('click', deleteDesignerElement)
+
+  $('.template-option').on('click', sendSavedTemplateID)
 };
 
 function toggleComponentLabels () {
@@ -191,4 +193,9 @@ function addCanvasPageSelector (selectors) {
       return '#canvas-page ' + x
     }
   }).join(', ')
+};
+
+function sendSavedTemplateID (event) {
+  const selected_template = $(event.target).closest('.template-option')
+  Shiny.setInputValue('settings-template-select', selected_template.data('value'))
 };
