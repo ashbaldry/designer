@@ -2,7 +2,7 @@
 #'
 #' @importFrom utils packageVersion
 #' @noRd
-CanvasModuleServer <- function(id) {
+CanvasModuleServer <- function(id, selected_template) {
   moduleServer(id, function(input, output, session) {
     setBookmarkExclude(c("html", "canvas"))
 
@@ -14,6 +14,13 @@ CanvasModuleServer <- function(id) {
       session$sendInputMessage("html", state$values$html)
     })
 
-    return(reactive(input$canvas))
+    observeEvent(selected_template(), {
+      session$sendInputMessage("html", selected_template())
+    })
+
+    return(list(
+      ui_code = reactive(input$canvas),
+      html = reactive(input$html)
+    ))
   })
 }

@@ -16,7 +16,7 @@ TemplateModUI <- function(id) {
     tags$form(
       class = "code-ui-form",
       actionButton(
-        ns("save"),
+        ns("save_button"),
         "Save",
         shiny::icon("floppy-disk")
       ),
@@ -25,6 +25,7 @@ TemplateModUI <- function(id) {
         "Share",
         shiny::icon("share")
       )
+
     ),
     templateSelectionInput(
       ns("select"),

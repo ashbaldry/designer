@@ -8,11 +8,9 @@ appServer <- function(input, output, session) {
 
   observeEvent(input$help, guide$init()$start())
 
-  page_html <- CanvasModuleServer("canvas")
+  selected_template <- SettingsModuleServer("settings", ui_code = page_html)
 
-  SettingsModuleServer("settings", ui_code = page_html)
-
-  TemplateModuleServer("template", ui_code = page_html)
+  page_html <- CanvasModuleServer("canvas", selected_template = selected_template)
 
   SidebarModuleServer("sidebar")
 }

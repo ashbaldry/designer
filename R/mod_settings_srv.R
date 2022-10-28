@@ -19,7 +19,11 @@ SettingsModuleServer <- function(id, ui_code) {
       }
     })
 
-    CodeModuleServer("code", ui_code = ui_code)
+    CodeModuleServer("code", ui_code = ui_code$ui_code)
+
+    selected_template <- TemplateModuleServer("template", html = ui_code$html)
+
+    return(selected_template)
   })
 }
 
