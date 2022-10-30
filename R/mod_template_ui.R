@@ -51,6 +51,7 @@ templateSelectionInput <- function(id, template_index) {
 createTemplateSelection <- function(template_info) {
   tags$article(
     `data-value` = template_info[["id"]],
+    `data-page` = template_info[["page"]],
     class = "template-option",
     span(
       class = "author",

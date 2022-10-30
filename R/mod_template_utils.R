@@ -2,7 +2,9 @@
 #'
 #' @description
 #' Saves the current template in the designer cache, along with metadata
-save_template <- function(html, title = NULL, desc = NULL, user = NULL) {
+#'
+#' @param html Character string of the HTML that is present in the canvas
+save_template <- function(html, page = NULL, title = NULL, desc = NULL, user = NULL) {
   cache_dir <- find_cache_dir()
   template_index <- get_template_index()
 
@@ -13,10 +15,10 @@ save_template <- function(html, title = NULL, desc = NULL, user = NULL) {
 
   template_dir <- file.path(cache_dir, template_id)
   dir.create(template_dir, showWarnings = FALSE)
-  cat(html, file = file.path(template_dir, "template.html"))
+  cat(paste0(html, "\n"), file = file.path(template_dir, "template.html"))
 
   write.table(
-    data.frame(id = template_id, title = title, user = user, description = desc),
+    data.frame(id = template_id, page = page, title = title, user = user, description = desc),
     file.path(cache_dir, "index.csv"),
     sep = ",",
     append = TRUE,
@@ -63,7 +65,7 @@ create_template_index <- function(index_file = file.path(find_cache_dir(), "inde
   if (file.exists(index_file)) {
     index_file
   } else {
-    writeLines("id,title,user,description", index_file)
+    writeLines("id,page,title,user,description", index_file)
     index_file
   }
 }

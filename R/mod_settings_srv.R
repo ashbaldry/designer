@@ -21,7 +21,11 @@ SettingsModuleServer <- function(id, ui_code) {
 
     CodeModuleServer("code", ui_code = ui_code$ui_code)
 
-    selected_template <- TemplateModuleServer("template", html = ui_code$html)
+    selected_template <- TemplateModuleServer(
+      "template",
+      html = ui_code$html,
+      page = reactive(input$page_type)
+    )
 
     return(selected_template)
   })

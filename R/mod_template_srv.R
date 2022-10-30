@@ -1,5 +1,5 @@
 #' @noRd
-TemplateModuleServer <- function(id, html) {
+TemplateModuleServer <- function(id, html, page) {
   moduleServer(id, function(input, output, session) {
     ns <- session$ns
 
@@ -74,6 +74,7 @@ TemplateModuleServer <- function(id, html) {
     observeEvent(input$save, {
       save_template(
         html = html(),
+        page = page(),
         title = input$title,
         desc = input$description,
         user = input$author

@@ -197,5 +197,8 @@ function addCanvasPageSelector (selectors) {
 
 function sendSavedTemplateID (event) {
   const selected_template = $(event.target).closest('.template-option')
+  const page_choice = selected_template.data('page')
+
+  $('#settings-page_type').find(`input[value='${page_choice}']`).trigger('click')
   Shiny.setInputValue('settings-template-select', selected_template.data('value'))
 };
