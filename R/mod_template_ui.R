@@ -19,13 +19,7 @@ TemplateModUI <- function(id) {
         ns("save_button"),
         "Save",
         shiny::icon("floppy-disk")
-      ),
-      actionButton(
-        ns("share"),
-        "Share",
-        shiny::icon("share")
       )
-
     ),
     templateSelectionInput(
       ns("select"),

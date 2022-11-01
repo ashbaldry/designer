@@ -59,13 +59,15 @@ warningModal <- function(id, text, confirm_id, confirm_text, cancel_id, cancel_t
   )
 }
 
-screenshtButton <- function(...) {
+screenshtButton <- function(btn_id, ...) {
   btn <- shinyscreenshot::screenshotButton(
-    id = "canvas-page",
+    selector = ".designer-page-template",
     label = "Snapshot UI",
     filename = "ui_wireframe",
     ...
   )
   btn[[2L]]$attribs$class <- sub(" btn-default", "", btn[[2L]]$attribs$class)
+  btn[[2L]]$attribs$onclick <- sub(btn[[2L]]$attribs$id, btn_id, btn[[2L]]$attribs$onclick, fixed = TRUE)
+  btn[[2L]]$attribs$id <- btn_id
   btn
 }

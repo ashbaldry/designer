@@ -26,7 +26,7 @@ save_template <- function(html, page = NULL, title = NULL, desc = NULL, user = N
     row.names = FALSE
   )
 
-  TRUE
+  template_id
 }
 
 create_random_id <- function(n = 10) {

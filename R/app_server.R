@@ -4,7 +4,9 @@
 #'
 #' @noRd
 appServer <- function(input, output, session) {
-  setBookmarkExclude(c("remove_border", "remove_label", "remove_colour", "help", "css_style"))
+  setBookmarkExclude(c(
+    "app_name", "remove_border", "remove_label", "remove_colour", "help", "css_style", "screenshot"
+  ))
 
   observeEvent(input$help, guide$init()$start())
 

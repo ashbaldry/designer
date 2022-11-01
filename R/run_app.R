@@ -16,7 +16,7 @@
 #' designApp()
 #'
 #' @export
-designApp <- function(onStart = NULL, options = list(), enableBookmarking = "server", uiPattern = "/", ...) {
+designApp <- function(onStart = NULL, options = list(), enableBookmarking = "url", uiPattern = "/", ...) {
   golem::with_golem_options(
     app = shinyApp(
       ui = appUI,

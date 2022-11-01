@@ -35,7 +35,7 @@ SidebarModuleServer <- function(id) {
 }
 
 SIDEBAR_INPUT_IDS <- c(
-  "comments",
+  "comments", "accordion",
   "box-background", "box-colour", "box-label", "box-width_num",
   "button-download", "button-icon", "button-id", "button-label", "button-type", "button-width",
   "callout-colour", "callout-label", "callout-textarea", "callout-width_num",
