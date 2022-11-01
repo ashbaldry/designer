@@ -5,6 +5,7 @@ import { FluidPage } from './FluidPage'
 import { BootstrapPage } from './BootstrapPage'
 import { NavbarPage } from './NavbarPage'
 import { DashboardPage } from './DashboardPage'
+import { selectedTemplate } from '../app/settings'
 
 export let page
 
@@ -50,6 +51,10 @@ export function selectPage () {
 }
 
 export function changePageCheck () {
+  if (selectedTemplate()) {
+    return
+  }
+
   if ($('#canvas-page').html() === '' || $('#canvas-page.wrapper .tab-content').html() === '') {
     $('#canvas-page').html('<div></div>')
     createPage()

@@ -20,8 +20,23 @@ appUI <- function(request) {
       title = "Shiny UI Designer",
       theme = bslib::bs_theme(version = 4L),
       lang = "en",
-      warningModal("warning_modal"),
-      clearModal("clear_modal"),
+
+      warningModal(
+        id = "warning_modal",
+        text = "Changing page type will clear all contents of your design. Do you wish to continue?",
+        confirm_id = "confirm_reset",
+        confirm_text = "Yes",
+        cancel_id = "cancel_reset",
+        cancel_text = "No"
+      ),
+      warningModal(
+        id = "clear_modal",
+        text = "By confirming you will clear all contents of the page. Do you wish to continue?",
+        confirm_id = "confirm_clear",
+        confirm_text = "Confrim",
+        cancel_id = "cancel_clear",
+        cancel_text = "Cancel"
+      ),
 
       SettingsModUI("settings"),
 
