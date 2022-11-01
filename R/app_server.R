@@ -10,9 +10,13 @@ appServer <- function(input, output, session) {
 
   observeEvent(input$help, guide$init()$start())
 
+  template_html <- reactiveVal()
+
+  page_html <- CanvasModuleServer("canvas", selected_template = template_html)
+
   selected_template <- SettingsModuleServer("settings", ui_code = page_html)
 
-  page_html <- CanvasModuleServer("canvas", selected_template = selected_template)
+  observeEvent(selected_template(), template_html(selected_template()))
 
   SidebarModuleServer("sidebar")
 }
