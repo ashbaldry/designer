@@ -4,6 +4,12 @@
 #' Saves the current template in the designer cache, along with metadata
 #'
 #' @param html Character string of the HTML that is present in the canvas
+#' @param page Type of page selected for the template (used to restore correct value on restart)
+#' @param title Short title of the template
+#' @param desc Longer description of the template
+#' @param user Person who created the template
+#'
+#' @importFrom utils read.csv write.table
 save_template <- function(html, page = NULL, title = NULL, desc = NULL, user = NULL) {
   cache_dir <- find_cache_dir()
   template_index <- get_template_index()
