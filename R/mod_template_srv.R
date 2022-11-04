@@ -112,14 +112,18 @@ TemplateModuleServer <- function(id, html, page) {
     })
 
     #### Saving ####
-    saved_template_id <- reactive({
-      save_template(
+    saved_template_id <- reactiveVal()
+
+    observe({
+      req(input$title, input$author)
+      id <- save_template(
         html = html(),
         page = page(),
         title = input$title,
         desc = input$description,
         user = input$author
       )
+      saved_template_id(id)
     }) |>
       bindEvent(
         input$save,
