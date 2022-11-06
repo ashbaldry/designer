@@ -206,27 +206,58 @@ SidebarModUI <- function(id) {
         )
       ),
 
-      #### Input ####
+      #### Numeric Input ####
       sidebarItem(
-        id = ns("input"),
-        name = "Basic Input",
-        element = "input",
+        id = ns("numeric"),
+        name = "Numeric Input",
+        element = "numeric",
         parent_id = accordion_id,
+        compSettingLabel(ns("numeric")),
         tags$fieldset(
-          compSettingType(
-            ns("input"),
-            choices = c(
-              "Text" = "text",
-              "Text Area" = "textarea",
-              "Numeric" = "number",
-              "Password" = "password"
-            )
-          ),
-          compSettingLabel(ns("input"))
+          compSettingID(ns("numeric")),
+          compSettingWidth(ns("numeric"))
         ),
+        notes = "To position several inputs horizontally, they must be put within an input panel."
+      ),
+
+      #### Text Input ####
+      sidebarItem(
+        id = ns("text_input"),
+        name = "Text Input",
+        element = "text_input",
+        parent_id = accordion_id,
+        compSettingLabel(ns("text_input")),
         tags$fieldset(
-          compSettingID(ns("input")),
-          compSettingWidth(ns("input"))
+          compSettingID(ns("text_input")),
+          compSettingWidth(ns("text_input"))
+        ),
+        notes = "To position several inputs horizontally, they must be put within an input panel."
+      ),
+
+      #### Text Area Input ####
+      sidebarItem(
+        id = ns("textarea"),
+        name = "Textarea Input",
+        element = "textarea",
+        parent_id = accordion_id,
+        compSettingLabel(ns("textarea")),
+        tags$fieldset(
+          compSettingID(ns("textarea")),
+          compSettingWidth(ns("textarea"))
+        ),
+        notes = "To position several inputs horizontally, they must be put within an input panel."
+      ),
+
+      #### Password Input ####
+      sidebarItem(
+        id = ns("password"),
+        name = "Password Input",
+        element = "password",
+        parent_id = accordion_id,
+        compSettingLabel(ns("password")),
+        tags$fieldset(
+          compSettingID(ns("password")),
+          compSettingWidth(ns("password"))
         ),
         notes = "To position several inputs horizontally, they must be put within an input panel."
       ),

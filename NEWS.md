@@ -12,6 +12,12 @@
 
 * JavaScript code has moved to separate folder to work on as a module rather than 2/3 large files
 
+### UX Improvements
+
+* Reduced size of component settings to prevent scrolling when editing a component (#49)
+
+* Basic inputs have been split out into numeric, text, text input and password (#60)
+
 ### Bug Fixes
 
 * Fixed rendering issue with radio buttons and grouped checkboxes (#26)
