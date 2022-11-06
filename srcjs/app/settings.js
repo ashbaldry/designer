@@ -33,6 +33,7 @@ export function initSettings () {
 
   $('#canvas-delete').on('click', deleteDesignerElement)
 
+  $('#settings-template-search').on('input', toggleSavedTemplates)
   $('.template-option').on('click', sendSavedTemplateID)
 };
 
@@ -200,10 +201,22 @@ export function selectedTemplate () {
   return template_selected
 };
 
+function toggleSavedTemplates (event) {
+  const search_term = event.target.value ? event.target.value : ''
+
+  document.getElementsByClassName('template-option').forEach(x => {
+    const show_template = $(x).find('.title').html().includes(search_term) || $(x).find('.description').html().includes(search_term)
+    x.style.display = show_template ? null : 'none'
+  })
+}
+
 function sendSavedTemplateID (event) {
   const selected_template = $(event.target).closest('.template-option')
   const page_choice = selected_template.data('page')
   template_selected = true
+
+  document.getElementById('settings-template-search').value = null
+  $('#settings-template-search').trigger('input')
 
   $('#settings-page_type').find(`input[value='${page_choice}']`).trigger('click')
   Shiny.setInputValue('settings-template-select', selected_template.data('value'))

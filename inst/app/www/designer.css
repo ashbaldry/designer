@@ -78,6 +78,10 @@ h5.modal-title {
   z-index: 1050;
 }
 
+.input-group-text .fa {
+  line-height: 1.5;
+}
+
 .template-select .template-option {
   padding: 0 1em;
   cursor: pointer;
@@ -261,7 +265,7 @@ h5.modal-title {
 }
 
 .code-ui-form {
-  margin: 0 0 0.5rem 0.5rem;
+  margin: 0 0.5rem 0.5rem 0.5rem;
 }
 
 .code-ui-form .toast.show, .code-ui-form .toast.showing, .code-ui-form .toast.fade {

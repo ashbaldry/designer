@@ -9,7 +9,8 @@
 #' @param desc Longer description of the template
 #' @param user Person who created the template
 #'
-#' @importFrom utils read.csv write.table
+#' @importFrom utils read.csv write.csv write.table
+#' @noRd
 save_template <- function(html, page = NULL, title = NULL, desc = NULL, user = NULL) {
   cache_dir <- find_cache_dir()
   template_index <- get_template_index()
@@ -39,7 +40,6 @@ create_random_id <- function(n = 10) {
   paste0(sample(letters, n, replace = TRUE), collapse = "")
 }
 
-#' @noRd
 update_template <- function(html, id) {
   cache_dir <- find_cache_dir()
   cat(paste0(html, "\n"), file = file.path(cache_dir, id, "template.html"))
@@ -48,6 +48,23 @@ update_template <- function(html, id) {
 read_template <- function(id) {
   cache_dir <- find_cache_dir()
   paste0(readLines(file.path(cache_dir, id, "template.html")), collapse = "\n")
+}
+
+delete_template <- function(id) {
+  cache_dir <- find_cache_dir()
+  template_index <- get_template_index()
+
+  if (id %in% template_index$id) {
+    unlink(file.path(cache_dir, id), recursive = TRUE)
+    template_index <- template_index[template_index$id != id, ]
+
+    write.csv(
+      template_index,
+      file.path(cache_dir, "index.csv"),
+      col.names = TRUE,
+      row.names = FALSE
+    )
+  }
 }
 
 #' Template Index File

@@ -15,15 +15,42 @@ TemplateModUI <- function(id) {
   tagList(
     tags$form(
       class = "code-ui-form",
-      actionButton(
-        ns("save_button"),
-        "Save",
-        shiny::icon("floppy-disk")
+      tags$fieldset(
+        class = "form-group",
+        actionButton(
+          ns("save_button"),
+          "Save",
+          shiny::icon("floppy-disk")
+        )
+      ),
+      templateSearchInput(
+        ns("search")
       )
     ),
     templateSelectionInput(
       ns("select"),
       get_template_index()
+    )
+  )
+}
+
+templateSearchInput <- function(id) {
+  tags$fieldset(
+    class = "form-group input-group",
+    tags$input(
+      id = id,
+      class = "form-control",
+      type = "text",
+      `aria-label` = "search templates",
+      placeholder = "Search templates..."
+    ),
+    tags$div(
+      vlass = "input-group-append",
+      tags$span(
+        class = "input-group-text",
+        " ",
+        shiny::icon("magnifying-glass")
+      )
     )
   )
 }
