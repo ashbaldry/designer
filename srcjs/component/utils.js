@@ -32,8 +32,8 @@ export function getComponent (name) {
     return new Text()
   } else if (name === 'input_panel') {
     return new InputPanel()
-  } else if (name === 'input') {
-    return new Input()
+  } else if (['text_input', 'numeric', 'textarea', 'password'].includes(name)) {
+    return new Input(name)
   } else if (name === 'dropdown') {
     return new SelectInput()
   } else if (name === 'file') {

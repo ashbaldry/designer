@@ -1,10 +1,15 @@
 import { Component } from './Component'
 
 export class Input extends Component {
+  constructor (type) {
+    super()
+    this.type = type
+  }
+
   types = [
-    { value: 'text', label: 'Text', r_func: 'textInput' },
+    { value: 'text_input', label: 'Text', r_func: 'textInput' },
     { value: 'textarea', label: 'Textarea', r_func: 'textAreaInput' },
-    { value: 'number', label: 'Numeric', r_func: 'numericInput' },
+    { value: 'numeric', label: 'Numeric', r_func: 'numericInput' },
     { value: 'password', label: 'Password', r_func: 'passwordInput' }
   ]
 
@@ -16,24 +21,23 @@ export class Input extends Component {
     `
 
   createComponent () {
-    const label = $('#sidebar-input-label').val()
+    const label = $(`#sidebar-${this.type}-label`).val()
 
-    let id = $('#sidebar-input-id').val()
+    let id = $(`#sidebar-${this.type}-id`).val()
     id = id === '' ? this.createID('input') : id
 
-    const input_type = $('#sidebar-input-type').val()
-    const input_info = this.types.find(x => x.value === input_type)
+    const input_info = this.types.find(x => x.value === this.type)
     if (!input_info) return
     const r_func = input_info.r_func
 
     let input_tag
-    if (input_type === 'textarea') {
+    if (this.type === 'textarea') {
       input_tag = '<textarea class="form-control" placeholder="Textarea input"></textarea>'
     } else {
-      input_tag = `<input class="form-control" type="${input_type}" placeholder="${input_info.label} input">`
+      input_tag = `<input class="form-control" type="${this.type}" placeholder="${input_info.label} input">`
     }
 
-    const width = this.validateCssUnit($('#sidebar-input-width').val())
+    const width = this.validateCssUnit($(`#sidebar-${this.type}-width`).val())
     const style_str = width ? `style="width: ${width};"` : ''
     const width_str = width ? `, width = &quot;${width}&quot;` : ''
 
