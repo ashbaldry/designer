@@ -357,7 +357,7 @@ compSettingOffset <- function(id) {
 #' @param id The ID of the component input
 #' @param ... Shiny tags to include inside the component
 #'
-#' @return A shiny.tag of the compoenent settings
+#' @return A shiny.tag of the component settings
 component <- function(id, ...) {
   div(
     class = "component-settings",
