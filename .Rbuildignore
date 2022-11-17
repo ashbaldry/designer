@@ -18,3 +18,4 @@ _\.new\.png$
 ^Dockerfile$
 ^\.lintr$
 ^shiny_bookmarks$
+^CRAN-SUBMISSION$
