@@ -15,7 +15,7 @@ The drag-and-drop nature of the application means that it is easy for both R and
 
 ## Installation
 
-Install from [CRAN](https://cran.r-project.org/web/packages/designer/index.html) with:
+Install from [CRAN](https://cran.r-project.org/package=designer) with:
 
 ``` r
 install.packages("designer")
