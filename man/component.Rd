@@ -15,7 +15,7 @@ componentTab(id)
 \item{...}{Shiny tags to include inside the component}
 }
 \value{
-A shiny.tag of the compoenent settings
+A shiny.tag of the component settings
 }
 \description{
 A container for the specified component input
