@@ -298,10 +298,10 @@ h5.modal-title {
 
 .canvas-modal {
   position: absolute;
-  top: 20%;
-  bottom: 20%;
-  left: 25%;
-  right: 25%;
+  top: 15%;
+  bottom: 10%;
+  right: 20%;
+  left: 20%;
   border: #333 2px solid;
   border-radius: 1rem;
   text-align: center;
@@ -313,8 +313,13 @@ h5.modal-title {
   box-shadow: #555 2px 2px 1rem 0.5rem;
 }
 
+.canvas-modal-title {
+  margin-top: 0.5rem;
+  margin-bottom: 0;
+}
+
 .canvas-page-choices {
-  padding: 1rem;
+  padding: 0.25rem;
 }
 
 .canvas-page-choice {

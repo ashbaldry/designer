@@ -161,14 +161,14 @@ function applyCustomStyle (event) {
   const reader = new FileReader()
   reader.onload = (e) => {
     const file = e.target.result
-    const lines = file.split(/\r\n|\n/)
+    const lines = file.split(/\r\n|\n|(?<=\}\b)/)
     canvasStyle.innerHTML = lines.join('\n')
 
     const cssRules = canvasStyle.sheet.cssRules
     for (let i = 0; i < cssRules.length; i++) {
       if (cssRules[i].selectorText) {
         cssRules[i].selectorText = addCanvasPageSelector(cssRules[i].selectorText)
-      } else if (cssRules[i].media) {
+      } else if (cssRules[i].media && cssRules[i].cssRules) {
         const cssMediaRules = cssRules[i].cssRules
         for (let j = 0; j < cssMediaRules.length; j++) {
           cssMediaRules[j].selectorText = addCanvasPageSelector(cssMediaRules[j].selectorText)
