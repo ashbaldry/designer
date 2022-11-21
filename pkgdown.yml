@@ -3,7 +3,7 @@ pkgdown: 2.0.6
 pkgdown_sha: ~
 articles:
   designer: designer.html
-last_built: 2022-11-20T12:11Z
+last_built: 2022-11-21T09:01Z
 urls:
   reference: https://ashbaldry.github.io/designer/reference
   article: https://ashbaldry.github.io/designer/articles
