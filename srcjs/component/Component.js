@@ -1,4 +1,4 @@
-import { component } from './init'
+export let component
 
 export class Component {
   updatable = true
@@ -6,13 +6,15 @@ export class Component {
   display_container = true
   has_card_body = false
   is_tab = false
-  name
-  parameters
   tags
   types
   notes
   sortable_settings
-  html
+  html = '<div></div>'
+
+  constructor () {
+    component = this
+  }
 
   createComponent () {
     return this.html

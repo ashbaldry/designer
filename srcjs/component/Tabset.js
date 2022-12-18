@@ -34,6 +34,8 @@ export class Tabset extends Component {
                 <div class="tab-content" data-tabsetid="$id$" data-shinyfunction="tabsetPanel" data-shinyattributes="type = &quot;$type$&quot;"></div>
             </div>`
     }
+
+    this.updateComponent(true)
   };
 
   createComponent () {

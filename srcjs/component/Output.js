@@ -19,6 +19,11 @@ export class Output extends Component {
         </$html_tag$>
     `
 
+  constructor () {
+    super()
+    this.updateComponent(true)
+  }
+
   createComponent () {
     const label = $('#sidebar-output-label').val()
 

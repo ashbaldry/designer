@@ -30,6 +30,11 @@ export class DateInput extends Component {
         </div>       
     `
 
+  constructor () {
+    super()
+    this.updateComponent(true)
+  }
+
   createComponent () {
     const label = $('#sidebar-date-label').val()
 

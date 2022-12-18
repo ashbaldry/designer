@@ -18,6 +18,11 @@ export class CheckboxGroupInput extends Component {
         </div>
     `
 
+  constructor () {
+    super()
+    this.updateComponent(true)
+  }
+
   createComponent () {
     const label = $('#sidebar-radio-label').val()
 

@@ -23,6 +23,11 @@ export class Button extends Component {
         </button>
     `
 
+  constructor () {
+    super()
+    this.updateComponent(true)
+  }
+
   createComponent () {
     const label = $('#sidebar-button-label').val()
 
