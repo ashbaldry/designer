@@ -3,11 +3,6 @@ import { Component } from './Component'
 export class Tab extends Component {
   _item = 1
 
-  constructor () {
-    super()
-    document.getElementById('sidebar-container').style.display = 'none'
-  }
-
   updateComponent () {};
 
   getPageType () {

@@ -10,10 +10,9 @@ export class Component {
   types
   notes
   sortable_settings
-  html
+  html = '<div></div>'
 
   constructor () {
-    document.getElementById('sidebar-container').style.display = null
     component = this
   }
 

@@ -13,6 +13,9 @@ export function initComponents () {
 
   $('.accordion .card-header .btn').on('click', (el) => {
     $(el.target).closest('.card').find('form').trigger('reset')
-    getComponent($(el.target).data('shinyelement'))
+
+    const new_component = $(el.target).data('shinyelement')
+    getComponent(new_component)
+    document.getElementById('sidebar-container').style.display = new_component === 'tab_panel' ? 'none' : null
   })
 };
