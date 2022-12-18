@@ -20,8 +20,8 @@
   },
   "homepage": "https://ashbaldry.github.com/designer",
   "dependencies": {
-    "@types/rstudio-shiny": "https://github.com/rstudio/shiny#v1.7.1",
-    "jquery": "^3.6.0",
+    "@types/rstudio-shiny": "https://github.com/rstudio/shiny#v1.7.4",
+    "jquery": "^3.5.14",
     "sortablejs": "^1.15.0"
   },
   "devDependencies": {
