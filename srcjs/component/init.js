@@ -1,10 +1,8 @@
 import { getComponent } from './utils'
-
-export let component
+import { component } from './Component'
 
 export function initComponents () {
-  component = getComponent('header')
-  component.updateComponent(true)
+  getComponent('header')
 
   $('.component-settings').on('change keyup', () => component.updateComponent())
   $('.component-comments').on('change blur', () => component.updateComponent())
@@ -15,7 +13,6 @@ export function initComponents () {
 
   $('.accordion .card-header .btn').on('click', (el) => {
     $(el.target).closest('.card').find('form').trigger('reset')
-    component = getComponent($(el.target).data('shinyelement'))
-    component.updateComponent(true)
+    getComponent($(el.target).data('shinyelement'))
   })
 };

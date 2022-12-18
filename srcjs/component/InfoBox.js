@@ -18,6 +18,11 @@ export class InfoBox extends Component {
         </div>
     `
 
+  constructor () {
+    super()
+    this.updateComponent(true)
+  }
+
   createComponent () {
     const value = $('#sidebar-info_box-value').val()
     const label = $('#sidebar-info_box-label').val()

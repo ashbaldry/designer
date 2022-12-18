@@ -18,6 +18,11 @@ export class FileInput extends Component {
         </div>
     `
 
+  constructor () {
+    super()
+    this.updateComponent(true)
+  }
+
   createComponent () {
     const label = $('#sidebar-file-label').val()
 

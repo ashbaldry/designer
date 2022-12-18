@@ -9,6 +9,10 @@ export class Callout extends Component {
            $value$
         </div>
     `
+  constructor () {
+    super()
+    this.updateComponent(true)
+  }
 
   createComponent () {
     const title = $('#sidebar-callout-label').val()

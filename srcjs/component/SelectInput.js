@@ -12,6 +12,11 @@ export class SelectInput extends Component {
         </div>
     `
 
+  constructor () {
+    super()
+    this.updateComponent(true)
+  }
+
   createComponent () {
     const label = $('#sidebar-dropdown-label').val()
 
