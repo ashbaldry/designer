@@ -28,6 +28,10 @@ export class Component {
   };
 
   updateComponent (update_sortable = false) {
+    if (typeof (window) === 'undefined') {
+      return null
+    }
+
     $('.component-container').html(null)
     const html = this.createComponent()
     $('.component-container').html(html)
