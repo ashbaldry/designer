@@ -33,6 +33,11 @@ export class Box extends Component {
     }
   }
 
+  constructor () {
+    super()
+    this.updateComponent(true)
+  }
+
   createComponent () {
     const label = $('#sidebar-box-label').val()
 

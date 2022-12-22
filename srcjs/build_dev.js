@@ -1,6 +1,6 @@
-const esbuild = require('esbuild')
+import { build } from 'esbuild'
 
-esbuild.build({
+build({
   entryPoints: ['app/index.js'],
   bundle: true,
   sourcemap: true,

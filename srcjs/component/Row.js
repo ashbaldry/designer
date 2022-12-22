@@ -4,6 +4,11 @@ export class Row extends Component {
   updatable = false
   html = '<div class="designer-element row row-designer" data-shinyfunction="fluidRow"></div>'
 
+  constructor () {
+    super()
+    this.updateComponent(true)
+  }
+
   sortable_settings = {
     group: {
       name: 'shared',

@@ -4,6 +4,7 @@ export class Input extends Component {
   constructor (type) {
     super()
     this.type = type
+    this.updateComponent(true)
   }
 
   types = [

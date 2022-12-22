@@ -33,6 +33,11 @@ export class UserBox extends Component {
     }
   }
 
+  constructor () {
+    super()
+    this.updateComponent(true)
+  }
+
   createComponent () {
     const label = $('#sidebar-user_box-label').val()
 

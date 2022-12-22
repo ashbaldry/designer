@@ -3,6 +3,11 @@ import { Component } from './Component'
 export class Header extends Component {
   html = '<$tag$ class="designer-element" data-shinyfunction="$tag$">$value$</$tag$>'
 
+  constructor () {
+    super()
+    this.updateComponent(true)
+  }
+
   createComponent () {
     const tag = $('#sidebar-header-tag').val()
     const value = $('#sidebar-header-text').val()

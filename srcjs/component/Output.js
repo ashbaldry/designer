@@ -19,6 +19,11 @@ export class Output extends Component {
         </$html_tag$>
     `
 
+  constructor () {
+    super()
+    this.updateComponent(true)
+  }
+
   createComponent () {
     const label = $('#sidebar-output-label').val()
 
@@ -83,6 +88,10 @@ export class Output extends Component {
 
   updateComponent (update_sortable = false) {
     super.updateComponent(update_sortable)
+
+    if (typeof (window) === 'undefined') {
+      return null
+    }
     Shiny.bindAll()
   };
 }

@@ -2,12 +2,14 @@
   "private": true,
   "name": "designer",
   "version": "0.2.0",
-  "main": "",
+  "main": "app/index.js",
+  "type": "module",
   "scripts": {
     "build": "node build.js",
     "build_dev": "node build_dev.js",
     "lint": "eslint --fix --ext .js,.jsx .",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "coverage": "jest --coverage"
   },
   "repository": {
     "type": "git",
@@ -19,16 +21,19 @@
   },
   "homepage": "https://ashbaldry.github.com/designer",
   "dependencies": {
-    "@types/rstudio-shiny": "https://github.com/rstudio/shiny#v1.7.1",
-    "jquery": "^3.6.0",
+    "@types/rstudio-shiny": "https://github.com/rstudio/shiny#v1.7.4",
+    "jquery": "^3.5.14",
     "sortablejs": "^1.15.0"
   },
   "devDependencies": {
+    "@babel/plugin-transform-modules-commonjs": "^7.19.6",
     "esbuild": "^0.14.42",
     "eslint": "^8.0.1",
     "eslint-config-standard": "^17.0.0",
     "eslint-plugin-import": "^2.25.2",
     "eslint-plugin-n": "^15.0.0",
-    "eslint-plugin-promise": "^6.0.0"
+    "eslint-plugin-promise": "^6.0.0",
+    "jest": "^29.3.1",
+    "jest-environment-jsdom": "^29.3.1"
   }
 }

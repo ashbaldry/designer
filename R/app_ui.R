@@ -79,7 +79,7 @@ addGolemExternalResources <- function() {
       path = appSys("app/www"),
       app_title = "Shiny UI Designer",
       name = "designer",
-      version = "0.1.0"
+      version = packageVersion("designer")
     ),
     ionRangeSliderDependency(),
     datePickerDependency(),

@@ -1,4 +1,4 @@
-test_that("designer app works", {
+test_that("designer app functionality works as expected", {
   # Don't run these tests on the CRAN build servers
   testthat::skip_on_cran()
 
@@ -6,7 +6,7 @@ test_that("designer app works", {
   app <- shinytest2::AppDriver$new(shiny_app, name = "designapp")
   on.exit(app$stop())
 
-  # Checking page is loaded
+  # Checking for ID uniqueness
   app$expect_unique_names()
 
   # Checking title and matches app title
@@ -27,18 +27,30 @@ test_that("designer app works", {
   ui <- app$get_value(input = "canvas-canvas")
   testthat::expect_true(grepl("fluidPage(", jsonToRScript(ui), fixed = TRUE))
 
-  # Expect all components create a component that can be dragged
+  # Expect dashboard page to populate, and generate sample R code
   app$click(selector = '#settings-page_type input[value="dashboardPage"]')
   app$wait_for_idle()
   ui <- app$get_value(input = "canvas-canvas")
-  testthat::expect_true(grepl("dashboardPage(", jsonToRScript(ui), fixed = TRUE))
 
+  app$click(selector = "#settings-code_button")
+  r_code <- app$get_value(output = "settings-code-code")
+  testthat::expect_equal(r_code, jsonToRScript(ui))
+  app$click(selector = "#settings-code_button")
+
+  # Check all components can be selected
   app$click(selector = "#sidebar-tab-add")
 
+  stored_component_shell <- ""
   for (component in COMPONENTS[-1L]) {
     app$click(selector = paste("#sidebar", component, "header button", sep = "-"))
     clicked_component <- app$get_html(selector = ".component-accordion .card.active")
     testthat::expect_true(grepl(paste0("sidebar-", component, "-header"), clicked_component))
+
+    # Ensuring that the new component changes the preview, and is non-empty
+    component_shell <- app$get_html(selector = "#sidebar-container")
+    testthat::expect_true(grepl("designer-element", component_shell))
+    testthat::expect_true(component_shell != stored_component_shell)
+    stored_component_shell <- component_shell
   }
 
   # Choose all different outputs that create IDs

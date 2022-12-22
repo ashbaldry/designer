@@ -34,6 +34,8 @@ export class Tabset extends Component {
                 <div class="tab-content" data-tabsetid="$id$" data-shinyfunction="tabsetPanel" data-shinyattributes="type = &quot;$type$&quot;"></div>
             </div>`
     }
+
+    this.updateComponent(true)
   };
 
   createComponent () {
@@ -80,7 +82,11 @@ export class Tabset extends Component {
   };
 
   getPageType () {
-    return $('#settings-page_type input:radio:checked').val()
+    if (typeof (window) === 'undefined') {
+      return 'navbarPage'
+    } else {
+      return $('#settings-page_type input:radio:checked').val()
+    }
   };
 
   addPage () {
