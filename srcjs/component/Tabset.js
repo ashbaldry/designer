@@ -82,7 +82,11 @@ export class Tabset extends Component {
   };
 
   getPageType () {
-    return $('#settings-page_type input:radio:checked').val()
+    if (typeof (window) === 'undefined') {
+      return 'navbarPage'
+    } else {
+      return $('#settings-page_type input:radio:checked').val()
+    }
   };
 
   addPage () {

@@ -6,11 +6,8 @@ export class Component {
   display_container = true
   has_card_body = false
   is_tab = false
-  tags
-  types
-  notes
-  sortable_settings
   html = '<div></div>'
+  sortable_settings = null
 
   constructor () {
     component = this
@@ -28,6 +25,10 @@ export class Component {
   };
 
   updateComponent (update_sortable = false) {
+    if (typeof (window) === 'undefined') {
+      return null
+    }
+
     $('.component-container').html(null)
     const html = this.createComponent()
     $('.component-container').html(html)
