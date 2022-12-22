@@ -73,13 +73,14 @@
 
       
 
-      </header><script src="designer_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1 data-toc-skip>Prototyping Your UI with <code>designer</code>
+      <h1 data-toc-skip>Prototyping Your UI with
+<code>designer</code>
 </h1>
             
-            <h4 data-toc-skip class="date">2022-11-21</h4>
+            <h4 data-toc-skip class="date">2022-12-22</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/ashbaldry/designer/blob/HEAD/vignettes/designer.Rmd" class="external-link"><code>vignettes/designer.Rmd</code></a></small>
       <div class="hidden name"><code>designer.Rmd</code></div>
@@ -88,10 +89,22 @@
 
     
     
-<p><code>designer</code> is intended to make the initial generation of a UI wireframe of a shiny application as quick and simple as possible.</p>
-<p>The package contains a <code>shiny</code> application that enables the user to build the UI of a <code>shiny</code> application by drag and dropping several <code>shiny</code> components - such as inputs, outputs and buttons - into one of the available pages in the <a href="https://shiny.rstudio.com/" class="external-link">shiny</a> package. Once finalised, the R code used to generate the UI can be copied or downloaded to a <code>ui.R</code> file, and then the rest of the application like the server logic and styling can be built by the developer.</p>
-<p>The drag-and-drop nature of the application means that it is easy for both R and non-R users to collaborate in designing the UI of their shiny application. Comments can be added to any component so that it is simple to remember what should be included for each input/output.</p>
-<p>To run the application, use <code><a href="../reference/designApp.html">designer::designApp()</a></code> or select “Shiny UI Builder” in the Addins.</p>
+<p><code>designer</code> is intended to make the initial generation of a
+UI wireframe of a shiny application as quick and simple as possible.</p>
+<p>The package contains a <code>shiny</code> application that enables
+the user to build the UI of a <code>shiny</code> application by drag and
+dropping several <code>shiny</code> components - such as inputs, outputs
+and buttons - into one of the available pages in the
+<a href="https://shiny.rstudio.com/" class="external-link">shiny</a> package. Once finalised, the R code used to
+generate the UI can be copied or downloaded to a <code>ui.R</code> file,
+and then the rest of the application like the server logic and styling
+can be built by the developer.</p>
+<p>The drag-and-drop nature of the application means that it is easy for
+both R and non-R users to collaborate in designing the UI of their shiny
+application. Comments can be added to any component so that it is simple
+to remember what should be included for each input/output.</p>
+<p>To run the application, use <code><a href="../reference/designApp.html">designer::designApp()</a></code> or
+select “Shiny UI Builder” in the Addins.</p>
 <hr>
 <div class="section level2">
 <h2 id="application">Application<a class="anchor" aria-label="anchor" href="#application"></a>
@@ -103,23 +116,36 @@
 <p>First is the choice of page.</p>
 <ul>
 <li>
-<code>fluidPage</code> is the most commonly used page in shiny applications.</li>
+<code>fluidPage</code> is the most commonly used page in shiny
+applications.</li>
 <li>
-<code>navbarPage</code> is useful when creating multi-page applications.
+<code>navbarPage</code> is useful when creating multi-page
+applications.
 <ul>
-<li>Currently <code>dashboardPage</code> (part of <a href="http://rstudio.github.io/shinydashboard/" class="external-link">shinydashboard</a>) is not available due to conflicting styles, however the contents of each tab can be copy and pasted within the <code>dashboardBody</code> argument.</li>
+<li>Currently <code>dashboardPage</code> (part of
+<a href="http://rstudio.github.io/shinydashboard/" class="external-link">shinydashboard</a>) is not available due to conflicting
+styles, however the contents of each tab can be copy and pasted within
+the <code>dashboardBody</code> argument.</li>
 </ul>
 </li>
 <li>
-<code>fillPage</code> takes advantage of the rows and columns to align content.</li>
+<code>fillPage</code> takes advantage of the rows and columns to
+align content.</li>
 <li>
-<code>bootstrapPage</code> and <code>basicPage</code> are included for cases where the developer has more broad knowledge of HTML and CSS and will adapt the application more once the wireframe is created.</li>
+<code>bootstrapPage</code> and <code>basicPage</code> are included
+for cases where the developer has more broad knowledge of HTML and CSS
+and will adapt the application more once the wireframe is created.</li>
 </ul>
 </div>
 <div class="section level3">
 <h3 id="components">Components<a class="anchor" aria-label="anchor" href="#components"></a>
 </h3>
-<p>Next is adding the components to the page. A list of available components mentioned below. When creating components the <a href="https://shiny.rstudio.com/" class="external-link">shiny</a> function parameters that can affect the look/layout of the UI (e.g. width and labels) are available to customise, but the more server-logic related parameters (e.g. dropdown choices) are left to the application developer later on.</p>
+<p>Next is adding the components to the page. A list of available
+components mentioned below. When creating components the
+<a href="https://shiny.rstudio.com/" class="external-link">shiny</a> function parameters that can affect the look/layout
+of the UI (e.g. width and labels) are available to customise, but the
+more server-logic related parameters (e.g. dropdown choices) are left to
+the application developer later on.</p>
 <table class="table">
 <colgroup>
 <col width="16%">
@@ -175,7 +201,8 @@
 <tr class="even">
 <td>Input</td>
 <td>
-<code>textInput</code>, <code>numericInput</code>, <code>textAreaInput</code>, <code>passwordInput</code>
+<code>textInput</code>, <code>numericInput</code>,
+<code>textAreaInput</code>, <code>passwordInput</code>
 </td>
 <td></td>
 </tr>
@@ -214,7 +241,9 @@
 <tr class="odd">
 <td>Output</td>
 <td>
-<code>textOutput</code>, <code>verbatimTextOutput</code>, <code>plotOutput</code>, <code>imageOutput</code>, <code>DTOutput</code>, <code>uiOutput</code>
+<code>textOutput</code>, <code>verbatimTextOutput</code>,
+<code>plotOutput</code>, <code>imageOutput</code>,
+<code>DTOutput</code>, <code>uiOutput</code>
 </td>
 <td></td>
 </tr>
@@ -223,28 +252,44 @@
 <div class="section level4">
 <h4 id="notes">Notes<a class="anchor" aria-label="anchor" href="#notes"></a>
 </h4>
-<p>A few layout rules have been implemented into the application to try and match the Bootstrap UI framework that aren’t always checked in <a href="https://shiny.rstudio.com/" class="external-link">shiny</a>.</p>
+<p>A few layout rules have been implemented into the application to try
+and match the Bootstrap UI framework that aren’t always checked in
+<a href="https://shiny.rstudio.com/" class="external-link">shiny</a>.</p>
 <ul>
-<li>Columns can only be added to rows. This matches the <a href="https://getbootstrap.com/docs/4.6/layout/grid/" class="external-link">grid system</a> Bootstrap have used (which is based off flexbox).</li>
-<li>For a similar reason rows are the only component that can be directly added to columns. Anything can be added into a row (even more columns)</li>
-<li>The only components that are allowed in input panels are inputs and buttons.</li>
+<li>Columns can only be added to rows. This matches the <a href="https://getbootstrap.com/docs/4.6/layout/grid/" class="external-link">grid system</a>
+Bootstrap have used (which is based off flexbox).</li>
+<li>For a similar reason rows are the only component that can be
+directly added to columns. Anything can be added into a row (even more
+columns)</li>
+<li>The only components that are allowed in input panels are inputs and
+buttons.</li>
 </ul>
 </div>
 </div>
 <div class="section level3">
 <h3 id="saving">Saving<a class="anchor" aria-label="anchor" href="#saving"></a>
 </h3>
-<p>Once the wireframe is complete, then there is the ability to save the code, either by downloading the file or copying the code. There is also the opportunity to take a screenshot to annotate further if required.</p>
+<p>Once the wireframe is complete, then there is the ability to save the
+code, either by downloading the file or copying the code. There is also
+the opportunity to take a screenshot to annotate further if
+required.</p>
 </div>
 </div>
 <div class="section level2">
 <h2 id="sharing-designs">Sharing Designs<a class="anchor" aria-label="anchor" href="#sharing-designs"></a>
 </h2>
-<p>Alternatively you can share it with others using Code -&gt; Share. This will generate a URL that when opened by another person (or yourself in the future) will show the saved state of the design and then can be added onto and saved again - this will generate a new URL to share.</p>
+<p>Alternatively you can share it with others using Code -&gt; Share.
+This will generate a URL that when opened by another person (or yourself
+in the future) will show the saved state of the design and then can be
+added onto and saved again - this will generate a new URL to share.</p>
 <div class="section level3">
 <h3 id="extras">Extras<a class="anchor" aria-label="anchor" href="#extras"></a>
 </h3>
-<p>There are some development tools that have been enabled upon start-up that can be removed to preview the UI as the end user would see the application, such as borders around all components, colouring some empty components like columns and rows, and removing component names from the UI.</p>
+<p>There are some development tools that have been enabled upon start-up
+that can be removed to preview the UI as the end user would see the
+application, such as borders around all components, colouring some empty
+components like columns and rows, and removing component names from the
+UI.</p>
 </div>
 </div>
   </div>
@@ -266,7 +311,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>
