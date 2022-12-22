@@ -1,4 +1,4 @@
-import { Component } from '../component/Component'
+import { Component } from '../Component'
 
 test('Component sanity test - constructs successfully', () => {
   const component = new Component()
@@ -28,6 +28,13 @@ test('Component - replacing placeholders works with multiple placeholders', () =
 
   const html_2 = '<$tag_name$>$title$ - title</$tag_name$>'
   expect(component.replaceHTMLPlaceholders(html_2, { tag_name: 'h1', title: 'test' })).toEqual('<h1>test - title</h1>')
+})
+
+test('Component - Can create random ID', () => {
+  const component = new Component()
+
+  expect(component.createID()).toMatch(/^\w+$/)
+  expect(component.createID('test')).toMatch(/^test_\w+$/)
 })
 
 test('Component - CSS Units correctly validated', () => {

@@ -88,6 +88,10 @@ export class Output extends Component {
 
   updateComponent (update_sortable = false) {
     super.updateComponent(update_sortable)
+
+    if (typeof (window) === 'undefined') {
+      return null
+    }
     Shiny.bindAll()
   };
 }

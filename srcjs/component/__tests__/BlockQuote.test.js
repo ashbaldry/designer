@@ -1,4 +1,4 @@
-import { BlockQuote } from '../component/BlockQuote'
+import { BlockQuote } from '../BlockQuote'
 
 test('sanity test - block quote constructs successfully', () => {
   const component = new BlockQuote()
