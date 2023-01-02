@@ -25,8 +25,6 @@ save_template <- function(html, page = NULL, title = NULL, desc = NULL, user = N
   dir.create(template_dir, showWarnings = FALSE)
   cat(paste0(html, "\n"), file = file.path(template_dir, "template.html"))
 
-  take_screenshot(id = template_id, file.path(cache_dir, "screenshots"), session = session)
-
   write.table(
     data.frame(id = template_id, page = page, title = title, user = user, description = desc),
     file.path(cache_dir, "index.csv"),
@@ -45,7 +43,6 @@ create_random_id <- function(n = 10) {
 
 update_template <- function(html, id, session = shiny::getDefaultReactiveDomain()) {
   cache_dir <- find_cache_dir()
-  take_screenshot(id = id, file.path(cache_dir, "screenshots"), session = session)
   cat(paste0(html, "\n"), file = file.path(cache_dir, id, "template.html"))
 }
 
@@ -72,8 +69,6 @@ delete_template <- function(id) {
 }
 
 #' Take Template Screenshot
-#'
-#' @description
 #'
 #' @noRd
 take_screenshot <- function(id, screenshot_dir, session = shiny::getDefaultReactiveDomain()) {
