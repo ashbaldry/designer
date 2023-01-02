@@ -81,14 +81,20 @@ take_screenshot <- function(id, screenshot_dir, session = shiny::getDefaultReact
     dir.create(screenshot_dir)
   }
 
-  session$sendCustomMessage("prepare_canvas_screenshot", NULL)
+  screenshot_png <- paste0(screenshot_dir, "/", id, ".png")
+  if (file.exists(screenshot_png)) {
+    file.remove(screenshot_png)
+  }
+
+  session$sendCustomMessage("prepare_canvas_screenshot", list())
+  Sys.sleep(0.5)
   shinyscreenshot::screenshot(
     selector = "#canvas-page",
     filename = id,
     download = FALSE,
     server_dir = screenshot_dir
   )
-  session$sendCustomMessage("revert_canvas_screenshot", NULL)
+  session$sendCustomMessage("revert_canvas_screenshot", list())
 }
 
 #' Template Index File
