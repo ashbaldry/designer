@@ -2,7 +2,7 @@ import { page } from '../page/utils'
 import { Component } from '../component/Component'
 import { Column } from '../component/Column'
 import { Row } from '../component/Row'
-import { InputPanel } from '../component/InputPanel' 
+import { InputPanel } from '../component/InputPanel'
 
 export const canvasBinding = new Shiny.InputBinding()
 
