@@ -40,7 +40,7 @@ find_cache_dir <- function(mode = 2L) {
     version = paste0("v", DESIGNER_VERSION)
   )
   if (!dir.exists(personal_dir)) {
-    dir.create(personal_dir)
+    dir.create(personal_dir, recursive = TRUE, showWarnings = FALSE)
   }
   personal_dir
 }
