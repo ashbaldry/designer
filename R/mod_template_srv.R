@@ -124,6 +124,20 @@ TemplateModuleServer <- function(id, html, page) {
         user = input$author
       )
       saved_template_id(id)
+
+      insertUI(
+        selector = paste0("#", ns("select")),
+        where = "beforeEnd",
+        ui = createTemplateSelection(
+          list(
+            id = id,
+            page = page(),
+            user = input$author,
+            title = input$title,
+            description = input$description
+          )
+        )
+      )
     }) |>
       bindEvent(
         input$save,
