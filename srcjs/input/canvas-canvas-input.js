@@ -32,9 +32,9 @@ $.extend(canvasBinding, {
     // Fixes the first flashing component
     new Component().enableSortable()
 
-    const sortableSettings = new Column().sortable_settings
-    const sortableRowSettings = new Row().sortable_settings
-    const sortableInputPanelSettings = new InputPanel().sortableSettings
+    const sortableSettings = new Column(update_component = false).sortable_settings
+    const sortableRowSettings = new Row(update_component = false).sortable_settings
+    const sortableInputPanelSettings = new InputPanel(update_component = false).sortableSettings
 
     PARENT_DESIGNER_CLASSES.map(x => enableSortableComponent(x, sortableSettings))
     enableSortableComponent('designer-element row', sortableRowSettings)
