@@ -84,7 +84,7 @@ h5.modal-title {
 
 .template-select {
   max-height: 30vh;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .template-select .template-option {

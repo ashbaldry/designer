@@ -62,7 +62,6 @@ delete_template <- function(id) {
     write.csv(
       template_index,
       file.path(cache_dir, "index.csv"),
-      col.names = TRUE,
       row.names = FALSE
     )
   }

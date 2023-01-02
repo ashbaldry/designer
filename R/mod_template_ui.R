@@ -91,7 +91,7 @@ createTemplateSelection <- function(template_info) {
     ),
     span(
       class = "delete",
-      shiny::icon("x")
+      shiny::icon("x", title = "Delete Template")
     )
   )
 }

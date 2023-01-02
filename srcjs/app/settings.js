@@ -230,7 +230,14 @@ function sendSavedTemplateID (event) {
   document.getElementById('settings-template-search').value = null
   $('#settings-template-search').trigger('input')
 
-  $('#settings-page_type').find(`input[value='${page_choice}']`).trigger('click')
+  const to_delete = $(event.target).closest('.delete').length > 0 || event.target.classList.contains('delete')
+
+  if (!to_delete) {
+    $('#settings-page_type').find(`input[value='${page_choice}']`).trigger('click')
+  }
+
   Shiny.setInputValue('settings-template-select', selected_template.data('value'))
+  Shiny.setInputValue('settings-template-delete', to_delete)
+
   template_selected = false
 };

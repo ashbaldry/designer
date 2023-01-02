@@ -179,7 +179,60 @@ TemplateModuleServer <- function(id, html, page) {
         ignoreInit = TRUE
       )
 
-    selected_template <- eventReactive(input$select, read_template(input$select))
+    #### Deleting ####
+    observe({
+      req(input$delete)
+      showModal(
+        modalDialog(
+          p("Deleting this template will remove for all users. Do you wish to continue?"),
+          title = "Warning!",
+          footer = tagList(
+            tags$button(
+              type = "button",
+              class = "btn btn-secondary",
+              `data-dismiss` = "modal",
+              `data-bs-dismiss` = "modal",
+              shiny::icon("xmark"),
+              "No"
+            ),
+            tags$button(
+              id = ns("confirm_delete"),
+              type = "button",
+              class = "btn btn-danger action-button",
+              `data-dismiss` = "modal",
+              `data-bs-dismiss` = "modal",
+              shiny::icon("check"),
+              "Yes"
+            )
+          )
+        )
+      )
+    }) |>
+      bindEvent(
+        input$select,
+        input$delete,
+        ignoreInit = TRUE
+      )
+
+    observe({
+      delete_template(input$select)
+      removeUI(selector = paste0(".template-option[data-value='", input$select, "']"))
+    }) |>
+      bindEvent(
+        input$confirm_delete,
+        ignoreInit = TRUE
+      )
+
+    #### UI Updating ####
+    selected_template <- reactive({
+      req(!input$delete)
+      read_template(input$select)
+    }) |>
+      bindEvent(
+        input$select,
+        input$delete,
+        ignoreInit = TRUE
+      )
 
     return(selected_template)
   })
