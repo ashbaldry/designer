@@ -156,6 +156,7 @@ TemplateModuleServer <- function(id, html, page) {
 
     #### Updating ####
     observe({
+      req(input$overwrite + input$overwrite_share > 0)
       update_template(
         html = html(),
         id = input$existing_template
