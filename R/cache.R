@@ -14,9 +14,9 @@
 #' @inheritParams base::file.access
 #'
 #' @noRd
-find_cache_dir <- function(mode = 2) {
+find_cache_dir <- function(mode = 2L) {
   custom_dir <- Sys.getenv("R_DESIGNER_CACHE", "")
-  if (dir.exists(custom_dir) && file.access(custom_dir, mode = mode) == 0) {
+  if (dir.exists(custom_dir) && file.access(custom_dir, mode = mode) == 0L) {
     return(custom_dir)
   }
 
@@ -27,9 +27,9 @@ find_cache_dir <- function(mode = 2) {
   )
   parent_shared_dir <- rappdirs::site_data_dir()
 
-  if (file.access(shared_dir, mode = mode) == 0) {
+  if (file.access(shared_dir, mode = mode) == 0L) {
     return(shared_dir)
-  } else if (!dir.exists(shared_dir) && file.access(parent_shared_dir, mode = mode) == 0) {
+  } else if (!dir.exists(shared_dir) && file.access(parent_shared_dir, mode = mode) == 0L) {
     dir.create(shared_dir, recursive = TRUE, showWarnings = FALSE)
     return(shared_dir)
   }
@@ -45,4 +45,4 @@ find_cache_dir <- function(mode = 2) {
   personal_dir
 }
 
-DESIGNER_VERSION <- 1
+DESIGNER_VERSION <- 1L

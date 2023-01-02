@@ -37,7 +37,7 @@ save_template <- function(html, page = NULL, title = NULL, desc = NULL, user = N
   template_id
 }
 
-create_random_id <- function(n = 10) {
+create_random_id <- function(n = 10L) {
   paste0(sample(letters, n, replace = TRUE), collapse = "")
 }
 

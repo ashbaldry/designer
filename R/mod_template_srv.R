@@ -19,7 +19,9 @@ TemplateModuleServer <- function(id, html, page) {
       session$sendCustomMessage(
         "runjs",
         list(
-          script = paste0('document.querySelector(".template-option[data-value=\'', state$values$template, '\']").click()')
+          script = paste0(
+            "document.querySelector(\".template-option[data-value='", state$values$template, "']\").click()"
+          )
         )
       )
     })
@@ -35,7 +37,7 @@ TemplateModuleServer <- function(id, html, page) {
               tags$legend("Save Template"),
               textInput(ns("title"), "Title", width = "100%"),
               textInput(ns("author"), "Author", width = "100%"),
-              textAreaInput(ns("description"), "Description (optional)", rows = 2, width = "100%"),
+              textAreaInput(ns("description"), "Description (optional)", rows = 2L, width = "100%"),
               tags$button(
                 type = "button",
                 class = "btn btn-secondary",
@@ -61,7 +63,7 @@ TemplateModuleServer <- function(id, html, page) {
                 shiny::icon("share")
               )
             ),
-            if (nrow(existing_templates) > 0) {
+            if (nrow(existing_templates) > 0L) {
               tagList(
                 tags$hr(),
                 tags$fieldset(
@@ -156,7 +158,7 @@ TemplateModuleServer <- function(id, html, page) {
 
     #### Updating ####
     observe({
-      req(input$overwrite + input$overwrite_share > 0)
+      req(input$overwrite + input$overwrite_share > 0L)
       update_template(
         html = html(),
         id = input$existing_template

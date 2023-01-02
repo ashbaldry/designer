@@ -56,8 +56,8 @@ templateSearchInput <- function(id) {
 }
 
 templateSelectionInput <- function(id, template_index) {
-  if (nrow(template_index) > 0) {
-    template_tags <- apply(template_index, 1, createTemplateSelection)
+  if (nrow(template_index) > 0L) {
+    template_tags <- apply(template_index, 1L, createTemplateSelection)
   } else {
     template_tags <- NULL
   }
@@ -88,10 +88,10 @@ createTemplateSelection <- function(template_info) {
     span(
       class = "author",
       template_info[["user"]]
+    ),
+    span(
+      class = "delete",
+      shiny::icon("x")
     )
-    # span(
-    #   class = "delete",
-    #   shiny::icon("x")
-    # )
   )
 }
