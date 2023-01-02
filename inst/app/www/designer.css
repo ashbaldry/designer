@@ -82,6 +82,11 @@ h5.modal-title {
   line-height: 1.5;
 }
 
+.template-select {
+  max-height: 30vh;
+  overflow-y: scroll;
+}
+
 .template-select .template-option {
   padding: 0 1em;
   cursor: pointer;
@@ -111,6 +116,16 @@ h5.modal-title {
   flex-grow: 0.05;
   text-align: end;
   align-self: center;
+}
+
+.template-option .delete i {
+  padding: 0.2rem;
+  margin: 0.2rem;
+  border-radius: 0.2rem;
+}
+
+.template-option .delete:hover i {
+  background-color: #cccccc;
 }
 
 .template-option .description {
