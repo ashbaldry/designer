@@ -85,10 +85,15 @@ h5.modal-title {
 .template-select .template-option {
   padding: 0 1em;
   cursor: pointer;
+  display: flex;
 }
 
 .template-select .template-option:hover {
   background-color: #e9ecef;
+}
+
+.template-option .info {
+  flex-grow: 0.75;
 }
 
 .template-option .title {
@@ -97,7 +102,15 @@ h5.modal-title {
 
 .template-option .author {
   font-style: italic;
-  float: right;
+  flex-grow: 0.25;
+  text-align: end;
+  align-self: center;
+}
+
+.template-option .delete {
+  flex-grow: 0.05;
+  text-align: end;
+  align-self: center;
 }
 
 .template-option .description {

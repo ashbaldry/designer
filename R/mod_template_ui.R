@@ -74,17 +74,24 @@ createTemplateSelection <- function(template_info) {
     `data-value` = template_info[["id"]],
     `data-page` = template_info[["page"]],
     class = "template-option",
+    div(
+      class = "info",
+      div(
+        class = "title",
+        template_info[["title"]]
+      ),
+      div(
+        class = "description",
+        template_info[["description"]]
+      )
+    ),
     span(
       class = "author",
       template_info[["user"]]
-    ),
-    div(
-      class = "title",
-      template_info[["title"]]
-    ),
-    div(
-      class = "description",
-      template_info[["description"]]
     )
+    # span(
+    #   class = "delete",
+    #   shiny::icon("x")
+    # )
   )
 }
