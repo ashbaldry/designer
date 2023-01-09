@@ -9,7 +9,8 @@ TemplateModuleServer <- function(id, html, page) {
       "title", "description", "author",
       "save", "save_share",
       "overwrite", "overwrite_share",
-      "existing_template", "save_button", "select"
+      "existing_template", "save_button", "select",
+      "delete", "search"
     ))
 
     onBookmark(function(state) {
