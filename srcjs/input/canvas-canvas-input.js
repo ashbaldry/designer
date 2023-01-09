@@ -1,5 +1,4 @@
-import { page } from '../page/utils'
-import { Component } from '../component/Component'
+import { page, createPage } from '../page/utils'
 import { Column } from '../component/Column'
 import { Row } from '../component/Row'
 import { InputPanel } from '../component/InputPanel'
@@ -24,15 +23,12 @@ $.extend(canvasBinding, {
     $(el).off('.page-canvas-shell')
   },
   receiveMessage (el, data) {
-    this.setValue(el, data)
     $('.canvas-modal').css('display', 'none')
 
-    if (page.enable_on_load) {
-      page.enableSortablePage('canvas-page')
-    }
-    page.updateComponentDropdown()
-    // Fixes the first flashing component
-    new Component().enableSortable()
+    createPage()
+    page.updatePage()
+
+    this.setValue(el, data)
 
     const sortableSettings = new Column(update_component = false).sortable_settings
     const sortableRowSettings = new Row(update_component = false).sortable_settings
@@ -41,6 +37,11 @@ $.extend(canvasBinding, {
     PARENT_DESIGNER_CLASSES.map(x => enableSortableComponent(x, sortableSettings))
     enableSortableComponent('designer-element row', sortableRowSettings)
     enableSortableComponent('designer-element shiny-input-panel', sortableInputPanelSettings)
+
+    if (page.enable_on_load) {
+      page.enableSortablePage('canvas-page')
+    }
+    page.updateComponentDropdown()
   }
 })
 

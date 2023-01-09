@@ -31,9 +31,13 @@ export function createPage () {
   }
 
   page.updatePage()
-  if (page.enable_on_load) {
+
+  if (templateSelected()) {
+    templateUpated()
+  } else if (page.enable_on_load) {
     page.enableSortablePage('canvas-page')
   }
+
   page.updateComponentDropdown()
   return page
 };
@@ -52,13 +56,8 @@ export function selectPage () {
 
 export function changePageCheck () {
   if (templateSelected()) {
-    $('#canvas-page').html('<div></div>')
-    createPage()
-    templateUpated()
-    return
-  }
-
-  if ($('#canvas-page').html() === '' || $('#canvas-page.wrapper .tab-content').html() === '') {
+    return null
+  } else if ($('#canvas-page').html() === '' || $('#canvas-page.wrapper .tab-content').html() === '') {
     $('#canvas-page').html('<div></div>')
     createPage()
   } else {
