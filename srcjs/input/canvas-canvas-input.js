@@ -27,7 +27,9 @@ $.extend(canvasBinding, {
     this.setValue(el, data)
     $('.canvas-modal').css('display', 'none')
 
-    page.enableSortablePage('canvas-page')
+    if (page.enable_on_load) {
+      page.enableSortablePage('canvas-page')
+    }
     page.updateComponentDropdown()
     // Fixes the first flashing component
     new Component().enableSortable()

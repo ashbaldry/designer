@@ -52,6 +52,7 @@ export function selectPage () {
 
 export function changePageCheck () {
   if (templateSelected()) {
+    $('#canvas-page').html('<div></div>')
     createPage()
     templateUpated()
     return
