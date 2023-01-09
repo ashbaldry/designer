@@ -213,6 +213,10 @@ export function selectedTemplate () {
   return template_selected
 };
 
+export function templateUpated () {
+  template_selected = false
+}
+
 function toggleSavedTemplates (event) {
   const search_term = event.target.value ? event.target.value : ''
 
@@ -227,17 +231,15 @@ function sendSavedTemplateID (event) {
   const page_choice = selected_template.data('page')
   template_selected = true
 
-  document.getElementById('settings-template-search').value = null
-  $('#settings-template-search').trigger('input')
-
   const to_delete = $(event.target).closest('.delete').length > 0 || event.target.classList.contains('delete')
 
   if (!to_delete) {
     $('#settings-page_type').find(`input[value='${page_choice}']`).trigger('click')
   }
 
+  document.getElementById('settings-template-search').value = null
+  $('#settings-template-search').trigger('input')
+
   Shiny.setInputValue('settings-template-select', selected_template.data('value'))
   Shiny.setInputValue('settings-template-delete', to_delete)
-
-  template_selected = false
 };

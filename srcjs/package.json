@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "designer",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "main": "app/index.js",
   "type": "module",
   "scripts": {

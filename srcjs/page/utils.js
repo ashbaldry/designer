@@ -5,7 +5,7 @@ import { FluidPage } from './FluidPage'
 import { BootstrapPage } from './BootstrapPage'
 import { NavbarPage } from './NavbarPage'
 import { DashboardPage } from './DashboardPage'
-import { selectedTemplate } from '../app/settings'
+import { selectedTemplate, templateUpated } from '../app/settings'
 
 export let page
 
@@ -52,6 +52,8 @@ export function selectPage () {
 
 export function changePageCheck () {
   if (selectedTemplate()) {
+    createPage()
+    templateUpated()
     return
   }
 
