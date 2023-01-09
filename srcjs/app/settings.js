@@ -209,7 +209,7 @@ function addCanvasPageSelector (selectors) {
 };
 
 let template_selected = false
-export function selectedTemplate () {
+export function templateSelected () {
   return template_selected
 };
 
