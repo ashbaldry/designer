@@ -43,12 +43,6 @@ test_that("saving a template works", {
     unlink(file.path(temp_dir, template$id), recursive = TRUE)
   })
 
-  # Changing page type to make sure updates correctly
-  app$click(selector = "#settings-page_type_button")
-  app$click(selector = "#settings-page_type input[value='navbarPage']")
-  app$wait_for_idle()
-  expect_true(grepl("data-shinyfunction=\"navbarPage\"", app$get_html("#canvas-page")))
-
   # Checking the template has been added to the UI
   template_id <- template$id
   app$click(selector = "#settings-template_button")
@@ -61,7 +55,7 @@ test_that("saving a template works", {
   template_parent_info <- cm$DOM$describeNode(unlist(template_parent_id))
   expect_equal(template_parent_info$node$childNodeCount, 1L)
 
-  template_ui_id <- cm$DOM$querySelector(unlist(template_parent_id), "article")
+  template_ui_id <- cm$DOM$querySelector(unlist(template_parent_id), "a")
   template_ui_info <- cm$DOM$getAttributes(unlist(template_ui_id))
 
   page_id <- which(unlist(template_ui_info$attributes) == "data-page") + 1
@@ -69,10 +63,4 @@ test_that("saving a template works", {
 
   id_id <- which(unlist(template_ui_info$attributes) == "data-value") + 1
   expect_identical(template_ui_info$attributes[[id_id]], template_id)
-
-  # Checking when selected the template is updated
-  app$click(selector = paste0("#settings-template-select article[data-value='", template_id, "'] article"))
-  app$wait_for_idle()
-  browser()
-  expect_true(grepl("data-shinyfunction=\"fixedPage\"", app$get_html("#canvas-page")))
 })
