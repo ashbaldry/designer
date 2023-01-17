@@ -49,18 +49,18 @@ test_that("saving a template works", {
   app$wait_for_idle()
 
   cm <- app$get_chromote_session()
-  doc_nodeId <- cm$DOM$getDocument()$root$nodeId
+  doc_node_id <- cm$DOM$getDocument()$root$nodeId
 
-  template_parent_id <- cm$DOM$querySelector(doc_nodeId, "#settings-template-select")
+  template_parent_id <- cm$DOM$querySelector(doc_node_id, "#settings-template-select")
   template_parent_info <- cm$DOM$describeNode(unlist(template_parent_id))
   expect_equal(template_parent_info$node$childNodeCount, 1L)
 
   template_ui_id <- cm$DOM$querySelector(unlist(template_parent_id), "a")
   template_ui_info <- cm$DOM$getAttributes(unlist(template_ui_id))
 
-  page_id <- which(unlist(template_ui_info$attributes) == "data-page") + 1
+  page_id <- which(unlist(template_ui_info$attributes) == "data-page") + 1L
   expect_identical(template_ui_info$attributes[[page_id]], template$page)
 
-  id_id <- which(unlist(template_ui_info$attributes) == "data-value") + 1
+  id_id <- which(unlist(template_ui_info$attributes) == "data-value") + 1L
   expect_identical(template_ui_info$attributes[[id_id]], template_id)
 })
