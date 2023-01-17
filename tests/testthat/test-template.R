@@ -31,18 +31,29 @@ test_that("saving a template works", {
 
   # Checking template is correctly saved
   app$click(selector = "#settings-template-save")
-  app$wait_for_idle()
+  app$wait_for_idle(1000L)
   expect_true(file.exists(file.path(temp_dir, "index.csv")))
 
   template <- read.csv(file.path(temp_dir, "index.csv"))
-  expect_length(template, 5)
+  expect_length(template, 5L)
   expect_named(template, c("id", "page", "title", "user", "description"))
 
+  on.exit(add = TRUE, {
+    file.remove(file.path(temp_dir, "index.csv"))
+    unlink(file.path(temp_dir, template$id), recursive = TRUE)
+  })
+
+  # Changing page type to make sure updates correctly
+  app$click(selector = "#settings-page_type_button")
+  app$click(selector = "#settings-page_type input[value='navbarPage']")
+  app$wait_for_idle()
+  expect_true(grepl("data-shinyfunction=\"navbarPage\"", app$get_html("#canvas-page")))
+
+  # Checking the template has been added to the UI
   template_id <- template$id
   app$click(selector = "#settings-template_button")
   app$wait_for_idle()
 
-  # Checking the template has been added to the UI
   cm <- app$get_chromote_session()
   doc_nodeId <- cm$DOM$getDocument()$root$nodeId
 
@@ -58,4 +69,10 @@ test_that("saving a template works", {
 
   id_id <- which(unlist(template_ui_info$attributes) == "data-value") + 1
   expect_identical(template_ui_info$attributes[[id_id]], template_id)
+
+  # Checking when selected the template is updated
+  app$click(selector = paste0("#settings-template-select article[data-value='", template_id, "'] article"))
+  app$wait_for_idle()
+  browser()
+  expect_true(grepl("data-shinyfunction=\"fixedPage\"", app$get_html("#canvas-page")))
 })

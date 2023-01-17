@@ -70,7 +70,8 @@ templateSelectionInput <- function(id, template_index) {
 }
 
 createTemplateSelection <- function(template_info) {
-  tags$article(
+  tags$a(
+    tags$article(
     `data-value` = template_info[["id"]],
     `data-page` = template_info[["page"]],
     class = "template-option",
@@ -93,5 +94,6 @@ createTemplateSelection <- function(template_info) {
       class = "delete",
       shiny::icon("x", title = "Delete Template")
     )
+  )
   )
 }
