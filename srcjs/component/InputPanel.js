@@ -4,9 +4,12 @@ export class InputPanel extends Component {
   updatable = false
   html = '<div class="designer-element shiny-input-panel shiny-flow-layout" data-shinyfunction="inputPanel"></div>'
 
-  constructor () {
+  constructor (update_component = true) {
     super()
-    this.updateComponent(true)
+
+    if (update_component) {
+      this.updateComponent(true)
+    }
   }
 
   sortable_settings = {

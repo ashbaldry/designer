@@ -1,13 +1,14 @@
 Package: designer
 Title: 'Shiny' UI Prototype Builder
-Version: 0.2.0
-Authors@R: c(
-    person('Ashley', 'Baldry', email = 'arbaldry91@gmail.com', role = c('cre', 'aut')),
-    person('Sam', 'Parmar', email = 'parmartsam@gmail.com', role = 'ctb'))
+Version: 0.3.0
+Authors@R: 
+    c(
+      person('Ashley', 'Baldry', email = 'arbaldry91@gmail.com', role = c('cre', 'aut')),
+      person('Sam', 'Parmar', email = 'parmartsam@gmail.com', role = 'ctb')
+    )
 Description: A 'shiny' application that enables the user to create a prototype UI, 
     being able to drag and drop UI components before being able to save or download the equivalent R code.
-URL: https://github.com/ashbaldry/designer,
-    https://ashbaldry.github.io/designer/
+URL: https://ashbaldry.github.io/designer/, https://ashbaldry.shinyapps.io/designer/
 BugReports: https://github.com/ashbaldry/designer/issues
 License: MIT + file LICENSE
 Language: en-GB
@@ -26,6 +27,7 @@ Imports:
     htmltools,
     shiny (>= 1.7.1),
     jsonlite,
+    rappdirs,
     shinipsum,
     shinyscreenshot
 Suggests: 

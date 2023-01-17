@@ -4,9 +4,12 @@ export class Row extends Component {
   updatable = false
   html = '<div class="designer-element row row-designer" data-shinyfunction="fluidRow"></div>'
 
-  constructor () {
+  constructor (update_component = true) {
     super()
-    this.updateComponent(true)
+
+    if (update_component) {
+      this.updateComponent(true)
+    }
   }
 
   sortable_settings = {

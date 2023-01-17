@@ -1,0 +1,39 @@
+---
+title: "Using Templates with {designer}"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{templates}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+One of the key features of `{designer}` is the ability to look at previously saved prototypes to edit/update for new dashboards.
+
+## Stored Files
+
+By default, the stored layouts will be stored in a shared location so that prototypes can be shared amongst anyone using the same server instance.
+
+The order of finding the cached locations are:
+
+1. The file path assigned to the global variable `R_DESIGNER_CACHE`
+2. The site data directory
+3. The user cache directory
+
+## Storing Templates
+
+
+
+Plan:
+
+- User clicks "bookmark"
+- Modal to ask user for title and description of the app
+- Use {shinyscreenshot} to take image of canvas and store with HTML (maybe CSS too?)
+- Store name and description plus folder hash in YAML file to populate bookmark choices on initialisation
+- Able to use query URL to load previously stored design

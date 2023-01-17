@@ -3,6 +3,7 @@
 #' @noRd
 CodeModuleServer <- function(id, ui_code) {
   moduleServer(id, function(input, output, session) {
+    setBookmarkExclude("save")
     ns <- session$ns
 
     r_code <- reactive({

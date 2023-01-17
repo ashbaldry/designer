@@ -13,7 +13,7 @@ CanvasModUI <- function(id) {
     id = ns("html"),
     span(
       class = "page-preview-button",
-      screenshtButton(class = "btn-outline-dark"),
+      screenshtButton(btn_id = ns("screenshot"), class = "btn-outline-dark"),
       tags$button(
         id = ns("close_preview"),
         class = "btn btn-outline-dark",

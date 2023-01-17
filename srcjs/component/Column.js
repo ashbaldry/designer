@@ -12,9 +12,12 @@ export class Column extends Component {
     }
   }
 
-  constructor () {
+  constructor (update_component = true) {
     super()
-    this.updateComponent(true)
+
+    if (update_component) {
+      this.updateComponent(true)
+    }
   }
 
   createComponent () {

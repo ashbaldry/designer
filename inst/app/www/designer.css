@@ -78,6 +78,66 @@ h5.modal-title {
   z-index: 1050;
 }
 
+.input-group-text .fas {
+  line-height: 1.5;
+}
+
+.template-select {
+  max-height: 30vh;
+  overflow-y: auto;
+}
+
+.template-select .template-option {
+  padding: 0 1em;
+  cursor: pointer;
+  display: flex;
+}
+
+.template-select .template-option:hover {
+  background-color: #e9ecef;
+}
+
+.template-option .info {
+  flex-grow: 0.75;
+}
+
+.template-option .title {
+  font-weight: 700;
+}
+
+.template-option .author {
+  font-style: italic;
+  flex-grow: 0.25;
+  text-align: end;
+  align-self: center;
+}
+
+.template-option .delete {
+  flex-grow: 0.05;
+  text-align: end;
+  align-self: center;
+}
+
+.template-option .delete i {
+  padding: 0.2rem;
+  margin: 0.2rem;
+  border-radius: 0.2rem;
+}
+
+.template-option .delete:hover i {
+  background-color: #cccccc;
+}
+
+.template-option .description {
+  font-size: 0.9rem;
+  text-overflow: ellipsis;
+  width: 100%;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
 .component-accordion {
   height: calc(100vh - 500px);
   overflow-y: auto;
@@ -233,7 +293,7 @@ h5.modal-title {
 }
 
 .code-ui-form {
-  margin: 0 0 0.5rem 0.5rem;
+  margin: 0 0.5rem 0.5rem 0.5rem;
 }
 
 .code-ui-form .toast.show, .code-ui-form .toast.showing, .code-ui-form .toast.fade {

@@ -2,6 +2,7 @@
 SidebarModuleServer <- function(id) {
   moduleServer(id, function(input, output, session) {
     setBookmarkExclude(SIDEBAR_INPUT_IDS)
+    module_ids <- reactiveVal(SIDEBAR_INPUT_IDS)
 
     updateSelectizeInput(session, "tab-icon", choices = getFAIcons(), selected = "", server = TRUE)
     updateSelectizeInput(session, "value_box-icon", choices = getFAIcons(), selected = "", server = TRUE)
@@ -30,12 +31,14 @@ SidebarModuleServer <- function(id) {
           )
         })
       }
+      module_ids(c(module_ids(), input$outputid))
+      setBookmarkExclude(module_ids())
     })
   })
 }
 
 SIDEBAR_INPUT_IDS <- c(
-  "comments",
+  "comments", "accordion",
   "box-background", "box-colour", "box-label", "box-width_num",
   "button-download", "button-icon", "button-id", "button-label", "button-type", "button-width",
   "callout-colour", "callout-label", "callout-textarea", "callout-width_num",
@@ -46,7 +49,10 @@ SIDEBAR_INPUT_IDS <- c(
   "file-id", "file-label", "file-width",
   "header-tag", "header-text",
   "info_box-background", "info_box-fill", "info_box-icon", "info_box-label", "info_box-value", "info_box-width_num",
-  "input-id", "input-label", "input-type", "input-width",
+  "text_input-id", "text_input-label", "text_input-type", "text_input-width",
+  "password-id", "password-label", "password-type", "password-width",
+  "textarea-id", "textarea-label", "textarea-type", "textarea-width",
+  "numeric-id", "numeric-label", "numeric-type", "numeric-width",
   "output-height", "output-id", "output-inline", "output-plot", "output-textarea", "output-type", "output-width",
   "quote-colour", "quote-textarea",
   "radio-choices", "radio-id", "radio-inline", "radio-label", "radio-type", "radio-width",
