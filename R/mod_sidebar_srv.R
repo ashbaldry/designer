@@ -2,6 +2,7 @@
 SidebarModuleServer <- function(id) {
   moduleServer(id, function(input, output, session) {
     setBookmarkExclude(SIDEBAR_INPUT_IDS)
+    module_ids <- reactiveVal(SIDEBAR_INPUT_IDS)
 
     updateSelectizeInput(session, "tab-icon", choices = getFAIcons(), selected = "", server = TRUE)
     updateSelectizeInput(session, "value_box-icon", choices = getFAIcons(), selected = "", server = TRUE)
@@ -30,6 +31,8 @@ SidebarModuleServer <- function(id) {
           )
         })
       }
+      module_ids(c(module_ids(), input$outputid))
+      setBookmarkExclude(module_ids())
     })
   })
 }
