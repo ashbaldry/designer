@@ -35,7 +35,5 @@
         "eslint-plugin-promise": "^6.0.0",
         "jest": "^29.4.3",
         "jest-environment-jsdom": "^29.3.1"
-    },
-    "description": "Turning into a module for much easier addition of new components/pages",
-    "author": ""
+    }
 }
