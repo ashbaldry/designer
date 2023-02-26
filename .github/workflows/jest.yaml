@@ -1,7 +1,4 @@
 name: Run JS Tests (Jest)
-on:
-  push:
-    branches: [dev, main]
 defaults:
   run:
     working-directory: srcjs
