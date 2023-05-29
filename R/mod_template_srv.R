@@ -129,8 +129,6 @@ TemplateModuleServer <- function(id, html, page) {
       )
       saved_template_id(id)
 
-      take_screenshot(screenshot_dir = file.path(find_cache_dir(), id), session = session)
-
       insertUI(
         selector = paste0("#", ns("select")),
         where = "beforeEnd",
