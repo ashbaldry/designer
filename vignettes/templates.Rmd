@@ -28,8 +28,6 @@ The order of finding the cached locations are:
 
 ## Storing Templates
 
-
-
 Plan:
 
 - User clicks "bookmark"

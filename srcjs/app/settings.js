@@ -2,6 +2,7 @@ export function initSettings () {
   $('#settings-page_type').on('click', () => $('.canvas-modal').css('display', 'none'))
 
   $('.copy-ui-button').on('click', copyUICode)
+  $('#settings-code-save').on('click', () => { $('#settings-code_button').trigger('click') })
   $('#css_style').on('change', applyCustomStyle)
 
   $('#remove_label').on('change', toggleComponentLabels)

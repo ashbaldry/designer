@@ -24,19 +24,16 @@ CodeModUI <- function(id) {
           "Copy"
         )
       ),
-      if (interactive()) {
-        span(
-          toast("save_toast", "Saved!"),
-          actionButton(
-            ns("save"),
-            "Save To ui.R",
-            shiny::icon("floppy-disk")
-          )
-        )
-      },
       downloadButton(
         ns("download")
-      )
+      ),
+      if (interactive()) {
+        actionButton(
+          ns("save"),
+          "Save As...",
+          shiny::icon("floppy-disk")
+        )
+      }
     ),
     tagAppendAttributes(
       verbatimTextOutput(ns("code"), placeholder = TRUE),
