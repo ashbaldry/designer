@@ -82,7 +82,6 @@ take_screenshot <- function(screenshot_dir, session = shiny::getDefaultReactiveD
 
   session$sendCustomMessage("prepare_canvas_screenshot", list())
   Sys.sleep(0.05)
-  browser()
   shinyscreenshot::screenshot(
     selector = "#canvas-page",
     download = FALSE,
