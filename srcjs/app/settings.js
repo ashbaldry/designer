@@ -19,7 +19,10 @@ export function initSettings () {
   })
 
   $(document).on('click', '.clickable-dropdown', e => { e.stopPropagation() })
-  $('#preview').on('click', () => { $('.page-canvas-shell').addClass('preview') })
+  $('#preview').on('click', () => {
+    $('#settings-options_button').trigger('click')
+    $('.page-canvas-shell').addClass('preview')
+  })
   $('#canvas-close_preview').on('click', () => { $('.page-canvas-shell').removeClass('preview') })
 
   Shiny.addCustomMessageHandler('toggleBS4DashDeps', toggleBS4DashDeps)
