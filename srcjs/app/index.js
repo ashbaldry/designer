@@ -1,5 +1,6 @@
 import { initPage } from '../page/init'
 import { initSettings } from './settings'
+import { screenshotSettings } from './screenshot'
 import { initComponents } from '../component/init'
 import { canvasPageBinding } from '../input/canvas-page-input'
 import { canvasBinding } from '../input/canvas-canvas-input'
@@ -8,6 +9,7 @@ $(function () {
   initPage()
   initComponents()
   initSettings()
+  screenshotSettings()
 
   $('.help-icon').tooltip({ boundary: 'window', placement: 'right' })
 

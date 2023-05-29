@@ -119,6 +119,7 @@ TemplateModuleServer <- function(id, html, page) {
 
     observe({
       req(input$title, input$author)
+
       id <- save_template(
         html = html(),
         page = page(),
@@ -127,6 +128,8 @@ TemplateModuleServer <- function(id, html, page) {
         user = input$author
       )
       saved_template_id(id)
+
+      take_screenshot(screenshot_dir = file.path(find_cache_dir(), id), session = session)
 
       insertUI(
         selector = paste0("#", ns("select")),

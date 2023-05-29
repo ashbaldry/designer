@@ -70,24 +70,25 @@ delete_template <- function(id) {
 #' Take Template Screenshot
 #'
 #' @noRd
-take_screenshot <- function(id, screenshot_dir, session = shiny::getDefaultReactiveDomain()) {
+take_screenshot <- function(screenshot_dir, session = shiny::getDefaultReactiveDomain()) {
   if (!dir.exists(screenshot_dir)) {
     dir.create(screenshot_dir)
   }
 
-  screenshot_png <- paste0(screenshot_dir, "/", id, ".png")
-  if (file.exists(screenshot_png)) {
+  screenshot_png <- list.files(screenshot_dir, pattern = ".png")
+  if (length(screenshot_png) >= 1L) {
     file.remove(screenshot_png)
   }
 
   session$sendCustomMessage("prepare_canvas_screenshot", list())
-  Sys.sleep(0.5)
+  Sys.sleep(0.05)
+  browser()
   shinyscreenshot::screenshot(
     selector = "#canvas-page",
-    filename = id,
     download = FALSE,
     server_dir = screenshot_dir
   )
+  Sys.sleep(0.05)
   session$sendCustomMessage("revert_canvas_screenshot", list())
 }
 
