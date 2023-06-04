@@ -82,7 +82,7 @@ htmlToRScript <- function(html_list, indent = 0L, module_name = NULL) {
 
   if (module_home) {
     r_comments <- paste0("#' ", module_name, " Module\n#' @export\n")
-    rfunc <- paste0(gsub(" ", "", module_name), "UI <- function(id) {\n  tagList(\n")
+    rfunc <- paste0(gsub("\\W", "", tools::toTitleCase(module_name)), "UI <- function(id) {\n  tagList(\n")
     rfunc_arguments <- NULL
     rfunc_end <- "  )\n}"
   } else {

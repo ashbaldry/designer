@@ -1,6 +1,6 @@
 test_that("saving a template works", {
   # Don't run these tests on the CRAN build servers
-  testthat::skip_on_cran()
+  skip_on_cran()
 
   temp_dir <- tempdir()
   Sys.setenv(R_DESIGNER_CACHE = temp_dir)
