@@ -1,40 +1,40 @@
 Package: designer
 Title: 'Shiny' UI Prototype Builder
 Version: 0.3.0
-Authors@R: 
-    c(
-      person('Ashley', 'Baldry', email = 'arbaldry91@gmail.com', role = c('cre', 'aut')),
-      person('Sam', 'Parmar', email = 'parmartsam@gmail.com', role = 'ctb')
-    )
-Description: A 'shiny' application that enables the user to create a prototype UI, 
-    being able to drag and drop UI components before being able to save or download the equivalent R code.
-URL: https://ashbaldry.github.io/designer/, https://ashbaldry.shinyapps.io/designer/
-BugReports: https://github.com/ashbaldry/designer/issues
+Authors@R: c(
+    person("Ashley", "Baldry", , "arbaldry91@gmail.com", role = c("cre", "aut")),
+    person("Sam", "Parmar", , "parmartsam@gmail.com", role = "ctb")
+  )
+Description: A 'shiny' application that enables the user to create a
+    prototype UI, being able to drag and drop UI components before being
+    able to save or download the equivalent R code.
 License: MIT + file LICENSE
-Language: en-GB
-Encoding: UTF-8
-Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.3
-Config/testthat/edition: 3
-VignetteBuilder: knitr
+URL: https://ashbaldry.github.io/designer/,
+    https://ashbaldry.shinyapps.io/designer/
+BugReports: https://github.com/ashbaldry/designer/issues
 Imports:
-    bslib,
     bs4Dash,
+    bslib,
     cicerone,
     config (>= 0.3.1),
     fontawesome,
     golem (>= 0.3.1),
     htmltools,
-    shiny (>= 1.7.1),
     jsonlite,
     rappdirs,
     shinipsum,
+    shiny (>= 1.7.1),
     shinyscreenshot
 Suggests: 
-    covr,
-    testthat (>= 3.0.0),
-    shinytest2,
-    globals,
     knitr,
     lintr,
-    rmarkdown
+    rmarkdown,
+    shinytest2,
+    testthat (>= 3.0.0)
+VignetteBuilder: 
+    knitr
+Config/testthat/edition: 3
+Encoding: UTF-8
+Language: en-GB
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.3
