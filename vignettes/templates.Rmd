@@ -14,24 +14,24 @@ knitr::opts_chunk$set(
 )
 ```
 
-One of the key features of `{designer}` is the ability to look at previously saved prototypes to edit/update for new dashboards.
+One of the key features of `{designer}` introduced in version 0.3.0 is the ability to reuse previously saved templated created in the application.
 
 ## Stored Files
 
 By default, the stored layouts will be stored in a shared location so that prototypes can be shared amongst anyone using the same server instance.
 
-The order of finding the cached locations are:
+The order of selecting the cached location is:
 
 1. The file path assigned to the global variable `R_DESIGNER_CACHE`
-2. The site data directory
-3. The user cache directory
+2. The site data directory, obtained from `rappdirs::site_data_dir`
+3. The user cache directory, obtained from `rappdirs::user_data_dir`
 
 ## Storing Templates
 
-Plan:
+Once you have created a template, click on the "Templates" dropdown and select the save option. There a modal will be given asking to give a title and description of the template, as well as the option to supply your name for future reference. From there you can either save the template or share by send the extended URL to others with access to the application. When the load the designer application, the template will be pre-populated in the app.
 
-- User clicks "bookmark"
-- Modal to ask user for title and description of the app
-- Use {shinyscreenshot} to take image of canvas and store with HTML (maybe CSS too?)
-- Store name and description plus folder hash in YAML file to populate bookmark choices on initialisation
-- Able to use query URL to load previously stored design
+![Screenshot of the save template modal](../man/figures/save_template.png)
+
+## Overwriting Exisitng Templates
+
+Whether it is because of discussions with team-mates, or requirements changing, templates will change over time. In the application, there is the ability to overwrite available templates. Clicking on the "Save" button will allow the option to update one of the templates, giving the template title and author.
