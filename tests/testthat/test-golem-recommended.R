@@ -1,19 +1,19 @@
-testthat::test_that("app ui", {
+test_that("app ui", {
   ui <- appUI()
   golem::expect_shinytaglist(ui)
   # Check that formals have not been removed
   fmls <- formals(appUI)
   for (i in "request") {
-    testthat::expect_true(i %in% names(fmls))
+    expect_true(i %in% names(fmls))
   }
 })
 
-testthat::test_that("app server", {
+test_that("app server", {
   server <- appServer
-  testthat::expect_type(server, "closure")
+  expect_type(server, "closure")
   # Check that formals have not been removed
   fmls <- formals(appServer)
   for (i in c("input", "output", "session")) {
-    testthat::expect_true(i %in% names(fmls))
+    expect_true(i %in% names(fmls))
   }
 })

@@ -2,6 +2,7 @@ export function initSettings () {
   $('#settings-page_type').on('click', () => $('.canvas-modal').css('display', 'none'))
 
   $('.copy-ui-button').on('click', copyUICode)
+  $('#settings-code-save').on('click', () => { $('#settings-code_button').trigger('click') })
   $('#css_style').on('change', applyCustomStyle)
 
   $('#remove_label').on('change', toggleComponentLabels)
@@ -19,7 +20,10 @@ export function initSettings () {
   })
 
   $(document).on('click', '.clickable-dropdown', e => { e.stopPropagation() })
-  $('#preview').on('click', () => { $('.page-canvas-shell').addClass('preview') })
+  $('#preview').on('click', () => {
+    $('#settings-options_button').trigger('click')
+    $('.page-canvas-shell').addClass('preview')
+  })
   $('#canvas-close_preview').on('click', () => { $('.page-canvas-shell').removeClass('preview') })
 
   Shiny.addCustomMessageHandler('toggleBS4DashDeps', toggleBS4DashDeps)

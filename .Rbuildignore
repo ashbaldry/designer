@@ -1,3 +1,5 @@
+^renv$
+^renv\.lock$
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^dev$
@@ -19,3 +21,4 @@ _\.new\.png$
 ^\.lintr$
 ^shiny_bookmarks$
 ^CRAN-SUBMISSION$
+^\.dockerignore$

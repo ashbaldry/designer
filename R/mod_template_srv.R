@@ -119,6 +119,7 @@ TemplateModuleServer <- function(id, html, page) {
 
     observe({
       req(input$title, input$author)
+
       id <- save_template(
         html = html(),
         page = page(),
