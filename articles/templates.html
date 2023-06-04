@@ -90,37 +90,50 @@
 
     
     
-<p>One of the key features of <a href="https://ashbaldry.github.io/designer/">designer</a> is the ability to
-look at previously saved prototypes to edit/update for new
-dashboards.</p>
+<p>One of the key features of <a href="https://ashbaldry.github.io/designer/">designer</a> introduced in
+version 0.3.0 is the ability to reuse previously saved templated created
+in the application.</p>
 <div class="section level2">
 <h2 id="stored-files">Stored Files<a class="anchor" aria-label="anchor" href="#stored-files"></a>
 </h2>
 <p>By default, the stored layouts will be stored in a shared location so
 that prototypes can be shared amongst anyone using the same server
 instance.</p>
-<p>The order of finding the cached locations are:</p>
+<p>The order of selecting the cached location is:</p>
 <ol style="list-style-type: decimal">
 <li>The file path assigned to the global variable
 <code>R_DESIGNER_CACHE</code>
 </li>
-<li>The site data directory</li>
-<li>The user cache directory</li>
+<li>The site data directory, obtained from
+<code><a href="https://rappdirs.r-lib.org/reference/site_data_dir.html" class="external-link">rappdirs::site_data_dir</a></code>
+</li>
+<li>The user cache directory, obtained from
+<code><a href="https://rappdirs.r-lib.org/reference/user_data_dir.html" class="external-link">rappdirs::user_data_dir</a></code>
+</li>
 </ol>
 </div>
 <div class="section level2">
 <h2 id="storing-templates">Storing Templates<a class="anchor" aria-label="anchor" href="#storing-templates"></a>
 </h2>
-<p>Plan:</p>
-<ul>
-<li>User clicks “bookmark”</li>
-<li>Modal to ask user for title and description of the app</li>
-<li>Use {shinyscreenshot} to take image of canvas and store with HTML
-(maybe CSS too?)</li>
-<li>Store name and description plus folder hash in YAML file to populate
-bookmark choices on initialisation</li>
-<li>Able to use query URL to load previously stored design</li>
-</ul>
+<p>Once you have created a template, click on the “Templates” dropdown
+and select the save option. There a modal will be given asking to give a
+title and description of the template, as well as the option to supply
+your name for future reference. From there you can either save the
+template or share by send the extended URL to others with access to the
+application. When the load the designer application, the template will
+be pre-populated in the app.</p>
+<div class="figure">
+<img src="../reference/figures/save_template.png" alt=""><p class="caption">Screenshot of the save template modal</p>
+</div>
+</div>
+<div class="section level2">
+<h2 id="overwriting-exisitng-templates">Overwriting Exisitng Templates<a class="anchor" aria-label="anchor" href="#overwriting-exisitng-templates"></a>
+</h2>
+<p>Whether it is because of discussions with team-mates, or requirements
+changing, templates will change over time. In the application, there is
+the ability to overwrite available templates. Clicking on the “Save”
+button will allow the option to update one of the templates, giving the
+template title and author.</p>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>
