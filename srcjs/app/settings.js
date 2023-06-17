@@ -38,7 +38,7 @@ export function initSettings () {
   $('#canvas-delete').on('click', deleteDesignerElement)
 
   $('#settings-template-search').on('input', toggleSavedTemplates)
-  $('.template-option').on('click', sendSavedTemplateID)
+  $(document).on('click', '.template-option', sendSavedTemplateID)
 };
 
 function toggleComponentLabels () {
