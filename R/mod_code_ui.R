@@ -24,8 +24,10 @@ CodeModUI <- function(id) {
           "Copy"
         )
       ),
-      downloadButton(
-        ns("download")
+      actionButton(
+        ns("download"),
+        "Download",
+        shiny::icon("download")
       ),
       if (interactive()) {
         actionButton(
