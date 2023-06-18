@@ -292,6 +292,31 @@ h5.modal-title {
   height: 50px;
 }
 
+#settings-code_dropdown {
+  max-height: 75vh;
+}
+
+.show#settings-code_dropdown {
+  display: flex;
+  flex-direction: column;
+}
+
+.save-code-options {
+  margin-top: 0.5rem;
+}
+
+.save-code-options .form-inline>label {
+  margin-right: 0.5rem;
+}
+
+.save-code-options .shiny-options-group {
+  display: flex;
+}
+
+.save-code-options input[type="radio"] {
+  margin-right: 0.25rem;
+}
+
 .code-ui-form {
   margin: 0 0.5rem 0.5rem 0.5rem;
 }
@@ -307,7 +332,7 @@ h5.modal-title {
 
 .code-output {
   overflow-y: auto;
-  height: 75vh;
+  min-height: 20vh;
   margin-bottom: -0.5rem;
 }
 

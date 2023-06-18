@@ -3,88 +3,59 @@
 #' @noRd
 CodeModuleServer <- function(id, ui_code) {
   moduleServer(id, function(input, output, session) {
-    setBookmarkExclude(c("save", "save_confirm", "file_type", "file_name"))
+    setBookmarkExclude(c("save", "download", "file_type", "file_name", "options"))
     ns <- session$ns
 
-    observeEvent(input$save, ignoreInit = TRUE, {
-      showModal(
-        modalDialog(
-          tagList(
-            shiny::radioButtons(
-              inputId = ns("file_type"),
-              label = "File Type:",
-              choices = c("UI" = "ui", "Module" = "module"),
-              inline = TRUE
-            ),
-            conditionalPanel(
-              condition = "input.file_type === 'module'",
-              ns = ns,
-              tagList(
-                shiny::textInput(
-                  inputId = ns("file_name"),
-                  label = "Module Name:"
-                ),
-                shiny::radioButtons(
-                  inputId = ns("app_type"),
-                  label = "App Structure:",
-                  choices = c("{golem}" = "golem", "{rhino}" = "rhino"),
-                  inline = TRUE
-                )
-              )
-            )
-          ),
-          title = "Save UI",
-          footer = tagList(
-            tags$button(
-              type = "button",
-              class = "btn btn-secondary",
-              `data-dismiss` = "modal",
-              `data-bs-dismiss` = "modal",
-              shiny::icon("xmark"),
-              "Cancel"
-            ),
-            tags$button(
-              id = ns("save_confirm"),
-              type = "button",
-              class = "btn btn-primary action-button",
-              `data-dismiss` = "modal",
-              `data-bs-dismiss` = "modal",
-              shiny::icon("check"),
-              "Confirm"
-            )
-          )
-        )
+    observeEvent(input$file_type, {
+      updateTextInput(
+        session = session,
+        inputId = "file_name",
+        label = switch(input$file_type, "ui" = "File Name", "module" = "Module Name"),
+        value = switch(input$file_type, "ui" = "ui.R", "module" = "Template"),
       )
     })
 
-    observeEvent(input$save_confirm, ignoreInit = TRUE, {
-      writeToUI(ui_code(), input$file_type, input$file_name,input$app_type)
+    observeEvent(input$save, ignoreInit = TRUE, {
+      writeToUI(ui_code(), input$file_type, input$file_name, input$app_type)
     })
 
-    r_code <- reactive(jsonToRScript(ui_code()))
-
-    output$code <- renderPrint(cat(r_code()))
-
     output$download <- downloadHandler(
-      filename = "ui.R",
+      filename = function() {
+        if (input$file_type == "ui") {
+          input$file_name
+        } else {
+          paste0("mod_", tolower(gsub("\\W", "_", input$file_name)), "_ui.R")
+        }
+      },
       content = function(file) {
-        writeLines(r_code(), file)
+        module_name <- if (input$file_type == "ui") NULL else input$file_name
+        r_code <- jsonToRScript(ui_code(), module_name = module_name)
+        writeLines(r_code, file)
       }
     )
+
+    r_code <- reactive({
+      module_name <- if (input$file_type == "ui") NULL else input$file_name
+      jsonToRScript(ui_code(), module_name = module_name, app_type = input$app_type)
+    })
+
+    output$code <- renderPrint(cat(r_code()))
   })
 }
 
-writeToUI <- function(code, file_type = c("ui", "module"), module_name = NULL, app_type = c("golem", "rhino")) {
+writeToUI <- function(code, file_type = c("ui", "module"), module_name = NULL,
+                      app_type = c("app", "golem", "rhino")) {
   file_type <- match.arg(file_type)
   app_type <- match.arg(app_type)
 
+  r_dir <- switch(app_type, "app" = ".", "golem" = "R", "rhino" = "app/view")
+  if (!file.exists(r_dir)) dir.create(r_dir, recursive = TRUE)
+
   if (file_type == "ui") {
     r_code <- jsonToRScript(code)
-    file_name <- "ui.R"
+    file_name <- file.path(r_dir, module_name)
   } else {
     r_code <- jsonToRScript(code, module_name = module_name)
-    r_dir <- if (app_type == "golem") "R" else "app/view"
-    if (!file.exists(r_dir)) dir.create(r_dir, recursive = TRUE)
     file_name <- file.path(r_dir, paste0("mod_", tolower(gsub(" ", "_", module_name)), "_ui.R"))
   }
 
