@@ -15,28 +15,61 @@ CodeModUI <- function(id) {
   tagList(
     tags$form(
       class = "code-ui-form",
-      span(
-        toast("copy_toast", "Copied!"),
-        tags$button(
-          class = "copy-ui-button btn btn-default",
-          role = "button",
-          icon("copy"),
-          "Copy"
-        )
-      ),
-      actionButton(
-        ns("download"),
-        "Download",
-        shiny::icon("download")
-      ),
-      if (interactive()) {
+      tags$fieldset(
+        span(
+          toast("copy_toast", "Copied!"),
+          tags$button(
+            class = "copy-ui-button btn btn-default",
+            role = "button",
+            icon("copy"),
+            "Copy"
+          )
+        ),
+        downloadButton(
+          ns("download")
+        ),
+        if (interactive()) {
+          actionButton(
+            ns("save"),
+            "Save As...",
+            shiny::icon("floppy-disk")
+          )
+        },
         actionButton(
-          ns("save"),
-          "Save As...",
-          shiny::icon("floppy-disk")
+          ns("options"),
+          shiny::icon("cogs")
         )
-      }
+      )
     ),
+
+    tags$fieldset(
+      id = ns("options_fields"),
+      style = "display: none;",
+
+      shiny::radioButtons(
+        inputId = ns("file_type"),
+        label = "File Type",
+        choices = c("UI" = "ui", "Module" = "module"),
+        inline = TRUE
+      ),
+      conditionalPanel(
+        condition = "input.file_type === 'module'",
+        ns = ns,
+        tagList(
+          shiny::textInput(
+            inputId = ns("file_name"),
+            label = "Module Name"
+          ),
+          shiny::radioButtons(
+            inputId = ns("app_type"),
+            label = "App Structure",
+            choices = c("{golem}" = "golem", "{rhino}" = "rhino"),
+            inline = TRUE
+          )
+        )
+      )
+    ),
+
     tagAppendAttributes(
       verbatimTextOutput(ns("code"), placeholder = TRUE),
       class = "code-output"

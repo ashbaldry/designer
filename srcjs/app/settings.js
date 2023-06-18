@@ -3,12 +3,10 @@ export function initSettings () {
 
   $('.copy-ui-button').on('click', copyUICode)
   $('#settings-code-save').on('click', () => { $('#settings-code_button').trigger('click') })
-  $('#settings-code-download').on('click', () => {
-    $('#settings-code_button').trigger('click')
-    Shiny.bindAll('#settings-code-download_confirm')
-  })
-  $('#settings-code-download_confirm').on('click', () => {
-    Shiny.unbindAll('#settings-code-download_confirm')
+  $('#settings-code-download').on('click', () => { $('#settings-code_button').trigger('click') })
+  $('#settings-code-options').on('click', () => {
+    const options_visiblity = $('#settings-code-options_fields').css('display') === 'none' ? '' : 'none'
+    $('#settings-code-options_fields').css({ display: options_visiblity })
   })
 
   $('#css_style').on('change', applyCustomStyle)

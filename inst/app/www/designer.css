@@ -292,6 +292,10 @@ h5.modal-title {
   height: 50px;
 }
 
+#settings-code_dropdown {
+  max-height: 80vh;
+}
+
 .code-ui-form {
   margin: 0 0.5rem 0.5rem 0.5rem;
 }
