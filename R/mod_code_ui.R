@@ -65,22 +65,14 @@ CodeModUI <- function(id) {
           ),
           class = "form-inline"
         ),
-        tagList(
-          if (interactive()) {
-            conditionalPanel(
-              condition = "input.file_type === 'module'",
-              ns = ns,
-              tagAppendAttributes(
-                radioButtons(
-                  inputId = ns("app_type"),
-                  label = "App Structure",
-                  choices = c("{golem}" = "golem", "{rhino}" = "rhino"),
-                  inline = TRUE
-                ),
-                class = "form-inline"
-              )
-            )
-          }
+        tagAppendAttributes(
+          radioButtons(
+            inputId = ns("app_type"),
+            label = "App Structure",
+            choices = c("Stanard" = "app", "{golem}" = "golem", "{rhino}" = "rhino"),
+            inline = TRUE
+          ),
+          class = "form-inline"
         )
       )
     ),

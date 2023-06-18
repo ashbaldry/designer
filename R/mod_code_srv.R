@@ -36,7 +36,7 @@ CodeModuleServer <- function(id, ui_code) {
 
     r_code <- reactive({
       module_name <- if (input$file_type == "ui") NULL else input$file_name
-      jsonToRScript(ui_code(), module_name = module_name)
+      jsonToRScript(ui_code(), module_name = module_name, app_type = input$app_type)
     })
 
     output$code <- renderPrint(cat(r_code()))
@@ -44,11 +44,11 @@ CodeModuleServer <- function(id, ui_code) {
 }
 
 writeToUI <- function(code, file_type = c("ui", "module"), module_name = NULL,
-                      app_type = c("golem", "rhino")) {
+                      app_type = c("app", "golem", "rhino")) {
   file_type <- match.arg(file_type)
   app_type <- match.arg(app_type)
 
-  r_dir <- if (app_type == "golem") "R" else "app/view"
+  r_dir <- switch(app_type, "app" = ".", "golem" = "R", "rhino" = "app/view")
   if (!file.exists(r_dir)) dir.create(r_dir, recursive = TRUE)
 
   if (file_type == "ui") {
