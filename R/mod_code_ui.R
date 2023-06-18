@@ -32,39 +32,54 @@ CodeModUI <- function(id) {
           actionButton(
             ns("save"),
             "Save As...",
-            shiny::icon("floppy-disk")
+            icon("floppy-disk")
           )
         },
         actionButton(
           ns("options"),
-          shiny::icon("cogs")
+          icon("cogs"),
+          title = "Saving options"
         )
-      )
-    ),
-
-    tags$fieldset(
-      id = ns("options_fields"),
-      style = "display: none;",
-
-      shiny::radioButtons(
-        inputId = ns("file_type"),
-        label = "File Type",
-        choices = c("UI" = "ui", "Module" = "module"),
-        inline = TRUE
       ),
-      conditionalPanel(
-        condition = "input.file_type === 'module'",
-        ns = ns,
-        tagList(
-          shiny::textInput(
-            inputId = ns("file_name"),
-            label = "Module Name"
-          ),
-          shiny::radioButtons(
-            inputId = ns("app_type"),
-            label = "App Structure",
-            choices = c("{golem}" = "golem", "{rhino}" = "rhino"),
+
+      tags$fieldset(
+        id = ns("options_fields"),
+        class = "save-code-options",
+        style = "display: none;",
+
+        tagAppendAttributes(
+          radioButtons(
+            inputId = ns("file_type"),
+            label = "File Type",
+            choices = c("UI" = "ui", "Module" = "module"),
             inline = TRUE
+          ),
+          class = "form-inline"
+        ),
+        conditionalPanel(
+          condition = "input.file_type === 'module'",
+          ns = ns,
+          tagList(
+            tagAppendAttributes(
+              textInput(
+                inputId = ns("file_name"),
+                label = "Module Name",
+                width = "100%",
+                value = "Template"
+              ),
+              class = "form-inline"
+            ),
+            if (interactive()) {
+              tagAppendAttributes(
+                radioButtons(
+                  inputId = ns("app_type"),
+                  label = "App Structure",
+                  choices = c("{golem}" = "golem", "{rhino}" = "rhino"),
+                  inline = TRUE
+                ),
+                class = "form-inline"
+              )
+            }
           )
         )
       )

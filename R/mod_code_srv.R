@@ -25,7 +25,10 @@ CodeModuleServer <- function(id, ui_code) {
       }
     )
 
-    r_code <- reactive(jsonToRScript(ui_code()))
+    r_code <- reactive({
+      module_name <- if (input$file_type == "ui") NULL else input$file_name
+      jsonToRScript(ui_code(), module_name = module_name)
+    })
 
     output$code <- renderPrint(cat(r_code()))
   })
