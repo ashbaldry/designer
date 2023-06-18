@@ -56,20 +56,20 @@ CodeModUI <- function(id) {
           ),
           class = "form-inline"
         ),
-        conditionalPanel(
-          condition = "input.file_type === 'module'",
-          ns = ns,
-          tagList(
-            tagAppendAttributes(
-              textInput(
-                inputId = ns("file_name"),
-                label = "Module Name",
-                width = "100%",
-                value = "Template"
-              ),
-              class = "form-inline"
-            ),
-            if (interactive()) {
+        tagAppendAttributes(
+          textInput(
+            inputId = ns("file_name"),
+            label = "File Name",
+            width = "100%",
+            value = "ui.R"
+          ),
+          class = "form-inline"
+        ),
+        tagList(
+          if (interactive()) {
+            conditionalPanel(
+              condition = "input.file_type === 'module'",
+              ns = ns,
               tagAppendAttributes(
                 radioButtons(
                   inputId = ns("app_type"),
@@ -79,8 +79,8 @@ CodeModUI <- function(id) {
                 ),
                 class = "form-inline"
               )
-            }
-          )
+            )
+          }
         )
       )
     ),

@@ -6,6 +6,15 @@ CodeModuleServer <- function(id, ui_code) {
     setBookmarkExclude(c("save", "download", "file_type", "file_name", "options"))
     ns <- session$ns
 
+    observeEvent(input$file_type, {
+      updateTextInput(
+        session = session,
+        inputId = "file_name",
+        label = switch(input$file_type, "ui" = "File Name", "module" = "Module Name"),
+        value = switch(input$file_type, "ui" = "ui.R", "module" = "Template"),
+      )
+    })
+
     observeEvent(input$save, ignoreInit = TRUE, {
       writeToUI(ui_code(), input$file_type, input$file_name, input$app_type)
     })
@@ -13,7 +22,7 @@ CodeModuleServer <- function(id, ui_code) {
     output$download <- downloadHandler(
       filename = function() {
         if (input$file_type == "ui") {
-          "ui.R"
+          input$file_name
         } else {
           paste0("mod_", tolower(gsub("\\W", "_", input$file_name)), "_ui.R")
         }
@@ -39,13 +48,14 @@ writeToUI <- function(code, file_type = c("ui", "module"), module_name = NULL,
   file_type <- match.arg(file_type)
   app_type <- match.arg(app_type)
 
+  r_dir <- if (app_type == "golem") "R" else "app/view"
+  if (!file.exists(r_dir)) dir.create(r_dir, recursive = TRUE)
+
   if (file_type == "ui") {
     r_code <- jsonToRScript(code)
-    file_name <- "ui.R"
+    file_name <- file.path(r_dir, module_name)
   } else {
     r_code <- jsonToRScript(code, module_name = module_name)
-    r_dir <- if (app_type == "golem") "R" else "app/view"
-    if (!file.exists(r_dir)) dir.create(r_dir, recursive = TRUE)
     file_name <- file.path(r_dir, paste0("mod_", tolower(gsub(" ", "_", module_name)), "_ui.R"))
   }
 
