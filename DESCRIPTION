@@ -25,7 +25,8 @@ Imports:
     shinipsum,
     shiny (>= 1.7.1),
     shinyscreenshot
-Suggests: 
+Suggests:
+    chromote,
     knitr,
     lintr,
     rmarkdown,

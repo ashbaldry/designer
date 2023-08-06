@@ -1,6 +1,7 @@
 test_that("designer app functionality works as expected", {
   # Don't run these tests on the CRAN build servers
   skip_on_cran()
+  skip_if_not(isTRUE(nchar(chromote::find_chrome()) > 1L))
 
   shiny_app <- designApp()
   app <- shinytest2::AppDriver$new(shiny_app, name = "designapp")
