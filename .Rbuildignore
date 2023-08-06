@@ -22,3 +22,4 @@ _\.new\.png$
 ^shiny_bookmarks$
 ^CRAN-SUBMISSION$
 ^\.dockerignore$
+^manifest\.json$
