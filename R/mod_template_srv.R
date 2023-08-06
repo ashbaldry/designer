@@ -10,7 +10,7 @@ TemplateModuleServer <- function(id, html, page) {
       "save", "save_share",
       "overwrite", "overwrite_share",
       "existing_template", "save_button", "select",
-      "delete", "search"
+      "delete", "confirm_delete", "search"
     ))
 
     onBookmark(function(state) {
