@@ -15,7 +15,7 @@ settingsDropdownButton <- function(id, label, contents) {
         class = "btn btn-block btn-secondary dropdown-toggle",
         `data-toggle` = "dropdown",
         `aria-expanded` = "false",
-       label
+        label
       ),
       contents
     )

@@ -4,7 +4,6 @@
 CodeModuleServer <- function(id, ui_code) {
   moduleServer(id, function(input, output, session) {
     setBookmarkExclude(c("save", "download", "file_type", "file_name", "options"))
-    ns <- session$ns
 
     observeEvent(input$file_type, {
       updateTextInput(
