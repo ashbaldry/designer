@@ -1,5 +1,13 @@
 # `{designer}`
 
+## 0.3.0
+
+### Features
+
+* Templates are enabled to save, update and share
+
+* R code can be saved as a module (#42)
+
 ## 0.2.0
 
 ### Features
