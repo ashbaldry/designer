@@ -5,18 +5,22 @@
 #' into a script to recreate the UI designed in the app
 #'
 #' @param json A string containing JSON code of the "App UI" page
+#' @param module_name Optional string the allows the function to be written as a module
+#' @param app_type Structure of the application. Either `app`, with an app.R/ui.R and server.R,
+#' `golem` or `rhino` with the relevant project structure.
 #'
 #' @return A string that can be written to a \code{ui.R} file
 #'
 #' @noRd
-jsonToRScript <- function(json) {
+jsonToRScript <- function(json, module_name = NULL, app_type = c("app", "golem", "rhino")) {
   if (is.null(json)) return("")
 
   valid_json <- jsonlite::validate(json)
 
   if (valid_json) {
+    app_type <- match.arg(app_type)
     html_list <- jsonlite::fromJSON(json, simplifyDataFrame = FALSE)
-    htmlToRScript(html_list)
+    htmlToRScript(html_list, module_name = module_name, app_type = app_type)
   } else {
     message(attr(valid_json, "err"), "Returning NA")
     NA_character_
@@ -31,18 +35,22 @@ jsonToRScript <- function(json) {
 #' @param html_list A list containing information about the tags, relevant R functions and extra arguments to
 #' give to each HTML tag
 #' @param indent The number of spaces to indent each subsequent call
+#' @param module_name Optional string the allows the function to be written as a module
 #'
 #' @return A string that can be written to a \code{ui.R} file
 #'
 #' @noRd
-htmlToRScript <- function(html_list, indent = 0L) {
+htmlToRScript <- function(html_list, indent = 0L, module_name = NULL, app_type = c("app", "golem", "rhino")) {
   if (is.null(html_list$r_function)) return("")
+  app_type <- match.arg(app_type)
 
+  module_home <- indent == 0L && (is.character(module_name) || app_type != "app")
   indent_space <- paste0(rep(" ", indent), collapse = "")
   indent_text_space <- paste0(rep(" ", indent + 2L), collapse = "")
 
   if ("children" %in% names(html_list) && length(html_list$children) > 0L) {
-    sub_rfuncs <- lapply(html_list$children, htmlToRScript, indent = indent + 2L)
+    sub_indent <- indent + if (module_home) 4L else 2L
+    sub_rfuncs <- lapply(html_list$children, htmlToRScript, indent = sub_indent)
     sub_rfuncs <- paste0(paste(sub_rfuncs, collapse = ",\n"), "\n")
   } else {
     sub_rfuncs <- ""
@@ -76,13 +84,41 @@ htmlToRScript <- function(html_list, indent = 0L) {
     r_comments <- paste0(indent_space, "# ", strsplit(html_list$r_comments, "\n")[[1L]], "\n", collapse = "")
   }
 
+  if (module_home && is.character(module_name)) {
+    r_comments <- paste0("#' ", module_name, " Module\n#' @export\n")
+    if (app_type == "rhino") {
+      pkgs <- c("shiny", if (html_list$r_function == "dashboardPage") "shinydashboard")
+      r_comments <- paste0("box::use(", toString(pkgs), ")\n\n", r_comments)
+    }
+
+    rfunc <- paste0(
+      gsub("\\W", "", tools::toTitleCase(module_name)),
+      "UI <- function(id) {\n  tagList(\n"
+    )
+    rfunc_arguments <- NULL
+    rfunc_end <- "  )\n}"
+  } else if (module_home) {
+    r_comments <- paste0("#' Application UI \n#' @export\n")
+    if (app_type == "rhino") {
+      pkgs <- c("shiny", if (html_list$r_function == "dashboardPage") "shinydashboard")
+      r_comments <- paste0("box::use(", toString(pkgs), ")\n\n", r_comments)
+    }
+
+    rfunc <- paste0("AppUI <- function(id) {\n  ", html_list$r_function, "(\n")
+    rfunc_arguments <- NULL
+    rfunc_end <- "  )\n}"
+  } else {
+    rfunc <- paste0(indent_space, html_list$r_function, "(\n")
+    rfunc_end <- paste0(indent_space, ")")
+  }
+
   paste0(
     r_comments,
-    indent_space, html_list$r_function, "(\n",
+    rfunc,
     rfunc_arguments,
     html_text,
     sub_rfuncs,
-    indent_space, ")",
+    rfunc_end,
     collapse = ""
   )
 }

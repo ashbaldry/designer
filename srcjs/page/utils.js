@@ -5,6 +5,7 @@ import { FluidPage } from './FluidPage'
 import { BootstrapPage } from './BootstrapPage'
 import { NavbarPage } from './NavbarPage'
 import { DashboardPage } from './DashboardPage'
+import { templateSelected, templateUpated } from '../app/settings'
 
 export let page
 
@@ -30,9 +31,13 @@ export function createPage () {
   }
 
   page.updatePage()
-  if (page.enable_on_load) {
+
+  if (templateSelected()) {
+    templateUpated()
+  } else if (page.enable_on_load) {
     page.enableSortablePage('canvas-page')
   }
+
   page.updateComponentDropdown()
   return page
 };
@@ -50,7 +55,9 @@ export function selectPage () {
 }
 
 export function changePageCheck () {
-  if ($('#canvas-page').html() === '' || $('#canvas-page.wrapper .tab-content').html() === '') {
+  if (templateSelected()) {
+    return null
+  } else if ($('#canvas-page').html() === '' || $('#canvas-page.wrapper .tab-content').html() === '') {
     $('#canvas-page').html('<div></div>')
     createPage()
   } else {

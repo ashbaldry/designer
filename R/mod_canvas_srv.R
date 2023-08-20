@@ -2,18 +2,17 @@
 #'
 #' @importFrom utils packageVersion
 #' @noRd
-CanvasModuleServer <- function(id) {
+CanvasModuleServer <- function(id, selected_template) {
   moduleServer(id, function(input, output, session) {
-    setBookmarkExclude(c("html", "canvas"))
+    setBookmarkExclude(c("html", "canvas", "screenshot"))
 
-    onBookmark(function(state) {
-      state$values$html <- input$html
-      state$values$designer_version <- packageVersion("designer")
-    })
-    onRestore(function(state) {
-      session$sendInputMessage("html", state$values$html)
+    observeEvent(selected_template(), {
+      session$sendInputMessage("html", selected_template())
     })
 
-    return(reactive(input$canvas))
+    return(list(
+      ui_code = reactive(input$canvas),
+      html = reactive(input$html)
+    ))
   })
 }

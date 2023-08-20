@@ -14,6 +14,11 @@ export class SliderInput extends Component {
         </div>
     `
 
+  constructor () {
+    super()
+    this.updateComponent(true)
+  }
+
   createComponent () {
     const label = $('#sidebar-slider-label').val()
 
@@ -89,6 +94,9 @@ export class SliderInput extends Component {
   updateComponent (update_sortable = false) {
     super.updateComponent(update_sortable)
 
+    if (typeof (window) === 'undefined') {
+      return null
+    }
     const slider_type = $('#sidebar-slider-type').val()
     $('.component-container').find('input').ionRangeSlider({ prettify: this.getSliderPrettifier(slider_type) })
   };

@@ -419,10 +419,10 @@ componentTab <- function(id) {
           choices = c("Optional" = ""),
           options = list(
             render = I("{
-            item: function(item, escape) { return '<div class=\"item icon-option\">' + item.label + '</div>'; },
-            option: function(item, escape) { return '<div class=\"option icon-option\">' + item.label + '</div>'; }
-          }"),
-          maxOptions = 3000L
+              item: function(item, escape) { return '<div class=\"item icon-option\">' + item.label + '</div>'; },
+              option: function(item, escape) { return '<div class=\"option icon-option\">' + item.label + '</div>'; }
+            }"),
+            maxOptions = 3000L
           )
         ),
         class = "icon-choices"
