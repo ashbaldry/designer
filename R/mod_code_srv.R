@@ -3,63 +3,62 @@
 #' @noRd
 CodeModuleServer <- function(id, ui_code) {
   moduleServer(id, function(input, output, session) {
-    ns <- session$ns
+    setBookmarkExclude(c("save", "download", "file_type", "file_name", "options"))
+
+    observeEvent(input$file_type, {
+      updateTextInput(
+        session = session,
+        inputId = "file_name",
+        label = switch(input$file_type, "ui" = "File Name", "module" = "Module Name"),
+        value = switch(input$file_type, "ui" = "ui.R", "module" = "Template"),
+      )
+    })
+
+    observeEvent(input$save, ignoreInit = TRUE, {
+      writeToUI(ui_code(), input$file_type, input$file_name, input$app_type)
+    })
+
+    output$download <- downloadHandler(
+      filename = function() {
+        if (input$file_type == "ui") {
+          input$file_name
+        } else {
+          paste0("mod_", tolower(gsub("\\W", "_", input$file_name)), "_ui.R")
+        }
+      },
+      content = function(file) {
+        module_name <- if (input$file_type == "ui") NULL else input$file_name
+        r_code <- jsonToRScript(ui_code(), module_name = module_name)
+        writeLines(r_code, file)
+      }
+    )
 
     r_code <- reactive({
-      jsonToRScript(ui_code())
-    })
-
-    observeEvent(input$save, {
-      if (file.exists("ui.R")) {
-        showModal(
-          modalDialog(
-            p("ui.R already exists. Saving this will overwrite what currently is in ui.R. Are you sure?"),
-            title = "Warning!",
-            footer = tagList(
-              tags$button(
-                type = "button",
-                class = "btn btn-secondary",
-                `data-dismiss` = "modal",
-                `data-bs-dismiss` = "modal",
-                shiny::icon("xmark"),
-                "No"
-              ),
-              tags$button(
-                id = ns("overwrite"),
-                type = "button",
-                class = "btn btn-primary action-button",
-                `data-dismiss` = "modal",
-                `data-bs-dismiss` = "modal",
-                shiny::icon("check"),
-                "Yes"
-              )
-            )
-          )
-        )
-      } else {
-        writeToUI(r_code())
-        session$sendCustomMessage("runjs", list(script = "$('#save_toast').toast('show');"))
-      }
-    })
-
-    observeEvent(input$overwrite, {
-      writeToUI(r_code())
-      session$sendCustomMessage("runjs", list(script = "$('#save_toast').toast('show');"))
+      module_name <- if (input$file_type == "ui") NULL else input$file_name
+      jsonToRScript(ui_code(), module_name = module_name, app_type = input$app_type)
     })
 
     output$code <- renderPrint(cat(r_code()))
-
-    output$download <- downloadHandler(
-      filename = "ui.R",
-      content = function(file) {
-        writeLines(r_code(), file)
-      }
-    )
   })
 }
 
-writeToUI <- function(code, file = "ui.R") {
-  sink(file = file, append = FALSE)
-  cat(code)
+writeToUI <- function(code, file_type = c("ui", "module"), module_name = NULL,
+                      app_type = c("app", "golem", "rhino")) {
+  file_type <- match.arg(file_type)
+  app_type <- match.arg(app_type)
+
+  r_dir <- switch(app_type, "app" = ".", "golem" = "R", "rhino" = "app/view")
+  if (!file.exists(r_dir)) dir.create(r_dir, recursive = TRUE)
+
+  if (file_type == "ui") {
+    r_code <- jsonToRScript(code)
+    file_name <- file.path(r_dir, module_name)
+  } else {
+    r_code <- jsonToRScript(code, module_name = module_name)
+    file_name <- file.path(r_dir, paste0("mod_", tolower(gsub(" ", "_", module_name)), "_ui.R"))
+  }
+
+  sink(file = file_name, append = FALSE)
+  cat(r_code)
   sink()
 }

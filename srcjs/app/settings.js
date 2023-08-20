@@ -2,6 +2,13 @@ export function initSettings () {
   $('#settings-page_type').on('click', () => $('.canvas-modal').css('display', 'none'))
 
   $('.copy-ui-button').on('click', copyUICode)
+  $('#settings-code-save').on('click', () => { $('#settings-code_button').trigger('click') })
+  $('#settings-code-download').on('click', () => { $('#settings-code_button').trigger('click') })
+  $('#settings-code-options').on('click', () => {
+    const options_visiblity = $('#settings-code-options_fields').css('display') === 'none' ? '' : 'none'
+    $('#settings-code-options_fields').css({ display: options_visiblity })
+  })
+
   $('#css_style').on('change', applyCustomStyle)
 
   $('#remove_label').on('change', toggleComponentLabels)
@@ -19,7 +26,10 @@ export function initSettings () {
   })
 
   $(document).on('click', '.clickable-dropdown', e => { e.stopPropagation() })
-  $('#preview').on('click', () => { $('.page-canvas-shell').addClass('preview') })
+  $('#preview').on('click', () => {
+    $('#settings-options_button').trigger('click')
+    $('.page-canvas-shell').addClass('preview')
+  })
   $('#canvas-close_preview').on('click', () => { $('.page-canvas-shell').removeClass('preview') })
 
   Shiny.addCustomMessageHandler('toggleBS4DashDeps', toggleBS4DashDeps)
@@ -32,6 +42,9 @@ export function initSettings () {
   $('#sidebar-container').on('mousedown', closeCanvasMenu)
 
   $('#canvas-delete').on('click', deleteDesignerElement)
+
+  $('#settings-template-search').on('input', toggleSavedTemplates)
+  $(document).on('click', '.template-option', sendSavedTemplateID)
 };
 
 function toggleComponentLabels () {
@@ -191,4 +204,40 @@ function addCanvasPageSelector (selectors) {
       return '#canvas-page ' + x
     }
   }).join(', ')
+};
+
+let template_selected = false
+export function templateSelected () {
+  return template_selected
+};
+
+export function templateUpated () {
+  template_selected = false
+}
+
+function toggleSavedTemplates (event) {
+  const search_term = event.target.value ? event.target.value : ''
+
+  document.getElementsByClassName('template-option').forEach(x => {
+    const show_template = $(x).find('.title').html().includes(search_term) || $(x).find('.description').html().includes(search_term)
+    x.style.display = show_template ? null : 'none'
+  })
+}
+
+function sendSavedTemplateID (event) {
+  const selected_template = $(event.target).closest('.template-option')
+  const page_choice = selected_template.data('page')
+  template_selected = true
+
+  const to_delete = $(event.target).closest('.delete').length > 0 || event.target.classList.contains('delete')
+
+  if (!to_delete) {
+    $('#settings-page_type').find(`input[value='${page_choice}']`).trigger('click')
+  }
+
+  document.getElementById('settings-template-search').value = null
+  $('#settings-template-search').trigger('input')
+
+  Shiny.setInputValue('settings-template-select', selected_template.data('value'))
+  Shiny.setInputValue('settings-template-delete', to_delete)
 };

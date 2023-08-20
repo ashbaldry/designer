@@ -1,8 +1,6 @@
 import { Component } from './Component'
 
 export class Column extends Component {
-  name = 'Column'
-  parameters = ['width_num', 'offset']
   updatable = false
   html = '<div class="designer-element col-sm col-sm-$width$$offset_class$" data-shinyfunction="column" data-shinyattributes="width = $width$$offset_r$"></div>'
   sortable_settings = {
@@ -11,6 +9,14 @@ export class Column extends Component {
       put: function (_to, _from, clone) {
         return !clone.classList.contains('col-sm')
       }
+    }
+  }
+
+  constructor (update_component = true) {
+    super()
+
+    if (update_component) {
+      this.updateComponent(true)
     }
   }
 

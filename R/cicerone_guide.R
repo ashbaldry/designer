@@ -13,7 +13,7 @@ guide <- cicerone::Cicerone$new(
     "</ul>"
   )
 )$step(
-  el = "settings-component_button",
+  el = "sidebar-accordion",
   title = "Components",
   description = paste(
     "Components are the bread and butter of building a UI.",
@@ -21,7 +21,7 @@ guide <- cicerone::Cicerone$new(
     "and the all important inputs and outputs."
   )
 )$step(
-  el = "component_settings",
+  el = "sidebar-header-body",
   title = "Component Settings",
   description = paste(
     "After a component is selected, some customisation is available ",
@@ -39,6 +39,12 @@ guide <- cicerone::Cicerone$new(
   title = "R Code",
   description = paste(
     "Once you are happy with the layout, you can copy or download the R code required to replicate the UI below."
+  )
+)$step(
+  el = "settings-template_button",
+  title = "R Code",
+  description = paste(
+    "Alternatively if you want to load a previously saved template, select one of the templates here."
   )
 )$step(
   el = "settings-options_button",

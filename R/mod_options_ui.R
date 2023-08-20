@@ -39,6 +39,7 @@ OptionsModUI <- function(id) {
         "Preview Full Page"
       ),
       screenshtButton(
+        btn_id = ns("screenshot"),
         class = "btn-secondary btn-block",
         scale = 1.5
       ),

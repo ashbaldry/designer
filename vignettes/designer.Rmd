@@ -26,11 +26,11 @@ There are several steps in creating the desired application UI:
 
 First is the choice of page.
 
-- `fluidPage` is the most commonly used page in shiny applications.
-- `navbarPage` is useful when creating multi-page applications. 
-  - Currently `dashboardPage` (part of `{shinydashboard}`) is not available due to conflicting styles, however the contents of each tab can be copy and pasted within the `dashboardBody` argument.
-- `fillPage` takes advantage of the rows and columns to align content.
-- `bootstrapPage` and `basicPage` are included for cases where the developer has more broad knowledge of HTML and CSS and will adapt the application more once the wireframe is created.
+- __Standard Page__ is the most commonly used page in shiny applications.
+- __Navigation Bar Page__ is useful when creating multi-page applications. 
+- __Dashboard Page__ can be used to replicate the `{bs4Dash}` dashboard page.
+- __Fluid Page__ takes advantage of the rows and columns to align content.
+- __Fill Page__ and __Fixed Page__ are included for cases where the developer has more broad knowledge of HTML and CSS and will adapt the application more once the wireframe is created.
 
 ### Components
 
@@ -54,6 +54,18 @@ Next is adding the components to the page. A list of available components mentio
 | Button | `actionButton` | |
 | Output | `textOutput`, `verbatimTextOutput`, `plotOutput`, `imageOutput`, `DTOutput`, `uiOutput` | |
 
+#### `bs4Dash` Components
+
+| Component | `{bs4Dash}` Function | Description |
+| -------------- | --------------------------- | ---------------------------------------------- |
+| Tab | `tabItem`, `bs4TabItem` | Adding/Removing a tab |
+| Box/Card | `box`, `bs4Card` | |
+| User Box/Card | `userBox`, `bs4UserCard` | |
+| Info Box | `infoBox`, `bs4InfoBox` | |
+| Value Box | `valueBox`, `bs4ValueBox` | |
+| Block Quote | `blockQuote` | |
+| Callout | `callout` | |
+
 #### Notes
 
 A few layout rules have been implemented into the application to try and match the Bootstrap UI framework that aren't always checked in `{shiny}`.
@@ -68,7 +80,7 @@ Once the wireframe is complete, then there is the ability to save the code, eith
 
 ## Sharing Designs
 
-Alternatively you can share it with others using Code -> Share. This will generate a URL that when opened by another person (or yourself in the future) will show the saved state of the design and then can be added onto and saved again - this will generate a new URL to share.
+Alternatively you can share it with others using Templates -> Save -> Share. This will generate a URL that when opened by another person (or yourself in the future) will show the saved state of the design and then can be added onto and saved again - this will generate a new URL to share.
 
 ### Extras
 

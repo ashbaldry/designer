@@ -12,6 +12,11 @@ export class SelectInput extends Component {
         </div>
     `
 
+  constructor () {
+    super()
+    this.updateComponent(true)
+  }
+
   createComponent () {
     const label = $('#sidebar-dropdown-label').val()
 
@@ -33,6 +38,9 @@ export class SelectInput extends Component {
   updateComponent (update_sortable = false) {
     super.updateComponent(update_sortable)
 
+    if (typeof (window) === 'undefined') {
+      return null
+    }
     $('.component-container').find('select').selectize({
       labelField: 'label',
       valueField: 'value',

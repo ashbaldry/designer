@@ -30,6 +30,11 @@ export class DateInput extends Component {
         </div>       
     `
 
+  constructor () {
+    super()
+    this.updateComponent(true)
+  }
+
   createComponent () {
     const label = $('#sidebar-date-label').val()
 
@@ -58,6 +63,10 @@ export class DateInput extends Component {
 
   updateComponent (update_sortable = false) {
     super.updateComponent(update_sortable)
+
+    if (typeof (window) === 'undefined') {
+      return null
+    }
     $('.component-container').find('input').bsDatepicker()
   };
 }

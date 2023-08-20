@@ -11,8 +11,8 @@ To learn more about \code{designer}, have a read of the vignette: \code{vignette
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://github.com/ashbaldry/designer}
   \item \url{https://ashbaldry.github.io/designer/}
+  \item \url{https://ashbaldry.shinyapps.io/designer/}
   \item Report bugs at \url{https://github.com/ashbaldry/designer/issues}
 }
 

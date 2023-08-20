@@ -3,6 +3,11 @@ import { Component } from './Component'
 export class Text extends Component {
   html = '<$tag$ class="designer-element" data-shinyfunction="tags$$tag$">$value$</$tag$>'
 
+  constructor () {
+    super()
+    this.updateComponent(true)
+  }
+
   createComponent () {
     const tag = $('#sidebar-text-tag').val()
     const value = $('#sidebar-text-textarea').val()

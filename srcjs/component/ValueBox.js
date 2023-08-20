@@ -18,6 +18,11 @@ export class ValueBox extends Component {
         </div>
     `
 
+  constructor () {
+    super()
+    this.updateComponent(true)
+  }
+
   createComponent () {
     const value = $('#sidebar-value_box-value').val()
     const label = $('#sidebar-value_box-label').val()

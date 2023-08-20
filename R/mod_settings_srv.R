@@ -3,7 +3,7 @@
 #' @noRd
 SettingsModuleServer <- function(id, ui_code) {
   moduleServer(id, function(input, output, session) {
-    setBookmarkExclude("code-save")
+    setBookmarkExclude("page_type")
 
     dash_deps_disabled <- reactiveVal(TRUE)
     observeEvent(input$page_type, {
@@ -19,7 +19,15 @@ SettingsModuleServer <- function(id, ui_code) {
       }
     })
 
-    CodeModuleServer("code", ui_code = ui_code)
+    CodeModuleServer("code", ui_code = ui_code$ui_code)
+
+    selected_template <- TemplateModuleServer(
+      "template",
+      html = ui_code$html,
+      page = reactive(input$page_type)
+    )
+
+    return(selected_template)
   })
 }
 

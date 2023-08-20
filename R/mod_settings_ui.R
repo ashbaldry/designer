@@ -9,7 +9,7 @@ SettingsModUI <- function(id) {
   ns <- NS(id)
 
   div(
-    class = "row settings-row row-cols-3",
+    class = "row settings-row row-cols-4",
     settingsDropdownButton(
       id = ns("page_type_button"),
       label = "Page Type",
@@ -23,6 +23,16 @@ SettingsModUI <- function(id) {
         `aria-labelledby` = ns("code_button"),
         class = "dropdown-menu dropdown-menu-wide clickable-dropdown",
         CodeModUI(ns("code"))
+      )
+    ),
+    settingsDropdownButton(
+      id = ns("template_button"),
+      label = "Templates",
+      contents = div(
+        id = ns("template_dropdown"),
+        `aria-labelledby` = ns("template_button"),
+        class = "dropdown-menu dropdown-menu-wide clickable-dropdown",
+        TemplateModUI(ns("template"))
       )
     ),
     settingsDropdownButton(
