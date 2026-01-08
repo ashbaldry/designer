@@ -812,28 +812,6 @@
         "Built": "R 4.5.1; ; 2025-09-28 00:57:39 UTC; windows"
       }
     },
-    "designer": {
-      "Source": "CRAN",
-      "Repository": "https://cran.rstudio.com",
-      "description": {
-        "Package": "designer",
-        "Title": "'Shiny' UI Prototype Builder",
-        "Version": "0.3.1",
-        "Authors@R": "c(\nperson(\"Ashley\", \"Baldry\", , \"arbaldry91@gmail.com\", role = c(\"cre\", \"aut\")),\nperson(\"Sam\", \"Parmar\", , \"parmartsam@gmail.com\", role = \"ctb\")\n)",
-        "Description": "A 'shiny' application that enables the user to create a\nprototype UI, being able to drag and drop UI components before being\nable to save or download the equivalent R code.",
-        "License": "MIT + file LICENSE",
-        "URL": "https://ashbaldry.github.io/designer/,\nhttps://ashbaldry.shinyapps.io/designer/",
-        "BugReports": "https://github.com/ashbaldry/designer/issues",
-        "Imports": "bs4Dash,\nbslib,\ncicerone,\nconfig (>= 0.3.1),\nfontawesome,\ngolem (>= 0.3.1),\nhtmltools,\njsonlite,\nrappdirs,\nshinipsum,\nshiny (>= 1.7.1),\nshinyscreenshot",
-        "Suggests": "chromote,\nknitr,\nlintr,\nrmarkdown,\nshinytest2,\ntestthat (>= 3.0.0)",
-        "VignetteBuilder": "knitr",
-        "Config/testthat/edition": "3",
-        "Encoding": "UTF-8",
-        "Language": "en-GB",
-        "Roxygen": "list(markdown = TRUE)",
-        "RoxygenNote": "7.2.3"
-      }
-    },
     "diffobj": {
       "Source": "CRAN",
       "Repository": "https://cran.rstudio.com",
