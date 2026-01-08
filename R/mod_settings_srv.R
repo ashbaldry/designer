@@ -27,7 +27,7 @@ SettingsModuleServer <- function(id, ui_code) {
       page = reactive(input$page_type)
     )
 
-    return(selected_template)
+    selected_template
   })
 }
 

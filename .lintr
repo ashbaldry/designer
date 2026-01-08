@@ -16,7 +16,7 @@ linters: linters_with_defaults(
    expect_null_linter(),
    redundant_ifelse_linter(),
    undesirable_operator_linter(),
-   unneeded_concatenation_linter(),
+   unnecessary_concatenation_linter(),
    unreachable_code_linter(),
    yoda_test_linter()
  )

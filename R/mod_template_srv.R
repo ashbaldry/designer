@@ -236,6 +236,6 @@ TemplateModuleServer <- function(id, html, page) {
         ignoreInit = TRUE
       )
 
-    return(selected_template)
+    selected_template
   })
 }

@@ -10,9 +10,9 @@ CanvasModuleServer <- function(id, selected_template) {
       session$sendInputMessage("html", selected_template())
     })
 
-    return(list(
+    list(
       ui_code = reactive(input$canvas),
       html = reactive(input$html)
-    ))
+    )
   })
 }
