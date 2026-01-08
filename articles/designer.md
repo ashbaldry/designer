@@ -1,0 +1,118 @@
+# Prototyping Your UI with \`designer\`
+
+`designer` is intended to make the initial generation of a UI wireframe
+of a shiny application as quick and simple as possible.
+
+The package contains a `shiny` application that enables the user to
+build the UI of a `shiny` application by drag and dropping several
+`shiny` components - such as inputs, outputs and buttons - into one of
+the available pages in the [shiny](https://shiny.posit.co/) package.
+Once finalised, the R code used to generate the UI can be copied or
+downloaded to a `ui.R` file, and then the rest of the application like
+the server logic and styling can be built by the developer.
+
+The drag-and-drop nature of the application means that it is easy for
+both R and non-R users to collaborate in designing the UI of their shiny
+application. Comments can be added to any component so that it is simple
+to remember what should be included for each input/output.
+
+To run the application, use
+[`designer::designApp()`](https://ashbaldry.github.io/designer/reference/designApp.md)
+or select “Shiny UI Builder” in the Addins.
+
+------------------------------------------------------------------------
+
+## Application
+
+There are several steps in creating the desired application UI:
+
+### Page
+
+First is the choice of page.
+
+- **Standard Page** is the most commonly used page in shiny
+  applications.
+- **Navigation Bar Page** is useful when creating multi-page
+  applications.
+- **Dashboard Page** can be used to replicate the
+  [bs4Dash](https://github.com/RinteRface/bs4Dash) dashboard page.
+- **Fluid Page** takes advantage of the rows and columns to align
+  content.
+- **Fill Page** and **Fixed Page** are included for cases where the
+  developer has more broad knowledge of HTML and CSS and will adapt the
+  application more once the wireframe is created.
+
+### Components
+
+Next is adding the components to the page. A list of available
+components mentioned below. When creating components the
+[shiny](https://shiny.posit.co/) function parameters that can affect the
+look/layout of the UI (e.g. width and labels) are available to
+customise, but the more server-logic related parameters (e.g. dropdown
+choices) are left to the application developer later on.
+
+| Component     | [shiny](https://shiny.posit.co/) Function                                               | Description                               |
+|---------------|-----------------------------------------------------------------------------------------|-------------------------------------------|
+| Tab           | `tabPanel`                                                                              | (`navbarPage` only) Adding/Removing a tab |
+| Header        | `h1` to `h6`                                                                            |                                           |
+| Row           | `fluidRow`                                                                              |                                           |
+| Column        | `column`                                                                                |                                           |
+| Text          | `p`, `ol`, `ul`                                                                         | Adding text or a list to a page           |
+| Input Panel   | `inputPanel`                                                                            |                                           |
+| Dropdown      | `selectInput`                                                                           |                                           |
+| Input         | `textInput`, `numericInput`, `textAreaInput`, `passwordInput`                           |                                           |
+| Slider        | `sliderInput`                                                                           |                                           |
+| File Input    | `fileInput`                                                                             |                                           |
+| Calendar      | `dateInput`, `dateRangeInput`                                                           |                                           |
+| Checkbox      | `checkboxInput`                                                                         |                                           |
+| Radio Buttons | `checkboxInput`                                                                         |                                           |
+| Button        | `actionButton`                                                                          |                                           |
+| Output        | `textOutput`, `verbatimTextOutput`, `plotOutput`, `imageOutput`, `DTOutput`, `uiOutput` |                                           |
+
+#### `bs4Dash` Components
+
+| Component     | [bs4Dash](https://github.com/RinteRface/bs4Dash) Function | Description           |
+|---------------|-----------------------------------------------------------|-----------------------|
+| Tab           | `tabItem`, `bs4TabItem`                                   | Adding/Removing a tab |
+| Box/Card      | `box`, `bs4Card`                                          |                       |
+| User Box/Card | `userBox`, `bs4UserCard`                                  |                       |
+| Info Box      | `infoBox`, `bs4InfoBox`                                   |                       |
+| Value Box     | `valueBox`, `bs4ValueBox`                                 |                       |
+| Block Quote   | `blockQuote`                                              |                       |
+| Callout       | `callout`                                                 |                       |
+
+#### Notes
+
+A few layout rules have been implemented into the application to try and
+match the Bootstrap UI framework that aren’t always checked in
+[shiny](https://shiny.posit.co/).
+
+- Columns can only be added to rows. This matches the [grid
+  system](https://getbootstrap.com/docs/4.6/layout/grid/) Bootstrap have
+  used (which is based off flexbox).
+- For a similar reason rows are the only component that can be directly
+  added to columns. Anything can be added into a row (even more columns)
+- The only components that are allowed in input panels are inputs and
+  buttons.
+
+### Saving
+
+Once the wireframe is complete, then there is the ability to save the
+code, either by downloading the file or copying the code. There is also
+the opportunity to take a screenshot to annotate further if required.
+
+## Sharing Designs
+
+Alternatively you can share it with others using Templates -\> Save -\>
+Share. This will generate a URL that when opened by another person (or
+yourself in the future) will show the saved state of the design and then
+can be added onto and saved again - this will generate a new URL to
+share.
+
+### Extras
+
+There are some development tools that have been enabled upon start-up
+that can be removed to preview the UI as the end user would see the
+application, such as borders around all components, colouring some empty
+components like columns and rows, and removing component names from the
+UI.
