@@ -34,8 +34,8 @@ Or install the development version from
 devtools::install_github("ashbaldry/designer")
 ```
 
-The application is also available on-line through
-[shinyapps.io](https://ashbaldry.shinyapps.io/designer).
+The application is also available on-line through [Posit Connect
+Cloud](https://ashbaldry-designer.share.connect.posit.cloud).
 
 ## Usage
 

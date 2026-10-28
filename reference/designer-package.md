@@ -9,7 +9,7 @@ Useful links:
 
 - <https://ashbaldry.github.io/designer/>
 
-- <https://ashbaldry.shinyapps.io/designer/>
+- <https://ashbaldry-designer.share.connect.posit.cloud>
 
 - Report bugs at <https://github.com/ashbaldry/designer/issues>
 
