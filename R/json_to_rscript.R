@@ -61,7 +61,7 @@ htmlToRScript <- function(html_list, indent = 0L, module_name = NULL, app_type =
   } else {
     html_text <- paste0(
       indent_text_space,
-      "\"", html_list$text, "\"",
+      encodeString(html_list$text, quote = "\""),
       if (sub_rfuncs == "") "" else ",",
       "\n"
     )

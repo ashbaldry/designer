@@ -84,6 +84,13 @@ test_that("JSON -> R: Text is included correctly", {
   expect_identical(ui_script, "p(\n  \"Sample text\"\n)")
 })
 
+test_that("HTML -> R: Text is escaped as an R string literal", {
+  text <- 'A "quoted" line with \\\\ and a newline\nnext line'
+  ui_script <- htmlToRScript(list(r_function = "p", text = text))
+
+  expect_identical(parse(text = ui_script)[[1L]][[2L]], text)
+})
+
 test_that("JSON -> R: Vector appears on single line", {
   ui_script <- jsonToRScript(
     '{"r_function": "fluidPage", "r_arguments": "x = c(1, 2), y = c(3, 4)"}'
