@@ -34,9 +34,11 @@ test_that("designer app functionality works as expected", {
   ui <- app$get_value(input = "canvas-canvas")
 
   app$click(selector = "#settings-code_button")
+  app$wait_for_idle()
   r_code <- app$get_value(output = "settings-code-code")
   expect_equal(r_code, jsonToRScript(ui))
   app$click(selector = "#settings-code_button")
+  app$wait_for_idle()
 
   # Check all components can be selected
   app$click(selector = "#sidebar-tab-add")
@@ -66,5 +68,6 @@ test_that("designer app functionality works as expected", {
 
   # Check that UI gets added to code module
   app$click(selector = "#settings-code_button")
+  app$wait_for_idle()
   expect_true(grepl("dashboardPage", app$get_value(output = "settings-code-code")))
 })
