@@ -12,7 +12,7 @@ To learn more about \code{designer}, have a read of the vignette: \code{vignette
 Useful links:
 \itemize{
   \item \url{https://ashbaldry.github.io/designer/}
-  \item \url{https://ashbaldry.shinyapps.io/designer/}
+  \item \url{https://ashbaldry-designer.share.connect.posit.cloud}
   \item Report bugs at \url{https://github.com/ashbaldry/designer/issues}
 }
 

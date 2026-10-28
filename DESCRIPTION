@@ -10,7 +10,7 @@ Description: A 'shiny' application that enables the user to create a
     able to save or download the equivalent R code.
 License: MIT + file LICENSE
 URL: https://ashbaldry.github.io/designer/,
-    https://ashbaldry.shinyapps.io/designer/
+    https://ashbaldry-designer.share.connect.posit.cloud
 BugReports: https://github.com/ashbaldry/designer/issues
 Depends:
     R (>= 4.1.0)
