@@ -11,7 +11,7 @@ test_that("cache dir can use custom directory", {
 
   on.exit({
     Sys.setenv(R_DESIGNER_CACHE = "")
-    unlink(temp_dir, recursive = TRUE, force = TRUE)
+    unlink(good_dir, recursive = TRUE, force = TRUE)
   })
 
   cache_dir <- find_cache_dir()

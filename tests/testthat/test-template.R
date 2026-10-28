@@ -55,7 +55,7 @@ test_that("saving a template works", {
   template_parent_info <- cm$DOM$describeNode(unlist(template_parent_id))
   expect_equal(template_parent_info$node$childNodeCount, 1L)
 
-  template_ui_id <- cm$DOM$querySelector(unlist(template_parent_id), "a")
+  template_ui_id <- cm$DOM$querySelector(unlist(template_parent_id), ".template-option")
   template_ui_info <- cm$DOM$getAttributes(unlist(template_ui_id))
 
   page_id <- which(unlist(template_ui_info$attributes) == "data-page") + 1L

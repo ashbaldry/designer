@@ -20,6 +20,11 @@ Useful links:
 \author{
 \strong{Maintainer}: Ashley Baldry \email{arbaldry91@gmail.com}
 
+Authors:
+\itemize{
+  \item Ashley Baldry \email{arbaldry91@gmail.com}
+}
+
 Other contributors:
 \itemize{
   \item Sam Parmar \email{parmartsam@gmail.com} [contributor]
