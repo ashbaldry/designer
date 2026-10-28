@@ -1,5 +1,17 @@
 # `{designer}`
 
+## 0.3.1
+
+### Bug Fixes
+
+* Component text containing quotes or backslashes is now escaped, so the generated R code is valid (#87)
+
+### Maintenance
+
+* Online version of the application has moved from shinyapps.io to [Posit Connect Cloud](https://ashbaldry-designer.share.connect.posit.cloud)
+
+* Tests updated for the latest versions of {shinytest2} and {lintr} (#88)
+
 ## 0.3.0
 
 ### Features
