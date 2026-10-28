@@ -17,6 +17,10 @@ Useful links:
 
 **Maintainer**: Ashley Baldry <arbaldry91@gmail.com>
 
+Authors:
+
+- Ashley Baldry <arbaldry91@gmail.com>
+
 Other contributors:
 
 - Sam Parmar <parmartsam@gmail.com> \[contributor\]
