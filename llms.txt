@@ -22,6 +22,7 @@ to remember what should be included for each input/output.
 Install from [CRAN](https://cran.r-project.org/package=designer) with:
 
 ``` r
+
 install.packages("designer")
 ```
 
@@ -29,6 +30,7 @@ Or install the development version from
 [GitHub](https://github.com/ashbaldry/designer) with:
 
 ``` r
+
 devtools::install_github("ashbaldry/designer")
 ```
 
@@ -41,6 +43,7 @@ To open the [designer](https://ashbaldry.github.io/designer/)
 application and create your own UI, run the following code:
 
 ``` r
+
 designer::designApp()
 ```
 
@@ -54,6 +57,7 @@ the layout of the application, then copy the code to the relevant R file
 ![](reference/figures/example_app_filled.jpeg)
 
 ``` r
+
 # ui.R
 
 bootstrapPage(

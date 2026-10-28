@@ -51,35 +51,35 @@ look/layout of the UI (e.g. width and labels) are available to
 customise, but the more server-logic related parameters (e.g. dropdown
 choices) are left to the application developer later on.
 
-| Component     | [shiny](https://shiny.posit.co/) Function                                               | Description                               |
-|---------------|-----------------------------------------------------------------------------------------|-------------------------------------------|
-| Tab           | `tabPanel`                                                                              | (`navbarPage` only) Adding/Removing a tab |
-| Header        | `h1` to `h6`                                                                            |                                           |
-| Row           | `fluidRow`                                                                              |                                           |
-| Column        | `column`                                                                                |                                           |
-| Text          | `p`, `ol`, `ul`                                                                         | Adding text or a list to a page           |
-| Input Panel   | `inputPanel`                                                                            |                                           |
-| Dropdown      | `selectInput`                                                                           |                                           |
-| Input         | `textInput`, `numericInput`, `textAreaInput`, `passwordInput`                           |                                           |
-| Slider        | `sliderInput`                                                                           |                                           |
-| File Input    | `fileInput`                                                                             |                                           |
-| Calendar      | `dateInput`, `dateRangeInput`                                                           |                                           |
-| Checkbox      | `checkboxInput`                                                                         |                                           |
-| Radio Buttons | `checkboxInput`                                                                         |                                           |
-| Button        | `actionButton`                                                                          |                                           |
-| Output        | `textOutput`, `verbatimTextOutput`, `plotOutput`, `imageOutput`, `DTOutput`, `uiOutput` |                                           |
+| Component | [shiny](https://shiny.posit.co/) Function | Description |
+|----|----|----|
+| Tab | `tabPanel` | (`navbarPage` only) Adding/Removing a tab |
+| Header | `h1` to `h6` |  |
+| Row | `fluidRow` |  |
+| Column | `column` |  |
+| Text | `p`, `ol`, `ul` | Adding text or a list to a page |
+| Input Panel | `inputPanel` |  |
+| Dropdown | `selectInput` |  |
+| Input | `textInput`, `numericInput`, `textAreaInput`, `passwordInput` |  |
+| Slider | `sliderInput` |  |
+| File Input | `fileInput` |  |
+| Calendar | `dateInput`, `dateRangeInput` |  |
+| Checkbox | `checkboxInput` |  |
+| Radio Buttons | `checkboxInput` |  |
+| Button | `actionButton` |  |
+| Output | `textOutput`, `verbatimTextOutput`, `plotOutput`, `imageOutput`, `DTOutput`, `uiOutput` |  |
 
 #### `bs4Dash` Components
 
-| Component     | [bs4Dash](https://github.com/RinteRface/bs4Dash) Function | Description           |
-|---------------|-----------------------------------------------------------|-----------------------|
-| Tab           | `tabItem`, `bs4TabItem`                                   | Adding/Removing a tab |
-| Box/Card      | `box`, `bs4Card`                                          |                       |
-| User Box/Card | `userBox`, `bs4UserCard`                                  |                       |
-| Info Box      | `infoBox`, `bs4InfoBox`                                   |                       |
-| Value Box     | `valueBox`, `bs4ValueBox`                                 |                       |
-| Block Quote   | `blockQuote`                                              |                       |
-| Callout       | `callout`                                                 |                       |
+| Component | [bs4Dash](https://github.com/RinteRface/bs4Dash) Function | Description |
+|----|----|----|
+| Tab | `tabItem`, `bs4TabItem` | Adding/Removing a tab |
+| Box/Card | `box`, `bs4Card` |  |
+| User Box/Card | `userBox`, `bs4UserCard` |  |
+| Info Box | `infoBox`, `bs4InfoBox` |  |
+| Value Box | `valueBox`, `bs4ValueBox` |  |
+| Block Quote | `blockQuote` |  |
+| Callout | `callout` |  |
 
 #### Notes
 
