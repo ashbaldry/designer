@@ -12,6 +12,8 @@ License: MIT + file LICENSE
 URL: https://ashbaldry.github.io/designer/,
     https://ashbaldry.shinyapps.io/designer/
 BugReports: https://github.com/ashbaldry/designer/issues
+Depends:
+    R (>= 4.1.0)
 Imports:
     bs4Dash,
     bslib,
