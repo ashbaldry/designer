@@ -45,7 +45,7 @@ For more information about how the application works, either run the "Help" guid
 \code{vignette("designer")}.
 }
 \examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 designApp()
 \dontshow{\}) # examplesIf}
 }
